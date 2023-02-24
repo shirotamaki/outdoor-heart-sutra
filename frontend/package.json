@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint --dir src",
     "lint:fix": "eslint src --ext .js,jsx,.ts,.tsx --fix",
-    "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css}'"
+    "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json}'",
+    "lint:style": "stylelint '**/*.{css,scss,sass}'",
+    "lint:style:fix": "stylelint --fix '**/*.{css,scss,sass}'"
   },
   "dependencies": {
     "@next/font": "13.1.6",
@@ -27,6 +29,9 @@
     "eslint-config-prettier": "^8.6.0",
     "postcss": "^8.4.21",
     "prettier": "^2.8.4",
+    "stylelint": "^15.2.0",
+    "stylelint-config-standard": "^30.0.1",
+    "stylelint-order": "^6.0.2",
     "tailwindcss": "^3.2.7"
   }
 }
