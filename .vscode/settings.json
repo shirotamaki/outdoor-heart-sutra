@@ -11,5 +11,6 @@
     "editor.formatOnSave": false
   },
   "css.validate": false,
-  "scss.validate": false
+  "scss.validate": false,
+  "ruby.intellisense": "rubyLocate"
 }
