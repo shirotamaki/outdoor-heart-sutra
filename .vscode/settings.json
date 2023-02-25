@@ -12,5 +12,8 @@
   },
   "css.validate": false,
   "scss.validate": false,
-  "ruby.intellisense": "rubyLocate"
+  "ruby.intellisense": "rubyLocate",
+  "[ruby]": {
+    "editor.defaultFormatter": "jnbt.vscode-rufo"
+  }
 }
