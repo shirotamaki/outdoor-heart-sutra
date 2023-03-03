@@ -1,0 +1,2 @@
+class Sutra < ApplicationRecord
+end
