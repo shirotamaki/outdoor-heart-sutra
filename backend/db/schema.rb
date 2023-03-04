@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_04_120301) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_04_140112) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "photos", force: :cascade do |t|
     t.binary "photo_data", null: false
-    t.text "note"
+    t.string "note", limit: 256
     t.float "latitude"
     t.float "longitude"
     t.string "formatted_address"
