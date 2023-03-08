@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import MyComponent from 'components/MyComponent'
 
 export default function () {
   return (
@@ -14,6 +15,7 @@ export default function () {
           <a>アウトドア般若心経とは？</a>
         </Link>
       </div>
+      <MyComponent />
     </>
   )
 }
