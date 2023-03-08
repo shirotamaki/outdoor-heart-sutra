@@ -15,7 +15,6 @@ export default function () {
           <a>アウトドア般若心経とは？</a>
         </Link>
       </div>
-      <MyComponent />
     </>
   )
 }

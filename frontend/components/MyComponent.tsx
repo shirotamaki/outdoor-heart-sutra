@@ -5,17 +5,16 @@ function MyComponent() {
     return axios
       .get('http://localhost:3000/api/v1/sutras/')
       .then(function (response) {
-        // handle success
+        // 処理が成功した場合
         console.log(response.data)
         console.log('成功')
       })
       .catch(function (error) {
-        // handle error
+        // エラー処理
         console.log(error)
-        console.log('エラー')
       })
-      .finally(function () {
-        // always executed
+      .then(function () {
+        // 常に実行
       })
   }
 
