@@ -143,6 +143,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.6.2)
     rack (2.2.6.2)
+    rack-cors (2.0.0)
+      rack (>= 2.0.0)
     rack-protection (3.0.5)
       rack
     rack-test (2.0.2)
@@ -247,6 +249,7 @@ DEPENDENCIES
   omniauth-rails_csrf_protection
   pg (~> 1.1)
   puma (~> 5.0)
+  rack-cors
   rails (~> 7.0.4, >= 7.0.4.2)
   rspec-rails
   rubocop-fjord
