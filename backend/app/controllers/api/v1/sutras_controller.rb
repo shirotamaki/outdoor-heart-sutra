@@ -2,6 +2,8 @@ module Api
   module V1
     class SutrasController < ApplicationController
       def index
+        @sutras = Sutra.all
+        render json: @sutras
       end
 
       def show
