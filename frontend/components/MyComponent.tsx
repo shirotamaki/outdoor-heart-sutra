@@ -20,7 +20,7 @@ function MyComponent() {
 
   return (
     <div>
-      <button onClick={fetchData}>Fetch Data</button>
+      <button onClick={fetchData}>Sutra Data!!</button>
     </div>
   )
 }
