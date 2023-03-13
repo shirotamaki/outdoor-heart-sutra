@@ -14,6 +14,7 @@ export default function () {
         <Link href={''} legacyBehavior>
           <a>アウトドア般若心経とは？</a>
         </Link>
+        <br />
         <LoginButton />
       </div>
     </>
