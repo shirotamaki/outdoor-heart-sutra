@@ -8,8 +8,8 @@ export default function Home() {
     <div>
       {!session && (
         <>
-          <h1>サインインしてください</h1>
-          <button onClick={() => signIn('google')}>Googleでサインイン</button>
+          <h1>ログインしてください</h1>
+          <button onClick={() => signIn('google')}>Googleでログイン</button>
         </>
       )}
       {session && (
