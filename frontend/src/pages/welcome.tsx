@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import MyComponent from 'components/MyComponent'
+import LoginButton from 'components/LoginButton'
 
 export default function () {
   return (
@@ -14,6 +14,8 @@ export default function () {
         <Link href={''} legacyBehavior>
           <a>アウトドア般若心経とは？</a>
         </Link>
+        <br />
+        <LoginButton />
       </div>
     </>
   )
