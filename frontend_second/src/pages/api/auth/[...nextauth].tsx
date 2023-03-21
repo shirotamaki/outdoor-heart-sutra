@@ -11,19 +11,18 @@ export default NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
-  callbacks: {
-    async jwt(token, user) {
-      if (user) {
-        const response = await axios.post(`${apiUrl}/auth/google/callback`, {
-          access_token: user.accessToken,
-        })
-        token.id = response.data.id
-      }
-      return token
-    },
-    async session(session, token) {
-      session.id = token.id
-      return session
-    },
-  },
+  // callbacks: {
+  //   async signIn(user, account, profile) {
+  //     const userData = {
+  //       provider: account.provider,
+  //       uid: profile.id,
+  //       email: user.email,
+  //     };
+
+  //     const result = await upsertUser(userData);
+
+  //     // 必要に応じて、resultに基づいてsignInの結果を制御できます。
+  //     return true;
+  //   },
+  // },
 })
