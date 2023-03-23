@@ -2,7 +2,7 @@ import Head from 'next/head'
 import React from 'react'
 import { useSession, signIn, signOut } from 'next-auth/react'
 
-export default function () {
+const LoginPage = () => {
   return (
     <>
       <Head>
@@ -11,21 +11,29 @@ export default function () {
       <div>
         <h1>アウトドア般若心経</h1>
         <p>自分探しならぬ、自分なくしの旅へ</p>
-        {login()}
+        <Login />
       </div>
     </>
   )
 }
 
-const login = () => {
-  const { data: session } = useSession()
+const Login = () => {
+  const { data: session, status } = useSession()
 
-  if (session) {
+  if (status === 'loading') {
+    return <div>Loading...</div>
+  }
+
+  if (status === 'authenticated') {
     return (
       <div>
+        <p>セッションの期限：{session.expires}</p>
         <p>ようこそ、{session.user.name}さん</p>
+        <p>ようこそ、{session.user.email}さん</p>
         <img src={session.user.image} alt='' style={{ borderRadius: '50px' }} />
-        <button onClick={() => signOut()}>ログアウト</button>
+        <div>
+          <button onClick={() => signOut()}>ログアウト</button>
+        </div>
       </div>
     )
   } else {
@@ -37,3 +45,5 @@ const login = () => {
     )
   }
 }
+
+export default LoginPage

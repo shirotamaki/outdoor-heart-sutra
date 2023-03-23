@@ -6,6 +6,6 @@ Rails.application.routes.draw do
       resources :photos
     end
   end
-  get 'auth/google/callback', to: 'sessions#create'
+  post 'auth/:provider/callback', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
 end
