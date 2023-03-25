@@ -258,7 +258,8 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .vercel-logo {
+  /* stylelint-disable selector-class-pattern */
+  .vercelLogo {
     filter: invert(1);
   }
 
