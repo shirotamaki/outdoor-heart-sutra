@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import React from 'react'
 import { useSession, signIn, signOut } from 'next-auth/react'
+import axios from 'axios'
 
 const LoginPage = () => {
   return (
@@ -20,6 +21,30 @@ const LoginPage = () => {
 const Login = () => {
   const { data: session, status } = useSession()
 
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
+
+  const handleDeleteUser = async () => {
+    if (!session || !session.user) {
+      console.error('セッションが存在しません')
+      return
+    }
+
+    try {
+      const response = await axios.delete(`${apiUrl}/users/${session.user.email}`)
+
+      if (response.status === 204) {
+        signOut()
+        // return response.data
+      } else {
+        console.error('アカウント削除に失敗しました')
+        // return false
+      }
+    } catch (error) {
+      console.log('エラーだよ全員集合！', error)
+      // return false
+    }
+  }
+
   if (status === 'loading') {
     return <div>Loading...</div>
   }
@@ -33,6 +58,7 @@ const Login = () => {
         <img src={session.user.image} alt='' style={{ borderRadius: '50px' }} />
         <div>
           <button onClick={() => signOut()}>ログアウト</button>
+          <button onClick={() => handleDeleteUser()}>アカウントを削除する</button>
         </div>
       </div>
     )
