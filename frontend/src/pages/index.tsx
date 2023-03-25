@@ -1,8 +1,4 @@
-import { Inter } from '@next/font/google'
 import Head from 'next/head'
-import Image from 'next/image'
-import styles from '@/styles/Home.module.css'
-import MyComponent from 'components/MyComponent'
 
 export default function Home() {
   return (
@@ -12,7 +8,10 @@ export default function Home() {
       </Head>
       <div>
         <h1>アウトドア般若心経</h1>
-        <MyComponent />
+        <p>自分探しならぬ、自分なくしの旅へ</p>
+      </div>
+      <div>
+        <a href='/welcome'>welcomeページへ</a>
       </div>
     </>
   )

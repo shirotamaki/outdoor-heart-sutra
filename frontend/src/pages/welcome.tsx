@@ -1,8 +1,13 @@
 import Head from 'next/head'
-import Link from 'next/link'
-import LoginButton from 'components/LoginButton'
+import React from 'react'
+import { useSession } from 'next-auth/react'
+import Login from './components/login'
+import Logout from './components/logout'
+import DeleteUser from './components/deleteUser'
 
-export default function () {
+const WelcomePage = () => {
+  const { data: session, status } = useSession()
+
   return (
     <>
       <Head>
@@ -11,12 +16,26 @@ export default function () {
       <div>
         <h1>アウトドア般若心経</h1>
         <p>自分探しならぬ、自分なくしの旅へ</p>
-        <Link href={''} legacyBehavior>
-          <a>アウトドア般若心経とは？</a>
-        </Link>
-        <br />
-        <LoginButton />
+
+        {status === 'authenticated' ? (
+          <>
+            <p>セッションの期限：{session.expires}</p>
+            <p>ようこそ、{session.user.name}さん</p>
+            <img src={session.user.image} alt='' style={{ borderRadius: '50px' }} />
+            <div>
+              <Logout />
+            </div>
+            <DeleteUser />
+            <div>
+              <a href='/'>トップページへ</a>
+            </div>
+          </>
+        ) : (
+          <Login />
+        )}
       </div>
     </>
   )
 }
+
+export default WelcomePage
