@@ -6,6 +6,6 @@ Rails.application.routes.draw do
       resources :photos
     end
   end
-  get 'auth/google/callback', to: 'sessions#create'
-  delete 'logout', to: 'sessions#destroy'
+  post 'auth/:provider/callback', to: 'api/v1/sessions#create'
+  delete "users/:email", to: "api/v1/sessions#destroy", constraints: { email: /[^\/]+/ }
 end

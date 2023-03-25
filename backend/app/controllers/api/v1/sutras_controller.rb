@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class SutrasController < ApplicationController
@@ -6,23 +8,17 @@ module Api
         render json: @sutras
       end
 
-      def show
-      end
+      def show; end
 
-      def new
-      end
+      def new; end
 
-      def create
-      end
+      def create; end
 
-      def edit
-      end
+      def edit; end
 
-      def update
-      end
+      def update; end
 
-      def destroy
-      end
+      def destroy; end
     end
   end
 end

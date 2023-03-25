@@ -1,23 +1,18 @@
-import { signIn, signOut, useSession } from 'next-auth/react'
+import Head from 'next/head'
 
 export default function Home() {
-  const { data: session, status } = useSession()
-  const loading = status === 'loading'
-
   return (
-    <div>
-      {!session && (
-        <>
-          <h1>ログインしてください</h1>
-          <button onClick={() => signIn('google')}>Googleでログイン</button>
-        </>
-      )}
-      {session && (
-        <>
-          <h1>ようこそ、{session.user.name}さん！</h1>
-          <button onClick={() => signOut()}>ログアウト</button>
-        </>
-      )}
-    </div>
+    <>
+      <Head>
+        <title>アウトドア般若心経 | Top</title>
+      </Head>
+      <div>
+        <h1>アウトドア般若心経</h1>
+        <p>自分探しならぬ、自分なくしの旅へ</p>
+      </div>
+      <div>
+        <a href='/welcome'>welcomeページへ</a>
+      </div>
+    </>
   )
 }
