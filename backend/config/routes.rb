@@ -6,6 +6,6 @@ Rails.application.routes.draw do
       resources :photos
     end
   end
-  post 'auth/:provider/callback', to: 'api/v1/sessions#create'
-  delete "users/:email", to: "api/v1/sessions#destroy", constraints: { email: /[^\/]+/ }
+  post 'auth/:provider/callback', to: 'api/v1/users#create'
+  delete "users/:email", to: "api/v1/users#destroy", constraints: { email: /[^\/]+/ }
 end
