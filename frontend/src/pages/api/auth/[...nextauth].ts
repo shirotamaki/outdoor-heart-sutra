@@ -14,12 +14,12 @@ export default NextAuth({
   callbacks: {
     async signIn({ user, account, profile }) {
       const provider = account.provider
-      const uid = profile.sub
+      const uid = user.id
       const name = user.name
       const email = user.email
 
       try {
-        const response = await axios.post(`${apiUrl}/auth/:provider/callback`, {
+        const response = await axios.post(`${apiUrl}/auth/${provider}/callback`, {
           provider,
           uid,
           name,
