@@ -17,7 +17,7 @@ export default function Home({ sutras }) {
         <a href='/welcome'>welcomeページへ</a>
       </div>
       <div>
-          <Sutra sutras={sutras} />
+        <Sutra sutras={sutras} />
       </div>
     </>
   )
