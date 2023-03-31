@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import axios from 'axios'
 
+const apiUrl = process.env.NEXT_PUBLIC_API_URL
+
 export default function Home({ sutras }) {
   return (
     <>
@@ -34,7 +36,7 @@ function Sutra({ sutras }) {
 }
 
 export async function getStaticProps() {
-  const response = await axios.get('http://localhost:3000/api/v1/sutras')
+  const response = await axios.get(`${apiUrl}/api/v1/sutras`)
   const sutras = response.data
 
   return {
