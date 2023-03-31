@@ -1,6 +1,7 @@
 import Head from 'next/head'
+import axios from 'axios'
 
-export default function Home() {
+export default function Home({ sutras }) {
   return (
     <>
       <Head>
@@ -13,6 +14,33 @@ export default function Home() {
       <div>
         <a href='/welcome'>welcomeページへ</a>
       </div>
+      <div>
+          <Sutra sutras={sutras} />
+      </div>
     </>
   )
+}
+
+function Sutra({ sutras }) {
+  return (
+    <div>
+      {sutras.map((sutra) => (
+        <ul>
+          <li key={sutra.id}>{sutra.kanji}</li>
+        </ul>
+      ))}
+    </div>
+  )
+}
+
+export async function getStaticProps() {
+  const response = await axios.get('http://localhost:3000/api/v1/sutras')
+  const sutras = response.data
+
+  return {
+    props: {
+      sutras,
+    },
+    revalidate: 10, // オプションでキャッシュの更新間隔を指定
+  }
 }
