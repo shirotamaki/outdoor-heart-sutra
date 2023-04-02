@@ -12,7 +12,7 @@ const Login = () => {
     return (
       <div>
         <p>あなたはログインしていません</p>
-        <button onClick={() => signIn('google', null, { prompt: 'login' })}>
+        <button onClick={() => signIn('google', { prompt: 'login' })}>
           Googleでログイン
         </button>
       </div>
