@@ -3,7 +3,16 @@ import axios from 'axios'
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
-export default function Home({ sutras }) {
+interface Sutra {
+  id: number
+  kanji: string
+}
+
+interface HomeProps {
+  sutras: Sutra[]
+}
+
+export default function Home({ sutras }: HomeProps) {
   return (
     <>
       <Head>
@@ -23,7 +32,7 @@ export default function Home({ sutras }) {
   )
 }
 
-function Sutra({ sutras }) {
+function Sutra({ sutras }: HomeProps) {
   return (
     <div>
       {sutras.map((sutra) => (

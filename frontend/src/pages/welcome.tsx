@@ -5,7 +5,7 @@ import Login from '@/components/Login'
 import Logout from '@/components/Logout'
 import DeleteUser from '@/components/DeleteUser'
 
-const WelcomePage = () => {
+const WelcomePage: React.FC = () => {
   const { data: session, status } = useSession()
 
   return (
@@ -19,9 +19,9 @@ const WelcomePage = () => {
 
         {status === 'authenticated' ? (
           <>
-            <p>セッションの期限：{session.expires}</p>
-            <p>ようこそ、{session.user.name}さん</p>
-            <img src={session.user.image} alt='' style={{ borderRadius: '50px' }} />
+            <p>セッションの期限：{session?.expires}</p>
+            <p>ようこそ、{session?.user?.name}さん</p>
+            <img src={session?.user?.image || ''} alt='' style={{ borderRadius: '50px' }} />
             <div>
               <Logout />
             </div>

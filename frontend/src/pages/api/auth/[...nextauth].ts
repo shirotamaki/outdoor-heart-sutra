@@ -7,12 +7,16 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL
 export default NextAuth({
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
   ],
   callbacks: {
     async signIn({ user, account, profile }) {
+      if (!account) {
+        return false
+      }
+      
       const provider = account.provider
       const uid = user.id
       const name = user.name
