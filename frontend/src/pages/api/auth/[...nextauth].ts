@@ -1,6 +1,6 @@
+import axios from 'axios'
 import NextAuth from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
-import axios from 'axios'
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
@@ -16,7 +16,7 @@ export default NextAuth({
       if (!account) {
         return false
       }
-      
+
       const provider = account.provider
       const uid = user.id
       const name = user.name

@@ -1,11 +1,12 @@
-import Webcam from 'react-webcam'
+import Image from 'next/image'
 import { useRef, useState, useCallback } from 'react'
+import Webcam from 'react-webcam'
 
 const videoConstraints = {
   width: 360,
   height: 360,
   // "user"を指定すればフロントカメラ、{ exact: "environment" }ならリアカメラ
-  facingMode:{ ideal: 'user' },
+  facingMode: { ideal: 'user' },
 }
 
 const WebcamComponent = () => {
@@ -29,6 +30,7 @@ const WebcamComponent = () => {
               audio={false}
               width={360}
               height={360}
+              style={{ borderRadius: '50px' }}
               ref={webcamRef}
               screenshotFormat='image/jpeg'
               videoConstraints={videoConstraints}
@@ -47,7 +49,13 @@ const WebcamComponent = () => {
       {url && (
         <>
           <div>
-            <img src={url} alt='Screenshot' />
+            <Image
+              src={url}
+              alt='Screenshot'
+              width={360}
+              height={360}
+              style={{ borderRadius: '50px' }}
+            />
           </div>
           <div>
             <button

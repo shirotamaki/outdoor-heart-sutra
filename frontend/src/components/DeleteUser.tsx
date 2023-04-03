@@ -1,6 +1,6 @@
-import React from 'react'
-import { useSession, signOut } from 'next-auth/react'
 import axios from 'axios'
+import { useSession, signOut } from 'next-auth/react'
+import React from 'react'
 
 const DeleteUser = () => {
   const { data: session } = useSession()
