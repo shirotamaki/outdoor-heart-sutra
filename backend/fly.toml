@@ -1,6 +1,6 @@
-# fly.toml file generated for outdoor-heart-sutra on 2023-04-04T21:59:44+09:00
+# fly.toml file generated for outdoor-heart-sutra-backend on 2023-04-05T10:20:54+09:00
 
-app = "outdoor-heart-sutra"
+app = "outdoor-heart-sutra-backend"
 kill_signal = "SIGINT"
 kill_timeout = 5
 mounts = []
