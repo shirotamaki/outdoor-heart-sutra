@@ -1,11 +1,13 @@
 import Head from 'next/head'
-import React from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
 import { useSession } from 'next-auth/react'
+import React from 'react'
+import DeleteUser from '@/components/DeleteUser'
 import Login from '@/components/Login'
 import Logout from '@/components/Logout'
-import DeleteUser from '@/components/DeleteUser'
 
-const WelcomePage = () => {
+const WelcomePage: React.FC = () => {
   const { data: session, status } = useSession()
 
   return (
@@ -19,15 +21,21 @@ const WelcomePage = () => {
 
         {status === 'authenticated' ? (
           <>
-            <p>セッションの期限：{session.expires}</p>
-            <p>ようこそ、{session.user.name}さん</p>
-            <img src={session.user.image} alt='' style={{ borderRadius: '50px' }} />
+            <p>セッションの期限：{session?.expires}</p>
+            <p>ようこそ、{session?.user?.name}さん</p>
+            <Image
+              src={session?.user?.image || ''}
+              alt='UserIcon'
+              width={50}
+              height={50}
+              style={{ borderRadius: '50px' }}
+            />
             <div>
               <Logout />
             </div>
             <DeleteUser />
             <div>
-              <a href='/'>トップページへ</a>
+              <Link href='/'>トップページへ</Link>
             </div>
           </>
         ) : (

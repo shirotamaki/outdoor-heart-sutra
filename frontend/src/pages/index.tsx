@@ -1,9 +1,19 @@
-import Head from 'next/head'
 import axios from 'axios'
+import Head from 'next/head'
+import Link from 'next/link'
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
-export default function Home({ sutras }) {
+interface Sutra {
+  id: number
+  kanji: string
+}
+
+interface HomeProps {
+  sutras: Sutra[]
+}
+
+export default function Home({ sutras }: HomeProps) {
   return (
     <>
       <Head>
@@ -14,7 +24,7 @@ export default function Home({ sutras }) {
         <p>自分探しならぬ、自分なくしの旅へ</p>
       </div>
       <div>
-        <a href='/welcome'>welcomeページへ</a>
+        <Link href='/welcome'>welcomeページへ</Link>
       </div>
       <div>
         <Sutra sutras={sutras} />
@@ -23,12 +33,12 @@ export default function Home({ sutras }) {
   )
 }
 
-function Sutra({ sutras }) {
+function Sutra({ sutras }: HomeProps) {
   return (
     <div>
-      {sutras.map((sutra) => (
-        <ul>
-          <li key={sutra.id}>{sutra.kanji}</li>
+      {sutras.map((sutra, index) => (
+        <ul key={index}>
+          <li>{sutra.kanji}</li>
         </ul>
       ))}
     </div>

@@ -1,5 +1,5 @@
-import React from 'react'
 import { useSession, signIn } from 'next-auth/react'
+import React from 'react'
 
 const Login = () => {
   const { data: session, status } = useSession()
@@ -12,9 +12,7 @@ const Login = () => {
     return (
       <div>
         <p>あなたはログインしていません</p>
-        <button onClick={() => signIn('google', null, { prompt: 'login' })}>
-          Googleでログイン
-        </button>
+        <button onClick={() => signIn('google', { prompt: 'login' })}>Googleでログイン</button>
       </div>
     )
   }
