@@ -7,10 +7,11 @@ module Api
       skip_before_action :verify_authenticity_token, only: %i[create destroy]
 
       def create
+        next_url = Rails.application.credentials.next_url
         # 引数の条件に該当するデータがあればそれを返す。なければ新規作成する
         user = User.find_or_create_by(provider: params[:provider], uid: params[:uid], name: params[:name], email: params[:email])
         if user.save
-          redirect_to 'http://localhost:4000'
+          redirect_to next_url
         else
           render json: { error: 'ログインに失敗しました' }, status: :unprocessable_entity
         end
