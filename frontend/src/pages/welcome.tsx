@@ -16,6 +16,9 @@ const WelcomePage: React.FC = () => {
         <title>アウトドア般若心経 | welcome</title>
       </Head>
       <div>
+        <div>
+          <Link href='/'>トップページへ</Link>
+        </div>
         <h1>アウトドア般若心経</h1>
         <p>自分探しならぬ、自分なくしの旅へ</p>
 
@@ -34,9 +37,6 @@ const WelcomePage: React.FC = () => {
               <Logout />
             </div>
             <DeleteUser />
-            <div>
-              <Link href='/'>トップページへ</Link>
-            </div>
           </>
         ) : (
           <Login />
