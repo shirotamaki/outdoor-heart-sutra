@@ -20,13 +20,16 @@ export default function Home({ sutras }: HomeProps) {
         <title>アウトドア般若心経 | Top</title>
       </Head>
       <div>
-        <h1>アウトドア般若心経</h1>
-        <p>自分探しならぬ、自分なくしの旅へ</p>
-      </div>
-      <div>
         <Link href='/welcome'>welcomeページへ</Link>
       </div>
       <div>
+        <Link href='/photo'>撮影ページへ</Link>
+      </div>
+      <div>
+        <div>
+          <h1>アウトドア般若心経</h1>
+          <p>自分探しならぬ、自分なくしの旅へ</p>
+        </div>
         <Sutra sutras={sutras} />
       </div>
     </>
