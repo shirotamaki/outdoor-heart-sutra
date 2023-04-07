@@ -3,6 +3,7 @@ import NextAuth from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL
+console.log(apiUrl)
 
 export default NextAuth({
   providers: [
@@ -11,7 +12,6 @@ export default NextAuth({
       clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET as string,
     }),
   ],
-  secret: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET,
   callbacks: {
     async signIn({ user, account, profile }) {
       if (!account) {
