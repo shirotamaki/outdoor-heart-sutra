@@ -3,7 +3,6 @@ import NextAuth from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL
-console.log(apiUrl)
 
 export default NextAuth({
   providers: [
