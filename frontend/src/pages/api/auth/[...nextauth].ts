@@ -1,8 +1,8 @@
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import NextAuth from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL
+const apiUrl = process.env.NEXT_PUBLIC_API_URL // http://localhost:3000
 
 export default NextAuth({
   providers: [
@@ -30,14 +30,26 @@ export default NextAuth({
           name,
           email,
         })
-
+        
         if (response.status === 200) {
           return true
         } else {
           return false
         }
       } catch (error) {
-        console.log('エラー', error)
+        const axiosError = error as AxiosError
+        if (axiosError.response) {
+          // サーバーからのレスポンスが存在する場合
+          console.error('サーバーからのレスポンス:', axiosError.response.data)
+          console.error('ステータスコード:', axiosError.response.status)
+          console.error('ヘッダー:', axiosError.response.headers)
+        } else if (axiosError.request) {
+          // リクエストが送信されたが、サーバーからのレスポンスがない場合
+          console.error('サーバーからのレスポンスがありません:', axiosError.request)
+        } else {
+          // その他のエラー
+          console.error('その他のエラーです:', axiosError.message)
+        }
         return false
       }
     },
