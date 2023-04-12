@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "http://localhost:4000"
+    origins Rails.application.credentials.next_url
 
     resource "*",
             headers: :any,
