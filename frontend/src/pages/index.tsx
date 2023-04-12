@@ -48,7 +48,7 @@ function Sutra({ sutras }: HomeProps) {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const response = await axios.get(`${apiUrl}/api/v1/sutras`)
   const sutras = response.data
 
@@ -56,6 +56,6 @@ export async function getStaticProps() {
     props: {
       sutras,
     },
-    revalidate: 10, // オプションでキャッシュの更新間隔を指定
+    // revalidate: 10, // オプションでキャッシュの更新間隔を指定
   }
 }
