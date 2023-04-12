@@ -56,6 +56,5 @@ export async function getServerSideProps() {
     props: {
       sutras,
     },
-    // revalidate: 10, // オプションでキャッシュの更新間隔を指定
   }
 }

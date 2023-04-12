@@ -30,7 +30,7 @@ export default NextAuth({
           name,
           email,
         })
-        
+
         if (response.status === 200) {
           return true
         } else {
