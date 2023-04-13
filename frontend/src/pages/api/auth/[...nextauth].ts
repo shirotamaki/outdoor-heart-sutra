@@ -2,7 +2,7 @@ import axios, { AxiosError } from 'axios'
 import NextAuth from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL // http://localhost:3000
+const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
 export default NextAuth({
   providers: [
@@ -24,7 +24,7 @@ export default NextAuth({
       const email = user.email
 
       try {
-        const response = await axios.post(`${apiUrl}/auth/${provider}/callback`, {
+        const response = await axios.post(`${apiUrl}/api/v1/users`, {
           provider,
           uid,
           name,
