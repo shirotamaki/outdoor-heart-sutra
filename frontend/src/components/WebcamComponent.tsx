@@ -1,34 +1,42 @@
 import Image from 'next/image'
-import { useRef, useState, useCallback } from 'react'
+import { useRef, useState, useCallback, useEffect } from 'react'
 import Webcam from 'react-webcam'
-
-type FacingModeType = string | { exact: string }
-
-const frontCamera: FacingModeType = 'user'
-const rearCamera: FacingModeType = { exact: 'environment' }
+import useSelectedDeviceStream from '@hooks/useSelectedDeviceStream'
+import useVideoDeviceList from '@hooks/useVideoDeviceList'
 
 const WebcamComponent = () => {
   const [isCaptureEnable, setCaptureEnable] = useState<boolean>(true)
   const webcamRef = useRef<Webcam>(null)
   const [url, setUrl] = useState<string | null>(null)
-  const [facingMode, setFacingMode] = useState<FacingModeType>(rearCamera)
+  const [selectedDevice, setSelectedDevice] = useState<string | null>(null)
+  const { devices } = useVideoDeviceList()
+  const getDevice =
+    (devices && selectedDevice && devices.find((v) => v.deviceId === selectedDevice)) || null
 
-  const videoConstraints = {
-    width: 360,
-    height: 360,
-    facingMode: facingMode,
-  }
+  const stream = useSelectedDeviceStream(selectedDevice)
 
+  // 選択されたメディアストリームが変更されたら、WebcamコンポーネントのsrcObjectを更新する
+  useEffect(() => {
+    if (webcamRef.current && stream) {
+      const video = webcamRef.current.video as HTMLVideoElement
+      if (video.srcObject !== stream) {
+        video.srcObject = stream
+      }
+    }
+  }, [stream])
+
+  // 利用デバイスの初期設定
+  useEffect(() => {
+    devices && devices[0] && setSelectedDevice(devices[0].deviceId)
+  }, [devices])
+
+  // キャプチャ用
   const capture = useCallback(() => {
     const imageSrc = webcamRef.current?.getScreenshot()
     if (imageSrc) {
       setUrl(imageSrc)
     }
   }, [webcamRef])
-
-  const toggleCamera = () => {
-    setFacingMode((prev) => (prev === frontCamera ? rearCamera : frontCamera))
-  }
 
   return (
     <>
@@ -43,7 +51,11 @@ const WebcamComponent = () => {
               style={{ borderRadius: '50px' }}
               ref={webcamRef}
               screenshotFormat='image/jpeg'
-              videoConstraints={videoConstraints}
+              videoConstraints={{
+                width: 360,
+                height: 360,
+                deviceId: getDevice?.deviceId || undefined,
+              }}
               playsInline
             />
           </div>
@@ -54,7 +66,13 @@ const WebcamComponent = () => {
           >
             撮影する
           </button>
-          <button onClick={toggleCamera}>カメラを切り替える</button>
+          <select onChange={(e) => setSelectedDevice(e.target.value)}>
+            {devices.map((v) => (
+              <option key={v.deviceId} value={v.deviceId}>
+                {v.label}
+              </option>
+            ))}
+          </select>
         </>
       )}
       {url && (
