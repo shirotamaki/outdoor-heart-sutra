@@ -14,7 +14,7 @@ const APIKey = process.env.API_Key
 
 const MyComponent = () => {
   return (
-    <LoadScript googleMapsApiKey={APIKey}>
+    <LoadScript googleMapsApiKey={APIKey || ''}>
       <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={17}></GoogleMap>
     </LoadScript>
   )
