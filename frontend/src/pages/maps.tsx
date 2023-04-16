@@ -10,7 +10,7 @@ const center = {
   lng: 139.77521,
 }
 
-const APIKey = process.env.APIKey
+const APIKey = process.env.API_Key
 
 const MyComponent = () => {
   return (
