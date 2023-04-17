@@ -2,13 +2,13 @@ import axios, { AxiosError } from 'axios'
 import NextAuth from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL
+const railsApiUrl = process.env.RAILS_API_URL
 
 export default NextAuth({
   providers: [
     GoogleProvider({
-      clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET as string,
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
   ],
   secret: process.env.NEXT_SECRET,
@@ -24,7 +24,7 @@ export default NextAuth({
       const email = user.email
 
       try {
-        const response = await axios.post(`${apiUrl}/api/v1/users`, {
+        const response = await axios.post(`${railsApiUrl}/api/v1/users`, {
           provider,
           uid,
           name,

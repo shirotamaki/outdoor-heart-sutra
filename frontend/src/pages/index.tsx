@@ -2,7 +2,7 @@ import axios from 'axios'
 import Head from 'next/head'
 import Link from 'next/link'
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL
+const railsApiUrl = process.env.RAILS_API_URL
 
 interface Sutra {
   id: number
@@ -49,7 +49,7 @@ function Sutra({ sutras }: HomeProps) {
 }
 
 export async function getServerSideProps() {
-  const response = await axios.get(`${apiUrl}/api/v1/sutras`)
+  const response = await axios.get(`${railsApiUrl}/api/v1/sutras`)
   const sutras = response.data
 
   return {
