@@ -20,10 +20,13 @@ export default function Home({ sutras }: HomeProps) {
         <title>アウトドア般若心経 | Top</title>
       </Head>
       <div>
-        <Link href='/welcome'>welcomeページへ</Link>
+        <Link href='/welcome'>welcome</Link>
       </div>
       <div>
-        <Link href='/photo'>撮影ページへ</Link>
+        <Link href='/photo'>撮影モード</Link>
+      </div>
+      <div>
+        <Link href='/maps'>全体地図</Link>
       </div>
       <div>
         <div>
