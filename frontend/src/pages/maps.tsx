@@ -6,8 +6,8 @@ const containerStyle = {
 }
 
 const center = {
-  lat: 35.69575,
-  lng: 139.77521,
+  lat: 35.693377849778024, // 緯度
+  lng: 139.7494393926594, // 経度
 }
 
 const mapsApiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
