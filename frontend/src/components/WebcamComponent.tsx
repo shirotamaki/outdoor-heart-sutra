@@ -1,8 +1,8 @@
+import useSelectedDeviceStream from '@hooks/useSelectedDeviceStream'
+import useVideoDeviceList from '@hooks/useVideoDeviceList'
 import Image from 'next/image'
 import { useRef, useState, useCallback, useEffect } from 'react'
 import Webcam from 'react-webcam'
-import useSelectedDeviceStream from '@hooks/useSelectedDeviceStream'
-import useVideoDeviceList from '@hooks/useVideoDeviceList'
 
 const WebcamComponent = () => {
   const [isCaptureEnable, setCaptureEnable] = useState<boolean>(true)
@@ -30,13 +30,38 @@ const WebcamComponent = () => {
     devices && devices[0] && setSelectedDevice(devices[0].deviceId)
   }, [devices])
 
+  // 位置情報取得
+  const [location, setLocation] = useState<{ latitude: number; longitude: number } | null>(null)
+
+  const getLocation = useCallback(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords
+          setLocation({ latitude, longitude })
+        },
+        (error) => {
+          console.error('Error:', error)
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 10000,
+          maximumAge: 0,
+        },
+      )
+    } else {
+      console.error('Geolocation is not supported by this browser.')
+    }
+  }, [])
+
   // キャプチャ用
   const capture = useCallback(() => {
     const imageSrc = webcamRef.current?.getScreenshot()
     if (imageSrc) {
       setUrl(imageSrc)
+      getLocation()
     }
-  }, [webcamRef])
+  }, [webcamRef, getLocation])
 
   return (
     <>
@@ -86,6 +111,12 @@ const WebcamComponent = () => {
               style={{ borderRadius: '50px' }}
             />
           </div>
+          {location && (
+            <div>
+              <p>緯度: {location.latitude}</p>
+              <p>経度: {location.longitude}</p>
+            </div>
+          )}
           <div>
             <button
               onClick={() => {
