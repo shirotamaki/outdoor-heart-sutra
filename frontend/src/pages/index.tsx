@@ -2,7 +2,7 @@ import axios from 'axios'
 import Head from 'next/head'
 import Link from 'next/link'
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL
+const railsApiUrl = process.env.RAILS_API_URL
 
 interface Sutra {
   id: number
@@ -20,10 +20,13 @@ export default function Home({ sutras }: HomeProps) {
         <title>アウトドア般若心経 | Top</title>
       </Head>
       <div>
-        <Link href='/welcome'>welcomeページへ</Link>
+        <Link href='/welcome'>welcome</Link>
       </div>
       <div>
-        <Link href='/photo'>撮影ページへ</Link>
+        <Link href='/photo'>撮影モード</Link>
+      </div>
+      <div>
+        <Link href='/maps'>全体地図</Link>
       </div>
       <div>
         <div>
@@ -49,7 +52,7 @@ function Sutra({ sutras }: HomeProps) {
 }
 
 export async function getServerSideProps() {
-  const response = await axios.get(`${apiUrl}/api/v1/sutras`)
+  const response = await axios.get(`${railsApiUrl}/api/v1/sutras`)
   const sutras = response.data
 
   return {

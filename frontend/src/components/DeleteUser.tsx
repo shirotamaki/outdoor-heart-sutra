@@ -5,7 +5,7 @@ import React from 'react'
 const DeleteUser = () => {
   const { data: session } = useSession()
 
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL
+  const railsApiUrl = process.env.RAILS_API_URL
 
   const handleDeleteUser = async () => {
     if (!session || !session.user) {
@@ -14,7 +14,7 @@ const DeleteUser = () => {
     }
 
     try {
-      const response = await axios.delete(`${apiUrl}/users/${session.user.email}`)
+      const response = await axios.delete(`${railsApiUrl}/users/${session.user.email}`)
 
       if (response.status === 204) {
         signOut()
