@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import WebcamComponent from '@/components/WebcamComponent'
+import Camera from '@/components/Camera'
 
 function App() {
   return (
@@ -7,7 +7,7 @@ function App() {
       <div>
         <Link href='/'>トップページへ</Link>
       </div>
-      <WebcamComponent />
+      <Camera />
     </div>
   )
 }
