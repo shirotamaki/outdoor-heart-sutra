@@ -12,12 +12,11 @@ const Camera = () => {
   const [isCaptureEnable, setCaptureEnable] = useState(true)
   const [isProcessing, setIsProcessing] = useState(false)
   const [url, setUrl] = useState<string | null>(null)
-  const [selectedDevice, setSelectedDevice] = useState("")
+  const [selectedDevice, setSelectedDevice] = useState('')
 
   const { devices } = useVideoDeviceList()
   const currentLocation = useCurrentLocation()
   const [markerLocation, setMarkerLocation] = useState<{ lat: number; lng: number } | null>(null)
-
 
   const videoConstraints = {
     width: 360,
