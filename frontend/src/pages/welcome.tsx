@@ -7,7 +7,7 @@ import DeleteUser from '@/components/DeleteUser'
 import Login from '@/components/Login'
 import Logout from '@/components/Logout'
 
-const WelcomePage: React.FC = () => {
+const WelcomePage = () => {
   const { data: session, status } = useSession()
 
   return (

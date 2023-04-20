@@ -4,13 +4,13 @@ const useVideoDeviceList = () => {
   const [devices, setDevices] = useState<MediaDeviceInfo[]>([])
 
   const refreshDevices = useCallback(async () => {
-    await navigator.mediaDevices
-      .enumerateDevices()
-      .then((devices) => {
-        const videoDevices = devices.filter((device) => device.kind === 'videoinput')
-        setDevices(videoDevices)
-      })
-      .catch((error) => console.error(error))
+    try {
+      const devices = await navigator.mediaDevices.enumerateDevices()
+      const videoDevices = devices.filter((device) => device.kind === 'videoinput')
+      setDevices(videoDevices)
+    } catch (error) {
+      console.error(error)
+    }
   }, [])
 
   useEffect(() => {

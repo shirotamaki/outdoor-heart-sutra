@@ -4,12 +4,12 @@ import Link from 'next/link'
 
 const railsApiUrl = process.env.RAILS_API_URL
 
-interface Sutra {
+type Sutra = {
   id: number
   kanji: string
 }
 
-interface HomeProps {
+type HomeProps = {
   sutras: Sutra[]
 }
 
