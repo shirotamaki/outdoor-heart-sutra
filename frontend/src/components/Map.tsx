@@ -1,5 +1,5 @@
-import useCurrentLocation from '@hooks/useCurrentLocation'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
+import useCurrentLocation from '@hooks/useCurrentLocation'
 
 const containerStyle = {
   width: '600px',
@@ -13,7 +13,11 @@ const center = {
 
 const mapsApiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
 
-const Map = () => {
+type Props = {
+  markerLocation?: { lat: number; lng: number } | null
+}
+
+const Map = ({ markerLocation }: Props) => {
   const currentLocation = useCurrentLocation()
 
   if (!mapsApiKey) {
@@ -23,9 +27,7 @@ const Map = () => {
   return (
     <LoadScript googleMapsApiKey={mapsApiKey}>
       <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={17}>
-        {currentLocation && (
-          <Marker position={currentLocation} />
-        )}
+        {markerLocation && <Marker position={markerLocation} />}
       </GoogleMap>
     </LoadScript>
   )

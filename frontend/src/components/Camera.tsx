@@ -1,18 +1,23 @@
-import useVideoDeviceList from '@hooks/useVideoDeviceList'
 import { useRef, useState, useCallback } from 'react'
 import Webcam from 'react-webcam'
 import CaptureButton from '@/components/CaptureButton'
 import CapturedImage from '@/components/CapturedImage'
 import DeletePhotoButton from '@/components/DeletePhotoButton'
 import DeviceSelector from '@/components/DeviceSelector'
+import Map from '@/components/Map'
+import useCurrentLocation from '@hooks/useCurrentLocation'
+import useVideoDeviceList from '@hooks/useVideoDeviceList'
 
 const Camera = () => {
   const [isCaptureEnable, setCaptureEnable] = useState(true)
   const [isProcessing, setIsProcessing] = useState(false)
-  const [url, setUrl] = useState(null)
+  const [url, setUrl] = useState<string | null>(null)
   const [selectedDevice, setSelectedDevice] = useState("")
 
   const { devices } = useVideoDeviceList()
+  const currentLocation = useCurrentLocation()
+  const [markerLocation, setMarkerLocation] = useState<{ lat: number; lng: number } | null>(null)
+
 
   const videoConstraints = {
     width: 360,
@@ -34,8 +39,9 @@ const Camera = () => {
       setCaptureEnable(false)
       await new Promise((resolve) => setTimeout(resolve, 500))
       setIsProcessing(false)
+      setMarkerLocation(currentLocation)
     }
-  }, [webcamRef, isProcessing])
+  }, [webcamRef, isProcessing, currentLocation])
 
   const handleRemove = useCallback(async () => {
     if (!isProcessing) {
@@ -47,7 +53,7 @@ const Camera = () => {
     }
   }, [isProcessing])
 
-  const handleDeviceChange = (deviceId: string | null) => {
+  const handleDeviceChange = (deviceId: string) => {
     setSelectedDevice(deviceId)
   }
 
@@ -74,6 +80,7 @@ const Camera = () => {
         <>
           <CapturedImage url={url} width={360} height={360} borderRadius='50px' />
           <DeletePhotoButton onRemove={handleRemove} disabled={isProcessing} />
+          <Map markerLocation={markerLocation} />
         </>
       )}
     </>
