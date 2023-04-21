@@ -44,12 +44,12 @@ const Camera = () => {
       setCaptureEnable(false)
       await new Promise((resolve) => setTimeout(resolve, 1000))
       setIsProcessing(false)
-        try {
-          await getCurrentLocation()
-          setMarkerLocation(currentLocation)
-        } catch (error) {
-          console.error(error)
-        }
+      try {
+        await getCurrentLocation()
+        setMarkerLocation(currentLocation)
+      } catch (error) {
+        console.error(error)
+      }
     }
   }, [webcamRef, isProcessing, getCurrentLocation, currentLocation])
 
