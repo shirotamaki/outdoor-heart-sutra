@@ -36,7 +36,7 @@ const Camera = () => {
       const imageSrc = webcamRef.current.getScreenshot()
       setUrl(imageSrc)
       setCaptureEnable(false)
-      await new Promise((resolve) => setTimeout(resolve, 500))
+      await new Promise((resolve) => setTimeout(resolve, 1000))
       setIsProcessing(false)
       setMarkerLocation(currentLocation)
     }
@@ -47,7 +47,7 @@ const Camera = () => {
       setIsProcessing(true)
       setUrl(null)
       setCaptureEnable(true)
-      await new Promise((resolve) => setTimeout(resolve, 500))
+      await new Promise((resolve) => setTimeout(resolve, 1000))
       setIsProcessing(false)
     }
   }, [isProcessing])
