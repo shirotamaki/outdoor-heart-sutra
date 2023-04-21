@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Map from '@/components/Map'
+import Map from '@/features/map/Map'
 
 function App() {
   return (

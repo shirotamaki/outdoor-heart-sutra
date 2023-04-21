@@ -1,5 +1,6 @@
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
-import useCurrentLocation from '@hooks/useCurrentLocation'
+import { mapsApiKey } from '@/config/index'
+import useCurrentLocation from '@/hooks/useCurrentLocation'
 
 const containerStyle = {
   width: '600px',
@@ -10,8 +11,6 @@ const center = {
   lat: 35.69575,
   lng: 139.77521,
 }
-
-const mapsApiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
 
 type Props = {
   markerLocation?: { lat: number; lng: number } | null

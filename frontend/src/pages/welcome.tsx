@@ -3,9 +3,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useSession } from 'next-auth/react'
 import React from 'react'
-import DeleteUser from '@/components/DeleteUser'
-import Login from '@/components/Login'
-import Logout from '@/components/Logout'
+import Login from '@/features/auth/Login'
+import Logout from '@/features/auth/Logout'
+import DeleteUser from '@/features/user/DeleteUser'
 
 const WelcomePage = () => {
   const { data: session, status } = useSession()

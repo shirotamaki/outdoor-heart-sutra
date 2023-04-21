@@ -1,17 +1,16 @@
 import axios, { AxiosError } from 'axios'
 import NextAuth from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
-
-const railsApiUrl = process.env.RAILS_API_URL
+import { clientId, clientSecret, railsApiUrl, nextSecret } from '@/config/index'
 
 export default NextAuth({
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      clientId: clientId,
+      clientSecret: clientSecret,
     }),
   ],
-  secret: process.env.NEXT_SECRET,
+  secret: nextSecret,
   callbacks: {
     async signIn({ user, account, profile }) {
       if (!account) {

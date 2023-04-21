@@ -1,8 +1,7 @@
 import axios from 'axios'
 import Head from 'next/head'
 import Link from 'next/link'
-
-const railsApiUrl = process.env.RAILS_API_URL
+import { railsApiUrl } from '@/config/index'
 
 type Sutra = {
   id: number

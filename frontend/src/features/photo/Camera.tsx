@@ -1,12 +1,12 @@
 import { useRef, useState, useCallback } from 'react'
 import Webcam from 'react-webcam'
-import CaptureButton from '@/components/CaptureButton'
-import CapturedImage from '@/components/CapturedImage'
-import DeletePhotoButton from '@/components/DeletePhotoButton'
-import DeviceSelector from '@/components/DeviceSelector'
-import Map from '@/components/Map'
-import useCurrentLocation from '@hooks/useCurrentLocation'
-import useVideoDeviceList from '@hooks/useVideoDeviceList'
+import CaptureButton from '@/features/photo/CaptureButton'
+import CapturedImage from '@/features/photo/CapturedImage'
+import Map from '@/features/map/Map'
+import DeletePhotoButton from '@/features/photo/DeletePhotoButton'
+import DeviceSelector from '@/features/photo/DeviceSelector'
+import useCurrentLocation from '@/hooks/useCurrentLocation'
+import useVideoDeviceList from '@/hooks/useVideoDeviceList'
 
 const Camera = () => {
   const [isCaptureEnable, setCaptureEnable] = useState(true)
