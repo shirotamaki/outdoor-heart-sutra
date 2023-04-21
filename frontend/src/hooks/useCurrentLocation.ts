@@ -2,28 +2,31 @@ import { useState, useEffect } from 'react'
 
 const useCurrentLocation = () => {
   const [currentLocation, setCurrentLocation] = useState<{ lat: number; lng: number } | null>(null)
-
-  useEffect(() => {
-    const getCurrentLocation = async () => {
-      try {
+  const getCurrentLocation = async () => {
+    try {
+      const location = await new Promise<{ lat: number; lng: number } | null>((resolve, reject) => {
         if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition((position) => {
-            setCurrentLocation({
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-            })
-          })
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              resolve({
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+              })
+            },
+            (error) => {
+              reject(`エラー: ${error.code}`)
+            },
+          )
         } else {
-          alert('ブラウザがサポートされていません')
+          reject('ブラウザがサポートされていません')
         }
-      } catch (error) {
-        alert(error)
-      }
+      })
+      setCurrentLocation(location)
+    } catch (error) {
+      console.error(error)
     }
-    getCurrentLocation()
-  }, [])
-
-  return currentLocation
+  }
+  return { currentLocation, getCurrentLocation }
 }
 
 export default useCurrentLocation

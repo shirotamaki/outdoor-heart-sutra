@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback } from 'react'
+import { useRef, useState, useCallback, useEffect } from 'react'
 import Webcam from 'react-webcam'
 import CaptureButton from '@/features/photo/CaptureButton'
 import CapturedImage from '@/features/photo/CapturedImage'
@@ -15,7 +15,7 @@ const Camera = () => {
   const [selectedDevice, setSelectedDevice] = useState('')
 
   const { devices } = useVideoDeviceList()
-  const currentLocation = useCurrentLocation()
+  const { currentLocation, getCurrentLocation } = useCurrentLocation()
   const [markerLocation, setMarkerLocation] = useState<{ lat: number; lng: number } | null>(null)
 
   const videoConstraints = {
@@ -30,6 +30,12 @@ const Camera = () => {
 
   const webcamRef = useRef<Webcam | null>(null)
 
+  useEffect(() => {
+    if (url && currentLocation) {
+      setMarkerLocation(currentLocation)
+    }
+  }, [url, currentLocation])
+
   const capture = useCallback(async () => {
     if (webcamRef.current && !isProcessing) {
       setIsProcessing(true)
@@ -38,9 +44,14 @@ const Camera = () => {
       setCaptureEnable(false)
       await new Promise((resolve) => setTimeout(resolve, 1000))
       setIsProcessing(false)
-      setMarkerLocation(currentLocation)
+        try {
+          await getCurrentLocation()
+          setMarkerLocation(currentLocation)
+        } catch (error) {
+          console.error(error)
+        }
     }
-  }, [webcamRef, isProcessing, currentLocation])
+  }, [webcamRef, isProcessing, getCurrentLocation, currentLocation])
 
   const handleRemove = useCallback(async () => {
     if (!isProcessing) {
@@ -49,6 +60,7 @@ const Camera = () => {
       setCaptureEnable(true)
       await new Promise((resolve) => setTimeout(resolve, 1000))
       setIsProcessing(false)
+      setMarkerLocation(null)
     }
   }, [isProcessing])
 

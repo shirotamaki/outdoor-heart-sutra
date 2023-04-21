@@ -1,6 +1,5 @@
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
 import { mapsApiKey } from '@/config/index'
-import useCurrentLocation from '@/hooks/useCurrentLocation'
 
 const containerStyle = {
   width: '600px',
@@ -8,24 +7,22 @@ const containerStyle = {
 }
 
 const center = {
-  lat: 35.69575,
-  lng: 139.77521,
+  lat: 26.592227888952923,
+  lng: 127.96974014071095,
 }
 
-type Props = {
+type MarkerLocation = {
   markerLocation?: { lat: number; lng: number } | null
 }
 
-const Map = ({ markerLocation }: Props) => {
-  const currentLocation = useCurrentLocation()
-
+const Map = ({ markerLocation }: MarkerLocation) => {
   if (!mapsApiKey) {
     return <div>Google Maps APIキーが設定されていません</div>
   }
 
   return (
     <LoadScript googleMapsApiKey={mapsApiKey}>
-      <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={17}>
+      <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={8}>
         {markerLocation && <Marker position={markerLocation} />}
       </GoogleMap>
     </LoadScript>
