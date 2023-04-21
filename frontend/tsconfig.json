@@ -16,7 +16,7 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
+      "@/*": ["src/*"],
       "@/hooks/*": ["src/hooks/*"],
       "@/config/*": ["src/config/*"],
       "@/features/*": ["src/features/*"],
