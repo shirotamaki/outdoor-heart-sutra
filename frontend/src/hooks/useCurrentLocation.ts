@@ -22,8 +22,10 @@ const useCurrentLocation = () => {
         }
       })
       setCurrentLocation(location)
+      return location
     } catch (error) {
       console.error(error)
+      return null
     }
   }
   return { currentLocation, getCurrentLocation }

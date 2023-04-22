@@ -29,11 +29,13 @@ const Camera = () => {
 
   const webcamRef = useRef<Webcam | null>(null)
 
-  useEffect(() => {
-    if (url && currentLocation) {
-      setMarkerLocation(currentLocation)
-    }
-  }, [url, currentLocation])
+useEffect(() => {
+  if (url && currentLocation) {
+    setMarkerLocation({ lat: currentLocation.lat, lng: currentLocation.lng })
+  } else {
+    setMarkerLocation(null)
+  }
+}, [url, currentLocation])
 
   const capture = useCallback(async () => {
     if (webcamRef.current && !isProcessing) {
@@ -44,8 +46,12 @@ const Camera = () => {
       await new Promise((resolve) => setTimeout(resolve, 1000))
       setIsProcessing(false)
       try {
-        await getCurrentLocation()
-        setMarkerLocation(currentLocation)
+        const location = await getCurrentLocation()
+        if (location) {
+          setMarkerLocation({ lat: location.lat, lng: location.lng })
+        } else {
+          setMarkerLocation(null)
+        }
       } catch (error) {
         console.error(error)
       }
@@ -90,6 +96,9 @@ const Camera = () => {
         <>
           <CapturedImage url={url} width={360} height={360} borderRadius='50px' />
           <CaptureButton onClick={handleRemove} disabled={isProcessing} text="撮り直す" />
+          <div>
+            位置情報: {markerLocation?.lat}  {markerLocation?.lng}
+          </div>
           <Map markerLocation={markerLocation} />
         </>
       )}
