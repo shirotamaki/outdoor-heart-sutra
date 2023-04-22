@@ -29,13 +29,13 @@ const Camera = () => {
 
   const webcamRef = useRef<Webcam | null>(null)
 
-useEffect(() => {
-  if (url && currentLocation) {
-    setMarkerLocation({ lat: currentLocation.lat, lng: currentLocation.lng })
-  } else {
-    setMarkerLocation(null)
-  }
-}, [url, currentLocation])
+  useEffect(() => {
+    if (url && currentLocation) {
+      setMarkerLocation({ lat: currentLocation.lat, lng: currentLocation.lng })
+    } else {
+      setMarkerLocation(null)
+    }
+  }, [url, currentLocation])
 
   const capture = useCallback(async () => {
     if (webcamRef.current && !isProcessing) {
@@ -87,7 +87,7 @@ useEffect(() => {
             screenshotFormat='image/jpeg'
             videoConstraints={videoConstraints}
           />
-          <CaptureButton onClick={capture} disabled={isProcessing} text="撮影" />
+          <CaptureButton onClick={capture} disabled={isProcessing} text='撮影' />
           <DeviceSelector devices={devices} onSelectDevice={handleDeviceChange} />
         </>
       )}
@@ -95,9 +95,9 @@ useEffect(() => {
       {url && (
         <>
           <CapturedImage url={url} width={360} height={360} borderRadius='50px' />
-          <CaptureButton onClick={handleRemove} disabled={isProcessing} text="撮り直す" />
+          <CaptureButton onClick={handleRemove} disabled={isProcessing} text='撮り直す' />
           <div>
-            位置情報: {markerLocation?.lat}  {markerLocation?.lng}
+            位置情報: {markerLocation?.lat} {markerLocation?.lng}
           </div>
           <Map markerLocation={markerLocation} />
         </>
