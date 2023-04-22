@@ -3,7 +3,6 @@ import Webcam from 'react-webcam'
 import CaptureButton from '@/features/photo/CaptureButton'
 import CapturedImage from '@/features/photo/CapturedImage'
 import Map from '@/features/map/Map'
-import DeletePhotoButton from '@/features/photo/DeletePhotoButton'
 import DeviceSelector from '@/features/photo/DeviceSelector'
 import useCurrentLocation from '@/hooks/useCurrentLocation'
 import useVideoDeviceList from '@/hooks/useVideoDeviceList'
@@ -82,7 +81,7 @@ const Camera = () => {
             screenshotFormat='image/jpeg'
             videoConstraints={videoConstraints}
           />
-          <CaptureButton onClick={capture} disabled={isProcessing} />
+          <CaptureButton onClick={capture} disabled={isProcessing} text="撮影" />
           <DeviceSelector devices={devices} onSelectDevice={handleDeviceChange} />
         </>
       )}
@@ -90,7 +89,7 @@ const Camera = () => {
       {url && (
         <>
           <CapturedImage url={url} width={360} height={360} borderRadius='50px' />
-          <DeletePhotoButton onRemove={handleRemove} disabled={isProcessing} />
+          <CaptureButton onClick={handleRemove} disabled={isProcessing} text="撮り直す" />
           <Map markerLocation={markerLocation} />
         </>
       )}
