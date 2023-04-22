@@ -1,12 +1,11 @@
-import { useRef, useState, useCallback } from 'react'
+import { useRef, useState, useCallback, useEffect } from 'react'
 import Webcam from 'react-webcam'
-import CaptureButton from '@/components/CaptureButton'
-import CapturedImage from '@/components/CapturedImage'
-import DeletePhotoButton from '@/components/DeletePhotoButton'
-import DeviceSelector from '@/components/DeviceSelector'
-import Map from '@/components/Map'
-import useCurrentLocation from '@hooks/useCurrentLocation'
-import useVideoDeviceList from '@hooks/useVideoDeviceList'
+import CaptureButton from '@/features/photo/CaptureButton'
+import CapturedImage from '@/features/photo/CapturedImage'
+import Map from '@/features/map/Map'
+import DeviceSelector from '@/features/photo/DeviceSelector'
+import useCurrentLocation from '@/hooks/useCurrentLocation'
+import useVideoDeviceList from '@/hooks/useVideoDeviceList'
 
 const Camera = () => {
   const [isCaptureEnable, setCaptureEnable] = useState(true)
@@ -15,7 +14,7 @@ const Camera = () => {
   const [selectedDevice, setSelectedDevice] = useState('')
 
   const { devices } = useVideoDeviceList()
-  const currentLocation = useCurrentLocation()
+  const { currentLocation, getCurrentLocation } = useCurrentLocation()
   const [markerLocation, setMarkerLocation] = useState<{ lat: number; lng: number } | null>(null)
 
   const videoConstraints = {
@@ -30,25 +29,43 @@ const Camera = () => {
 
   const webcamRef = useRef<Webcam | null>(null)
 
+  useEffect(() => {
+    if (url && currentLocation) {
+      setMarkerLocation({ lat: currentLocation.lat, lng: currentLocation.lng })
+    } else {
+      setMarkerLocation(null)
+    }
+  }, [url, currentLocation])
+
   const capture = useCallback(async () => {
     if (webcamRef.current && !isProcessing) {
       setIsProcessing(true)
       const imageSrc = webcamRef.current.getScreenshot()
       setUrl(imageSrc)
       setCaptureEnable(false)
-      await new Promise((resolve) => setTimeout(resolve, 500))
+      await new Promise((resolve) => setTimeout(resolve, 1000))
       setIsProcessing(false)
-      setMarkerLocation(currentLocation)
+      try {
+        const location = await getCurrentLocation()
+        if (location) {
+          setMarkerLocation({ lat: location.lat, lng: location.lng })
+        } else {
+          setMarkerLocation(null)
+        }
+      } catch (error) {
+        console.error(error)
+      }
     }
-  }, [webcamRef, isProcessing, currentLocation])
+  }, [webcamRef, isProcessing, getCurrentLocation, currentLocation])
 
   const handleRemove = useCallback(async () => {
     if (!isProcessing) {
       setIsProcessing(true)
       setUrl(null)
       setCaptureEnable(true)
-      await new Promise((resolve) => setTimeout(resolve, 500))
+      await new Promise((resolve) => setTimeout(resolve, 1000))
       setIsProcessing(false)
+      setMarkerLocation(null)
     }
   }, [isProcessing])
 
@@ -70,7 +87,7 @@ const Camera = () => {
             screenshotFormat='image/jpeg'
             videoConstraints={videoConstraints}
           />
-          <CaptureButton onClick={capture} disabled={isProcessing} />
+          <CaptureButton onClick={capture} disabled={isProcessing} text='撮影' />
           <DeviceSelector devices={devices} onSelectDevice={handleDeviceChange} />
         </>
       )}
@@ -78,7 +95,10 @@ const Camera = () => {
       {url && (
         <>
           <CapturedImage url={url} width={360} height={360} borderRadius='50px' />
-          <DeletePhotoButton onRemove={handleRemove} disabled={isProcessing} />
+          <CaptureButton onClick={handleRemove} disabled={isProcessing} text='撮り直す' />
+          <div>
+            位置情報: {markerLocation?.lat} {markerLocation?.lng}
+          </div>
           <Map markerLocation={markerLocation} />
         </>
       )}

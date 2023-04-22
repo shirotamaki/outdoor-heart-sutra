@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Camera from '@/components/Camera'
+import Camera from '@/features/photo/Camera'
 
 function App() {
   return (

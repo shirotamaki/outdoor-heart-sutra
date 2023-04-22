@@ -1,11 +1,9 @@
 import axios from 'axios'
 import { useSession, signOut } from 'next-auth/react'
-import React from 'react'
+import { railsApiUrl } from '@/config/index'
 
 const DeleteUser = () => {
   const { data: session } = useSession()
-
-  const railsApiUrl = process.env.RAILS_API_URL
 
   const handleDeleteUser = async () => {
     if (!session || !session.user) {
