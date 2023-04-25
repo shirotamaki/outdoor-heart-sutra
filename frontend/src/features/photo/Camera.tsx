@@ -6,6 +6,7 @@ import Map from '@/features/map/Map'
 import DeviceSelector from '@/features/photo/DeviceSelector'
 import useCurrentLocation from '@/hooks/useCurrentLocation'
 import useVideoDeviceList from '@/hooks/useVideoDeviceList'
+import reverseGeocode from '@/features/map/ReverseGeocode'
 
 const Camera = () => {
   const [isCaptureEnable, setCaptureEnable] = useState(true)
@@ -16,6 +17,8 @@ const Camera = () => {
   const { devices } = useVideoDeviceList()
   const { currentLocation, getCurrentLocation } = useCurrentLocation()
   const [markerLocation, setMarkerLocation] = useState<{ lat: number; lng: number } | null>(null)
+
+  const [address, setAddress] = useState<string | null>(null)
 
   const videoConstraints = {
     width: 360,
@@ -49,8 +52,11 @@ const Camera = () => {
         const location = await getCurrentLocation()
         if (location) {
           setMarkerLocation({ lat: location.lat, lng: location.lng })
+          const fetchedAddress = await reverseGeocode(location.lat, location.lng)
+          setAddress(fetchedAddress)
         } else {
           setMarkerLocation(null)
+          setAddress(null)
         }
       } catch (error) {
         console.error(error)
@@ -99,6 +105,7 @@ const Camera = () => {
           <div>
             位置情報: {markerLocation?.lat} {markerLocation?.lng}
           </div>
+          <div>住所： {address}</div>
           <Map markerLocation={markerLocation} />
         </>
       )}
