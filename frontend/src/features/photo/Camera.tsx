@@ -53,10 +53,14 @@ const Camera = () => {
         if (location) {
           setMarkerLocation({ lat: location.lat, lng: location.lng })
           const fetchedAddress = await reverseGeocode(location.lat, location.lng)
-          setAddress(fetchedAddress)
+          if (fetchedAddress) {
+            const fixAddress = fetchedAddress.replace(/日本、〒\d{3}-\d{4}\s/g, '')
+            setAddress(fixAddress)
+          } else {
+            setAddress(null)
+          }
         } else {
           setMarkerLocation(null)
-          setAddress(null)
         }
       } catch (error) {
         console.error(error)
