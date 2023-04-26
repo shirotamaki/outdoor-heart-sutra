@@ -1,0 +1,6 @@
+development:
+  sutras_csv_path: db/sutras_kanji_278_moji.csv
+test:
+  sutras_csv_path: db/sutras_kanji_278_moji_test.csv
+production:
+  sutras_csv_path: db/sutras_kanji_278_moji.csv
