@@ -6,7 +6,7 @@ import Map from '@/features/map/Map'
 import DeviceSelector from '@/features/photo/DeviceSelector'
 import useCurrentLocation from '@/hooks/useCurrentLocation'
 import useVideoDeviceList from '@/hooks/useVideoDeviceList'
-import reverseGeocode from '@/features/map/ReverseGeocode'
+import reverseGeocode from '@/features/map/reverseGeocode'
 
 const Camera = () => {
   const [isCaptureEnable, setCaptureEnable] = useState(true)
