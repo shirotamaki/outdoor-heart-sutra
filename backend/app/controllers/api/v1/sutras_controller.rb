@@ -8,8 +8,11 @@ module Api
         render json: sutras
       end
 
-      def show; end
-
+      def show
+        @sutra = Sutra.find(params[:id])
+        render json: @sutra
+      end
+      
       def new; end
 
       def create; end

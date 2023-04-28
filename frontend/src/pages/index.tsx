@@ -43,7 +43,9 @@ function Sutra({ sutras }: HomeProps) {
     <div>
       {sutras.map((sutra, index) => (
         <ul key={index}>
-          <li>{sutra.kanji}</li>
+          <li>
+            <Link href={`/sutras/${sutra.id}`}>{sutra.kanji}</Link>
+          </li>
         </ul>
       ))}
     </div>
