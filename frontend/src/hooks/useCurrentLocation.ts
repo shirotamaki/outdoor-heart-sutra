@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 const useCurrentLocation = () => {
   const [currentLocation, setCurrentLocation] = useState<{ lat: number; lng: number } | null>(null)
