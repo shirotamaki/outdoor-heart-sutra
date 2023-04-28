@@ -17,8 +17,9 @@ const SutraDetail = ({ sutra }: SutraProps) => {
       <h1>
         {sutra.id} : {sutra.kanji}
       </h1>
-      <h2>メモ</h2>
-      <p>あいうえおかきくけこ</p>
+      <div>写真</div>
+      <div>地図</div>
+      <div>メモ</div>
     </div>
   )
 }
