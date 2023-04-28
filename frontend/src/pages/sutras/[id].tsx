@@ -1,5 +1,6 @@
 import { railsApiUrl } from '@/config/index'
 import axios from 'axios'
+import { GetServerSideProps, GetServerSidePropsContext } from 'next'
 
 type Sutra = {
   id: number
@@ -22,8 +23,7 @@ const SutraDetail = ({ sutra }: SutraProps) => {
   )
 }
 
-export async function getServerSideProps(context) {
-  console.log(context)
+export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
   const { id } = context.query
   const response = await axios.get(`${railsApiUrl}/api/v1/sutras/${id}`)
   const sutra = response.data
