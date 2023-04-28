@@ -44,9 +44,7 @@ function Sutra({ sutras }: HomeProps) {
       {sutras.map((sutra, index) => (
         <ul key={index}>
           <li>
-            <Link href={`/sutras/${sutra.id}`}>
-              {sutra.kanji}
-            </Link>
+            <Link href={`/sutras/${sutra.id}`}>{sutra.kanji}</Link>
           </li>
         </ul>
       ))}

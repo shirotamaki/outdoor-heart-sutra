@@ -23,7 +23,9 @@ const SutraDetail = ({ sutra }: SutraProps) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
+export const getServerSideProps: GetServerSideProps = async (
+  context: GetServerSidePropsContext,
+) => {
   const { id } = context.query
   const response = await axios.get(`${railsApiUrl}/api/v1/sutras/${id}`)
   const sutra = response.data
