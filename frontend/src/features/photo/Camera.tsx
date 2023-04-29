@@ -66,7 +66,7 @@ const Camera = () => {
         console.error(error)
       }
     }
-  }, [webcamRef, isProcessing, getCurrentLocation, currentLocation])
+  }, [webcamRef, isProcessing, getCurrentLocation])
 
   const handleRemove = useCallback(async () => {
     if (!isProcessing) {
