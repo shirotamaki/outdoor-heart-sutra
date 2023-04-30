@@ -1,6 +1,6 @@
-import { railsApiUrl } from '@/config/index'
 import axios from 'axios'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
+import { railsApiUrl } from '@/config/index'
 import Camera from '@/features/photo/Camera'
 
 type Sutra = {

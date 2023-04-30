@@ -1,16 +1,16 @@
-import axios, { AxiosError } from 'axios'
+import axios from 'axios'
+import { useSession } from 'next-auth/react'
 import { useRef, useState, useCallback, useEffect } from 'react'
 import Webcam from 'react-webcam'
+import { railsApiUrl } from '@/config/index'
+import Map from '@/features/map/Map'
+import reverseGeocode from '@/features/map/reverseGeocode'
 import CaptureButton from '@/features/photo/CaptureButton'
 import CapturedImage from '@/features/photo/CapturedImage'
-import Map from '@/features/map/Map'
 import DeviceSelector from '@/features/photo/DeviceSelector'
+import fetchUserId from '@/features/user/fetchUserId'
 import useCurrentLocation from '@/hooks/useCurrentLocation'
 import useVideoDeviceList from '@/hooks/useVideoDeviceList'
-import reverseGeocode from '@/features/map/reverseGeocode'
-import { railsApiUrl } from '@/config/index'
-import { useSession } from 'next-auth/react'
-import fetchUserId from '@/features/user/fetchUserId'
 
 type Props = {
   sutra_id: number
@@ -95,7 +95,6 @@ const Camera = ({ sutra_id }: Props) => {
 
   const saveCapturedData = async () => {
     if (capturedImageUrl && markerLocation && address && session?.user?.email) {
-
       const photo_data = capturedImageUrl
       const latitude_data: number = markerLocation.lat
       const longitude_data: number = markerLocation.lng
@@ -117,9 +116,9 @@ const Camera = ({ sutra_id }: Props) => {
         } else {
           return false
         }
-      } catch (error: unknown) {
+      } catch (error) {
         if (axios.isAxiosError(error)) {
-          console.error('保存できません', (error as AxiosError).response?.data)
+          console.error('保存できません')
         } else {
           console.error('必要なデータが揃っていません')
         }
@@ -146,8 +145,17 @@ const Camera = ({ sutra_id }: Props) => {
       )}
       {capturedImageUrl && (
         <>
-          <CapturedImage capturedImageUrl={capturedImageUrl} width={360} height={360} borderRadius='50px' />
-          <CaptureButton onClick={handleRemoveCapturedImage} disabled={isProcessing} text='撮り直す' />
+          <CapturedImage
+            capturedImageUrl={capturedImageUrl}
+            width={360}
+            height={360}
+            borderRadius='50px'
+          />
+          <CaptureButton
+            onClick={handleRemoveCapturedImage}
+            disabled={isProcessing}
+            text='撮り直す'
+          />
           <div>
             位置情報: {markerLocation?.lat} {markerLocation?.lng}
           </div>
