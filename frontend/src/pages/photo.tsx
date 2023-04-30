@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Camera from '@/features/photo/Camera'
 
 function App() {
   return (
@@ -7,7 +6,6 @@ function App() {
       <div>
         <Link href='/'>トップページへ</Link>
       </div>
-      <Camera />
     </div>
   )
 }
