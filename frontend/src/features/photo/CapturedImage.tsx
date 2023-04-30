@@ -1,16 +1,22 @@
 import Image from 'next/image'
 
 type Props = {
-  url: string
+  capturedImageUrl: string | null
   width: number
   height: number
   borderRadius: string
 }
 
-const CapturedImage = ({ url, width, height, borderRadius }: Props) => {
+const CapturedImage = ({ capturedImageUrl, width, height, borderRadius }: Props) => {
   return (
     <>
-      <Image src={url} alt='Screenshot' width={width} height={height} style={{ borderRadius }} />
+      <Image
+        src={capturedImageUrl as string}
+        alt='Screenshot'
+        width={width}
+        height={height}
+        style={{ borderRadius: borderRadius }}
+      />
     </>
   )
 }
