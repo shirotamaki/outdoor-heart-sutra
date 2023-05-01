@@ -18,6 +18,8 @@
     ]
   },
   "settings": {
-    "import/resolver": "webpack"
+    "import/resolver": {
+      "typescript": { "project": "./frontend" }
+    }
   }
 }
