@@ -111,6 +111,7 @@ const Camera = ({ sutra_id }: Props) => {
           current_user_id,
           current_sutra_id,
         })
+        console.log('保存が成功しました')
         if (response.status === 200) {
           return true
         } else {
