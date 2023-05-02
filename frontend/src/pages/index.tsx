@@ -22,9 +22,6 @@ export default function Home({ sutras }: HomeProps) {
         <Link href='/welcome'>welcome</Link>
       </div>
       <div>
-        <Link href='/photo'>撮影モード</Link>
-      </div>
-      <div>
         <Link href='/maps'>全体地図</Link>
       </div>
       <div>

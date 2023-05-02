@@ -1,6 +1,6 @@
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
-import { mapsApiKey } from '@/config/index'
 import { useEffect, useState } from 'react'
+import { mapsApiKey } from '@/config/index'
 
 const containerStyle = {
   width: '400px',

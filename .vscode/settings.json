@@ -15,5 +15,6 @@
   "ruby.intellisense": "rubyLocate",
   "[ruby]": {
     "editor.defaultFormatter": "jnbt.vscode-rufo"
-  }
+  },
+  "eslint.workingDirectories": [{ "directory": "./frontend", "changeProcessCWD": true }]
 }

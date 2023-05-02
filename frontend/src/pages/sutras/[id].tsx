@@ -1,6 +1,7 @@
-import { railsApiUrl } from '@/config/index'
 import axios from 'axios'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
+import { railsApiUrl } from '@/config/index'
+import Camera from '@/features/photo/Camera'
 
 type Sutra = {
   id: number
@@ -17,7 +18,9 @@ const SutraDetail = ({ sutra }: SutraProps) => {
       <h1>
         {sutra.id} : {sutra.kanji}
       </h1>
-      <div>写真</div>
+      <div>
+        <Camera sutra_id={sutra.id} />
+      </div>
       <div>地図</div>
       <div>メモ</div>
     </div>
