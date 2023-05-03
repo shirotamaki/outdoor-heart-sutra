@@ -9,10 +9,14 @@ module Api
       end
 
       def show
-        @sutra = Sutra.find(params[:id])
-        render json: @sutra
+        begin
+          sutra = Sutra.find(params[:id])
+          render json: sutra
+        rescue ActiveRecord::RecordNotFound => e
+          render json: { error: e.message }, status: :not_found
+        end
       end
-      
+
       def new; end
 
       def create; end
