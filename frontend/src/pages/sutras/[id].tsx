@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
 import { railsApiUrl } from '@/config/index'
+import Memo from '@/features/memo/Memo'
 import Camera from '@/features/photo/Camera'
 
 type Sutra = {
@@ -21,8 +22,9 @@ const SutraDetail = ({ sutra }: SutraProps) => {
       <div>
         <Camera sutra_id={sutra.id} />
       </div>
-      <div>地図</div>
-      <div>メモ</div>
+      <div>
+        <Memo />
+      </div>
     </div>
   )
 }
