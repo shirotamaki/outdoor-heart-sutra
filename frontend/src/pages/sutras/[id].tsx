@@ -54,7 +54,7 @@ const SutraDetails = ({ sutra, photo }: SutraProps) => {
           </div>
           <div>{photo.address}</div>
           <div>
-              <Memo photoId={photo.id} savedNote={ photo.note} />
+            <Memo photoId={photo.id} savedNote={photo.note} />
           </div>
         </div>
       )}
