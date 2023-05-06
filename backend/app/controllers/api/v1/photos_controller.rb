@@ -41,6 +41,17 @@ module Api
           render json: { error: e.message }, status: :not_found
         end
       end
+
+      def update
+        photo = Photo.find(params[:id])
+        if photo.update(note: params[:note])
+          head :ok
+        else
+          render json: { error: "更新に失敗しました" }, status: :unprocessable_entity
+        end
+      rescue StandardError => e
+        render json: { error: e.message }, status: :internal_server_error
+      end
     end
   end
 end

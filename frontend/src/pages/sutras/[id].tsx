@@ -15,6 +15,8 @@ type Sutra = {
 }
 
 type Photo = {
+  id: number
+  note: string
   address: string
   longitude: number
   latitude: number
@@ -52,7 +54,7 @@ const SutraDetails = ({ sutra, photo }: SutraProps) => {
           </div>
           <div>{photo.address}</div>
           <div>
-            <Memo />
+              <Memo photoId={photo.id} savedNote={ photo.note} />
           </div>
         </div>
       )}
