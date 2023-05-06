@@ -18,6 +18,10 @@ type MarkerLocation = {
 
 const Map = ({ markerLocation }: MarkerLocation) => {
   const [map, setMap] = useState<google.maps.Map | null>(null)
+  const [currentMarkerLocation, setCurrentMarkerLocation] = useState<{
+    lat: number
+    lng: number
+  } | null>(null)
 
   const handleMapLoad = (mapInstance: google.maps.Map) => {
     setMap(mapInstance)
@@ -26,6 +30,7 @@ const Map = ({ markerLocation }: MarkerLocation) => {
   useEffect(() => {
     if (map && markerLocation) {
       map.panTo(markerLocation)
+      setCurrentMarkerLocation(markerLocation)
     }
   }, [map, markerLocation])
 
@@ -36,7 +41,7 @@ const Map = ({ markerLocation }: MarkerLocation) => {
   return (
     <LoadScript googleMapsApiKey={mapsApiKey}>
       <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={8} onLoad={handleMapLoad}>
-        {markerLocation && <Marker position={markerLocation} />}
+        {currentMarkerLocation && <Marker position={currentMarkerLocation} />}
       </GoogleMap>
     </LoadScript>
   )

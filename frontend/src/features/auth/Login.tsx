@@ -11,7 +11,9 @@ const Login = () => {
     return (
       <div>
         <p>あなたはログインしていません</p>
-        <button onClick={() => signIn('google', { prompt: 'login' })}>Googleでログイン</button>
+        <button onClick={() => signIn('google', { prompt: 'login', callbackUrl: '/' })}>
+          Googleでログイン
+        </button>
       </div>
     )
   }
