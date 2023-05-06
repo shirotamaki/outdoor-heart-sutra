@@ -4,7 +4,8 @@ Rails.application.routes.draw do
       resources :users, only: [:create]
       get 'users/find', to: 'users#find_user'
       resources :sutras, only: [:index, :show]
-      resources :photos, only: [:create]
+      get "photos/find", to: "photos#find_photo"
+      resources :photos, only: [:create, :show]
     end
   end
   delete "users/:email", to: "api/v1/users#destroy", constraints: { email: /[^\/]+/ }

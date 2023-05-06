@@ -5,6 +5,15 @@ module Api
     class PhotosController < ApplicationController
       skip_before_action :verify_authenticity_token
 
+      def find_photo
+        photo = Photo.find_by(sutra_id: params[:sutra_id], user_id: params[:user_id])
+        if photo
+          render json: { photo_id: photo.id }
+        else
+          render json: { error: "ユーザーが見つかりませんでした" }, status: :not_found
+        end
+      end
+
       def create
         photo = Photo.create(
           photo_data: params[:photo_data],
@@ -22,6 +31,15 @@ module Api
         end
       rescue StandardError => e
         render json: { error: "保存に失敗しました", errors: photo.errors }, status: :internal_server_error
+      end
+
+      def show
+        begin
+          photo = Photo.find(params[:id])
+          render json: photo
+        rescue ActiveRecord::RecordNotFound => e
+          render json: { error: e.message }, status: :not_found
+        end
       end
     end
   end
