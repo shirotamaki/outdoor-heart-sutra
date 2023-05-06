@@ -1,31 +1,45 @@
 import axios from 'axios'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
+import { getSession } from 'next-auth/react'
 import { railsApiUrl } from '@/config/index'
 import Memo from '@/features/memo/Memo'
 import Camera from '@/features/photo/Camera'
+import fetchPhotoId from '@/features/photo/fetchPhotoId'
+import fetchUserId from '@/features/user/fetchUserId'
 
 type Sutra = {
   id: number
   kanji: string
 }
 
-type SutraProps = {
-  sutra: Sutra
+type Photo = {
+  photo_data: string | null
 }
 
-const SutraDetail = ({ sutra }: SutraProps) => {
+type SutraProps = {
+  sutra: Sutra
+  photo: Photo
+}
+
+const SutraDetails = ({ sutra, photo }: SutraProps) => {
   return (
-    <div>
+    <>
       <h1>
         {sutra.id} : {sutra.kanji}
       </h1>
-      <div>
-        <Camera sutra_id={sutra.id} />
-      </div>
-      <div>
-        <Memo />
-      </div>
-    </div>
+      {photo.photo_data === null ? (
+        <div>
+          <Camera sutra_id={sutra.id} />
+        </div>
+      ) : (
+        <div>
+          <div>写真</div>
+          <div>地図</div>
+          <div>住所</div>
+          <Memo />
+        </div>
+      )}
+    </>
   )
 }
 
@@ -33,14 +47,64 @@ export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext,
 ) => {
   const { id } = context.query
-  const response = await axios.get(`${railsApiUrl}/api/v1/sutras/${id}`)
-  const sutra = response.data
+  const session = await getSession(context)
 
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/welcome', // ログインしていない場合はwelcomeページへリダイレクト
+        permanent: false, // 永続的なリダイレクトかどうか
+      },
+    }
+  }
+
+  try {
+    const sutraResponse = await axios.get(`${railsApiUrl}/api/v1/sutras/${id}`)
+    const sutra = sutraResponse.data
+    const current_sutra_id = sutra.id
+
+    if (session.user && session.user.email) {
+      const current_user_id = await fetchUserId(session.user.email)
+
+      if (current_user_id !== null) {
+        const photo_id = await fetchPhotoId(current_sutra_id, current_user_id)
+
+        let photo = { photo_data: null }
+
+        if (photo_id !== null) {
+          const photoResponse = await axios.get(`${railsApiUrl}/api/v1/photos/${photo_id}`)
+          photo = photoResponse.data
+        }
+        return {
+          props: {
+            sutra,
+            photo,
+          },
+        }
+      }
+    } else {
+      return {
+        redirect: {
+          destination: '/welcome',
+          permanent: false,
+        },
+      }
+    }
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error('Error fetching data:', error.message, error.response)
+    } else if (error instanceof Error) {
+      console.error('Error fetching data:', error.message)
+    } else {
+      console.error('Error fetching data:', error)
+    }
+    return {
+      notFound: true,
+    }
+  }
   return {
-    props: {
-      sutra,
-    },
+    notFound: true,
   }
 }
 
-export default SutraDetail
+export default SutraDetails
