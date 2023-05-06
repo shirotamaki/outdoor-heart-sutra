@@ -2,8 +2,10 @@ import axios from 'axios'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
 import { getSession } from 'next-auth/react'
 import { railsApiUrl } from '@/config/index'
+import Map from '@/features/map/Map'
 import Memo from '@/features/memo/Memo'
 import Camera from '@/features/photo/Camera'
+import CapturedImage from '@/features/photo/CapturedImage'
 import fetchPhotoId from '@/features/photo/fetchPhotoId'
 import fetchUserId from '@/features/user/fetchUserId'
 
@@ -13,6 +15,9 @@ type Sutra = {
 }
 
 type Photo = {
+  address: string
+  longitude: number
+  latitude: number
   photo_data: string | null
 }
 
@@ -22,6 +27,7 @@ type SutraProps = {
 }
 
 const SutraDetails = ({ sutra, photo }: SutraProps) => {
+  const currentLocation = { lat: photo.latitude, lng: photo.longitude }
   return (
     <>
       <h1>
@@ -33,10 +39,21 @@ const SutraDetails = ({ sutra, photo }: SutraProps) => {
         </div>
       ) : (
         <div>
-          <div>写真</div>
-          <div>地図</div>
-          <div>住所</div>
-          <Memo />
+          <div>
+            <CapturedImage
+              capturedImageUrl={photo.photo_data}
+              width={360}
+              height={360}
+              borderRadius='50px'
+            />
+          </div>
+          <div>
+            <Map markerLocation={currentLocation} />
+          </div>
+          <div>{photo.address}</div>
+          <div>
+            <Memo />
+          </div>
         </div>
       )}
     </>
