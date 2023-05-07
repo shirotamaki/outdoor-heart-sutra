@@ -52,7 +52,7 @@ const SutraDetails = ({ sutra, photo }: SutraProps) => {
           <div>
             <Map markerLocation={currentLocation} />
           </div>
-          <div>{photo.address}</div>
+          <div>住所：{photo.address}</div>
           <div>
             <Memo photoId={photo.id} savedNote={photo.note} />
           </div>
