@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
 import { useRef, useState, useCallback, useEffect } from 'react'
 import Webcam from 'react-webcam'
@@ -29,6 +30,8 @@ const Camera = ({ sutra_id }: Props) => {
   const [markerLocation, setMarkerLocation] = useState<{ lat: number; lng: number } | null>(null)
 
   const [address, setAddress] = useState<string | null>(null)
+
+  const router = useRouter()
 
   const videoConstraints = {
     width: 360,
@@ -95,6 +98,8 @@ const Camera = ({ sutra_id }: Props) => {
 
   const saveCapturedData = async () => {
     if (capturedImageUrl && markerLocation && address && session?.user?.email) {
+      let success = false
+
       const photo_data = capturedImageUrl
       const latitude_data: number = markerLocation.lat
       const longitude_data: number = markerLocation.lng
@@ -111,11 +116,11 @@ const Camera = ({ sutra_id }: Props) => {
           current_user_id,
           current_sutra_id,
         })
-        console.log('保存が成功しました')
         if (response.status === 200) {
-          return true
+          console.log('保存が成功しました')
+          success = true
         } else {
-          return false
+          console.error('保存に失敗しました')
         }
       } catch (error) {
         if (axios.isAxiosError(error)) {
@@ -123,6 +128,9 @@ const Camera = ({ sutra_id }: Props) => {
         } else {
           console.error('必要なデータが揃っていません')
         }
+      }
+      if (success) {
+        await router.push(`/sutras/${current_sutra_id}`)
       }
     }
   }
