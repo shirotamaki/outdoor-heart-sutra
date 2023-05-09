@@ -74,15 +74,11 @@ const SutraDetails = ({ sutra, photo }: SutraProps) => {
               borderRadius='50px'
             />
           </div>
-
           <div>
             <Map markerLocation={currentLocation} />
           </div>
-
           <div>住所：{photo.address}</div>
-
           <div>{renderMemo()}</div>
-
         </div>
       )}
     </>

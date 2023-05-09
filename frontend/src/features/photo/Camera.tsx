@@ -4,7 +4,6 @@ import { useSession } from 'next-auth/react'
 import { useRef, useState, useCallback, useEffect } from 'react'
 import Webcam from 'react-webcam'
 import { railsApiUrl } from '@/config/index'
-import Map from '@/features/map/Map'
 import reverseGeocode from '@/features/map/reverseGeocode'
 import CaptureButton from '@/features/photo/CaptureButton'
 import CapturedImage from '@/features/photo/CapturedImage'
@@ -13,23 +12,22 @@ import fetchUserId from '@/features/user/fetchUserId'
 import useCurrentLocation from '@/hooks/useCurrentLocation'
 import useVideoDeviceList from '@/hooks/useVideoDeviceList'
 
-type Props = {
+type CameraProps = {
   sutra_id: number
 }
 
-const Camera = ({ sutra_id }: Props) => {
+const Camera = ({ sutra_id }: CameraProps) => {
   const { data: session } = useSession()
+  const { devices } = useVideoDeviceList()
+  const { currentLocation, getCurrentLocation } = useCurrentLocation()
+  const webcamRef = useRef<Webcam | null>(null)
 
   const [isCaptureEnable, setCaptureEnable] = useState(true)
   const [isProcessing, setIsProcessing] = useState(false)
   const [capturedImageUrl, setUrl] = useState<string | null>(null)
   const [selectedDevice, setSelectedDevice] = useState('')
-
-  const { devices } = useVideoDeviceList()
-  const { currentLocation, getCurrentLocation } = useCurrentLocation()
-  const [markerLocation, setMarkerLocation] = useState<{ lat: number; lng: number } | null>(null)
-
   const [address, setAddress] = useState<string | null>(null)
+  const [markerLocation, setMarkerLocation] = useState<{ lat: number; lng: number } | null>(null)
 
   const router = useRouter()
 
@@ -42,8 +40,6 @@ const Camera = ({ sutra_id }: Props) => {
   const borderRadiusStyle = {
     borderRadius: '50px',
   }
-
-  const webcamRef = useRef<Webcam | null>(null)
 
   useEffect(() => {
     if (capturedImageUrl && currentLocation) {
