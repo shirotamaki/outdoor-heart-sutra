@@ -7,6 +7,7 @@ import Map from '@/features/map/Map'
 import Memo from '@/features/memo/Memo'
 import Camera from '@/features/photo/Camera'
 import CapturedImage from '@/features/photo/CapturedImage'
+import DeletePhoto from '@/features/photo/DeletePhoto'
 import fetchPhotoId from '@/features/photo/fetchPhotoId'
 import fetchUserId from '@/features/user/fetchUserId'
 
@@ -79,6 +80,9 @@ const SutraDetails = ({ sutra, photo }: SutraProps) => {
           </div>
           <div>住所：{photo.address}</div>
           <div>{renderMemo()}</div>
+          <div>
+            <DeletePhoto photoId={photo.id} />
+          </div>
         </div>
       )}
     </>
