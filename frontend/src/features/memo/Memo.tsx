@@ -1,14 +1,17 @@
 import axios from 'axios'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { railsApiUrl } from '@/config/index'
 
-type Props = {
+type MemoProps = {
   photoId: number
-  savedNote: string
+  sutraId: number
 }
 
-const Memo = ({ photoId, savedNote }: Props) => {
-  const [memo, setMemo] = useState(savedNote)
+const Memo = ({ photoId, sutraId }: MemoProps) => {
+  const [memo, setMemo] = useState<string>('')
+
+  const router = useRouter()
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const input = event.target.value
@@ -17,13 +20,19 @@ const Memo = ({ photoId, savedNote }: Props) => {
     }
   }
   const saveMemo = async () => {
+    let success = false
+
     try {
       const response = await axios.patch(`${railsApiUrl}/api/v1/photos/${photoId}`, {
         note: memo,
       })
       console.log('メモが保存されました:', memo)
+      success = true
     } catch (error) {
       console.error('メモの保存に失敗しました:', error)
+    }
+    if (success) {
+      await router.push(`/sutras/${sutraId}`)
     }
   }
 
@@ -32,7 +41,7 @@ const Memo = ({ photoId, savedNote }: Props) => {
       <textarea
         value={memo}
         onChange={handleChange}
-        placeholder={savedNote ? savedNote : 'メモを入力してください'}
+        placeholder={'メモを入力してください'}
         rows={4}
         cols={46}
       ></textarea>
