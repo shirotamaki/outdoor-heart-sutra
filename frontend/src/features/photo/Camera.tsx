@@ -160,16 +160,13 @@ const Camera = ({ sutra_id }: Props) => {
             height={360}
             borderRadius='50px'
           />
-          <CaptureButton
-            onClick={handleRemoveCapturedImage}
-            disabled={isProcessing}
-            text='撮り直す'
-          />
           <div>
-            位置情報: {markerLocation?.lat} {markerLocation?.lng}
+            <CaptureButton
+              onClick={handleRemoveCapturedImage}
+              disabled={isProcessing}
+              text='撮り直す'
+            />
           </div>
-          <div>住所： {address}</div>
-          <Map markerLocation={markerLocation} />
           <div>
             <button onClick={saveCapturedData}>保存</button>
           </div>
