@@ -16,16 +16,6 @@ module Api
           render json: { error: e.message }, status: :not_found
         end
       end
-
-      def new; end
-
-      def create; end
-
-      def edit; end
-
-      def update; end
-
-      def destroy; end
     end
   end
 end

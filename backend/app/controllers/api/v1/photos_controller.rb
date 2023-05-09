@@ -57,6 +57,7 @@ module Api
         photo = Photo.find(params[:id])
         if photo
           photo.destroy
+          head :ok
         else
           render json: { error: "photoが見つかりませんでした" }, status: :not_found
         end
