@@ -6,10 +6,12 @@ import { railsApiUrl } from '@/config/index'
 type MemoProps = {
   photoId: number
   sutraId: number
+  photoNote: string | null
+  setEditMemo: (value: boolean) => void
 }
 
-const Memo = ({ photoId, sutraId }: MemoProps) => {
-  const [memo, setMemo] = useState<string>('')
+const Memo = ({ photoId, sutraId, photoNote, setEditMemo }: MemoProps) => {
+  const [memo, setMemo] = useState<string>(photoNote || '')
 
   const router = useRouter()
 
@@ -22,12 +24,18 @@ const Memo = ({ photoId, sutraId }: MemoProps) => {
   const saveMemo = async () => {
     let success = false
 
+    if (!memo) {
+      console.error('メモが空です')
+      return
+      // トーストを表示する
+    }
     try {
       const response = await axios.patch(`${railsApiUrl}/api/v1/photos/${photoId}`, {
         note: memo,
       })
       console.log('メモが保存されました:', memo)
       success = true
+      setEditMemo(false)
     } catch (error) {
       console.error('メモの保存に失敗しました:', error)
     }
@@ -41,7 +49,7 @@ const Memo = ({ photoId, sutraId }: MemoProps) => {
       <textarea
         value={memo}
         onChange={handleChange}
-        placeholder={'メモを入力してください'}
+        placeholder={memo ? memo : 'メモを入力してください'}
         rows={4}
         cols={46}
       ></textarea>

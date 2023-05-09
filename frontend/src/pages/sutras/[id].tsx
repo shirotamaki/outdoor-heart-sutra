@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
 import { getSession } from 'next-auth/react'
+import { useState } from 'react'
 import { railsApiUrl } from '@/config/index'
 import Map from '@/features/map/Map'
 import Memo from '@/features/memo/Memo'
@@ -30,6 +31,30 @@ type SutraProps = {
 
 const SutraDetails = ({ sutra, photo }: SutraProps) => {
   const currentLocation = { lat: photo.latitude, lng: photo.longitude }
+  const [editMemo, setEditMemo] = useState(!photo.note)
+
+  const renderMemo = () => {
+    if (editMemo) {
+      return (
+        <Memo
+          photoId={photo.id}
+          sutraId={sutra.id}
+          photoNote={photo.note}
+          setEditMemo={setEditMemo}
+        />
+      )
+    } else {
+      return (
+        <div>
+          <div>メモ：{photo.note}</div>
+          <div>
+            <button onClick={() => setEditMemo(true)}>メモを編集する</button>
+          </div>
+        </div>
+      )
+    }
+  }
+
   return (
     <>
       <h1>
@@ -49,13 +74,15 @@ const SutraDetails = ({ sutra, photo }: SutraProps) => {
               borderRadius='50px'
             />
           </div>
+
           <div>
             <Map markerLocation={currentLocation} />
           </div>
+
           <div>住所：{photo.address}</div>
-          <div>
-            <Memo photoId={photo.id} savedNote={photo.note} />
-          </div>
+
+          <div>{renderMemo()}</div>
+
         </div>
       )}
     </>
