@@ -1,9 +1,9 @@
 import axios from 'axios'
+import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
 import { useRef, useState, useCallback, useEffect } from 'react'
 import Webcam from 'react-webcam'
 import { railsApiUrl } from '@/config/index'
-import Map from '@/features/map/Map'
 import reverseGeocode from '@/features/map/reverseGeocode'
 import CaptureButton from '@/features/photo/CaptureButton'
 import CapturedImage from '@/features/photo/CapturedImage'
@@ -12,23 +12,24 @@ import fetchUserId from '@/features/user/fetchUserId'
 import useCurrentLocation from '@/hooks/useCurrentLocation'
 import useVideoDeviceList from '@/hooks/useVideoDeviceList'
 
-type Props = {
+type CameraProps = {
   sutra_id: number
 }
 
-const Camera = ({ sutra_id }: Props) => {
+const Camera = ({ sutra_id }: CameraProps) => {
   const { data: session } = useSession()
+  const { devices } = useVideoDeviceList()
+  const { currentLocation, getCurrentLocation } = useCurrentLocation()
+  const webcamRef = useRef<Webcam | null>(null)
 
   const [isCaptureEnable, setCaptureEnable] = useState(true)
   const [isProcessing, setIsProcessing] = useState(false)
   const [capturedImageUrl, setUrl] = useState<string | null>(null)
   const [selectedDevice, setSelectedDevice] = useState('')
-
-  const { devices } = useVideoDeviceList()
-  const { currentLocation, getCurrentLocation } = useCurrentLocation()
+  const [address, setAddress] = useState<string | null>(null)
   const [markerLocation, setMarkerLocation] = useState<{ lat: number; lng: number } | null>(null)
 
-  const [address, setAddress] = useState<string | null>(null)
+  const router = useRouter()
 
   const videoConstraints = {
     width: 360,
@@ -39,8 +40,6 @@ const Camera = ({ sutra_id }: Props) => {
   const borderRadiusStyle = {
     borderRadius: '50px',
   }
-
-  const webcamRef = useRef<Webcam | null>(null)
 
   useEffect(() => {
     if (capturedImageUrl && currentLocation) {
@@ -95,6 +94,8 @@ const Camera = ({ sutra_id }: Props) => {
 
   const saveCapturedData = async () => {
     if (capturedImageUrl && markerLocation && address && session?.user?.email) {
+      let success = false
+
       const photo_data = capturedImageUrl
       const latitude_data: number = markerLocation.lat
       const longitude_data: number = markerLocation.lng
@@ -111,11 +112,11 @@ const Camera = ({ sutra_id }: Props) => {
           current_user_id,
           current_sutra_id,
         })
-        console.log('保存が成功しました')
         if (response.status === 200) {
-          return true
+          console.log('保存が成功しました')
+          success = true
         } else {
-          return false
+          console.error('保存に失敗しました')
         }
       } catch (error) {
         if (axios.isAxiosError(error)) {
@@ -123,6 +124,9 @@ const Camera = ({ sutra_id }: Props) => {
         } else {
           console.error('必要なデータが揃っていません')
         }
+      }
+      if (success) {
+        await router.push(`/sutras/${current_sutra_id}`)
       }
     }
   }
@@ -152,16 +156,13 @@ const Camera = ({ sutra_id }: Props) => {
             height={360}
             borderRadius='50px'
           />
-          <CaptureButton
-            onClick={handleRemoveCapturedImage}
-            disabled={isProcessing}
-            text='撮り直す'
-          />
           <div>
-            位置情報: {markerLocation?.lat} {markerLocation?.lng}
+            <CaptureButton
+              onClick={handleRemoveCapturedImage}
+              disabled={isProcessing}
+              text='撮り直す'
+            />
           </div>
-          <div>住所： {address}</div>
-          <Map markerLocation={markerLocation} />
           <div>
             <button onClick={saveCapturedData}>保存</button>
           </div>

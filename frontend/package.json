@@ -25,6 +25,7 @@
     "next-auth": "^4.20.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-toastify": "^9.1.2",
     "react-webcam": "^7.0.1",
     "sharp": "^0.32.0",
     "styled-components": "^5.3.9",
