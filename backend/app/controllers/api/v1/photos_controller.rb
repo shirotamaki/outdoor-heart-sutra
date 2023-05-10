@@ -6,7 +6,7 @@ module Api
       skip_before_action :verify_authenticity_token
 
       def find_photo
-        photo = Photo.find_by(sutra_id: params[:sutra_id], user_id: params[:user_id])
+        photo = Photo.find_by(sutra_id: params[:sutraId], user_id: params[:userId])
         if photo
           render json: { photo_id: photo.id }
         else
@@ -16,13 +16,13 @@ module Api
 
       def create
         photo = Photo.create(
-          photo_data: params[:photo_data],
+          photo_data: params[:photoData],
           note: params[:note],
-          latitude: params[:latitude_data],
-          longitude: params[:longitude_data],
-          address: params[:address_data],
-          user_id: params[:current_user_id],
-          sutra_id: params[:current_sutra_id],
+          latitude: params[:latitudeData],
+          longitude: params[:longitudeData],
+          address: params[:addressData],
+          user_id: params[:currentUserId],
+          sutra_id: params[:currentSutraId],
         )
         if photo
           head :ok
@@ -44,7 +44,8 @@ module Api
 
       def update
         photo = Photo.find(params[:id])
-        if photo.update(note: params[:note])
+        update_params = params.permit(:photoData, :note, :latitudeData, :longitudeData, :addressData).to_h.compact
+        if photo.update(update_params)
           head :ok
         else
           render json: { error: "更新に失敗しました" }, status: :unprocessable_entity
