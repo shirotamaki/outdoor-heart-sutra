@@ -5,9 +5,9 @@ import { useRef, useState, useCallback, useEffect } from 'react'
 import Webcam from 'react-webcam'
 import { railsApiUrl } from '@/config/index'
 import reverseGeocode from '@/features/map/reverseGeocode'
-import CaptureButton from '@/features/photo/CaptureButton'
 import CapturedImage from '@/features/photo/CapturedImage'
 import DeviceSelector from '@/features/photo/DeviceSelector'
+import PhotoActionButton from '@/features/photo/PhotoActionButton'
 import fetchUserId from '@/features/user/fetchUserId'
 import useCurrentLocation from '@/hooks/useCurrentLocation'
 import useVideoDeviceList from '@/hooks/useVideoDeviceList'
@@ -144,8 +144,15 @@ const Camera = ({ sutra_id }: CameraProps) => {
             screenshotFormat='image/jpeg'
             videoConstraints={videoConstraints}
           />
-          <CaptureButton onClick={capture} disabled={isProcessing} text='撮影' />
-          <DeviceSelector devices={devices} onSelectDevice={handleDeviceChange} />
+          <PhotoActionButton
+            onClick={capture}
+            disabled={isProcessing}
+            text='撮影'
+          />
+          <DeviceSelector
+            devices={devices}
+            onSelectDevice={handleDeviceChange}
+          />
         </>
       )}
       {capturedImageUrl && (
@@ -157,7 +164,7 @@ const Camera = ({ sutra_id }: CameraProps) => {
             borderRadius='50px'
           />
           <div>
-            <CaptureButton
+            <PhotoActionButton
               onClick={handleRemoveCapturedImage}
               disabled={isProcessing}
               text='撮り直す'

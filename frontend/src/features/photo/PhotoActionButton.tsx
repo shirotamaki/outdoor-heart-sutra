@@ -4,7 +4,7 @@ type Props = {
   text: string
 }
 
-const CaptureButton = ({ onClick, disabled = false, text }: Props) => {
+const PhotoActionButton = ({ onClick, disabled = false, text }: Props) => {
   return (
     <button onClick={onClick} disabled={disabled}>
       {text}
@@ -12,4 +12,4 @@ const CaptureButton = ({ onClick, disabled = false, text }: Props) => {
   )
 }
 
-export default CaptureButton
+export default PhotoActionButton
