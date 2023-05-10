@@ -63,7 +63,7 @@ const SutraDetails = ({ sutra, photo }: SutraProps) => {
       </h1>
       {photo.photo_data === null ? (
         <div>
-          <Camera sutra_id={sutra.id} />
+          <Camera sutraId={sutra.id} photoId={photo.id} />
         </div>
       ) : (
         <div>
@@ -107,13 +107,13 @@ export const getServerSideProps: GetServerSideProps = async (
   try {
     const sutraResponse = await axios.get(`${railsApiUrl}/api/v1/sutras/${id}`)
     const sutra = sutraResponse.data
-    const current_sutra_id = sutra.id
+    const currentSutraId = sutra.id
 
     if (session.user && session.user.email) {
-      const current_user_id = await fetchUserId(session.user.email)
+      const currentUserId = await fetchUserId(session.user.email)
 
-      if (current_user_id !== null) {
-        const photo_id = await fetchPhotoId(current_sutra_id, current_user_id)
+      if (currentUserId !== null) {
+        const photo_id = await fetchPhotoId(currentSutraId, currentUserId)
 
         let photo = { photo_data: null }
 
