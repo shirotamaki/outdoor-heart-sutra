@@ -36,7 +36,7 @@ const Memo = ({ photoId, sutraId, photoNote, setEditMemo }: MemoProps) => {
       console.log('メモが保存されました:', memo)
       alert('メモが保存されました') //最終的にはトーストにする
       success = true
-      setEditMemo(false)
+      setEditMemo(false) //親コンポーネントに値を渡すことができる
     } catch (error) {
       console.error('メモの保存に失敗しました:', error)
       alert('メモの保存に失敗しました') //最終的にはトーストにする
