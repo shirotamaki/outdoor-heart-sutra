@@ -26,18 +26,20 @@ const Memo = ({ photoId, sutraId, photoNote, setEditMemo }: MemoProps) => {
 
     if (!memo) {
       console.error('メモが空です')
+      alert('メモが空です') //最終的にはトーストにする
       return
-      // トーストを表示する
     }
     try {
       const response = await axios.patch(`${railsApiUrl}/api/v1/photos/${photoId}`, {
         note: memo,
       })
       console.log('メモが保存されました:', memo)
+      alert('メモが保存されました') //最終的にはトーストにする
       success = true
-      setEditMemo(false)
+      setEditMemo(false) //親コンポーネントに値を渡すことができる
     } catch (error) {
       console.error('メモの保存に失敗しました:', error)
+      alert('メモの保存に失敗しました') //最終的にはトーストにする
     }
     if (success) {
       await router.push(`/sutras/${sutraId}`)

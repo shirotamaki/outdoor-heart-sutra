@@ -31,6 +31,7 @@ module Api
         user = User.find_by(email: params[:email])
         if user
           user.destroy
+          head :ok
         else
           render json: { error: 'ユーザーが見つかりませんでした' }, status: :not_found
         end

@@ -52,6 +52,18 @@ module Api
       rescue StandardError => e
         render json: { error: e.message }, status: :internal_server_error
       end
+
+      def destroy
+        photo = Photo.find(params[:id])
+        if photo
+          photo.destroy
+          head :ok
+        else
+          render json: { error: "photoが見つかりませんでした" }, status: :not_found
+        end
+      rescue StandardError => e
+        render json: { error: e.message }, status: :internal_server_error
+      end
     end
   end
 end
