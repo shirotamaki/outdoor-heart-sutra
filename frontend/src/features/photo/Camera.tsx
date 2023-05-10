@@ -13,10 +13,11 @@ import useCurrentLocation from '@/hooks/useCurrentLocation'
 import useVideoDeviceList from '@/hooks/useVideoDeviceList'
 
 type CameraProps = {
-  sutra_id: number
+  sutraId: number
+  photoId: number | null
 }
 
-const Camera = ({ sutra_id }: CameraProps) => {
+const Camera = ({ sutraId, photoId }: CameraProps) => {
   const { data: session } = useSession()
   const { devices } = useVideoDeviceList()
   const { currentLocation, getCurrentLocation } = useCurrentLocation()
@@ -96,22 +97,35 @@ const Camera = ({ sutra_id }: CameraProps) => {
     if (capturedImageUrl && markerLocation && address && session?.user?.email) {
       let success = false
 
-      const photo_data = capturedImageUrl
-      const latitude_data: number = markerLocation.lat
-      const longitude_data: number = markerLocation.lng
-      const address_data: string = address
-      const current_user_id: number | null = await fetchUserId(session.user.email)
-      const current_sutra_id: number = sutra_id
+      const photoData = capturedImageUrl
+      const latitudeData: number = markerLocation.lat
+      const longitudeData: number = markerLocation.lng
+      const addressData: string = address
+      const currentUserId: number | null = await fetchUserId(session.user.email)
+      const currentSutraId: number = sutraId
 
       try {
-        const response = await axios.post(`${railsApiUrl}/api/v1/photos`, {
-          photo_data,
-          latitude_data,
-          longitude_data,
-          address_data,
-          current_user_id,
-          current_sutra_id,
-        })
+        let response
+        if (photoId) {
+          response = await axios.patch(`${railsApiUrl}/api/v1/photos/${photoId}`, {
+            photoData,
+            latitudeData,
+            longitudeData,
+            addressData,
+            currentUserId,
+            currentSutraId,
+          })
+        } else {
+          response = await axios.post(`${railsApiUrl}/api/v1/photos`, {
+            photoData,
+            latitudeData,
+            longitudeData,
+            addressData,
+            currentUserId,
+            currentSutraId,
+          })
+        }
+
         if (response.status === 200) {
           console.log('保存が成功しました')
           success = true
@@ -126,7 +140,7 @@ const Camera = ({ sutra_id }: CameraProps) => {
         }
       }
       if (success) {
-        await router.push(`/sutras/${current_sutra_id}`)
+        await router.push(`/sutras/${currentSutraId}`)
       }
     }
   }
@@ -144,15 +158,8 @@ const Camera = ({ sutra_id }: CameraProps) => {
             screenshotFormat='image/jpeg'
             videoConstraints={videoConstraints}
           />
-          <PhotoActionButton
-            onClick={capture}
-            disabled={isProcessing}
-            text='撮影'
-          />
-          <DeviceSelector
-            devices={devices}
-            onSelectDevice={handleDeviceChange}
-          />
+          <PhotoActionButton onClick={capture} disabled={isProcessing} text='撮影' />
+          <DeviceSelector devices={devices} onSelectDevice={handleDeviceChange} />
         </>
       )}
       {capturedImageUrl && (
