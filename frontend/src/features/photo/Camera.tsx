@@ -29,6 +29,7 @@ const Camera = ({ sutraId, photoId }: CameraProps) => {
   const [selectedDevice, setSelectedDevice] = useState('')
   const [address, setAddress] = useState<string | null>(null)
   const [markerLocation, setMarkerLocation] = useState<{ lat: number; lng: number } | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
 
   const router = useRouter()
 
@@ -53,6 +54,7 @@ const Camera = ({ sutraId, photoId }: CameraProps) => {
   const capture = useCallback(async () => {
     if (webcamRef.current && !isProcessing) {
       setIsProcessing(true)
+      setIsLoading(true)
       const imageSrc = webcamRef.current.getScreenshot()
       setUrl(imageSrc)
       setCaptureEnable(false)
@@ -75,6 +77,7 @@ const Camera = ({ sutraId, photoId }: CameraProps) => {
       } catch (error) {
         console.error(error)
       }
+      setIsLoading(false)
     }
   }, [webcamRef, isProcessing, getCurrentLocation])
 
@@ -158,8 +161,15 @@ const Camera = ({ sutraId, photoId }: CameraProps) => {
             screenshotFormat='image/jpeg'
             videoConstraints={videoConstraints}
           />
-          <PhotoActionButton onClick={capture} disabled={isProcessing} text='撮影' />
-          <DeviceSelector devices={devices} onSelectDevice={handleDeviceChange} />
+          <PhotoActionButton
+            onClick={capture}
+            disabled={isProcessing}
+            text='撮影'
+          />
+          <DeviceSelector
+            devices={devices}
+            onSelectDevice={handleDeviceChange}
+          />
         </>
       )}
       {capturedImageUrl && (
@@ -173,12 +183,16 @@ const Camera = ({ sutraId, photoId }: CameraProps) => {
           <div>
             <PhotoActionButton
               onClick={handleRemoveCapturedImage}
-              disabled={isProcessing}
+              disabled={isProcessing || isLoading}
               text='撮り直す'
             />
           </div>
           <div>
-            <button onClick={saveCapturedData}>保存</button>
+            {isLoading ? (
+              <div>処理中...</div>
+            ): (
+                <button onClick={saveCapturedData}>保存</button>
+            )}
           </div>
         </>
       )}
