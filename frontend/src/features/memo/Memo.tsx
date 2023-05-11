@@ -31,7 +31,7 @@ const Memo = ({ photoId, sutraId, photoNote, setEditMemo }: MemoProps) => {
     }
     try {
       const response = await axios.patch(`${railsApiUrl}/api/v1/photos/${photoId}`, {
-        note: memo,
+        memo,
       })
       console.log('メモが保存されました:', memo)
       alert('メモが保存されました') //最終的にはトーストにする

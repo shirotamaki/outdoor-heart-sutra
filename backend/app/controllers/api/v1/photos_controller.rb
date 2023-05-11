@@ -4,27 +4,20 @@ module Api
   module V1
     class PhotosController < ApplicationController
       skip_before_action :verify_authenticity_token
+      before_action :set_photo, only: [:show, :update, :destroy]
 
       def find_photo
         photo = Photo.find_by(sutra_id: params[:sutraId], user_id: params[:userId])
         if photo
           render json: { photo_id: photo.id }
         else
-          render json: { error: "ユーザーが見つかりませんでした" }, status: :not_found
+          render json: { error: "写真が見つかりませんでした" }, status: :not_found
         end
       end
 
       def create
-        photo = Photo.create(
-          photo_data: params[:photoData],
-          note: params[:note],
-          latitude: params[:latitudeData],
-          longitude: params[:longitudeData],
-          address: params[:addressData],
-          user_id: params[:currentUserId],
-          sutra_id: params[:currentSutraId],
-        )
-        if photo
+        photo = Photo.new(map_params_to_attributes)
+        if photo.save
           head :ok
         else
           render json: { error: "保存に失敗しました" }, status: :unprocessable_entity
@@ -34,36 +27,42 @@ module Api
       end
 
       def show
-        begin
-          photo = Photo.find(params[:id])
-          render json: photo
-        rescue ActiveRecord::RecordNotFound => e
-          render json: { error: e.message }, status: :not_found
-        end
+          render json: @photo
       end
 
       def update
-        photo = Photo.find(params[:id])
-        update_params = params.permit(:photoData, :note, :latitudeData, :longitudeData, :addressData).to_h.compact
-        if photo.update(update_params)
+        if @photo.update(map_params_to_attributes)
           head :ok
         else
           render json: { error: "更新に失敗しました" }, status: :unprocessable_entity
         end
       rescue StandardError => e
-        render json: { error: e.message }, status: :internal_server_error
+        render json: { error: "更新に失敗しました", details: e.message }, status: :internal_server_error
       end
 
       def destroy
-        photo = Photo.find(params[:id])
-        if photo
-          photo.destroy
-          head :ok
-        else
-          render json: { error: "photoが見つかりませんでした" }, status: :not_found
-        end
+        @photo.destroy
+        head :ok
       rescue StandardError => e
-        render json: { error: e.message }, status: :internal_server_error
+        render json: { error: "削除に失敗しました", details: e.message }, status: :internal_server_error
+      end
+
+      private
+
+      def set_photo
+        @photo = Photo.find(params[:id])
+      end
+
+      def map_params_to_attributes
+        {
+          photo_data: params[:photoData].presence,
+          note: params[:memo].presence,
+          latitude: params[:latitudeData].presence,
+          longitude: params[:longitudeData].presence,
+          address: params[:addressData].presence,
+          user_id: params[:currentUserId].presence,
+          sutra_id: params[:currentSutraId].presence,
+        }.compact
       end
     end
   end

@@ -15,9 +15,10 @@ import useVideoDeviceList from '@/hooks/useVideoDeviceList'
 type CameraProps = {
   sutraId: number
   photoId: number | null
+  setEditMode: (value: boolean) => void
 }
 
-const Camera = ({ sutraId, photoId }: CameraProps) => {
+const Camera = ({ sutraId, photoId, setEditMode }: CameraProps) => {
   const { data: session } = useSession()
   const { devices } = useVideoDeviceList()
   const { currentLocation, getCurrentLocation } = useCurrentLocation()
@@ -118,6 +119,7 @@ const Camera = ({ sutraId, photoId }: CameraProps) => {
             currentUserId,
             currentSutraId,
           })
+
         } else {
           response = await axios.post(`${railsApiUrl}/api/v1/photos`, {
             photoData,
@@ -142,6 +144,7 @@ const Camera = ({ sutraId, photoId }: CameraProps) => {
           console.error('必要なデータが揃っていません')
         }
       }
+      setEditMode(false)
       if (success) {
         await router.push(`/sutras/${currentSutraId}`)
       }
@@ -161,15 +164,8 @@ const Camera = ({ sutraId, photoId }: CameraProps) => {
             screenshotFormat='image/jpeg'
             videoConstraints={videoConstraints}
           />
-          <PhotoActionButton
-            onClick={capture}
-            disabled={isProcessing}
-            text='撮影'
-          />
-          <DeviceSelector
-            devices={devices}
-            onSelectDevice={handleDeviceChange}
-          />
+          <PhotoActionButton onClick={capture} disabled={isProcessing} text='撮影' />
+          <DeviceSelector devices={devices} onSelectDevice={handleDeviceChange} />
         </>
       )}
       {capturedImageUrl && (
@@ -188,11 +184,7 @@ const Camera = ({ sutraId, photoId }: CameraProps) => {
             />
           </div>
           <div>
-            {isLoading ? (
-              <div>処理中...</div>
-            ): (
-                <button onClick={saveCapturedData}>保存</button>
-            )}
+            {isLoading ? <div>処理中...</div> : <button onClick={saveCapturedData}>保存</button>}
           </div>
         </>
       )}

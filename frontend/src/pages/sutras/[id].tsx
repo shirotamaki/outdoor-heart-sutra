@@ -8,6 +8,7 @@ import Memo from '@/features/memo/Memo'
 import Camera from '@/features/photo/Camera'
 import CapturedImage from '@/features/photo/CapturedImage'
 import DeletePhoto from '@/features/photo/DeletePhoto'
+import EditPhoto from '@/features/photo/EditPhoto'
 import fetchPhotoId from '@/features/photo/fetchPhotoId'
 import fetchUserId from '@/features/user/fetchUserId'
 
@@ -33,6 +34,7 @@ type SutraProps = {
 const SutraDetails = ({ sutra, photo }: SutraProps) => {
   const currentLocation = { lat: photo.latitude, lng: photo.longitude }
   const [editMemo, setEditMemo] = useState(!photo.note)
+  const [editMode, setEditMode] = useState(false)
 
   const renderMemo = () => {
     if (editMemo) {
@@ -56,16 +58,16 @@ const SutraDetails = ({ sutra, photo }: SutraProps) => {
     }
   }
 
-  return (
-    <>
-      <h1>
-        {sutra.id} : {sutra.kanji}
-      </h1>
-      {photo.photo_data === null ? (
+  const renderPhoto = () => {
+    if (editMode) {
+      console.log(editMode)
+      return (
         <div>
-          <Camera sutraId={sutra.id} photoId={photo.id} />
+          <Camera sutraId={sutra.id} photoId={photo.id} setEditMode={setEditMode} />
         </div>
-      ) : (
+      )
+    } else {
+      return (
         <div>
           <div>
             <CapturedImage
@@ -83,7 +85,25 @@ const SutraDetails = ({ sutra, photo }: SutraProps) => {
           <div>
             <DeletePhoto photoId={photo.id} />
           </div>
+          <div>
+            <EditPhoto setEditMode={setEditMode} />
+          </div>
         </div>
+      )
+    }
+  }
+
+  return (
+    <>
+      <h1>
+        {sutra.id} : {sutra.kanji}
+      </h1>
+      {photo.photo_data === null ? (
+        <div>
+          <Camera sutraId={sutra.id} photoId={photo.id} setEditMode={setEditMode} />
+        </div>
+      ) : (
+        renderPhoto()
       )}
     </>
   )
