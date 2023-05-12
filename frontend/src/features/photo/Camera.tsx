@@ -31,6 +31,10 @@ const Camera = ({ sutraId, photoId, setEditMode }: CameraProps) => {
   const [address, setAddress] = useState<string | null>(null)
   const [markerLocation, setMarkerLocation] = useState<{ lat: number; lng: number } | null>(null)
   const [isLoading, setIsLoading] = useState(false)
+  const [isLoadingPage, setIsLoadingPage] = useState(true)
+  const onCameraReady = () => {
+    setIsLoadingPage(false)
+  }
 
   const router = useRouter()
 
@@ -162,8 +166,13 @@ const Camera = ({ sutraId, photoId, setEditMode }: CameraProps) => {
             ref={webcamRef}
             screenshotFormat='image/jpeg'
             videoConstraints={videoConstraints}
+            onUserMedia={onCameraReady}
           />
-          <PhotoActionButton onClick={capture} disabled={isProcessing} text='撮影' />
+          <PhotoActionButton
+            onClick={capture}
+            disabled={isProcessing || isLoadingPage}
+            text='撮影'
+          />
           <DeviceSelector devices={devices} onSelectDevice={handleDeviceChange} />
         </>
       )}
