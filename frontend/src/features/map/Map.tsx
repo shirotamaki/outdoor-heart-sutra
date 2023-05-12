@@ -1,10 +1,10 @@
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
+import { GoogleMap, LoadScriptNext, Marker } from '@react-google-maps/api'
 import { useEffect, useState } from 'react'
 import { mapsApiKey } from '@/config/index'
 
 const containerStyle = {
-  width: '400px',
-  height: '400px',
+  width: '360px',
+  height: '360px',
 }
 
 const center = {
@@ -13,7 +13,7 @@ const center = {
 }
 
 type MarkerLocation = {
-  markerLocation?: { lat: number; lng: number } | null
+  markerLocation?: { lat: number; lng: number }
 }
 
 const Map = ({ markerLocation }: MarkerLocation) => {
@@ -28,7 +28,7 @@ const Map = ({ markerLocation }: MarkerLocation) => {
   }
 
   useEffect(() => {
-    if (map && markerLocation) {
+    if (map && markerLocation && markerLocation.lat && markerLocation.lng) {
       map.panTo(markerLocation)
       setCurrentMarkerLocation(markerLocation)
     }
@@ -39,11 +39,11 @@ const Map = ({ markerLocation }: MarkerLocation) => {
   }
 
   return (
-    <LoadScript googleMapsApiKey={mapsApiKey}>
+    <LoadScriptNext googleMapsApiKey={mapsApiKey}>
       <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={8} onLoad={handleMapLoad}>
         {currentMarkerLocation && <Marker position={currentMarkerLocation} />}
       </GoogleMap>
-    </LoadScript>
+    </LoadScriptNext>
   )
 }
 

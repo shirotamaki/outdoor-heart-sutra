@@ -8,6 +8,7 @@ import Memo from '@/features/memo/Memo'
 import Camera from '@/features/photo/Camera'
 import CapturedImage from '@/features/photo/CapturedImage'
 import DeletePhoto from '@/features/photo/DeletePhoto'
+import EditPhoto from '@/features/photo/EditPhoto'
 import fetchPhotoId from '@/features/photo/fetchPhotoId'
 import fetchUserId from '@/features/user/fetchUserId'
 
@@ -22,7 +23,7 @@ type Photo = {
   address: string
   longitude: number
   latitude: number
-  photo_data: string | null
+  photo_data: string
 }
 
 type SutraProps = {
@@ -33,6 +34,7 @@ type SutraProps = {
 const SutraDetails = ({ sutra, photo }: SutraProps) => {
   const currentLocation = { lat: photo.latitude, lng: photo.longitude }
   const [editMemo, setEditMemo] = useState(!photo.note)
+  const [editMode, setEditMode] = useState(false)
 
   const renderMemo = () => {
     if (editMemo) {
@@ -56,16 +58,15 @@ const SutraDetails = ({ sutra, photo }: SutraProps) => {
     }
   }
 
-  return (
-    <>
-      <h1>
-        {sutra.id} : {sutra.kanji}
-      </h1>
-      {photo.photo_data === null ? (
+  const renderPhoto = () => {
+    if (editMode) {
+      return (
         <div>
-          <Camera sutra_id={sutra.id} />
+          <Camera sutraId={sutra.id} photoId={photo.id} setEditMode={setEditMode} />
         </div>
-      ) : (
+      )
+    } else {
+      return (
         <div>
           <div>
             <CapturedImage
@@ -83,7 +84,25 @@ const SutraDetails = ({ sutra, photo }: SutraProps) => {
           <div>
             <DeletePhoto photoId={photo.id} />
           </div>
+          <div>
+            <EditPhoto setEditMode={setEditMode} />
+          </div>
         </div>
+      )
+    }
+  }
+
+  return (
+    <>
+      <h1>
+        {sutra.id} : {sutra.kanji}
+      </h1>
+      {photo.photo_data === null ? (
+        <div>
+          <Camera sutraId={sutra.id} photoId={photo.id} setEditMode={setEditMode} />
+        </div>
+      ) : (
+        renderPhoto()
       )}
     </>
   )
@@ -98,8 +117,8 @@ export const getServerSideProps: GetServerSideProps = async (
   if (!session) {
     return {
       redirect: {
-        destination: '/welcome', // ログインしていない場合はwelcomeページへリダイレクト
-        permanent: false, // 永続的なリダイレクトかどうか
+        destination: '/welcome',
+        permanent: false,
       },
     }
   }
@@ -107,13 +126,13 @@ export const getServerSideProps: GetServerSideProps = async (
   try {
     const sutraResponse = await axios.get(`${railsApiUrl}/api/v1/sutras/${id}`)
     const sutra = sutraResponse.data
-    const current_sutra_id = sutra.id
+    const currentSutraId = sutra.id
 
     if (session.user && session.user.email) {
-      const current_user_id = await fetchUserId(session.user.email)
+      const currentUserId = await fetchUserId(session.user.email)
 
-      if (current_user_id !== null) {
-        const photo_id = await fetchPhotoId(current_sutra_id, current_user_id)
+      if (currentUserId !== null) {
+        const photo_id = await fetchPhotoId(currentSutraId, currentUserId)
 
         let photo = { photo_data: null }
 

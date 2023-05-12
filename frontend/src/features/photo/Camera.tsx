@@ -5,18 +5,20 @@ import { useRef, useState, useCallback, useEffect } from 'react'
 import Webcam from 'react-webcam'
 import { railsApiUrl } from '@/config/index'
 import reverseGeocode from '@/features/map/reverseGeocode'
-import CaptureButton from '@/features/photo/CaptureButton'
 import CapturedImage from '@/features/photo/CapturedImage'
 import DeviceSelector from '@/features/photo/DeviceSelector'
+import PhotoActionButton from '@/features/photo/PhotoActionButton'
 import fetchUserId from '@/features/user/fetchUserId'
 import useCurrentLocation from '@/hooks/useCurrentLocation'
 import useVideoDeviceList from '@/hooks/useVideoDeviceList'
 
 type CameraProps = {
-  sutra_id: number
+  sutraId: number
+  photoId: number | null
+  setEditMode: (value: boolean) => void
 }
 
-const Camera = ({ sutra_id }: CameraProps) => {
+const Camera = ({ sutraId, photoId, setEditMode }: CameraProps) => {
   const { data: session } = useSession()
   const { devices } = useVideoDeviceList()
   const { currentLocation, getCurrentLocation } = useCurrentLocation()
@@ -28,6 +30,11 @@ const Camera = ({ sutra_id }: CameraProps) => {
   const [selectedDevice, setSelectedDevice] = useState('')
   const [address, setAddress] = useState<string | null>(null)
   const [markerLocation, setMarkerLocation] = useState<{ lat: number; lng: number } | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const [isLoadingPage, setIsLoadingPage] = useState(true)
+  const onCameraReady = () => {
+    setIsLoadingPage(false)
+  }
 
   const router = useRouter()
 
@@ -52,6 +59,7 @@ const Camera = ({ sutra_id }: CameraProps) => {
   const capture = useCallback(async () => {
     if (webcamRef.current && !isProcessing) {
       setIsProcessing(true)
+      setIsLoading(true)
       const imageSrc = webcamRef.current.getScreenshot()
       setUrl(imageSrc)
       setCaptureEnable(false)
@@ -74,6 +82,7 @@ const Camera = ({ sutra_id }: CameraProps) => {
       } catch (error) {
         console.error(error)
       }
+      setIsLoading(false)
     }
   }, [webcamRef, isProcessing, getCurrentLocation])
 
@@ -96,22 +105,35 @@ const Camera = ({ sutra_id }: CameraProps) => {
     if (capturedImageUrl && markerLocation && address && session?.user?.email) {
       let success = false
 
-      const photo_data = capturedImageUrl
-      const latitude_data: number = markerLocation.lat
-      const longitude_data: number = markerLocation.lng
-      const address_data: string = address
-      const current_user_id: number | null = await fetchUserId(session.user.email)
-      const current_sutra_id: number = sutra_id
+      const photoData = capturedImageUrl
+      const latitudeData: number = markerLocation.lat
+      const longitudeData: number = markerLocation.lng
+      const addressData: string = address
+      const currentUserId: number | null = await fetchUserId(session.user.email)
+      const currentSutraId: number = sutraId
 
       try {
-        const response = await axios.post(`${railsApiUrl}/api/v1/photos`, {
-          photo_data,
-          latitude_data,
-          longitude_data,
-          address_data,
-          current_user_id,
-          current_sutra_id,
-        })
+        let response
+        if (photoId) {
+          response = await axios.patch(`${railsApiUrl}/api/v1/photos/${photoId}`, {
+            photoData,
+            latitudeData,
+            longitudeData,
+            addressData,
+            currentUserId,
+            currentSutraId,
+          })
+        } else {
+          response = await axios.post(`${railsApiUrl}/api/v1/photos`, {
+            photoData,
+            latitudeData,
+            longitudeData,
+            addressData,
+            currentUserId,
+            currentSutraId,
+          })
+        }
+
         if (response.status === 200) {
           console.log('保存が成功しました')
           success = true
@@ -126,7 +148,8 @@ const Camera = ({ sutra_id }: CameraProps) => {
         }
       }
       if (success) {
-        await router.push(`/sutras/${current_sutra_id}`)
+        setEditMode(false)
+        await router.push(`/sutras/${currentSutraId}`)
       }
     }
   }
@@ -143,8 +166,13 @@ const Camera = ({ sutra_id }: CameraProps) => {
             ref={webcamRef}
             screenshotFormat='image/jpeg'
             videoConstraints={videoConstraints}
+            onUserMedia={onCameraReady}
           />
-          <CaptureButton onClick={capture} disabled={isProcessing} text='撮影' />
+          <PhotoActionButton
+            onClick={capture}
+            disabled={isProcessing || isLoadingPage}
+            text='撮影'
+          />
           <DeviceSelector devices={devices} onSelectDevice={handleDeviceChange} />
         </>
       )}
@@ -157,14 +185,14 @@ const Camera = ({ sutra_id }: CameraProps) => {
             borderRadius='50px'
           />
           <div>
-            <CaptureButton
+            <PhotoActionButton
               onClick={handleRemoveCapturedImage}
-              disabled={isProcessing}
+              disabled={isProcessing || isLoading}
               text='撮り直す'
             />
           </div>
           <div>
-            <button onClick={saveCapturedData}>保存</button>
+            {isLoading ? <div>処理中...</div> : <button onClick={saveCapturedData}>保存</button>}
           </div>
         </>
       )}
