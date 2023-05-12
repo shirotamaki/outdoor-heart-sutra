@@ -6,9 +6,7 @@ type Props = {
 
 const PhotoActionButton = ({ onClick, disabled = false, text }: Props) => {
   return (
-    <button
-      onClick={onClick}
-      disabled={disabled}>
+    <button onClick={onClick} disabled={disabled}>
       {text}
     </button>
   )

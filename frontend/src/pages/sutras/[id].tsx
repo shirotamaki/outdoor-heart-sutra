@@ -118,7 +118,7 @@ export const getServerSideProps: GetServerSideProps = async (
     return {
       redirect: {
         destination: '/welcome',
-        permanent: false, 
+        permanent: false,
       },
     }
   }

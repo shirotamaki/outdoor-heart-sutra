@@ -144,7 +144,7 @@ const Camera = ({ sutraId, photoId, setEditMode }: CameraProps) => {
         }
       }
       if (success) {
-      setEditMode(false)
+        setEditMode(false)
         await router.push(`/sutras/${currentSutraId}`)
       }
     }
