@@ -16,7 +16,7 @@ module Api
       end
 
       def create
-        photo = Photo.new(map_params_to_attributes)
+        photo = Photo.new(photo_params)
         if photo.save
           head :ok
         else
@@ -27,11 +27,11 @@ module Api
       end
 
       def show
-          render json: @photo
+        render json: @photo
       end
 
       def update
-        if @photo.update(map_params_to_attributes)
+        if @photo.update(photo_params)
           head :ok
         else
           render json: { error: "更新に失敗しました" }, status: :unprocessable_entity
@@ -53,15 +53,15 @@ module Api
         @photo = Photo.find(params[:id])
       end
 
-      def map_params_to_attributes
+      def photo_params
         {
-          photo_data: params[:photoData].presence,
-          note: params[:memo].presence,
-          latitude: params[:latitudeData].presence,
-          longitude: params[:longitudeData].presence,
-          address: params[:addressData].presence,
-          user_id: params[:currentUserId].presence,
-          sutra_id: params[:currentSutraId].presence,
+          photo_data: params[:photoData],
+          note: params[:memo],
+          latitude: params[:latitudeData],
+          longitude: params[:longitudeData],
+          address: params[:addressData],
+          user_id: params[:currentUserId],
+          sutra_id: params[:currentSutraId],
         }.compact
       end
     end
