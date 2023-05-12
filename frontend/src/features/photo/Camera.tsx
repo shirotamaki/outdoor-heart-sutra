@@ -119,7 +119,6 @@ const Camera = ({ sutraId, photoId, setEditMode }: CameraProps) => {
             currentUserId,
             currentSutraId,
           })
-
         } else {
           response = await axios.post(`${railsApiUrl}/api/v1/photos`, {
             photoData,
@@ -144,8 +143,8 @@ const Camera = ({ sutraId, photoId, setEditMode }: CameraProps) => {
           console.error('必要なデータが揃っていません')
         }
       }
-      setEditMode(false)
       if (success) {
+      setEditMode(false)
         await router.push(`/sutras/${currentSutraId}`)
       }
     }

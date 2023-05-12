@@ -23,7 +23,7 @@ type Photo = {
   address: string
   longitude: number
   latitude: number
-  photo_data: string | null
+  photo_data: string
 }
 
 type SutraProps = {
@@ -60,7 +60,6 @@ const SutraDetails = ({ sutra, photo }: SutraProps) => {
 
   const renderPhoto = () => {
     if (editMode) {
-      console.log(editMode)
       return (
         <div>
           <Camera sutraId={sutra.id} photoId={photo.id} setEditMode={setEditMode} />
@@ -118,8 +117,8 @@ export const getServerSideProps: GetServerSideProps = async (
   if (!session) {
     return {
       redirect: {
-        destination: '/welcome', // ログインしていない場合はwelcomeページへリダイレクト
-        permanent: false, // 永続的なリダイレクトかどうか
+        destination: '/welcome',
+        permanent: false, 
       },
     }
   }
