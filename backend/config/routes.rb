@@ -10,5 +10,3 @@ Rails.application.routes.draw do
   end
   delete "users/:email", to: "api/v1/users#destroy", constraints: { email: /[^\/]+/ }
 end
-
-# デプロイのテスト
