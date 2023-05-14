@@ -15,6 +15,11 @@ module Api
         end
       end
 
+      def index_by_user
+        user = User.find(params[:user_id])
+        render json: user.photos
+      end
+
       def create
         photo = Photo.new(photo_params)
         if photo.save
