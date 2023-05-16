@@ -19,6 +19,8 @@ type Photo = {
   longitude: number
   latitude: number
   photo_data: string
+  user_id: number
+  sutra_id: number
 }
 
 type HomeProps = {
@@ -43,42 +45,36 @@ export default function Home({ sutras, photos }: HomeProps) {
           <h1>アウトドア般若心経</h1>
           <p>自分探しならぬ、自分なくしの旅へ</p>
         </div>
-        <Sutra sutras={sutras} />
-        <PhotoIcon photos={photos} />
+        <SutraOrPhoto sutras={sutras} photos={photos} />
       </div>
     </>
   )
 }
 
-function Sutra({ sutras }: { sutras: Sutra[] }) {
+function SutraOrPhoto({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] }) {
   return (
     <div>
-      {sutras.map((sutra) => (
-        <ul key={sutra.id}>
-          <li>
-            <Link href={`/sutras/${sutra.id}`}>{sutra.kanji}</Link>
-          </li>
-        </ul>
-      ))}
-    </div>
-  )
-}
-
-function PhotoIcon({ photos }: { photos: Photo[] }) {
-  return (
-    <div>
-      {photos.map((photo) => (
-        <ul key={photo.id}>
-          <li>
-            <CapturedImage
-              capturedImageUrl={photo.photo_data}
-              width={25}
-              height={25}
-              borderRadius='5px'
-            />
-          </li>
-        </ul>
-      ))}
+      {sutras.map((sutra) => {
+        const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
+        return (
+          <ul key={sutra.id}>
+            <li>
+              {correspondingPhoto ? (
+                <Link href={`/sutras/${sutra.id}`}>
+                  <CapturedImage
+                    capturedImageUrl={correspondingPhoto.photo_data}
+                    width={25}
+                    height={25}
+                    borderRadius='5px'
+                  />
+                </Link>
+              ) : (
+                <Link href={`/sutras/${sutra.id}`}>{sutra.kanji}</Link>
+              )}
+            </li>
+          </ul>
+        )
+      })}
     </div>
   )
 }
@@ -99,17 +95,28 @@ export const getServerSideProps: GetServerSideProps = async (
 
   if (session.user && session.user.email) {
     const currentUserId = await fetchUserId(session.user.email)
-    const sutraResponse = await axios.get(`${railsApiUrl}/api/v1/sutras`)
-    const sutras = sutraResponse.data
 
-    const photoResponse = await axios.get(`${railsApiUrl}/api/v1/users/${currentUserId}/photos`)
-    const photos = photoResponse.data
+    try {
+      const sutraResponse = await axios.get(`${railsApiUrl}/api/v1/sutras`)
+      const sutras = sutraResponse.data
 
-    return {
-      props: {
-        sutras,
-        photos,
-      },
+      const photoResponse = await axios.get(`${railsApiUrl}/api/v1/users/${currentUserId}/photos`)
+      const photos = photoResponse.data
+
+      return {
+        props: {
+          sutras,
+          photos,
+        },
+      }
+    } catch (error) {
+      console.error(error)
+      return {
+        redirect: {
+          destination: '/error',
+          permanent: false,
+        },
+      }
     }
   } else {
     return {
