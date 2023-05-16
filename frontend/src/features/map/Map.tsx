@@ -1,4 +1,4 @@
-import { GoogleMap, LoadScriptNext, Marker } from '@react-google-maps/api'
+import { GoogleMap, LoadScriptNext, MarkerF } from '@react-google-maps/api'
 import { useEffect, useState } from 'react'
 import { mapsApiKey } from '@/config/index'
 
@@ -41,7 +41,7 @@ const Map = ({ markerLocation }: MarkerLocation) => {
   return (
     <LoadScriptNext googleMapsApiKey={mapsApiKey}>
       <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={8} onLoad={handleMapLoad}>
-        {currentMarkerLocation && <Marker position={currentMarkerLocation} />}
+        {currentMarkerLocation && <MarkerF position={currentMarkerLocation} />}
       </GoogleMap>
     </LoadScriptNext>
   )
