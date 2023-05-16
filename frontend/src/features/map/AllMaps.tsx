@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react'
 import { mapsApiKey } from '@/config/index'
 
 const containerStyle = {
-  width: '360px',
-  height: '360px',
+  width: '720px',
+  height: '720px',
 }
 
 const center = {

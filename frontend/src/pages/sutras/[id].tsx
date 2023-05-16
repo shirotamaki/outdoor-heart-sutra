@@ -1,5 +1,7 @@
 import axios from 'axios'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
+import Head from 'next/head'
+import Link from 'next/link'
 import { getSession } from 'next-auth/react'
 import { useState } from 'react'
 import { railsApiUrl } from '@/config/index'
@@ -94,6 +96,12 @@ const SutraDetails = ({ sutra, photo }: SutraProps) => {
 
   return (
     <>
+      <Head>
+        <title>アウトドア般若心経 | 詳細</title>
+      </Head>
+      <div>
+        <Link href='/'>トップページ</Link>
+      </div>
       <h1>
         {sutra.id} : {sutra.kanji}
       </h1>
