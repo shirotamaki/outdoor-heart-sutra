@@ -4,17 +4,29 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { getSession } from 'next-auth/react'
 import { railsApiUrl } from '@/config/index'
+import CapturedImage from '@/features/photo/CapturedImage'
+import fetchUserId from '@/features/user/fetchUserId'
 
 type Sutra = {
   id: number
   kanji: string
 }
 
-type HomeProps = {
-  sutras: Sutra[]
+type Photo = {
+  id: number
+  note: string
+  address: string
+  longitude: number
+  latitude: number
+  photo_data: string
 }
 
-export default function Home({ sutras }: HomeProps) {
+type HomeProps = {
+  sutras: Sutra[]
+  photos: Photo[]
+}
+
+export default function Home({ sutras, photos }: HomeProps) {
   return (
     <>
       <Head>
@@ -32,18 +44,38 @@ export default function Home({ sutras }: HomeProps) {
           <p>自分探しならぬ、自分なくしの旅へ</p>
         </div>
         <Sutra sutras={sutras} />
+        <PhotoIcon photos={photos} />
       </div>
     </>
   )
 }
 
-function Sutra({ sutras }: HomeProps) {
+function Sutra({ sutras }: { sutras: Sutra[] }) {
   return (
     <div>
-      {sutras.map((sutra, index) => (
-        <ul key={index}>
+      {sutras.map((sutra) => (
+        <ul key={sutra.id}>
           <li>
             <Link href={`/sutras/${sutra.id}`}>{sutra.kanji}</Link>
+          </li>
+        </ul>
+      ))}
+    </div>
+  )
+}
+
+function PhotoIcon({ photos }: { photos: Photo[] }) {
+  return (
+    <div>
+      {photos.map((photo) => (
+        <ul key={photo.id}>
+          <li>
+            <CapturedImage
+              capturedImageUrl={photo.photo_data}
+              width={25}
+              height={25}
+              borderRadius='5px'
+            />
           </li>
         </ul>
       ))}
@@ -64,12 +96,27 @@ export const getServerSideProps: GetServerSideProps = async (
       },
     }
   }
-  const response = await axios.get(`${railsApiUrl}/api/v1/sutras`)
-  const sutras = response.data
 
-  return {
-    props: {
-      sutras,
-    },
+  if (session.user && session.user.email) {
+    const currentUserId = await fetchUserId(session.user.email)
+    const sutraResponse = await axios.get(`${railsApiUrl}/api/v1/sutras`)
+    const sutras = sutraResponse.data
+
+    const photoResponse = await axios.get(`${railsApiUrl}/api/v1/users/${currentUserId}/photos`)
+    const photos = photoResponse.data
+
+    return {
+      props: {
+        sutras,
+        photos,
+      },
+    }
+  } else {
+    return {
+      redirect: {
+        destination: '/welcome',
+        permanent: false,
+      },
+    }
   }
 }
