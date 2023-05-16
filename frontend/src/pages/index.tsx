@@ -1,6 +1,8 @@
 import axios from 'axios'
+import { GetServerSideProps, GetServerSidePropsContext } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
+import { getSession } from 'next-auth/react'
 import { railsApiUrl } from '@/config/index'
 
 type Sutra = {
@@ -49,7 +51,19 @@ function Sutra({ sutras }: HomeProps) {
   )
 }
 
-export async function getServerSideProps() {
+export const getServerSideProps: GetServerSideProps = async (
+  context: GetServerSidePropsContext,
+) => {
+  const session = await getSession(context)
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/welcome',
+        permanent: false,
+      },
+    }
+  }
   const response = await axios.get(`${railsApiUrl}/api/v1/sutras`)
   const sutras = response.data
 

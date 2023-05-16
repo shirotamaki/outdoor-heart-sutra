@@ -15,9 +15,11 @@ const WelcomePage = () => {
         <title>アウトドア般若心経 | welcome</title>
       </Head>
       <div>
-        <div>
-          <Link href='/'>トップページ</Link>
-        </div>
+        {status === 'authenticated' ? (
+          <div>
+            <Link href='/'>トップページ</Link>
+          </div>
+        ) : null}
         <h1>アウトドア般若心経</h1>
         <p>自分探しならぬ、自分なくしの旅へ</p>
         {status === 'authenticated' ? (
