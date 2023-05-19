@@ -21,6 +21,7 @@
     "babel-plugin-styled-components": "^2.0.7",
     "eslint": "8.36.0",
     "eslint-config-next": "^13.2.4",
+    "html2canvas": "^1.4.1",
     "next": "13.2.4",
     "next-auth": "^4.20.1",
     "react": "18.2.0",
