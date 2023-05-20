@@ -53,7 +53,12 @@ function Maps({ photos }: MapsProps) {
         <Link href='/'>トップページ</Link>
       </div>
       <AllMaps
-        markerLocations={photos.map((photo) => ({ lat: photo.latitude, lng: photo.longitude, img: photo.photo_data, link: `/sutras/${photo.sutra_id}` }))}
+        markerLocations={photos.map((photo) => ({
+          lat: photo.latitude,
+          lng: photo.longitude,
+          img: photo.photo_data,
+          link: `/sutras/${photo.sutra_id}`,
+        }))}
       />
     </>
   )

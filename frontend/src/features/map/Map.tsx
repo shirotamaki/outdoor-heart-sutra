@@ -14,9 +14,9 @@ const center = {
 
 type MarkerLocation = {
   markerLocation?: {
-    lat: number;
-    lng: number;
-    img: string;
+    lat: number
+    lng: number
+    img: string
   }
 }
 
@@ -51,7 +51,7 @@ const Map = ({ markerLocation }: MarkerLocation) => {
       <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={8} onLoad={handleMapLoad}>
         {isLoaded && currentMarkerLocation && (
           <MarkerF
-            position={{ lat:currentMarkerLocation.lat, lng: currentMarkerLocation.lng }}
+            position={{ lat: currentMarkerLocation.lat, lng: currentMarkerLocation.lng }}
             icon={{
               url: currentMarkerLocation.img,
               scaledSize: new google.maps.Size(25, 25),

@@ -43,7 +43,7 @@ const AllMaps = ({ markerLocations }: AllMapsProps) => {
   if (!mapsApiKey) {
     return <div>Google Maps APIキーが設定されていません</div>
   }
-  
+
   return (
     <LoadScriptNext googleMapsApiKey={mapsApiKey} onLoad={() => setIsLoaded(true)}>
       <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={8} onLoad={handleMapLoad}>
