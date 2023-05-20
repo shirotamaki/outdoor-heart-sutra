@@ -15,6 +15,7 @@ const center = {
 type MarkerLocation = {
   lat: number
   lng: number
+  img: string
 }
 
 type AllMapsProps = {
@@ -23,9 +24,11 @@ type AllMapsProps = {
 
 const AllMaps = ({ markerLocations }: AllMapsProps) => {
   const [map, setMap] = useState<google.maps.Map | null>(null)
+  const [isLoaded, setIsLoaded] = useState<boolean>(false)
 
   const handleMapLoad = (mapInstance: google.maps.Map) => {
     setMap(mapInstance)
+    setIsLoaded(true)
   }
 
   useEffect(() => {
@@ -38,11 +41,19 @@ const AllMaps = ({ markerLocations }: AllMapsProps) => {
     return <div>Google Maps APIキーが設定されていません</div>
   }
   return (
-    <LoadScriptNext googleMapsApiKey={mapsApiKey}>
+    <LoadScriptNext googleMapsApiKey={mapsApiKey} onLoad={() => setIsLoaded(true)}>
       <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={8} onLoad={handleMapLoad}>
-        {markerLocations.map((location, index) => (
-          <MarkerF key={index} position={location} />
-        ))}
+        {isLoaded &&
+          markerLocations.map((location, index) => (
+            <MarkerF
+              key={index}
+              position={{ lat: location.lat, lng: location.lng }}
+              icon={{
+                url: location.img,
+                scaledSize: new google.maps.Size(25, 25),
+              }}
+            />
+          ))}
       </GoogleMap>
     </LoadScriptNext>
   )

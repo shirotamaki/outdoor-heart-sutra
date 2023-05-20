@@ -28,13 +28,13 @@ type Photo = {
   photo_data: string
 }
 
-type SutraProps = {
+type SutraDetailsProps = {
   sutra: Sutra
   photo: Photo
 }
 
-const SutraDetails = ({ sutra, photo }: SutraProps) => {
-  const currentLocation = { lat: photo.latitude, lng: photo.longitude }
+const SutraDetails = ({ sutra, photo }: SutraDetailsProps) => {
+  const currentLocation = { lat: photo.latitude, lng: photo.longitude, img: photo.photo_data }
   const [editMemo, setEditMemo] = useState(!photo.note)
   const [editMode, setEditMode] = useState(false)
 
