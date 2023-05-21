@@ -1,4 +1,5 @@
 import { GoogleMap, LoadScriptNext, MarkerF } from '@react-google-maps/api'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { mapsApiKey } from '@/config/index'
 
@@ -15,6 +16,8 @@ const center = {
 type MarkerLocation = {
   lat: number
   lng: number
+  img: string
+  link: string
 }
 
 type AllMapsProps = {
@@ -22,10 +25,13 @@ type AllMapsProps = {
 }
 
 const AllMaps = ({ markerLocations }: AllMapsProps) => {
+  const router = useRouter()
   const [map, setMap] = useState<google.maps.Map | null>(null)
+  const [isLoaded, setIsLoaded] = useState<boolean>(false)
 
   const handleMapLoad = (mapInstance: google.maps.Map) => {
     setMap(mapInstance)
+    setIsLoaded(true)
   }
 
   useEffect(() => {
@@ -37,12 +43,22 @@ const AllMaps = ({ markerLocations }: AllMapsProps) => {
   if (!mapsApiKey) {
     return <div>Google Maps APIキーが設定されていません</div>
   }
+
   return (
-    <LoadScriptNext googleMapsApiKey={mapsApiKey}>
+    <LoadScriptNext googleMapsApiKey={mapsApiKey} onLoad={() => setIsLoaded(true)}>
       <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={8} onLoad={handleMapLoad}>
-        {markerLocations.map((location, index) => (
-          <MarkerF key={index} position={location} />
-        ))}
+        {isLoaded &&
+          markerLocations.map((location, index) => (
+            <MarkerF
+              key={index}
+              position={{ lat: location.lat, lng: location.lng }}
+              icon={{
+                url: location.img,
+                scaledSize: new google.maps.Size(25, 25),
+              }}
+              onClick={() => router.push(location.link)}
+            />
+          ))}
       </GoogleMap>
     </LoadScriptNext>
   )

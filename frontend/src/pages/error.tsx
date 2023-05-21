@@ -6,7 +6,7 @@ const ErrorPage: NextPage = () => {
     <div>
       <h1>エラーが発生しました</h1>
       <p>以下のリンクからトップページに戻ることができます。</p>
-      <Link href="/">トップページに戻る</Link>
+      <Link href='/'>トップページに戻る</Link>
     </div>
   )
 }

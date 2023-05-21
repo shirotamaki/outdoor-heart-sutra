@@ -11,6 +11,8 @@ type Photo = {
   id: number
   latitude: number
   longitude: number
+  photo_data: string
+  sutra_id: number
 }
 
 type MapsProps = {
@@ -51,7 +53,12 @@ function Maps({ photos }: MapsProps) {
         <Link href='/'>トップページ</Link>
       </div>
       <AllMaps
-        markerLocations={photos.map((photo) => ({ lat: photo.latitude, lng: photo.longitude }))}
+        markerLocations={photos.map((photo) => ({
+          lat: photo.latitude,
+          lng: photo.longitude,
+          img: photo.photo_data,
+          link: `/sutras/${photo.sutra_id}`,
+        }))}
       />
     </>
   )

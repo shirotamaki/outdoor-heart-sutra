@@ -13,22 +13,30 @@ const center = {
 }
 
 type MarkerLocation = {
-  markerLocation?: { lat: number; lng: number }
+  markerLocation?: {
+    lat: number
+    lng: number
+    img: string
+  }
 }
 
 const Map = ({ markerLocation }: MarkerLocation) => {
   const [map, setMap] = useState<google.maps.Map | null>(null)
+  const [isLoaded, setIsLoaded] = useState<boolean>(false)
+
   const [currentMarkerLocation, setCurrentMarkerLocation] = useState<{
     lat: number
     lng: number
+    img: string
   } | null>(null)
 
   const handleMapLoad = (mapInstance: google.maps.Map) => {
     setMap(mapInstance)
+    setIsLoaded(true)
   }
 
   useEffect(() => {
-    if (map && markerLocation && markerLocation.lat && markerLocation.lng) {
+    if (map && markerLocation && markerLocation.lat && markerLocation.lng && markerLocation.img) {
       map.panTo(markerLocation)
       setCurrentMarkerLocation(markerLocation)
     }
@@ -39,9 +47,17 @@ const Map = ({ markerLocation }: MarkerLocation) => {
   }
 
   return (
-    <LoadScriptNext googleMapsApiKey={mapsApiKey}>
+    <LoadScriptNext googleMapsApiKey={mapsApiKey} onLoad={() => setIsLoaded(true)}>
       <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={8} onLoad={handleMapLoad}>
-        {currentMarkerLocation && <MarkerF position={currentMarkerLocation} />}
+        {isLoaded && currentMarkerLocation && (
+          <MarkerF
+            position={{ lat: currentMarkerLocation.lat, lng: currentMarkerLocation.lng }}
+            icon={{
+              url: currentMarkerLocation.img,
+              scaledSize: new google.maps.Size(25, 25),
+            }}
+          />
+        )}
       </GoogleMap>
     </LoadScriptNext>
   )
