@@ -47,7 +47,7 @@ module Api
 
       def destroy
         @photo.destroy
-        head :ok
+        head :no_content
       rescue StandardError => e
         render json: { error: '削除に失敗しました', details: e.message }, status: :internal_server_error
       end

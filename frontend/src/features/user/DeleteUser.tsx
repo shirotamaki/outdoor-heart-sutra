@@ -15,12 +15,14 @@ const DeleteUser = () => {
       const response = await axios.delete(`${railsApiUrl}/users/${session.user.email}`)
 
       if (response.status === 204) {
-        signOut()
+        signOut({
+          callbackUrl: `/welcome`,
+        })
       } else {
         console.error('アカウント削除に失敗しました')
       }
     } catch (error) {
-      console.log('エラーだよ全員集合！', error)
+      console.error('エラーだよ全員集合！', error)
     }
   }
 
