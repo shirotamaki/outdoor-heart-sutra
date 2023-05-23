@@ -19,7 +19,8 @@
       "@/*": ["src/*"],
       "@/hooks/*": ["src/hooks/*"],
       "@/config/*": ["src/config/*"],
-      "@/features/*": ["src/features/*"]
+      "@/features/*": ["src/features/*"],
+      "@/components/*": ["src/components/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
