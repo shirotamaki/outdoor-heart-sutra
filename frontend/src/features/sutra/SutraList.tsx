@@ -95,33 +95,33 @@ const SutraList = ({ sutras, photos }: SutraListProps) => {
 
 function SutraOrPhoto({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] }) {
   return (
-      <div>
-        {sutras.map((sutra, index) => {
-          const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
-          return (
-            <div key={sutra.id}>
-              {correspondingPhoto ? (
-                <div>
-                  <Link href={`/sutras/${sutra.id}`}>
-                    <CapturedImage
-                      capturedImageUrl={correspondingPhoto.photo_data}
-                      width={25}
-                      height={25}
-                      borderRadius='5px'
-                    />
-                  </Link>
-                </div>
-              ) : (
-                <div>
-                  <Link href={`/sutras/${sutra.id}`} className='text-black no-underline'>
-                    {sutra.kanji}
-                  </Link>
-                </div>
-              )}
-            </div>
-          )
-        })}
-      </div>
+    <div>
+      {sutras.map((sutra, index) => {
+        const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
+        return (
+          <div key={sutra.id}>
+            {correspondingPhoto ? (
+              <div>
+                <Link href={`/sutras/${sutra.id}`}>
+                  <CapturedImage
+                    capturedImageUrl={correspondingPhoto.photo_data}
+                    width={25}
+                    height={25}
+                    borderRadius='5px'
+                  />
+                </Link>
+              </div>
+            ) : (
+              <div>
+                <Link href={`/sutras/${sutra.id}`} className='text-black no-underline'>
+                  {sutra.kanji}
+                </Link>
+              </div>
+            )}
+          </div>
+        )
+      })}
+    </div>
   )
 }
 
