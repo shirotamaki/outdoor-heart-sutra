@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.vertical-sutra-container {
+  direction: rtl;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(10, auto);
+}

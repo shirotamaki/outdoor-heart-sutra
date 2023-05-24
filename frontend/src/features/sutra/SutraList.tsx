@@ -2,6 +2,7 @@ import axios from 'axios'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
 import Link from 'next/link'
 import { getSession } from 'next-auth/react'
+import { useState } from 'react'
 import { railsApiUrl } from '@/config/index'
 import CapturedImage from '@/features/photo/CapturedImage'
 import fetchUserId from '@/features/user/fetchUserId'
@@ -87,40 +88,60 @@ type SutraListProps = {
 
 const SutraList = ({ sutras, photos }: SutraListProps) => {
   return (
-    <div className='text-4xl'>
+    <div>
       <SutraOrPhoto sutras={sutras} photos={photos} />
     </div>
   )
 }
 
 function SutraOrPhoto({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] }) {
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 50
+
+  const indexOfLastItem = currentPage * itemsPerPage
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage
+  const currentItems = sutras.slice(indexOfFirstItem, indexOfLastItem)
+
+  const paginate = (pageNumber: number) => {
+    setCurrentPage(pageNumber)
+  }
+
   return (
     <div>
-      {sutras.map((sutra, index) => {
-        const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
-        return (
-          <div key={sutra.id}>
-            {correspondingPhoto ? (
-              <div>
-                <Link href={`/sutras/${sutra.id}`}>
-                  <CapturedImage
-                    capturedImageUrl={correspondingPhoto.photo_data}
-                    width={25}
-                    height={25}
-                    borderRadius='5px'
-                  />
-                </Link>
-              </div>
-            ) : (
-              <div>
-                <Link href={`/sutras/${sutra.id}`} className='text-black no-underline'>
-                  {sutra.kanji}
-                </Link>
-              </div>
-            )}
-          </div>
-        )
-      })}
+      <div className='vertical-sutra-container flex justify-center'>
+        {currentItems.map((sutra) => {
+          const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
+          return (
+            <div key={sutra.id}>
+              {correspondingPhoto ? (
+                <div>
+                  <Link href={`/sutras/${sutra.id}`}>
+                    <CapturedImage
+                      capturedImageUrl={correspondingPhoto.photo_data}
+                      width={48}
+                      height={48}
+                      borderRadius='5px'
+                    />
+                  </Link>
+                </div>
+              ) : (
+                <div className='text-5xl'>
+                  <Link href={`/sutras/${sutra.id}`} className='text-black no-underline'>
+                    {sutra.kanji}
+                  </Link>
+                </div>
+              )}
+            </div>
+          )
+        })}
+      </div>
+      <div className='flex flex-row-reverse justify-center'>
+        {Array.from({ length: 6 }, (_, i) => (
+          <button key={i} onClick={() => paginate(i + 1)} className='mx-1 my-1 px-1 py-1'>
+            {i + 1}
+          </button>
+        ))}
+      </div>
     </div>
   )
 }
