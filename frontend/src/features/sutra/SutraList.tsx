@@ -87,7 +87,7 @@ type SutraListProps = {
 
 const SutraList = ({ sutras, photos }: SutraListProps) => {
   return (
-    <div className='text-4xl'>
+    <div>
       <SutraOrPhoto sutras={sutras} photos={photos} />
     </div>
   )
@@ -95,7 +95,7 @@ const SutraList = ({ sutras, photos }: SutraListProps) => {
 
 function SutraOrPhoto({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] }) {
   return (
-    <div>
+    <div className='vertical-sutra-container'>
       {sutras.map((sutra, index) => {
         const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
         return (
@@ -105,14 +105,14 @@ function SutraOrPhoto({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] }) 
                 <Link href={`/sutras/${sutra.id}`}>
                   <CapturedImage
                     capturedImageUrl={correspondingPhoto.photo_data}
-                    width={25}
-                    height={25}
+                    width={36}
+                    height={36}
                     borderRadius='5px'
                   />
                 </Link>
               </div>
             ) : (
-              <div>
+              <div className='text-4xl'>
                 <Link href={`/sutras/${sutra.id}`} className='text-black no-underline'>
                   {sutra.kanji}
                 </Link>
