@@ -6,8 +6,8 @@ const HomeButton = () => {
     <Link href='/'>
       <div>
         <Image
-          src='/images/sample_home_button.png'
-          alt={'アウトドア般若心経のロゴ'} // 仮の画像
+          src='/images/sample_home_button.png' // 仮の画像
+          alt={'アウトドア般若心経のロゴ'}
           width={48}
           height={48}
         />

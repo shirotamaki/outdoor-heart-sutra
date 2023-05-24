@@ -10,6 +10,9 @@ const Header = () => {
         <HomeButton />
       </div>
       <div>
+        <Link href='/mypage'>マイページ</Link>
+      </div>
+      <div>
         <Link href='/about'>アウトドア般若心経とは</Link>
       </div>
       <div>

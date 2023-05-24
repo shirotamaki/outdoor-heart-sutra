@@ -16,7 +16,7 @@ const DeleteUser = () => {
 
       if (response.status === 204) {
         signOut({
-          callbackUrl: `/welcome`,
+          callbackUrl: `/`,
         })
       } else {
         console.error('アカウント削除に失敗しました')

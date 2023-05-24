@@ -1,9 +1,9 @@
 import axios from 'axios'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
-import Head from 'next/head'
-import Link from 'next/link'
 import { getSession } from 'next-auth/react'
 import { useState } from 'react'
+import CustomHead from '@/components/CustomHead'
+import Header from '@/components/Header'
 import { railsApiUrl } from '@/config/index'
 import Map from '@/features/map/Map'
 import Memo from '@/features/memo/Memo'
@@ -13,6 +13,70 @@ import DeletePhoto from '@/features/photo/DeletePhoto'
 import EditPhoto from '@/features/photo/EditPhoto'
 import fetchPhotoId from '@/features/photo/fetchPhotoId'
 import fetchUserId from '@/features/user/fetchUserId'
+
+export const getServerSideProps: GetServerSideProps = async (
+  context: GetServerSidePropsContext,
+) => {
+  const { id } = context.query
+  const session = await getSession(context)
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
+  }
+
+  try {
+    const sutraResponse = await axios.get(`${railsApiUrl}/api/v1/sutras/${id}`)
+    const sutra = sutraResponse.data
+    const currentSutraId = sutra.id
+
+    if (session.user && session.user.email) {
+      const currentUserId = await fetchUserId(session.user.email)
+
+      if (currentUserId !== null) {
+        const photo_id = await fetchPhotoId(currentSutraId, currentUserId)
+
+        let photo = { photo_data: null }
+
+        if (photo_id !== null) {
+          const photoResponse = await axios.get(`${railsApiUrl}/api/v1/photos/${photo_id}`)
+          photo = photoResponse.data
+        }
+        return {
+          props: {
+            sutra,
+            photo,
+          },
+        }
+      }
+    } else {
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false,
+        },
+      }
+    }
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error('Error fetching data:', error.message, error.response)
+    } else if (error instanceof Error) {
+      console.error('Error fetching data:', error.message)
+    } else {
+      console.error('Error fetching data:', error)
+    }
+    return {
+      notFound: true,
+    }
+  }
+  return {
+    notFound: true,
+  }
+}
 
 type Sutra = {
   id: number
@@ -95,13 +159,9 @@ const SutraDetails = ({ sutra, photo }: SutraDetailsProps) => {
   }
 
   return (
-    <>
-      <Head>
-        <title>アウトドア般若心経 | 詳細</title>
-      </Head>
-      <div>
-        <Link href='/'>トップページ</Link>
-      </div>
+    <div>
+      <CustomHead title='詳細ページ' />
+      <Header />
       <h1>
         {sutra.id} : {sutra.kanji}
       </h1>
@@ -112,72 +172,8 @@ const SutraDetails = ({ sutra, photo }: SutraDetailsProps) => {
       ) : (
         renderPhoto()
       )}
-    </>
+    </div>
   )
-}
-
-export const getServerSideProps: GetServerSideProps = async (
-  context: GetServerSidePropsContext,
-) => {
-  const { id } = context.query
-  const session = await getSession(context)
-
-  if (!session) {
-    return {
-      redirect: {
-        destination: '/welcome',
-        permanent: false,
-      },
-    }
-  }
-
-  try {
-    const sutraResponse = await axios.get(`${railsApiUrl}/api/v1/sutras/${id}`)
-    const sutra = sutraResponse.data
-    const currentSutraId = sutra.id
-
-    if (session.user && session.user.email) {
-      const currentUserId = await fetchUserId(session.user.email)
-
-      if (currentUserId !== null) {
-        const photo_id = await fetchPhotoId(currentSutraId, currentUserId)
-
-        let photo = { photo_data: null }
-
-        if (photo_id !== null) {
-          const photoResponse = await axios.get(`${railsApiUrl}/api/v1/photos/${photo_id}`)
-          photo = photoResponse.data
-        }
-        return {
-          props: {
-            sutra,
-            photo,
-          },
-        }
-      }
-    } else {
-      return {
-        redirect: {
-          destination: '/welcome',
-          permanent: false,
-        },
-      }
-    }
-  } catch (error: unknown) {
-    if (axios.isAxiosError(error)) {
-      console.error('Error fetching data:', error.message, error.response)
-    } else if (error instanceof Error) {
-      console.error('Error fetching data:', error.message)
-    } else {
-      console.error('Error fetching data:', error)
-    }
-    return {
-      notFound: true,
-    }
-  }
-  return {
-    notFound: true,
-  }
 }
 
 export default SutraDetails

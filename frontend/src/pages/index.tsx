@@ -1,83 +1,15 @@
 import axios from 'axios'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
-import Head from 'next/head'
+import Image from 'next/image'
 import Link from 'next/link'
-import { getSession } from 'next-auth/react'
+import { useSession, getSession } from 'next-auth/react'
+import CustomHead from '@/components/CustomHead'
+import Footer from '@/components/Footer'
+import Header from '@/components/Header'
 import { railsApiUrl } from '@/config/index'
-import CapturedImage from '@/features/photo/CapturedImage'
+import Login from '@/features/auth/Login'
+import SutraList from '@/features/sutra/SutraList'
 import fetchUserId from '@/features/user/fetchUserId'
-
-type Sutra = {
-  id: number
-  kanji: string
-}
-
-type Photo = {
-  id: number
-  note: string
-  address: string
-  longitude: number
-  latitude: number
-  photo_data: string
-  user_id: number
-  sutra_id: number
-}
-
-type HomeProps = {
-  sutras: Sutra[]
-  photos: Photo[]
-}
-
-export default function Home({ sutras, photos }: HomeProps) {
-  return (
-    <>
-      <Head>
-        <title>アウトドア般若心経 | Top</title>
-      </Head>
-      <div>
-        <Link href='/welcome'>welcome</Link>
-      </div>
-      <div>
-        <Link href='/maps'>全体地図</Link>
-      </div>
-      <div>
-        <div>
-          <h1>アウトドア般若心経</h1>
-          <p>自分探しならぬ、自分なくしの旅へ</p>
-        </div>
-        <SutraOrPhoto sutras={sutras} photos={photos} />
-      </div>
-    </>
-  )
-}
-
-function SutraOrPhoto({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] }) {
-  return (
-    <div>
-      {sutras.map((sutra) => {
-        const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
-        return (
-          <ul key={sutra.id}>
-            <li>
-              {correspondingPhoto ? (
-                <Link href={`/sutras/${sutra.id}`}>
-                  <CapturedImage
-                    capturedImageUrl={correspondingPhoto.photo_data}
-                    width={25}
-                    height={25}
-                    borderRadius='5px'
-                  />
-                </Link>
-              ) : (
-                <Link href={`/sutras/${sutra.id}`}>{sutra.kanji}</Link>
-              )}
-            </li>
-          </ul>
-        )
-      })}
-    </div>
-  )
-}
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext,
@@ -86,10 +18,7 @@ export const getServerSideProps: GetServerSideProps = async (
 
   if (!session) {
     return {
-      redirect: {
-        destination: '/welcome',
-        permanent: false,
-      },
+      props: {},
     }
   }
 
@@ -120,10 +49,76 @@ export const getServerSideProps: GetServerSideProps = async (
     }
   } else {
     return {
-      redirect: {
-        destination: '/welcome',
-        permanent: false,
-      },
+      props: {},
     }
   }
 }
+
+type Sutra = {
+  id: number
+  kanji: string
+}
+
+type Photo = {
+  id: number
+  note: string
+  address: string
+  longitude: number
+  latitude: number
+  photo_data: string
+  user_id: number
+  sutra_id: number
+}
+
+type SutraListProps = {
+  sutras: Sutra[]
+  photos: Photo[]
+}
+
+const Home = ({ sutras, photos }: SutraListProps) => {
+  const { data: session, status } = useSession()
+
+  if (status === 'loading') {
+    return <div>Loading...</div>
+  }
+
+  return (
+    <div>
+      <CustomHead title='Top' />
+      {status !== 'authenticated' ? (
+        <div className='bg-gray'>
+          <main>
+            <div>
+              <Image
+                src='/images/sample_index.png' // 仮の画像
+                alt={'アウトドア般若心経のロゴ'}
+                width={300}
+                height={150}
+              />
+            </div>
+            <div>
+              <p>自分探しならぬ、自分なくしの旅へ</p>
+            </div>
+            <div>
+              <Link href='/about'>アウトドア般若心経とは？</Link>
+            </div>
+            <div>
+              <Login />
+            </div>
+          </main>
+          <Footer />
+        </div>
+      ) : (
+        <div className='bg-gray'>
+          <Header />
+          <main>
+            <SutraList sutras={sutras} photos={photos} />
+          </main>
+          <Footer />
+        </div>
+      )}
+    </div>
+  )
+}
+
+export default Home
