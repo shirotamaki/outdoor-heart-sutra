@@ -1,8 +1,9 @@
 import axios from 'axios'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
-import Head from 'next/head'
-import Link from 'next/link'
 import { getSession } from 'next-auth/react'
+import CustomHead from '@/components/CustomHead'
+import Footer from '@/components/Footer'
+import Header from '@/components/Header'
 import { railsApiUrl } from '@/config/index'
 import AllMaps from '@/features/map/AllMaps'
 import fetchUserId from '@/features/user/fetchUserId'
@@ -27,7 +28,7 @@ export const getServerSideProps: GetServerSideProps = async (
   if (!session || !session.user || !session.user.email) {
     return {
       redirect: {
-        destination: '/welcome',
+        destination: '/',
         permanent: false,
       },
     }
@@ -45,22 +46,23 @@ export const getServerSideProps: GetServerSideProps = async (
 
 function Maps({ photos }: MapsProps) {
   return (
-    <>
-      <Head>
-        <title>アウトドア般若心経 | 全体地図</title>
-      </Head>
-      <div>
-        <Link href='/'>トップページ</Link>
-      </div>
-      <AllMaps
-        markerLocations={photos.map((photo) => ({
-          lat: photo.latitude,
-          lng: photo.longitude,
-          img: photo.photo_data,
-          link: `/sutras/${photo.sutra_id}`,
-        }))}
-      />
-    </>
+    <div>
+      <CustomHead title='全体地図' />
+      <Header />
+      <main>
+        <div>
+          <AllMaps
+            markerLocations={photos.map((photo) => ({
+              lat: photo.latitude,
+              lng: photo.longitude,
+              img: photo.photo_data,
+              link: `/sutras/${photo.sutra_id}`,
+            }))}
+          />
+        </div>
+      </main>
+      <Footer />
+    </div>
   )
 }
 
