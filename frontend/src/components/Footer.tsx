@@ -1,9 +1,5 @@
 const Footer = () => {
-  return (
-    <div className='flex justify-center'>
-      <footer>© 2023 shirotamaki</footer>
-    </div>
-  )
+  return <footer className='flex justify-center'>© 2023 shirotamaki</footer>
 }
 
 export default Footer
