@@ -1,18 +1,18 @@
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import useCurrentLocation from '@/hooks/useCurrentLocation'
-import useExif from '@/hooks/useExif'
+import useExifLocation from '@/hooks/useExifLocation'
 
 const PhotoUploadAndPreview = () => {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
-  const { exifLocation, fetchExif } = useExif()
+  const { exifLocation, fetchExifLocation } = useExifLocation()
   const { currentLocation, getCurrentLocation } = useCurrentLocation()
 
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files !== null) {
       const file = event.target.files[0]
 
-      await fetchExif(file)
+      await fetchExifLocation(file)
 
       try {
         const heic2any = (await import('heic2any')).default
@@ -36,7 +36,7 @@ const PhotoUploadAndPreview = () => {
       return
     }
   }
-
+  
   useEffect(() => {
     if (!exifLocation) {
       getCurrentLocation()
@@ -44,6 +44,7 @@ const PhotoUploadAndPreview = () => {
   }, [exifLocation, getCurrentLocation])
 
   const location = exifLocation || currentLocation
+
 
   return (
     <div>
