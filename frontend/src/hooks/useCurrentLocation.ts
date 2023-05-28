@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 const useCurrentLocation = () => {
   const [currentLocation, setCurrentLocation] = useState<{ lat: number; lng: number } | null>(null)
+
   const getCurrentLocation = async () => {
     try {
       const location = await new Promise<{ lat: number; lng: number } | null>((resolve, reject) => {
