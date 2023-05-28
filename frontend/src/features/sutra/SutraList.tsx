@@ -108,7 +108,7 @@ function SutraOrPhoto({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] }) 
 
   return (
     <div>
-      <div className='vertical-sutra-container flex justify-center'>
+      <div className='vertical-sutras-container flex justify-center'>
         {currentItems.map((sutra) => {
           const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
           return (
