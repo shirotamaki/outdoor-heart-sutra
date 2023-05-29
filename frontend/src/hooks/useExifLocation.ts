@@ -8,10 +8,11 @@ const useExifLocation = () => {
     try {
       const exifData = await parse(file)
       console.log(exifData)
-      if (exifData) {
+      if (exifData && 'latitude' in exifData && 'longitude' in exifData) {
         setExifLocation({ lat: exifData.latitude, lng: exifData.longitude })
       } else {
         setExifLocation(null)
+        console.log('latitude・longitude情報が存在しません')
       }
     } catch (error) {
       console.error('Exifデータから位置情報を取得できません:', error)
