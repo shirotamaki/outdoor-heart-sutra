@@ -1,12 +1,25 @@
-import Image from 'next/image'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
+import Cropper from 'react-easy-crop'
+import { Area, Point } from 'react-easy-crop/types'
 import useCurrentLocation from '@/hooks/useCurrentLocation'
 import useExifLocation from '@/hooks/useExifLocation'
 
 const PhotoUploadAndPreview = () => {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
+  const [latitudeData, setlatitudeData] = useState<number | null>(null)
+  const [longitudeData, setlongitudeData] = useState<number | null>(null)
+
   const { exifLocation, fetchExifLocation } = useExifLocation()
   const { currentLocation, getCurrentLocation } = useCurrentLocation()
+
+  const [crop, setCrop] = useState<Point>({ x: 0, y: 0 })
+  const [zoom, setZoom] = useState(1)
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null)
+
+  const onCropComplete = useCallback((croppedArea: Area, croppedAreaPixels: Area) => {
+    console.log(croppedArea, croppedAreaPixels)
+    setCroppedAreaPixels(croppedAreaPixels)
+  }, [])
 
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files !== null) {
@@ -36,24 +49,47 @@ const PhotoUploadAndPreview = () => {
       return
     }
   }
-  
+
   useEffect(() => {
     if (!exifLocation) {
       getCurrentLocation()
     }
   }, [exifLocation, getCurrentLocation])
 
-  const location = exifLocation || currentLocation
+  useEffect(() => {
+    const location = exifLocation || currentLocation
 
+    if (location !== null) {
+      setlatitudeData(location.lat)
+      setlongitudeData(location.lng)
+    } else {
+      setlatitudeData(null)
+      setlongitudeData(null)
+    }
+  }, [exifLocation, currentLocation])
 
   return (
     <div>
       <input type='file' accept='image/jpeg, image/png, image/heic' onChange={handleFileChange} />
-      {previewUrl && <Image src={previewUrl} alt='preview' width={480} height={480} />}
-      {location && (
+      {previewUrl && (
+        <Cropper
+          image={previewUrl}
+          crop={crop}
+          zoom={zoom}
+          aspect={1}
+          onCropChange={setCrop}
+          onCropComplete={onCropComplete}
+          onZoomChange={setZoom}
+          cropSize={{
+            width: 200,
+            height: 200,
+          }}
+        />
+      )}
+      {latitudeData && longitudeData && (
         <div>
-          <p>Latitude: {location.lat}</p>
-          <p>Longitude: {location.lng}</p>
+          <p>Latitude: {latitudeData}</p>
+          <p>Longitude: {longitudeData}</p>
         </div>
       )}
     </div>
