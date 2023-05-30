@@ -60,8 +60,9 @@ module Api
 
       def photo_params
         {
-          photo_data: params[:photoData],
-          note: params[:memo],
+          image_url: params[:imageUrl],
+          cropped_image_url: params[:croppedImageUrl],
+          note: params[:noteData],
           latitude: params[:latitudeData],
           longitude: params[:longitudeData],
           address: params[:addressData],
