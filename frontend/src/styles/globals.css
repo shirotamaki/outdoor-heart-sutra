@@ -8,3 +8,11 @@
   grid-auto-flow: column;
   grid-template-rows: repeat(10, auto);
 }
+
+.crop-container {
+  background: #333;
+  height: 400px;
+  margin: auto;
+  position: relative;
+  width: 400px;
+}

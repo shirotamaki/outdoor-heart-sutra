@@ -5,7 +5,7 @@ import { LocationProps } from '@/types/location'
 
 type FetchLocationProps = { file: File | null }
 
-const useFetchLocation = ({ file }: FetchLocationProps): LocationProps => {
+const useFetchLocation = ({ file }: FetchLocationProps) => {
   const [location, setLocation] = useState<LocationProps>(null)
 
   const { exifLocation, fetchExifLocation } = useExifLocation()
@@ -32,7 +32,7 @@ const useFetchLocation = ({ file }: FetchLocationProps): LocationProps => {
     }
   }, [exifLocation, currentLocation])
 
-  return location
+  return { location }
 }
 
 export default useFetchLocation
