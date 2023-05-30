@@ -1,13 +1,18 @@
 import { useEffect, useState } from 'react'
 import { geocodingApiUrl, geocodingApiKey } from '@/config/index'
+import { LocationProps } from '@/types/location'
 
-const useReverseGeocode = (lat: number, lng: number) => {
+const useReverseGeocode = (location: LocationProps) => {
   const [address, setAddress] = useState<string | null>(null)
 
   useEffect(() => {
     const fetchAddress = async () => {
+      if (!location) {
+        setAddress(null)
+        return
+      }
       const params = new URLSearchParams({
-        latlng: `${lat},${lng}`,
+        latlng: `${location.lat},${location.lng}`,
         key: geocodingApiKey,
       })
 
@@ -30,7 +35,7 @@ const useReverseGeocode = (lat: number, lng: number) => {
       }
     }
     fetchAddress()
-  }, [lat, lng])
+  }, [location])
 
   return address
 }

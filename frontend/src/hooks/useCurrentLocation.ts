@@ -1,11 +1,12 @@
 import { useState } from 'react'
+import { LocationProps } from '@/types/location'
 
 const useCurrentLocation = () => {
-  const [currentLocation, setCurrentLocation] = useState<{ lat: number; lng: number } | null>(null)
+  const [currentLocation, setCurrentLocation] = useState<LocationProps | null>(null)
 
   const fetchCurrentLocation = async () => {
     try {
-      const location = await new Promise<{ lat: number; lng: number } | null>((resolve, reject) => {
+      const location = await new Promise<LocationProps | null>((resolve, reject) => {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
             (position) => {

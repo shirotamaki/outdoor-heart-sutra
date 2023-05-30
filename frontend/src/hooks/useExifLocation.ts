@@ -1,14 +1,20 @@
 import { parse } from 'exifr'
 import { useState } from 'react'
+import { LocationProps } from '@/types/location'
 
 const useExifLocation = () => {
-  const [exifLocation, setExifLocation] = useState<{ lat: number; lng: number } | null>(null)
+  const [exifLocation, setExifLocation] = useState<LocationProps | null>(null)
 
   const fetchExifLocation = async (file: File) => {
     try {
       const exifData = await parse(file)
       console.log(exifData)
-      if (exifData && 'latitude' in exifData && 'longitude' in exifData) {
+
+      if (
+        exifData &&
+        'latitude' in exifData &&
+        'longitude' in exifData
+      ) {
         setExifLocation({ lat: exifData.latitude, lng: exifData.longitude })
       } else {
         setExifLocation(null)
