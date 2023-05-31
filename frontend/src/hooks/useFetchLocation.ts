@@ -5,23 +5,21 @@ import { LocationProps } from '@/types/location'
 
 type FetchLocationProps = { file: File | null }
 
-const useFetchLocation = ({ file }: FetchLocationProps) => {
+const useFetchLocation = () => {
   const [location, setLocation] = useState<LocationProps>(null)
-
   const { exifLocation, fetchExifLocation } = useExifLocation()
   const { currentLocation, fetchCurrentLocation } = useCurrentLocation()
 
-  useEffect(() => {
+  const fetchLocation = async ({ file }: FetchLocationProps) => {
     if (file) {
-      fetchExifLocation(file)
+      await fetchExifLocation(file)
     } else {
-      fetchCurrentLocation()
+      await fetchCurrentLocation()
     }
-  }, [file, fetchExifLocation, fetchCurrentLocation])
+  }
 
   useEffect(() => {
     const newLocation = exifLocation || currentLocation
-
     if (newLocation !== null) {
       setLocation({
         lat: newLocation.lat,
@@ -31,8 +29,7 @@ const useFetchLocation = ({ file }: FetchLocationProps) => {
       setLocation(null)
     }
   }, [exifLocation, currentLocation])
-
-  return { location }
+  return { location, fetchLocation }
 }
 
 export default useFetchLocation
