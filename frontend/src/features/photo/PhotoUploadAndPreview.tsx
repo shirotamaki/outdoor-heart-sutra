@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
 import { useState, useEffect, useCallback } from 'react'
 import Cropper from 'react-easy-crop'
+// eslint-disable-next-line import/no-unresolved
 import { Area, Point } from 'react-easy-crop/types'
 import ActionButton from '@/components/ActionButton'
 import { railsApiUrl } from '@/config/index'
@@ -16,23 +17,19 @@ type PhotoUploadAndPreviewProps = {
   sutraId: number
 }
 
-const PhotoUploadAndPreview = ({ sutraId}: PhotoUploadAndPreviewProps) => {
-
+const PhotoUploadAndPreview = ({ sutraId }: PhotoUploadAndPreviewProps) => {
   const router = useRouter()
 
   const [crop, setCrop] = useState<Point>({ x: 0, y: 0 })
   const [zoom, setZoom] = useState(1)
   const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null)
 
-  const [selectedFile, setSelectedFile] = useState<File | null>(null)
-
   const [isSelectedImage, setSelectedImage] = useState(false)
   const [previewImage, setPreviewUrl] = useState<string | null>(null)
   const [croppedImage, setCroppedImage] = useState<string | null>(null)
 
   const { data: session } = useSession()
-
-  const { location } = useFetchLocation({ file: selectedFile })
+  const { location, fetchLocation } = useFetchLocation()
   const reverseGeocodeResult = useReverseGeocode(location)
   const address = reverseGeocodeResult || null
 
@@ -46,7 +43,8 @@ const PhotoUploadAndPreview = ({ sutraId}: PhotoUploadAndPreviewProps) => {
 
     if (event.target.files !== null) {
       const file = event.target.files[0]
-      setSelectedFile(file)
+
+      fetchLocation({ file })
 
       try {
         const heic2any = (await import('heic2any')).default
@@ -80,7 +78,6 @@ const PhotoUploadAndPreview = ({ sutraId}: PhotoUploadAndPreviewProps) => {
   }, [previewImage, croppedAreaPixels])
 
   const handleFileChancel = () => {
-    setSelectedFile(null)
     setSelectedImage(false)
     setPreviewUrl(null)
   }
@@ -93,7 +90,6 @@ const PhotoUploadAndPreview = ({ sutraId}: PhotoUploadAndPreviewProps) => {
     if (previewImage && croppedImage && session?.user?.email && location && address) {
       let success = false
 
-
       const imageUrl: string = previewImage
       const croppedImageUrl: string = croppedImage
       const latitudeData: number = location.lat
@@ -102,18 +98,8 @@ const PhotoUploadAndPreview = ({ sutraId}: PhotoUploadAndPreviewProps) => {
       const currentUserId: number | null = await fetchUserId(session.user.email)
       const currentSutraId: number = sutraId
 
-      console.log("===================================================")
-            console.log(previewImage)
-            console.log(croppedImage)
-            console.log(location.lat)
-            console.log(location.lng)
-            console.log(address)
-            console.log(currentUserId)
-            console.log(currentSutraId)
-
-
       try {
-        const response = await axios.post(`${railsApiUrl}/api/v1/photos`, {
+        await axios.post(`${railsApiUrl}/api/v1/photos`, {
           imageUrl,
           croppedImageUrl,
           latitudeData,
