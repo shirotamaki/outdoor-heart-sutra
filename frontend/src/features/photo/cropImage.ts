@@ -28,7 +28,7 @@ export default function cropImage(
         pixelCrop.height,
       )
 
-      resolve(canvas.toDataURL())
+      resolve(canvas.toDataURL('image/jpeg', 0.1))
     }
     image.onerror = reject
     image.src = imageSrc
