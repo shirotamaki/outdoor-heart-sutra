@@ -4,8 +4,6 @@ import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
 import { useState, useEffect, useCallback } from 'react'
 import Cropper from 'react-easy-crop'
-// eslint-disable-next-line import/no-unresolved
-import { Area, Point } from 'react-easy-crop/types'
 import ActionButton from '@/components/ActionButton'
 import { railsApiUrl } from '@/config/index'
 import cropImage from '@/features/photo/cropImage'
@@ -15,6 +13,18 @@ import useReverseGeocode from '@/hooks/useReverseGeocode'
 
 type PhotoUploadAndPreviewProps = {
   sutraId: number
+}
+
+type Point = {
+  x: number
+  y: number
+}
+
+type Area = {
+  x: number
+  y: number
+  width: number
+  height: number
 }
 
 const PhotoUploadAndPreview = ({ sutraId }: PhotoUploadAndPreviewProps) => {
@@ -34,7 +44,6 @@ const PhotoUploadAndPreview = ({ sutraId }: PhotoUploadAndPreviewProps) => {
   const address = reverseGeocodeResult || null
 
   const onCropComplete = useCallback(async (croppedArea: Area, croppedAreaPixels: Area) => {
-    console.log(croppedArea, croppedAreaPixels)
     setCroppedAreaPixels(croppedAreaPixels)
   }, [])
 
@@ -44,6 +53,9 @@ const PhotoUploadAndPreview = ({ sutraId }: PhotoUploadAndPreviewProps) => {
     if (event.target.files !== null) {
       const file = event.target.files[0]
 
+    console.log('==========file=====================')
+    console.log(file)
+
       fetchLocation({ file })
 
       try {
@@ -52,11 +64,15 @@ const PhotoUploadAndPreview = ({ sutraId }: PhotoUploadAndPreviewProps) => {
           const convertedImage = await heic2any({
             blob: file,
             toType: 'image/jpeg',
-            quality: 0.1,
+            quality: 0.01,
           })
           if (Array.isArray(convertedImage)) {
             throw new Error('Unexpected multiple blobs')
           }
+
+          console.log('===============convertedImage================')
+          console.log(convertedImage)
+
           setPreviewUrl(URL.createObjectURL(convertedImage))
         } else {
           setPreviewUrl(URL.createObjectURL(file))
