@@ -8,7 +8,6 @@ const useExifLocation = () => {
   const fetchExifLocation = async (file: File) => {
     try {
       const exifData = await parse(file)
-      console.log(exifData)
 
       if (
         exifData &&
