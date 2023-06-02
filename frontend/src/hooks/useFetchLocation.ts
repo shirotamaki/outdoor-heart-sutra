@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { parse } from 'exifr'
+import { useState } from 'react'
 import useCurrentLocation from '@/hooks/useCurrentLocation'
 import useExifLocation from '@/hooks/useExifLocation'
 import { LocationProps } from '@/types/location'
@@ -7,28 +8,31 @@ type FetchLocationProps = { file: File | null }
 
 const useFetchLocation = () => {
   const [location, setLocation] = useState<LocationProps>(null)
-  const { exifLocation, fetchExifLocation } = useExifLocation()
-  const { currentLocation, fetchCurrentLocation } = useCurrentLocation()
+  const { fetchExifLocation } = useExifLocation()
+  const { fetchCurrentLocation } = useCurrentLocation()
 
   const fetchLocation = async ({ file }: FetchLocationProps) => {
-    if (file) {
-      await fetchExifLocation(file)
-    } else {
-      await fetchCurrentLocation()
-    }
-  }
+    let newLocation: LocationProps | null = null
 
-  useEffect(() => {
-    const newLocation = exifLocation || currentLocation
-    if (newLocation !== null) {
-      setLocation({
-        lat: newLocation.lat,
-        lng: newLocation.lng,
-      })
-    } else {
-      setLocation(null)
+    if (file) {
+      try {
+        const exifData = await parse(file)
+        if (exifData && 'latitude' in exifData && 'longitude' in exifData) {
+          newLocation = await fetchExifLocation(file)
+        } else {
+          console.log('fileにExifデータが含まれていません')
+        }
+      } catch (error) {
+        console.error('fileを読み込めません: ', error)
+      }
     }
-  }, [exifLocation, currentLocation])
+
+    if (!newLocation) {
+      newLocation = await fetchCurrentLocation()
+    }
+
+    setLocation(newLocation)
+  }
   return { location, fetchLocation }
 }
 

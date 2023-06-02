@@ -1,30 +1,24 @@
 import { parse } from 'exifr'
-import { useState } from 'react'
 import { LocationProps } from '@/types/location'
 
 const useExifLocation = () => {
-  const [exifLocation, setExifLocation] = useState<LocationProps | null>(null)
-
-  const fetchExifLocation = async (file: File) => {
+  const fetchExifLocation = async (file: File): Promise<LocationProps | null> => {
     try {
       const exifData = await parse(file)
 
-      if (
-        exifData &&
-        'latitude' in exifData &&
-        'longitude' in exifData
-      ) {
-        setExifLocation({ lat: exifData.latitude, lng: exifData.longitude })
+      if (exifData && 'latitude' in exifData && 'longitude' in exifData) {
+        return { lat: exifData.latitude, lng: exifData.longitude }
       } else {
-        setExifLocation(null)
         console.log('latitude・longitude情報が存在しません')
+        return null
       }
+
     } catch (error) {
       console.error('Exifデータから位置情報を取得できません:', error)
+      return null
     }
   }
-
-  return { exifLocation, fetchExifLocation }
+  return { fetchExifLocation }
 }
 
 export default useExifLocation
