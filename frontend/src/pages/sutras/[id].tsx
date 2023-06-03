@@ -6,11 +6,11 @@ import CustomHead from '@/components/CustomHead'
 import Header from '@/components/Header'
 import { railsApiUrl } from '@/config/index'
 import Map from '@/features/map/Map'
-import Memo from '@/features/memo/Memo'
-import Camera from '@/features/photo/Camera'
+import Note from '@/features/note/Note'
 import CapturedImage from '@/features/photo/CapturedImage'
 import DeletePhoto from '@/features/photo/DeletePhoto'
 import EditPhoto from '@/features/photo/EditPhoto'
+import PhotoUploadAndPreview from '@/features/photo/PhotoUploadAndPreview'
 import fetchPhotoId from '@/features/photo/fetchPhotoId'
 import fetchUserId from '@/features/user/fetchUserId'
 
@@ -40,7 +40,7 @@ export const getServerSideProps: GetServerSideProps = async (
       if (currentUserId !== null) {
         const photo_id = await fetchPhotoId(currentSutraId, currentUserId)
 
-        let photo = { photo_data: null }
+        let photo = { image_url: null }
 
         if (photo_id !== null) {
           const photoResponse = await axios.get(`${railsApiUrl}/api/v1/photos/${photo_id}`)
@@ -89,7 +89,8 @@ type Photo = {
   address: string
   longitude: number
   latitude: number
-  photo_data: string
+  image_url: string
+  cropped_image_url: string
 }
 
 type SutraDetailsProps = {
@@ -98,37 +99,41 @@ type SutraDetailsProps = {
 }
 
 const SutraDetails = ({ sutra, photo }: SutraDetailsProps) => {
-  const currentLocation = { lat: photo.latitude, lng: photo.longitude, img: photo.photo_data }
-  const [editMemo, setEditMemo] = useState(!photo.note)
+  const currentLocation = {
+    lat: photo.latitude,
+    lng: photo.longitude,
+    img: photo.cropped_image_url,
+  }
+  const [editNote, setEditNote] = useState(!photo.note)
   const [editMode, setEditMode] = useState(false)
 
-  const renderMemo = () => {
-    if (editMemo) {
+  const renderNote = () => {
+    if (editNote) {
       return (
-        <Memo
+        <Note
           photoId={photo.id}
           sutraId={sutra.id}
           photoNote={photo.note}
-          setEditMemo={setEditMemo}
+          setEditNote={setEditNote}
         />
       )
     } else {
       return (
         <div>
-          <div>メモ：{photo.note}</div>
+          <div>メモ:{photo.note}</div>
           <div>
-            <button onClick={() => setEditMemo(true)}>メモを編集する</button>
+            <button onClick={() => setEditNote(true)}>メモを編集する</button>
           </div>
         </div>
       )
     }
   }
 
-  const renderPhoto = () => {
+  const renderSutraDetails = () => {
     if (editMode) {
       return (
         <div>
-          <Camera sutraId={sutra.id} photoId={photo.id} setEditMode={setEditMode} />
+          <PhotoUploadAndPreview sutraId={sutra.id} />
         </div>
       )
     } else {
@@ -136,17 +141,25 @@ const SutraDetails = ({ sutra, photo }: SutraDetailsProps) => {
         <div>
           <div>
             <CapturedImage
-              capturedImageUrl={photo.photo_data}
+              capturedImageUrl={photo.image_url}
               width={360}
               height={360}
-              borderRadius='50px'
+              borderRadius='5px'
+            />
+          </div>
+          <div>
+            <CapturedImage
+              capturedImageUrl={photo.cropped_image_url}
+              width={100}
+              height={100}
+              borderRadius='5px'
             />
           </div>
           <div>
             <Map markerLocation={currentLocation} />
           </div>
           <div>住所：{photo.address}</div>
-          <div>{renderMemo()}</div>
+          <div>{renderNote()}</div>
           <div>
             <DeletePhoto photoId={photo.id} />
           </div>
@@ -165,12 +178,12 @@ const SutraDetails = ({ sutra, photo }: SutraDetailsProps) => {
       <h1>
         {sutra.id} : {sutra.kanji}
       </h1>
-      {photo.photo_data === null ? (
+      {photo.image_url === null ? (
         <div>
-          <Camera sutraId={sutra.id} photoId={photo.id} setEditMode={setEditMode} />
+          <PhotoUploadAndPreview sutraId={sutra.id} />
         </div>
       ) : (
-        renderPhoto()
+        renderSutraDetails()
       )}
     </div>
   )
