@@ -13,6 +13,7 @@ import useReverseGeocode from '@/hooks/useReverseGeocode'
 
 type PhotoUploadAndPreviewProps = {
   sutraId: number
+  photoId: number | null
 }
 
 type Point = {
@@ -27,7 +28,7 @@ type Area = {
   y: number
 }
 
-const PhotoUploadAndPreview = ({ sutraId }: PhotoUploadAndPreviewProps) => {
+const PhotoUploadAndPreview = ({ sutraId, photoId }: PhotoUploadAndPreviewProps) => {
   const router = useRouter()
 
   const [crop, setCrop] = useState<Point>({ x: 0, y: 0 })
@@ -90,7 +91,7 @@ const PhotoUploadAndPreview = ({ sutraId }: PhotoUploadAndPreviewProps) => {
     setCroppedImage(croppedImage)
   }, [previewImage, croppedAreaPixels])
 
-  const handleFileChancel = () => {
+  const handleFileCancel = () => {
     setSelectedImage(false)
     setPreviewUrl(null)
   }
@@ -112,15 +113,27 @@ const PhotoUploadAndPreview = ({ sutraId }: PhotoUploadAndPreviewProps) => {
       const currentSutraId: number = sutraId
 
       try {
-        await axios.post(`${railsApiUrl}/api/v1/photos`, {
-          imageUrl,
-          croppedImageUrl,
-          latitudeData,
-          longitudeData,
-          addressData,
-          currentUserId,
-          currentSutraId,
-        })
+        if (photoId) {
+          await axios.patch(`${railsApiUrl}/api/v1/photos/${photoId}`, {
+            imageUrl,
+            croppedImageUrl,
+            latitudeData,
+            longitudeData,
+            addressData,
+            currentUserId,
+            currentSutraId,
+          })
+        } else {
+          await axios.post(`${railsApiUrl}/api/v1/photos`, {
+            imageUrl,
+            croppedImageUrl,
+            latitudeData,
+            longitudeData,
+            addressData,
+            currentUserId,
+            currentSutraId,
+          })
+        }
         console.log('写真が保存されました')
         alert('写真が保存されました') //最終的にはトーストにする
         success = true
@@ -129,7 +142,7 @@ const PhotoUploadAndPreview = ({ sutraId }: PhotoUploadAndPreviewProps) => {
         alert('写真の保存に失敗しました') //最終的にはトーストにする
       }
       if (success) {
-        await router.push(`/sutras/${sutraId}`)
+        await router.reload()
       }
     } else {
       console.log('写真の保存に失敗しました')
@@ -173,7 +186,7 @@ const PhotoUploadAndPreview = ({ sutraId }: PhotoUploadAndPreviewProps) => {
               <ActionButton onClick={handleCropConfirm} text='決定' />
             </div>
             <div>
-              <ActionButton onClick={handleFileChancel} text='ファイルを再選択' />
+              <ActionButton onClick={handleFileCancel} text='ファイルを再選択' />
             </div>
           </div>
         )}

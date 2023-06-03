@@ -133,7 +133,7 @@ const SutraDetails = ({ sutra, photo }: SutraDetailsProps) => {
     if (editMode) {
       return (
         <div>
-          <PhotoUploadAndPreview sutraId={sutra.id} />
+          <PhotoUploadAndPreview sutraId={sutra.id} photoId={photo.id} />
         </div>
       )
     } else {
@@ -180,7 +180,7 @@ const SutraDetails = ({ sutra, photo }: SutraDetailsProps) => {
       </h1>
       {photo.image_url === null ? (
         <div>
-          <PhotoUploadAndPreview sutraId={sutra.id} />
+          <PhotoUploadAndPreview sutraId={sutra.id} photoId={photo.id} />
         </div>
       ) : (
         renderSutraDetails()
