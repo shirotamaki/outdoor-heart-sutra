@@ -43,6 +43,11 @@ const PhotoUploadAndPreview = ({ sutraId }: PhotoUploadAndPreviewProps) => {
   const reverseGeocodeResult = useReverseGeocode(location)
   const address = reverseGeocodeResult || null
 
+  // デバッグ用で一時的に追加
+  useEffect(() => {
+    console.log('Location updated:', location)
+  }, [location])
+
   const onCropComplete = useCallback(async (croppedArea: Area, croppedAreaPixels: Area) => {
     setCroppedAreaPixels(croppedAreaPixels)
   }, [])
@@ -53,10 +58,7 @@ const PhotoUploadAndPreview = ({ sutraId }: PhotoUploadAndPreviewProps) => {
     if (event.target.files !== null) {
       const file = event.target.files[0]
 
-    console.log('==========file=====================')
-    console.log(file)
-
-      fetchLocation({ file })
+      await fetchLocation({ file })
 
       try {
         const heic2any = (await import('heic2any')).default
@@ -69,9 +71,6 @@ const PhotoUploadAndPreview = ({ sutraId }: PhotoUploadAndPreviewProps) => {
           if (Array.isArray(convertedImage)) {
             throw new Error('Unexpected multiple blobs')
           }
-
-          console.log('===============convertedImage================')
-          console.log(convertedImage)
 
           setPreviewUrl(URL.createObjectURL(convertedImage))
         } else {
@@ -89,8 +88,6 @@ const PhotoUploadAndPreview = ({ sutraId }: PhotoUploadAndPreviewProps) => {
     if (!previewImage || !croppedAreaPixels) return
     const croppedImage = await cropImage(previewImage, croppedAreaPixels)
     setCroppedImage(croppedImage)
-
-    console.log(croppedImage)
   }, [previewImage, croppedAreaPixels])
 
   const handleFileChancel = () => {
@@ -134,6 +131,9 @@ const PhotoUploadAndPreview = ({ sutraId }: PhotoUploadAndPreviewProps) => {
       if (success) {
         await router.push(`/sutras/${sutraId}`)
       }
+    } else {
+      console.log('写真の保存に失敗しました')
+      alert('写真の保存に失敗しました') //最終的にはトーストにする
     }
   }
 
