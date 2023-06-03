@@ -20,7 +20,7 @@ const DeletePhoto = ({ photoId }: DeletePhotoProps) => {
     }
   }
 
-  return <button onClick={handleDelete}>写真を削除する</button>
+  return <button onClick={handleDelete}>削除する</button>
 }
 
 export default DeletePhoto

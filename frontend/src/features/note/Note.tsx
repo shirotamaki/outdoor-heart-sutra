@@ -3,40 +3,40 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { railsApiUrl } from '@/config/index'
 
-type MemoProps = {
+type NoteProps = {
   photoId: number
   sutraId: number
   photoNote: string | null
-  setEditMemo: (value: boolean) => void
+  setEditNote: (value: boolean) => void
 }
 
-const Memo = ({ photoId, sutraId, photoNote, setEditMemo }: MemoProps) => {
-  const [memo, setMemo] = useState<string>(photoNote || '')
+const Note = ({ photoId, sutraId, photoNote, setEditNote }: NoteProps) => {
+  const [note, setNote] = useState<string>(photoNote || '')
 
   const router = useRouter()
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const input = event.target.value
     if (input.length <= 256) {
-      setMemo(input)
+      setNote(input)
     }
   }
-  const saveMemo = async () => {
+  const saveNote = async () => {
     let success = false
 
-    if (!memo) {
+    if (!note) {
       console.error('メモが空です')
       alert('メモが空です') //最終的にはトーストにする
       return
     }
     try {
       const response = await axios.patch(`${railsApiUrl}/api/v1/photos/${photoId}`, {
-        memo,
+        noteData: note,
       })
-      console.log('メモが保存されました:', memo)
+      console.log('メモが保存されました:', note)
       alert('メモが保存されました') //最終的にはトーストにする
       success = true
-      setEditMemo(false) //親コンポーネントに値を渡すことができる
+      setEditNote(false) //親コンポーネントに値を渡すことができる
     } catch (error) {
       console.error('メモの保存に失敗しました:', error)
       alert('メモの保存に失敗しました') //最終的にはトーストにする
@@ -49,16 +49,16 @@ const Memo = ({ photoId, sutraId, photoNote, setEditMemo }: MemoProps) => {
   return (
     <div>
       <textarea
-        value={memo}
+        value={note}
         onChange={handleChange}
-        placeholder={memo ? memo : 'メモを入力してください'}
+        placeholder={note ? note : 'メモを入力してください'}
         rows={4}
         cols={46}
       ></textarea>
       <br />
-      <button onClick={saveMemo}>メモ保存</button>
+      <button onClick={saveNote}>メモ保存</button>
     </div>
   )
 }
 
-export default Memo
+export default Note

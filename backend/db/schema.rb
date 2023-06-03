@@ -10,20 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_30_004009) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_30_093247) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "photos", force: :cascade do |t|
-    t.binary "photo_data", null: false
+    t.text "image_url", null: false
     t.string "note", limit: 256
     t.float "latitude"
     t.float "longitude"
     t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.bigint "sutra_id"
+    t.bigint "user_id", null: false
+    t.bigint "sutra_id", null: false
+    t.text "cropped_image_url", null: false
     t.index ["sutra_id"], name: "index_photos_on_sutra_id"
     t.index ["user_id"], name: "index_photos_on_user_id"
   end

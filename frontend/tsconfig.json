@@ -20,7 +20,8 @@
       "@/hooks/*": ["src/hooks/*"],
       "@/config/*": ["src/config/*"],
       "@/features/*": ["src/features/*"],
-      "@/components/*": ["src/components/*"]
+      "@/components/*": ["src/components/*"],
+      "@/types/*": ["src/types/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

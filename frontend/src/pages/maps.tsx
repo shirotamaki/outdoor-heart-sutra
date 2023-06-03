@@ -12,7 +12,7 @@ type Photo = {
   id: number
   latitude: number
   longitude: number
-  photo_data: string
+  cropped_image_url: string
   sutra_id: number
 }
 
@@ -55,7 +55,7 @@ function Maps({ photos }: MapsProps) {
             markerLocations={photos.map((photo) => ({
               lat: photo.latitude,
               lng: photo.longitude,
-              img: photo.photo_data,
+              img: photo.cropped_image_url,
               link: `/sutras/${photo.sutra_id}`,
             }))}
           />

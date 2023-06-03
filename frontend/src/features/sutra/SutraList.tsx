@@ -76,7 +76,7 @@ type Photo = {
   address: string
   longitude: number
   latitude: number
-  photo_data: string
+  cropped_image_url: string
   user_id: number
   sutra_id: number
 }
@@ -108,7 +108,7 @@ function SutraOrPhoto({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] }) 
 
   return (
     <div>
-      <div className='vertical-sutra-container flex justify-center'>
+      <div className='vertical-sutras-container flex justify-center'>
         {currentItems.map((sutra) => {
           const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
           return (
@@ -117,7 +117,7 @@ function SutraOrPhoto({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] }) 
                 <div>
                   <Link href={`/sutras/${sutra.id}`}>
                     <CapturedImage
-                      capturedImageUrl={correspondingPhoto.photo_data}
+                      capturedImageUrl={correspondingPhoto.cropped_image_url}
                       width={48}
                       height={48}
                       borderRadius='5px'

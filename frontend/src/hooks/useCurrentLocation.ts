@@ -1,10 +1,9 @@
-import { useState } from 'react'
+import { LocationProps } from '@/types/location'
 
 const useCurrentLocation = () => {
-  const [currentLocation, setCurrentLocation] = useState<{ lat: number; lng: number } | null>(null)
-  const getCurrentLocation = async () => {
+  const fetchCurrentLocation = async () => {
     try {
-      const location = await new Promise<{ lat: number; lng: number } | null>((resolve, reject) => {
+      const currentLocation = await new Promise<LocationProps | null>((resolve, reject) => {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -21,14 +20,14 @@ const useCurrentLocation = () => {
           reject('ブラウザがサポートされていません')
         }
       })
-      setCurrentLocation(location)
-      return location
+      return currentLocation
     } catch (error) {
       console.error(error)
       return null
     }
   }
-  return { currentLocation, getCurrentLocation }
+
+  return { fetchCurrentLocation }
 }
 
 export default useCurrentLocation
