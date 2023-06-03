@@ -12,7 +12,6 @@ const useExifLocation = () => {
         console.log('latitude・longitude情報が存在しません')
         return null
       }
-
     } catch (error) {
       console.error('Exifデータから位置情報を取得できません:', error)
       return null
