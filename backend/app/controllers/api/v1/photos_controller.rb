@@ -16,8 +16,13 @@ module Api
       end
 
       def index_by_user
-        user = User.find(params[:user_id])
-        render json: user.photos
+        user = User.find_by(id: params[:user_id])
+
+        if user.nil?
+          render json: { error: 'ユーザーが見つかりません' }, status: :not_found
+        else
+          render json: user.photos
+        end
       end
 
       def create

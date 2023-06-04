@@ -25,6 +25,15 @@ export const getServerSideProps: GetServerSideProps = async (
   if (session.user && session.user.email) {
     const currentUserId = await fetchUserId(session.user.email)
 
+    if (!currentUserId) {
+      return {
+        redirect: {
+          destination: '/signout',
+          permanent: false,
+        }
+      }
+    }
+
     try {
       const sutraResponse = await axios.get(`${railsApiUrl}/api/v1/sutras`)
       const sutras = sutraResponse.data
