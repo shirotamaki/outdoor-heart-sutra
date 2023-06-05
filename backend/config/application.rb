@@ -27,6 +27,8 @@ module OutdoorHeartSutraApi
     config.middleware.use ActionDispatch::Cookies # Required for all session management
     config.middleware.use ActionDispatch::Session::CookieStore, config.session_options
 
+    config.active_storage.variant_processor = :vips
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
