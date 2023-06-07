@@ -4,7 +4,7 @@ Rails.application.routes.draw do
       resources :users, only: [:create]
       get 'users/find', to: 'users#find_user'
       resources :sutras, only: [:index, :show]
-      get "photos/find", to: "photos#find_photo"
+      get "photos/find", to: "photos#find_photo_by_sutra_and_user"
       resources :photos, only: [:create, :show, :update, :destroy]
       get 'users/:user_id/photos', to: 'photos#index_by_user'
     end

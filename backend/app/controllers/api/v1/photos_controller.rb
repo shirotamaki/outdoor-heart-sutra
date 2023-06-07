@@ -6,7 +6,7 @@ module Api
       skip_before_action :verify_authenticity_token
       before_action :set_photo, only: %i[show update destroy]
 
-      def find_photo
+      def find_photo_by_sutra_and_user
         photo = Photo.find_by(sutra_id: params[:sutraId], user_id: params[:userId])
         if photo
           render json: { photo_id: photo.id }
