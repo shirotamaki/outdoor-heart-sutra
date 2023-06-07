@@ -123,7 +123,7 @@ function SutraOrPhoto({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] }) 
                       width={48}
                       height={48}
                       borderRadius='5px'
-                      />
+                    />
                   </Link>
                 </div>
               ) : (

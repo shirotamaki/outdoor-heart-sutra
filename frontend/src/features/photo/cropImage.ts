@@ -28,13 +28,17 @@ export default function cropImage(
         pixelCrop.height,
       )
 
-      canvas.toBlob(blob => {
-        if (blob) {
-          resolve(blob)
-        } else {
-          reject(new Error('Canvas to Blob failed'))
-        }
-      }, 'image/jpeg', 0.1)
+      canvas.toBlob(
+        (blob) => {
+          if (blob) {
+            resolve(blob)
+          } else {
+            reject(new Error('Canvas to Blob failed'))
+          }
+        },
+        'image/jpeg',
+        0.1,
+      )
     }
     image.onerror = reject
     image.src = imageSrc
