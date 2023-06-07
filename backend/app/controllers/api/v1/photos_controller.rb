@@ -11,7 +11,7 @@ module Api
         if photo
           render json: { photo_id: photo.id }
         else
-          render json: { error: "写真が見つかりませんでした" }, status: :not_found
+          render json: { error: '写真が見つかりませんでした' }, status: :not_found
         end
       end
 
@@ -19,13 +19,13 @@ module Api
         user = User.find_by(id: params[:user_id])
 
         if user.nil?
-          render json: { error: "ユーザーが見つかりません" }, status: :not_found
+          render json: { error: 'ユーザーが見つかりません' }, status: :not_found
         else
           photos = user.photos.map do |photo|
             image_url = rails_blob_url(photo.image) if photo.image.attached?
             cropped_image_url = rails_blob_url(photo.cropped_image) if photo.cropped_image.attached?
 
-            photo.as_json.merge(image_url: image_url, cropped_image_url: cropped_image_url)
+            photo.as_json.merge(image_url:, cropped_image_url:)
           end
           render json: photos
         end
@@ -40,16 +40,16 @@ module Api
         if photo.save
           head :ok
         else
-          render json: { error: "保存に失敗しました" }, status: :unprocessable_entity
+          render json: { error: '保存に失敗しました' }, status: :unprocessable_entity
         end
       rescue StandardError => e
-        render json: { error: "保存に失敗しました", errors: e.message }, status: :internal_server_error
+        render json: { error: '保存に失敗しました', errors: e.message }, status: :internal_server_error
       end
 
       def show
         image_url = rails_blob_url(@photo.image) if @photo.image.attached?
         cropped_image_url = rails_blob_url(@photo.cropped_image) if @photo.cropped_image.attached?
-        render json: @photo.as_json.merge(image_url: image_url, cropped_image_url: cropped_image_url)
+        render json: @photo.as_json.merge(image_url:, cropped_image_url:)
       end
 
       def update
@@ -59,10 +59,10 @@ module Api
 
           head :ok
         else
-          render json: { error: "更新に失敗しました" }, status: :unprocessable_entity
+          render json: { error: '更新に失敗しました' }, status: :unprocessable_entity
         end
       rescue StandardError => e
-        render json: { error: "更新に失敗しました", details: e.message }, status: :internal_server_error
+        render json: { error: '更新に失敗しました', details: e.message }, status: :internal_server_error
       end
 
       def destroy
@@ -72,7 +72,7 @@ module Api
         @photo.destroy
         head :no_content
       rescue StandardError => e
-        render json: { error: "削除に失敗しました", details: e.message }, status: :internal_server_error
+        render json: { error: '削除に失敗しました', details: e.message }, status: :internal_server_error
       end
 
       private
@@ -88,7 +88,7 @@ module Api
           longitude: params[:longitudeData],
           address: params[:addressData],
           user_id: params[:currentUserId],
-          sutra_id: params[:currentSutraId],
+          sutra_id: params[:currentSutraId]
         }.compact
       end
     end
