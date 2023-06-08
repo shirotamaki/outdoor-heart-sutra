@@ -100,7 +100,8 @@ module Api
         ActionDispatch::Http::UploadedFile.new(
           tempfile: webp_image,
           filename: "#{image.original_filename.split('.').first}.webp",
-          original_filename: "#{image.original_filename.split('.').first}.webp"
+          original_filename: "#{image.original_filename.split('.').first}.webp",
+          content_type: 'image/webp'
         )
       end
     end
