@@ -188,7 +188,7 @@ const PhotoUploadAndPreview = ({ sutraId, photoId }: PhotoUploadAndPreviewProps)
             }}
             restrictPosition={true}
             minZoom={0.5}
-            maxZoom={5}
+            maxZoom={10}
           />
         </div>
       )}
