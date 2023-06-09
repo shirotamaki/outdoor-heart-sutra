@@ -64,6 +64,7 @@ const PhotoUploadAndPreview = ({ sutraId, photoId }: PhotoUploadAndPreviewProps)
 
       await fetchLocation({ file })
 
+      // デバッグ用で一時的に追加
       console.log(file)
 
       try {
@@ -78,6 +79,7 @@ const PhotoUploadAndPreview = ({ sutraId, photoId }: PhotoUploadAndPreviewProps)
             throw new Error('Unexpected multiple blobs')
           }
 
+          // デバッグ用で一時的に追加
           console.log(convertedImage)
 
           setPreviewUrl(URL.createObjectURL(convertedImage))
@@ -121,6 +123,7 @@ const PhotoUploadAndPreview = ({ sutraId, photoId }: PhotoUploadAndPreviewProps)
   }
 
   const savePhotoData = async () => {
+    
     // デバッグ用で一時的に追加
     console.log('Original Blob:', originalBlob)
     console.log('Cropped Blob:', croppedBlob)
