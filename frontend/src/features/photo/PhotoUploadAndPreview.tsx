@@ -36,6 +36,9 @@ const PhotoUploadAndPreview = ({ sutraId, photoId }: PhotoUploadAndPreviewProps)
   const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null)
 
   const [isSelectedImage, setSelectedImage] = useState(false)
+
+  const [originalBlob, setOriginalBlob] = useState<Blob | File | null>(null)
+  const [croppedBlob, setCroppedBlob] = useState<Blob | File | null>(null)
   const [previewImage, setPreviewUrl] = useState<string | null>(null)
   const [croppedImage, setCroppedImage] = useState<string | null>(null)
 
@@ -61,21 +64,29 @@ const PhotoUploadAndPreview = ({ sutraId, photoId }: PhotoUploadAndPreviewProps)
 
       await fetchLocation({ file })
 
+      // デバッグ用で一時的に追加
+      console.log(file)
+
       try {
         const heic2any = (await import('heic2any')).default
         if (file.type === 'image/heic') {
           const convertedImage = await heic2any({
             blob: file,
             toType: 'image/jpeg',
-            quality: 0.01,
+            quality: 0.1,
           })
           if (Array.isArray(convertedImage)) {
             throw new Error('Unexpected multiple blobs')
           }
 
+          // デバッグ用で一時的に追加
+          console.log(convertedImage)
+
           setPreviewUrl(URL.createObjectURL(convertedImage))
+          setOriginalBlob(convertedImage)
         } else {
           setPreviewUrl(URL.createObjectURL(file))
+          setOriginalBlob(file)
         }
       } catch (error) {
         console.error('Error converting image: ', error)
@@ -87,51 +98,63 @@ const PhotoUploadAndPreview = ({ sutraId, photoId }: PhotoUploadAndPreviewProps)
 
   const handleCropConfirm = useCallback(async () => {
     if (!previewImage || !croppedAreaPixels) return
-    const croppedImage = await cropImage(previewImage, croppedAreaPixels)
-    setCroppedImage(croppedImage)
+    const croppedBlob = await cropImage(previewImage, croppedAreaPixels)
+    const croppedImageUrl = URL.createObjectURL(croppedBlob)
+    setCroppedImage(croppedImageUrl)
+    setCroppedBlob(croppedBlob)
+
+    // デバッグ用で一時的に追加
+    console.log('Cropped Blob:', croppedBlob)
   }, [previewImage, croppedAreaPixels])
 
   const handleFileCancel = () => {
+    if (previewImage) {
+      URL.revokeObjectURL(previewImage)
+      setPreviewUrl(null)
+    }
     setSelectedImage(false)
-    setPreviewUrl(null)
   }
 
   const handleFileReSelecte = () => {
-    setCroppedImage(null)
+    if (croppedImage) {
+      URL.revokeObjectURL(croppedImage)
+      setCroppedImage(null)
+    }
   }
 
   const savePhotoData = async () => {
-    if (previewImage && croppedImage && session?.user?.email && location && address) {
+    
+    // デバッグ用で一時的に追加
+    console.log('Original Blob:', originalBlob)
+    console.log('Cropped Blob:', croppedBlob)
+
+    if (originalBlob && croppedBlob && session?.user?.email && location && address) {
       let success = false
 
-      const imageUrl: string = previewImage
-      const croppedImageUrl: string = croppedImage
-      const latitudeData: number = location.lat
-      const longitudeData: number = location.lng
-      const addressData: string = address
       const currentUserId: number | null = await fetchUserId(session.user.email)
       const currentSutraId: number = sutraId
 
+      const formData = new FormData()
+      formData.append('image', originalBlob)
+      formData.append('croppedImage', croppedBlob, 'croppedImage.jpeg')
+      formData.append('latitudeData', String(location.lat))
+      formData.append('longitudeData', String(location.lng))
+      formData.append('addressData', address)
+      formData.append('currentUserId', String(currentUserId))
+      formData.append('currentSutraId', String(currentSutraId))
+
       try {
         if (photoId) {
-          await axios.patch(`${railsApiUrl}/api/v1/photos/${photoId}`, {
-            imageUrl,
-            croppedImageUrl,
-            latitudeData,
-            longitudeData,
-            addressData,
-            currentUserId,
-            currentSutraId,
+          await axios.patch(`${railsApiUrl}/api/v1/photos/${photoId}`, formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
           })
         } else {
-          await axios.post(`${railsApiUrl}/api/v1/photos`, {
-            imageUrl,
-            croppedImageUrl,
-            latitudeData,
-            longitudeData,
-            addressData,
-            currentUserId,
-            currentSutraId,
+          await axios.post(`${railsApiUrl}/api/v1/photos`, formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
           })
         }
         console.log('写真が保存されました')
@@ -168,7 +191,7 @@ const PhotoUploadAndPreview = ({ sutraId, photoId }: PhotoUploadAndPreviewProps)
             }}
             restrictPosition={true}
             minZoom={0.5}
-            maxZoom={5}
+            maxZoom={10}
           />
         </div>
       )}

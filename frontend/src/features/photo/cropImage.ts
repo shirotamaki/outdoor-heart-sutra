@@ -1,7 +1,7 @@
 export default function cropImage(
   imageSrc: string,
   pixelCrop: { width: number; height: number; x: number; y: number },
-): Promise<string> {
+): Promise<Blob> {
   const canvas = document.createElement('canvas')
   const image = new Image()
 
@@ -28,7 +28,17 @@ export default function cropImage(
         pixelCrop.height,
       )
 
-      resolve(canvas.toDataURL('image/jpeg', 0.1))
+      canvas.toBlob(
+        (blob) => {
+          if (blob) {
+            resolve(blob)
+          } else {
+            reject(new Error('Canvas to Blob failed'))
+          }
+        },
+        'image/jpeg',
+        0.1,
+      )
     }
     image.onerror = reject
     image.src = imageSrc

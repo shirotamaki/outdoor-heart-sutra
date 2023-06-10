@@ -30,7 +30,7 @@ export const getServerSideProps: GetServerSideProps = async (
         redirect: {
           destination: '/signout',
           permanent: false,
-        }
+        },
       }
     }
 
@@ -74,6 +74,7 @@ type Photo = {
   address: string
   longitude: number
   latitude: number
+  image_url: string
   cropped_image_url: string
   user_id: number
   sutra_id: number
