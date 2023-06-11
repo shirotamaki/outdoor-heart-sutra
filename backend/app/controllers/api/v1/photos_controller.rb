@@ -29,6 +29,12 @@ module Api
 
             photo.as_json.merge(image_url:, cropped_image_url:)
           end
+
+          # デバッグ用で一時的に追加
+          puts '======================photos======s==========================='
+          puts photos
+          puts '======================photos======f==========================='
+
           render json: photos
         end
       end
