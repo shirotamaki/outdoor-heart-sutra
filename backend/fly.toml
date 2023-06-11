@@ -22,5 +22,5 @@ console_command = "/rails/bin/rails console"
   url_prefix = "/"
 
 [[mounts]]
-  source = "storage_volume"
+  source = "outdoor_heart_sutra_backend_data"
   destination = "/mnt/volume"
