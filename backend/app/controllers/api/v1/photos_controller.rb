@@ -42,8 +42,11 @@ module Api
       def create
         photo = Photo.new(photo_params)
 
-        photo.image.attach(convert_to_webp(params[:image])) if params[:image]
-        photo.cropped_image.attach(convert_to_webp(params[:croppedImage])) if params[:croppedImage]
+        # photo.image.attach(convert_to_webp(params[:image])) if params[:image]
+        # photo.cropped_image.attach(convert_to_webp(params[:croppedImage])) if params[:croppedImage]
+
+        photo.image.attach(params[:image]) if params[:image]
+        photo.cropped_image.attach(params[:croppedImage]) if params[:croppedImage]
 
         if photo.save
           head :ok
