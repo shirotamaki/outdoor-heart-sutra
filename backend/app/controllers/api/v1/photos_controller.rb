@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "image_processing/vips"
+require 'image_processing/vips'
 
 module Api
   module V1
@@ -13,7 +13,7 @@ module Api
         if photo
           render json: { photo_id: photo.id }
         else
-          render json: { error: "写真が見つかりませんでした" }, status: :not_found
+          render json: { error: '写真が見つかりませんでした' }, status: :not_found
         end
       end
 
@@ -21,7 +21,7 @@ module Api
         user = User.find_by(id: params[:user_id])
 
         if user.nil?
-          render json: { error: "ユーザーが見つかりません" }, status: :not_found
+          render json: { error: 'ユーザーが見つかりません' }, status: :not_found
         else
           photos = user.photos.map do |photo|
             image_url = rails_blob_url(photo.image) if photo.image.attached?
@@ -31,9 +31,9 @@ module Api
           end
 
           # デバッグ用で一時的に追加
-          puts "======================photos======s==========================="
-          puts photos
-          puts "======================photos======f==========================="
+          Rails.logger.debug '======================photos======s==========================='
+          Rails.logger.debug photos
+          Rails.logger.debug '======================photos======f==========================='
 
           render json: photos
         end
@@ -48,14 +48,14 @@ module Api
           head :ok
 
           # デバッグ用で一時的に追加
-          puts "======================photos======s=save=========================="
-          puts photo
-          puts "======================photos======f=save========================="
+          Rails.logger.debug '======================photos======s=save=========================='
+          Rails.logger.debug photo
+          Rails.logger.debug '======================photos======f=save========================='
         else
-          render json: { error: "保存に失敗しました" }, status: :unprocessable_entity
+          render json: { error: '保存に失敗しました' }, status: :unprocessable_entity
         end
       rescue StandardError => e
-        render json: { error: "保存に失敗しました", errors: e.message }, status: :internal_server_error
+        render json: { error: '保存に失敗しました', errors: e.message }, status: :internal_server_error
       end
 
       def show
@@ -64,10 +64,10 @@ module Api
         render json: @photo.as_json.merge(image_url:, cropped_image_url:)
 
         # デバッグ用で一時的に追加
-        puts "======================photos======s=show=========================="
-        puts image_url
-        puts cropped_image_url
-        puts "======================photos======f=show=========================="
+        Rails.logger.debug '======================photos======s=show=========================='
+        Rails.logger.debug image_url
+        Rails.logger.debug cropped_image_url
+        Rails.logger.debug '======================photos======f=show=========================='
       end
 
       def update
@@ -77,10 +77,10 @@ module Api
 
           head :ok
         else
-          render json: { error: "更新に失敗しました" }, status: :unprocessable_entity
+          render json: { error: '更新に失敗しました' }, status: :unprocessable_entity
         end
       rescue StandardError => e
-        render json: { error: "更新に失敗しました", details: e.message }, status: :internal_server_error
+        render json: { error: '更新に失敗しました', details: e.message }, status: :internal_server_error
       end
 
       def destroy
@@ -90,7 +90,7 @@ module Api
         @photo.destroy
         head :no_content
       rescue StandardError => e
-        render json: { error: "削除に失敗しました", details: e.message }, status: :internal_server_error
+        render json: { error: '削除に失敗しました', details: e.message }, status: :internal_server_error
       end
 
       private
@@ -106,18 +106,18 @@ module Api
           longitude: params[:longitudeData],
           address: params[:addressData],
           user_id: params[:currentUserId],
-          sutra_id: params[:currentSutraId],
+          sutra_id: params[:currentSutraId]
         }.compact
       end
 
       def convert_to_webp(image)
-        webp_image = ImageProcessing::Vips.source(image).convert("webp").call
+        webp_image = ImageProcessing::Vips.source(image).convert('webp').call
 
         ActionDispatch::Http::UploadedFile.new(
           tempfile: webp_image,
-          filename: "#{image.original_filename.split(".").first}.webp",
-          original_filename: "#{image.original_filename.split(".").first}.webp",
-          content_type: "image/webp",
+          filename: "#{image.original_filename.split('.').first}.webp",
+          original_filename: "#{image.original_filename.split('.').first}.webp",
+          content_type: 'image/webp'
         )
       end
     end
