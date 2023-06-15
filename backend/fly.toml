@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for outdoor-heart-sutra-backend on 2023-06-10T20:29:34+09:00
+# fly.toml app configuration file generated for outdoor-heart-sutra-backend on 2023-06-15T19:30:54+09:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -7,20 +7,13 @@ app = "outdoor-heart-sutra-backend"
 primary_region = "nrt"
 console_command = "/rails/bin/rails console"
 
-[env]
-  RAILS_STORAGE = "/mnt/volume/storage"
-
 [http_service]
   internal_port = 3000
   force_https = true
   auto_stop_machines = true
   auto_start_machines = true
-  min_machines_running = 1
+  min_machines_running = 0
 
 [[statics]]
   guest_path = "/rails/public"
   url_prefix = "/"
-
-[[mounts]]
-  source = "outdoor_heart_sutra_backend_data"
-  destination = "/mnt/volume"
