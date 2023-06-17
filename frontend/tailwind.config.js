@@ -12,6 +12,10 @@ module.exports = {
         gray: '#d0cbcb', // 背景カラー
         tetsuguro: '#1D1506', //てつぐろ（フォント用）
       },
+      fontFamily: {
+        kinuta: ['Yuji Syuku', 'serif'],
+        noto: ['Noto Serif', 'serif'],
+      },
     },
   },
   plugins: [],
