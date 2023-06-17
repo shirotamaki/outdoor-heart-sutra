@@ -73,7 +73,7 @@ const PhotoUploadAndPreview = ({ sutraId, photoId }: PhotoUploadAndPreviewProps)
           const convertedImage = await heic2any({
             blob: file,
             toType: 'image/jpeg',
-            quality: 0.1,
+            quality: 0,
           })
           if (Array.isArray(convertedImage)) {
             throw new Error('Unexpected multiple blobs')
@@ -123,7 +123,7 @@ const PhotoUploadAndPreview = ({ sutraId, photoId }: PhotoUploadAndPreviewProps)
   }
 
   const savePhotoData = async () => {
-    
+
     // デバッグ用で一時的に追加
     console.log('Original Blob:', originalBlob)
     console.log('Cropped Blob:', croppedBlob)
