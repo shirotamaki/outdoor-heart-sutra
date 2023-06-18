@@ -14,7 +14,9 @@ module.exports = {
       },
       fontFamily: {
         kinuta: ['Yuji Syuku', 'serif'],
-        noto: ['Noto Serif', 'serif'],
+        reggae: ['Reggae One', 'cursive'],
+        notoSerif: ['Noto Serif', 'serif'],
+        notoSans: ['Noto Sans JP', 'sans-serif'],
       },
     },
   },
