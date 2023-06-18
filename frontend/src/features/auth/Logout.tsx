@@ -5,9 +5,9 @@ const Logout = () => {
 
   if (status === 'authenticated') {
     return (
-      <div>
-        <button onClick={() => signOut()}>ログアウト</button>
-      </div>
+      <span className='cursor-pointer hover:opacity-50 transition-all duration-100'>
+        <span onClick={() => signOut()}>ログアウト</span>
+      </span>
     )
   }
   return null

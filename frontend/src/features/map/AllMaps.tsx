@@ -45,22 +45,29 @@ const AllMaps = ({ markerLocations }: AllMapsProps) => {
   }
 
   return (
-    <LoadScriptNext googleMapsApiKey={mapsApiKey} onLoad={() => setIsLoaded(true)}>
-      <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={8} onLoad={handleMapLoad}>
-        {isLoaded &&
-          markerLocations.map((location, index) => (
-            <MarkerF
-              key={index}
-              position={{ lat: location.lat, lng: location.lng }}
-              icon={{
-                url: location.img,
-                scaledSize: new google.maps.Size(25, 25),
-              }}
-              onClick={() => router.push(location.link)}
-            />
-          ))}
-      </GoogleMap>
-    </LoadScriptNext>
+    <div className='z-0'>
+      <LoadScriptNext googleMapsApiKey={mapsApiKey} onLoad={() => setIsLoaded(true)}>
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          center={center}
+          zoom={8}
+          onLoad={handleMapLoad}
+        >
+          {isLoaded &&
+            markerLocations.map((location, index) => (
+              <MarkerF
+                key={index}
+                position={{ lat: location.lat, lng: location.lng }}
+                icon={{
+                  url: location.img,
+                  scaledSize: new google.maps.Size(25, 25),
+                }}
+                onClick={() => router.push(location.link)}
+              />
+            ))}
+        </GoogleMap>
+      </LoadScriptNext>
+    </div>
   )
 }
 
