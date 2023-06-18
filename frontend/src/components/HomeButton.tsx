@@ -4,12 +4,12 @@ import Link from 'next/link'
 const HomeButton = () => {
   return (
     <Link href='/'>
-      <div>
+      <div className='hover:opacity-25'>
         <Image
-          src='/images/sample_home_button.png' // 仮の画像
+          src='/images/logo_main.png'
           alt={'アウトドア般若心経のロゴ'}
-          width={48}
-          height={48}
+          width={160}
+          height={64}
         />
       </div>
     </Link>

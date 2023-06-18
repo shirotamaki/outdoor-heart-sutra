@@ -100,7 +100,7 @@ const Home = ({ sutras, photos }: SutraListProps) => {
           <main>
             <div>
               <Image
-                src='/images/sample_index.png' // 仮の画像
+                src='/images/logo_main.png'
                 alt={'アウトドア般若心経のロゴ'}
                 width={300}
                 height={150}
