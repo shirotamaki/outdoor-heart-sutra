@@ -16,6 +16,14 @@ class MyDocument extends Document {
             href='https://fonts.googleapis.com/css2?family=Noto+Serif:wght@100&family=Yuji+Syuku&display=swap'
             rel='stylesheet'
           ></link>
+
+          <link rel='icon' type='image/png' sizes='16x16' href='/images/favicons/favicon_a.png' />
+          <link rel='icon' type='image/png' sizes='32x32' href='/images/favicons/favicon_a.png' />
+          <link
+            rel='apple-touch-icon'
+            sizes='180x180'
+            href='frontend/public/images/favicons/apple-touch-icon_square_a.png'
+          />
         </Head>
         <body>
           <Main />
