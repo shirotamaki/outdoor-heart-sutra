@@ -28,7 +28,7 @@ const DeleteUser = () => {
 
   if (session) {
     return (
-      <div>
+      <div className='hover:opacity-50 transition-all duration-100'>
         <button onClick={() => handleDeleteUser()}>アカウントを削除する</button>
       </div>
     )
