@@ -7,8 +7,7 @@ const PrivacyPolicy = () => {
     <div>
       <CustomHead title='privacy-policy' />
       <Header />
-      <main>
-      </main>
+      <main></main>
       <Footer />
     </div>
   )

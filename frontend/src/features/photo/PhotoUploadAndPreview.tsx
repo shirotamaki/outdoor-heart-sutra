@@ -123,7 +123,6 @@ const PhotoUploadAndPreview = ({ sutraId, photoId }: PhotoUploadAndPreviewProps)
   }
 
   const savePhotoData = async () => {
-
     // デバッグ用で一時的に追加
     console.log('Original Blob:', originalBlob)
     console.log('Cropped Blob:', croppedBlob)
