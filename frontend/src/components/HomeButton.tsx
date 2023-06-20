@@ -4,7 +4,7 @@ import Link from 'next/link'
 const HomeButton = () => {
   return (
     <Link href='/'>
-      <div className='hover:opacity-50'>
+      <div className='hover:opacity-50 transition-all duration-100'>
         <Image
           src='/images/logo_main.png'
           alt={'アウトドア般若心経のロゴ'}
