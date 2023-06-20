@@ -62,7 +62,7 @@ const Header = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
   return (
-    <header className='bg-red-500 font-kinuta p-2'>
+    <header className='bg-red-500 font-notoSans p-2'>
       <div className='container mx-auto flex justify-between items-center px-8'>
         <HomeButton />
 
