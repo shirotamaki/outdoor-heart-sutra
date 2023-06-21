@@ -97,7 +97,7 @@ const SutraList = ({ sutras, photos }: SutraListProps) => {
 
 function SutraOrPhoto({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] }) {
   const [currentPage, setCurrentPage] = useState(1)
-  const itemsPerPage = 50
+  const itemsPerPage = 70
 
   const indexOfLastItem = currentPage * itemsPerPage
   const indexOfFirstItem = indexOfLastItem - itemsPerPage
@@ -128,7 +128,7 @@ function SutraOrPhoto({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] }) 
                 </div>
               ) : (
                 <div className='text-5xl'>
-                  <Link href={`/sutras/${sutra.id}`} className='text-black no-underline'>
+                  <Link href={`/sutras/${sutra.id}`} className='text-black/25 no-underline font-kinuta'>
                     {sutra.kanji}
                   </Link>
                 </div>
@@ -138,7 +138,7 @@ function SutraOrPhoto({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] }) 
         })}
       </div>
       <div className='flex flex-row-reverse justify-center'>
-        {Array.from({ length: 6 }, (_, i) => (
+        {Array.from({ length: 4 }, (_, i) => (
           <button key={i} onClick={() => paginate(i + 1)} className='mx-1 my-1 px-1 py-1'>
             {i + 1}
           </button>
