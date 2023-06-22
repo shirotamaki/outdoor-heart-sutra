@@ -8,7 +8,7 @@ import SutraSmLayout from '@/features/sutra/SutraSmLayout'
 import SutraXlLayout from '@/features/sutra/SutraXlLayout'
 import fetchUserId from '@/features/user/fetchUserId'
 import useWindowWidth from '@/hooks/useWindowWidth'
-import { SutraListProps } from '@/types/location'
+import { SutraListProps } from '@/types/types'
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext,

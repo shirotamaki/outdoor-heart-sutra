@@ -2,7 +2,7 @@ import { parse } from 'exifr'
 import { useState } from 'react'
 import useCurrentLocation from '@/hooks/useCurrentLocation'
 import useExifLocation from '@/hooks/useExifLocation'
-import { LocationProps } from '@/types/location'
+import { LocationProps } from '@/types/types'
 
 type FetchLocationProps = { file: File | null }
 

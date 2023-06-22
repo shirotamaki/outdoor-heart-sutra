@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import CapturedImage from '@/features/photo/CapturedImage'
-import { Sutra, Photo } from '@/types/location'
+import { Sutra, Photo } from '@/types/types'
 
 const SutraMdLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] }) => {
   const firstLayout = sutras.slice(0, 140)
