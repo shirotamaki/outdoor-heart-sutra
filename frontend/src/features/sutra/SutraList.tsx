@@ -1,11 +1,13 @@
 import axios from 'axios'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
-import Link from 'next/link'
 import { getSession } from 'next-auth/react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { railsApiUrl } from '@/config/index'
-import CapturedImage from '@/features/photo/CapturedImage'
+import SutraMdLayout from '@/features/sutra/SutraMdLayout'
+import SutraSmLayout from '@/features/sutra/SutraSmLayout'
+import SutraXlLayout from '@/features/sutra/SutraXlLayout'
 import fetchUserId from '@/features/user/fetchUserId'
+import useWindowWidth from '@/hooks/useWindowWidth'
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext,
@@ -88,64 +90,44 @@ type SutraListProps = {
 }
 
 const SutraList = ({ sutras, photos }: SutraListProps) => {
-  return (
-    <div>
-      <SutraOrPhoto sutras={sutras} photos={photos} />
-    </div>
-  )
-}
+  const windowWidth = useWindowWidth()
+  const [isSmView, setIsSmView] = useState(false)
+  const [isMdView, setIsMdView] = useState(false)
 
-function SutraOrPhoto({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] }) {
-  const [currentPage, setCurrentPage] = useState(1)
-  const itemsPerPage = 70
+  useEffect(() => {
+    if (windowWidth !== null) {
+      if (windowWidth <= 640) {
+        setIsSmView(true)
+        setIsMdView(false)
+      } else if (windowWidth > 640 && windowWidth <= 1280) {
+        setIsSmView(false)
+        setIsMdView(true)
+      } else if (windowWidth > 1280) {
+        setIsSmView(false)
+        setIsMdView(false)
+      }
+    }
+  }, [windowWidth])
 
-  const indexOfLastItem = currentPage * itemsPerPage
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage
-  const currentItems = sutras.slice(indexOfFirstItem, indexOfLastItem)
-
-  const paginate = (pageNumber: number) => {
-    setCurrentPage(pageNumber)
+  if (isSmView) {
+    return (
+      <div>
+        <SutraSmLayout sutras={sutras} photos={photos} />
+      </div>
+    )
+  } else if (isMdView) {
+    return (
+      <div>
+        <SutraMdLayout sutras={sutras} photos={photos} />
+      </div>
+    )
+  } else {
+    return (
+      <div>
+        <SutraXlLayout sutras={sutras} photos={photos} />
+      </div>
+    )
   }
-
-  return (
-    <div>
-      <div className='vertical-sutras-container flex justify-center'>
-        {currentItems.map((sutra) => {
-          const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
-
-          return (
-            <div key={sutra.id}>
-              {correspondingPhoto && correspondingPhoto.cropped_image_url ? (
-                <div>
-                  <Link href={`/sutras/${sutra.id}`}>
-                    <CapturedImage
-                      capturedImageUrl={correspondingPhoto.cropped_image_url}
-                      width={48}
-                      height={48}
-                      borderRadius='5px'
-                    />
-                  </Link>
-                </div>
-              ) : (
-                <div className='text-5xl'>
-                  <Link href={`/sutras/${sutra.id}`} className='text-black/25 no-underline font-kinuta'>
-                    {sutra.kanji}
-                  </Link>
-                </div>
-              )}
-            </div>
-          )
-        })}
-      </div>
-      <div className='flex flex-row-reverse justify-center'>
-        {Array.from({ length: 4 }, (_, i) => (
-          <button key={i} onClick={() => paginate(i + 1)} className='mx-1 my-1 px-1 py-1'>
-            {i + 1}
-          </button>
-        ))}
-      </div>
-    </div>
-  )
 }
 
 export default SutraList
