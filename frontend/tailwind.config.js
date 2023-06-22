@@ -9,7 +9,7 @@ module.exports = {
     extend: {
       colors: {
         gold: '#CAB54F', // 仏像カラー
-        gray: '#d0cbcb', // 背景カラー
+        beige: '#f5f5f5', // 背景カラー
         tetsuguro: '#1D1506', //てつぐろ（フォント用）
       },
       fontFamily: {

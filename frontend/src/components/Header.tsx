@@ -39,7 +39,7 @@ const MobileMenu = ({ isMenuOpen, toggleMenu }: MobileMenuProps) => {
   return (
     <animated.div
       style={menuAnimation}
-      className='absolute top-0 right-0 w-1/4 p-2 bg-white flex flex-col  justify-start space-y-4 z-10'
+      className='absolute top-0 right-0 w-1/4 p-2 bg-beige flex flex-col  justify-start space-y-4 z-10'
     >
       <button
         type='button'
@@ -62,7 +62,7 @@ const Header = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
   return (
-    <header className='bg-red-500 font-notoSans p-2'>
+    <header className='bg-beige font-notoSans p-2'>
       <div className='container mx-auto flex justify-between items-center px-8'>
         <HomeButton />
 

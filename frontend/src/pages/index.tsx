@@ -96,7 +96,7 @@ const Home = ({ sutras, photos }: SutraListProps) => {
     <div>
       <CustomHead title='Top' />
       {status !== 'authenticated' ? (
-        <div className='bg-gray'>
+        <div className='bg-white'>
           <main>
             <div>
               <Image
@@ -119,7 +119,7 @@ const Home = ({ sutras, photos }: SutraListProps) => {
           <Footer />
         </div>
       ) : (
-        <div className='bg-gray'>
+        <div className='bg-white'>
           <Header />
           <main>
             <SutraList sutras={sutras} photos={photos} />
