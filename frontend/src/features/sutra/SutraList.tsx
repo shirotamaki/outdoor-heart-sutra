@@ -8,6 +8,7 @@ import SutraSmLayout from '@/features/sutra/SutraSmLayout'
 import SutraXlLayout from '@/features/sutra/SutraXlLayout'
 import fetchUserId from '@/features/user/fetchUserId'
 import useWindowWidth from '@/hooks/useWindowWidth'
+import { SutraListProps } from '@/types/location'
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext,
@@ -65,28 +66,6 @@ export const getServerSideProps: GetServerSideProps = async (
       },
     }
   }
-}
-
-type Sutra = {
-  id: number
-  kanji: string
-}
-
-type Photo = {
-  id: number
-  note: string
-  address: string
-  longitude: number
-  latitude: number
-  image_url: string
-  cropped_image_url: string
-  user_id: number
-  sutra_id: number
-}
-
-type SutraListProps = {
-  sutras: Sutra[]
-  photos: Photo[]
 }
 
 const SutraList = ({ sutras, photos }: SutraListProps) => {
