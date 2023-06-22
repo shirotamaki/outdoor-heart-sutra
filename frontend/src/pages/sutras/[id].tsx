@@ -13,6 +13,7 @@ import EditPhoto from '@/features/photo/EditPhoto'
 import PhotoUploadAndPreview from '@/features/photo/PhotoUploadAndPreview'
 import fetchPhotoId from '@/features/photo/fetchPhotoId'
 import fetchUserId from '@/features/user/fetchUserId'
+import { SutraDetailsProps } from '@/types/types'
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext,
@@ -76,26 +77,6 @@ export const getServerSideProps: GetServerSideProps = async (
   return {
     notFound: true,
   }
-}
-
-type Sutra = {
-  id: number
-  kanji: string
-}
-
-type Photo = {
-  id: number
-  note: string
-  address: string
-  longitude: number
-  latitude: number
-  image_url: string
-  cropped_image_url: string
-}
-
-type SutraDetailsProps = {
-  sutra: Sutra
-  photo: Photo
 }
 
 const SutraDetails = ({ sutra, photo }: SutraDetailsProps) => {

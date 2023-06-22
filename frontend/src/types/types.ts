@@ -18,3 +18,8 @@ export type SutraListProps = {
   sutras: Sutra[]
   photos: Photo[]
 }
+
+export type SutraDetailsProps = {
+  sutra: Sutra
+  photo: Photo
+}
