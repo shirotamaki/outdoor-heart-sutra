@@ -93,11 +93,11 @@ const Home = ({ sutras, photos }: SutraListProps) => {
   }
 
   return (
-    <div>
+    <div className='flex flex-col min-h-screen'>
       <CustomHead title='Top' />
       {status !== 'authenticated' ? (
-        <div className='bg-white'>
-          <main>
+        <div className='bg-beige'>
+          <main className='mx-12 my-12'>
             <div>
               <Image
                 src='/images/logo_main.png'
@@ -119,9 +119,9 @@ const Home = ({ sutras, photos }: SutraListProps) => {
           <Footer />
         </div>
       ) : (
-        <div className='bg-white'>
+        <div className='flex flex-col min-h-screen'>
           <Header />
-          <main>
+          <main className='bg-beige flex-grow'>
             <SutraList sutras={sutras} photos={photos} />
           </main>
           <Footer />
