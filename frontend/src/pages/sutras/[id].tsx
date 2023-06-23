@@ -3,6 +3,7 @@ import { GetServerSideProps, GetServerSidePropsContext } from 'next'
 import { getSession } from 'next-auth/react'
 import { useState } from 'react'
 import CustomHead from '@/components/CustomHead'
+import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import { railsApiUrl } from '@/config/index'
 import Map from '@/features/map/Map'
@@ -153,19 +154,22 @@ const SutraDetails = ({ sutra, photo }: SutraDetailsProps) => {
   }
 
   return (
-    <div>
-      <CustomHead title='詳細ページ' />
+    <div className='flex flex-col min-h-screen'>
+      <CustomHead title='詳細' />
       <Header />
-      <h1>
-        {sutra.id} : {sutra.kanji}
-      </h1>
-      {photo.image_url === null ? (
-        <div>
-          <PhotoUploadAndPreview sutraId={sutra.id} photoId={photo.id} />
+      <main className='mx-12 my-12 flex-grow'>
+        <div className='flex flex-col justify-center items-center'>
+          <h1 className='text-5xl text-black/25 font-kinuta my-12'>{sutra.kanji}</h1>
+          {photo.image_url === null ? (
+            <div>
+              <PhotoUploadAndPreview sutraId={sutra.id} photoId={photo.id} />
+            </div>
+          ) : (
+            renderSutraDetails()
+          )}
         </div>
-      ) : (
-        renderSutraDetails()
-      )}
+      </main>
+      <Footer />
     </div>
   )
 }
