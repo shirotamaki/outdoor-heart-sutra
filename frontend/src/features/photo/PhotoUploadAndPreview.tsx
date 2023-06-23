@@ -232,6 +232,12 @@ const PhotoUploadAndPreview = ({ sutraId, photoId }: PhotoUploadAndPreviewProps)
             type='file'
             accept='image/jpeg, image/png, image/heic'
             onChange={handleFileChange}
+            className='block w-full text-sm text-slate-400
+      file:mr-4 file:py-2 file:px-4
+      file:rounded-full file:border-0
+      file:text-sm file:font-notoSans
+      file:bg-blue-200 file:text-gray-700
+      hover:file:bg-blue-100'
           />
         )}
       </div>
