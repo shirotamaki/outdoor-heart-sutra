@@ -50,14 +50,14 @@ function Maps({ photos }: MapsProps) {
       <CustomHead title='全体地図' />
       <Header />
       <main className='flex-grow bg-tetsuguro'>
-          <AllMaps
-            markerLocations={photos.map((photo) => ({
-              lat: photo.latitude,
-              lng: photo.longitude,
-              img: photo.cropped_image_url,
-              link: `/sutras/${photo.sutra_id}`,
-            }))}
-          />
+        <AllMaps
+          markerLocations={photos.map((photo) => ({
+            lat: photo.latitude,
+            lng: photo.longitude,
+            img: photo.cropped_image_url,
+            link: `/sutras/${photo.sutra_id}`,
+          }))}
+        />
       </main>
       <Footer />
     </div>

@@ -22,7 +22,7 @@ const Note = ({ photoId, sutraId, photoNote, setEditNote }: NoteProps) => {
       alert('メモは100文字を超えることはできません') //最終的にはトーストにする
       return
     }
-      setNote(input)
+    setNote(input)
   }
 
   const cancelNote = async () => {
