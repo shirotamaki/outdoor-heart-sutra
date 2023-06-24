@@ -25,6 +25,7 @@ const DesktopMenu = () => (
   <div className='space-x-8 flex-row'>
     <Menu href='/maps'>全体地図</Menu>
     <Menu href='/about'>説明</Menu>
+    <Menu href='/mypage'>マイページ</Menu>
     <Logout />
   </div>
 )
@@ -50,6 +51,7 @@ const MobileMenu = ({ isMenuOpen, toggleMenu }: MobileMenuProps) => {
 
       <Menu href='/maps'>全体地図</Menu>
       <Menu href='/about'>説明</Menu>
+      <Menu href='/mypage'>マイページ</Menu>
       <Logout />
     </animated.div>
   )
@@ -60,14 +62,20 @@ const Header = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
   return (
-    <header className='bg-white font-notoSans p-2'>
-      <div className='container mx-auto flex justify-between items-center px-8'>
-        <HomeButton />
-
+    <header className='bg-beige font-notoSans border-b border-white p-2'>
+      <div className='container mx-auto flex justify-between items-center '>
+        <div className='hidden xl:flex'>
+          <HomeButton width={300} height={96} />
+        </div>
+        <div className='hidden md:flex xl:hidden'>
+          <HomeButton width={240} height={72} />
+        </div>
+        <div className='flex md:hidden'>
+          <HomeButton width={160} height={48} />
+        </div>
         <div className='hidden md:flex'>
           <DesktopMenu />
         </div>
-
         <div className='md:hidden'>
           <button
             type='button'
