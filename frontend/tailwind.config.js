@@ -8,9 +8,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        gold: '#CAB54F', // 仏像カラー
+        gold: '#d4c991', // 仏像カラー
         beige: '#e9e5dc', // 背景カラー
-        tetsuguro: '#1D1506', //てつぐろ（フォント用）
+        tetsuguro: '#404146', //てつぐろ（フォント用）
       },
       fontFamily: {
         kinuta: ['Yuji Syuku', 'serif'],
