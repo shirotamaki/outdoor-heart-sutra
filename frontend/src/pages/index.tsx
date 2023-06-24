@@ -93,27 +93,43 @@ const Home = ({ sutras, photos }: SutraListProps) => {
   }
 
   return (
-    <div className='flex flex-col min-h-screen'>
+    <div>
       <CustomHead title='Top' />
       {status !== 'authenticated' ? (
-        <div className='bg-beige'>
-          <main className='mx-12 my-12'>
-            <div>
-              <Image
-                src='/images/logo_main.png'
-                alt={'アウトドア般若心経のロゴ'}
-                width={300}
-                height={150}
-              />
-            </div>
-            <div>
-              <p>自分探しならぬ、自分なくしの旅へ</p>
-            </div>
-            <div>
-              <Link href='/about'>アウトドア般若心経とは？</Link>
-            </div>
-            <div>
-              <Login />
+        <div className='flex flex-col min-h-screen'>
+          <main className='bg-beige flex-grow'>
+            <div className='flex flex-col justify-center items-center'>
+              <div className='mt-12'>
+                <Image
+                  src='/images/logo_main.png'
+                  alt={'アウトドア般若心経のロゴ'}
+                  width={640}
+                  height={200}
+                />
+              </div>
+
+              <div className='flex flex-col justify-center items-center'>
+                <div className='text-left text-lg sm:text-2xl md:text-2xl lg:text-2xl text-black/50 font-kinuta my-4 sm:my-4 md:my-4 lg:my-4 mx-6 sm:mx-12 md:mx-24 max-w-5xl'>
+                  <div className='flex flex-col justify-center items-center'>
+                    <p className='mb-12'>自分探しならぬ、自分なくしの旅へ ...</p>
+                    <Login />
+                    <p className='text-sm font-notoSans'>※ 無料でご利用いただけます</p>
+                    <div className='mt-4'>
+                      <Image
+                        src='/images/sample_index.png'
+                        alt='Demo Image'
+                        width={480}
+                        height={270}
+                      />
+                    </div>
+                  </div>
+                  <p className='my-4'>
+                    アウトドア般若心経とは、「般若心経」278文字を、家を出て（これを「出家」と称す）、街の看板から経文に含まれている文字を捜し写真に収める（これを「写経（写真経）」と称す）行為のことを指します。
+                  </p>
+                  <p className='my-4'>必要なのはカメラとGoogleアカウントのみ。</p>
+                  <p className='my-4'>アウトドア般若心経を通して般若心経の真髄を感じてください。</p>
+                </div>
+              </div>
             </div>
           </main>
           <Footer />
