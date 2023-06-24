@@ -49,8 +49,7 @@ function Maps({ photos }: MapsProps) {
     <div className='flex flex-col min-h-screen'>
       <CustomHead title='全体地図' />
       <Header />
-      <main className='bg-beige flex-grow'>
-        <div className='flex flex-col justify-center items-center mx-12 my-12'>
+      <main className='flex-grow bg-tetsuguro'>
           <AllMaps
             markerLocations={photos.map((photo) => ({
               lat: photo.latitude,
@@ -59,7 +58,6 @@ function Maps({ photos }: MapsProps) {
               link: `/sutras/${photo.sutra_id}`,
             }))}
           />
-        </div>
       </main>
       <Footer />
     </div>

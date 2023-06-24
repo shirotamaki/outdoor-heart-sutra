@@ -5,7 +5,7 @@ import { mapsApiKey } from '@/config/index'
 
 const containerStyle = {
   width: '100%',
-  height: 'calc(100vh - 360px)',
+  height: 'calc(100vh - 226px)',
 }
 
 const center = {
@@ -45,7 +45,7 @@ const AllMaps = ({ markerLocations }: AllMapsProps) => {
   }
 
   return (
-    <div className='z-0 w-full'>
+    <div className='z-0'>
       <LoadScriptNext googleMapsApiKey={mapsApiKey} onLoad={() => setIsLoaded(true)}>
         <GoogleMap
           mapContainerStyle={containerStyle}
