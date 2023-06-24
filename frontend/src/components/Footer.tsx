@@ -13,9 +13,6 @@ const Footer = () => {
         <Link href='/privacy-policy' className='hover:opacity-50 transition-all duration-100'>
           プライバシーポリシー
         </Link>
-        <Link href='/delete-account' className='hover:opacity-50 transition-all duration-100'>
-          退会
-        </Link>
       </div>
       <div className='flex justify-center items-center space-x-4 mb-4'>
         <TwitterLink />
