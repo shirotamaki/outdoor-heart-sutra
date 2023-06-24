@@ -3,6 +3,6 @@ type EditPhotoProps = {
 }
 
 const EditPhoto = ({ setEditMode }: EditPhotoProps) => {
-  return <button onClick={() => setEditMode(true)}>写真を選び直す</button>
+  return <button onClick={() => setEditMode(true)}>写真を再選択</button>
 }
 export default EditPhoto

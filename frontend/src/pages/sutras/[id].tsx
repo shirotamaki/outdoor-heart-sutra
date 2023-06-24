@@ -101,10 +101,12 @@ const SutraDetails = ({ sutra, photo }: SutraDetailsProps) => {
       )
     } else {
       return (
-        <div>
-          <div>メモ:{photo.note}</div>
-          <div>
-            <button onClick={() => setEditNote(true)}>メモを編集する</button>
+        <div className='flex flex-col justify-center items-center '>
+          <div className='w-96 h-32 rounded-lg border-2 border-gray-300 overflow-hidden'>
+            <div className='mx-2 my-1'>{photo.note}</div>
+          </div>
+          <div className=' bg-blue-500 hover:bg-blue-400 text-white rounded font-notoSans mx-2 my-2 px-4 py-2'>
+            <button onClick={() => setEditNote(true)}>メモ編集</button>
           </div>
         </div>
       )
@@ -120,7 +122,7 @@ const SutraDetails = ({ sutra, photo }: SutraDetailsProps) => {
       )
     } else {
       return (
-        <div>
+        <div className='flex flex-col justify-center items-center'>
           <div>
             <CapturedImage
               capturedImageUrl={photo.image_url}
@@ -129,7 +131,7 @@ const SutraDetails = ({ sutra, photo }: SutraDetailsProps) => {
               borderRadius='5px'
             />
           </div>
-          <div>
+          <div className='mt-16 mb-8'>
             <CapturedImage
               capturedImageUrl={photo.cropped_image_url}
               width={100}
@@ -137,16 +139,18 @@ const SutraDetails = ({ sutra, photo }: SutraDetailsProps) => {
               borderRadius='5px'
             />
           </div>
-          <div>
+          <div className='mt-8 mb-2'>
             <Map markerLocation={currentLocation} />
           </div>
-          <div>住所：{photo.address}</div>
+          <div className='mb-8'>住所：{photo.address}</div>
           <div>{renderNote()}</div>
-          <div>
-            <DeletePhoto photoId={photo.id} />
-          </div>
-          <div>
-            <EditPhoto setEditMode={setEditMode} />
+          <div className='flex justify-center content-between'>
+            <div className='bg-blue-200 hover:bg-blue-100 text-gray-700 rounded font-notoSans mx-4 my-8 px-4 py-2'>
+              <EditPhoto setEditMode={setEditMode} />
+            </div>
+            <div className=' bg-gray-400 hover:bg-gray-300 text-white rounded font-notoSans mx-4 my-8 px-4 py-2'>
+              <DeletePhoto photoId={photo.id} />
+            </div>
           </div>
         </div>
       )
@@ -154,7 +158,7 @@ const SutraDetails = ({ sutra, photo }: SutraDetailsProps) => {
   }
 
   return (
-    <div className='flex flex-col min-h-screen'>
+    <div className='flex flex-col min-h-screen bg-beige'>
       <CustomHead title='詳細' />
       <Header />
       <main className='mx-12 my-12 flex-grow'>
