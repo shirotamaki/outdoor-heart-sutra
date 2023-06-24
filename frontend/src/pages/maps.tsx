@@ -46,11 +46,11 @@ export const getServerSideProps: GetServerSideProps = async (
 
 function Maps({ photos }: MapsProps) {
   return (
-    <div>
+    <div className='flex flex-col min-h-screen'>
       <CustomHead title='全体地図' />
       <Header />
-      <main>
-        <div>
+      <main className='bg-beige flex-grow'>
+        <div className='flex flex-col justify-center items-center mx-12 my-12'>
           <AllMaps
             markerLocations={photos.map((photo) => ({
               lat: photo.latitude,

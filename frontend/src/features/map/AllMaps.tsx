@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react'
 import { mapsApiKey } from '@/config/index'
 
 const containerStyle = {
-  width: '720px',
-  height: '720px',
+  width: '100%',
+  height: 'calc(100vh - 360px)',
 }
 
 const center = {
@@ -45,7 +45,7 @@ const AllMaps = ({ markerLocations }: AllMapsProps) => {
   }
 
   return (
-    <div className='z-0'>
+    <div className='z-0 w-full'>
       <LoadScriptNext googleMapsApiKey={mapsApiKey} onLoad={() => setIsLoaded(true)}>
         <GoogleMap
           mapContainerStyle={containerStyle}
