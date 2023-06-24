@@ -25,7 +25,6 @@ const DesktopMenu = () => (
   <div className='space-x-8 flex-row'>
     <Menu href='/maps'>全体地図</Menu>
     <Menu href='/about'>説明</Menu>
-    <Menu href='/mypage'>マイページ</Menu>
     <Logout />
   </div>
 )
@@ -51,7 +50,6 @@ const MobileMenu = ({ isMenuOpen, toggleMenu }: MobileMenuProps) => {
 
       <Menu href='/maps'>全体地図</Menu>
       <Menu href='/about'>説明</Menu>
-      <Menu href='/mypage'>マイページ</Menu>
       <Logout />
     </animated.div>
   )
