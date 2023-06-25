@@ -54,7 +54,7 @@ const Map = ({ markerLocation }: MarkerLocation) => {
             position={{ lat: currentMarkerLocation.lat, lng: currentMarkerLocation.lng }}
             icon={{
               url: currentMarkerLocation.img,
-              scaledSize: new google.maps.Size(25, 25),
+              scaledSize: new google.maps.Size(30, 30),
             }}
           />
         )}

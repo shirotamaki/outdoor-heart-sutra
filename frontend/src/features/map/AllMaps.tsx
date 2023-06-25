@@ -60,7 +60,7 @@ const AllMaps = ({ markerLocations }: AllMapsProps) => {
                 position={{ lat: location.lat, lng: location.lng }}
                 icon={{
                   url: location.img,
-                  scaledSize: new google.maps.Size(25, 25),
+                  scaledSize: new google.maps.Size(30, 30),
                 }}
                 onClick={() => router.push(location.link)}
               />
