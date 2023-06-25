@@ -16,10 +16,7 @@ type MobileMenuProps = {
 }
 
 const Menu = ({ href, children }: MenuProps) => (
-  <Link
-    href={href}
-    className='hover:opacity-50 transition-all duration-100'
-  >
+  <Link href={href} className='hover:opacity-50 transition-all duration-100'>
     {children}
   </Link>
 )
