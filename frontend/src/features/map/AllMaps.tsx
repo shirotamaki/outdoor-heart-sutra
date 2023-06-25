@@ -8,9 +8,10 @@ const containerStyle = {
   height: 'calc(100vh - 226px)',
 }
 
+// 長野県付近
 const center = {
-  lat: 35.693905085681585,
-  lng: 139.74912823866393,
+  lat: 36.2048,
+  lng: 138.2529,
 }
 
 type MarkerLocation = {
@@ -35,10 +36,10 @@ const AllMaps = ({ markerLocations }: AllMapsProps) => {
   }
 
   useEffect(() => {
-    if (map && markerLocations.length > 0) {
-      map.panTo(markerLocations[0])
+    if (map) {
+      map.panTo(center)
     }
-  }, [map, markerLocations])
+  }, [map])
 
   if (!mapsApiKey) {
     return <div>Google Maps APIキーが設定されていません</div>
@@ -50,7 +51,7 @@ const AllMaps = ({ markerLocations }: AllMapsProps) => {
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={center}
-          zoom={8}
+          zoom={5.0}
           onLoad={handleMapLoad}
         >
           {isLoaded &&

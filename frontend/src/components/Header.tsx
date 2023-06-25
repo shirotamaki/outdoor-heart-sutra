@@ -22,7 +22,7 @@ const Menu = ({ href, children }: MenuProps) => (
 )
 
 const DesktopMenu = () => (
-  <div className='space-x-8 flex-row mt-10'>
+  <div className='text-base xl:text-xl space-x-8 flex-row mt-8'>
     <Menu href='/maps'>全体地図</Menu>
     <Menu href='/about'>説明</Menu>
     <Menu href='/mypage'>マイページ</Menu>
@@ -32,14 +32,16 @@ const DesktopMenu = () => (
 
 const MobileMenu = ({ isMenuOpen, toggleMenu }: MobileMenuProps) => {
   const menuAnimation = useSpring({
-    transform: isMenuOpen ? 'translate3d(0, 0, 0)' : 'translate3d(100%, 0, 0)',
+    transform: isMenuOpen ? 'translate3d(0, 0, 0)' : 'translate3d(0, -100%, 0)',
     opacity: isMenuOpen ? 0.9 : 0,
   })
 
   return (
     <animated.div
       style={menuAnimation}
-      className='absolute top-0 right-0 w-1/3 p-4 bg-white flex flex-col  justify-start space-y-4 z-10'
+      className={`absolute top-0 right-0 w-1/2 p-4 bg-white flex flex-col  justify-start space-y-8 z-10 ${
+        isMenuOpen ? '' : 'hidden'
+      }`}
     >
       <button
         type='button'
@@ -52,6 +54,7 @@ const MobileMenu = ({ isMenuOpen, toggleMenu }: MobileMenuProps) => {
       <Menu href='/about'>説明</Menu>
       <Menu href='/mypage'>マイページ</Menu>
       <Logout />
+      <br />
     </animated.div>
   )
 }
@@ -61,7 +64,7 @@ const Header = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
   return (
-    <header className='bg-beige font-notoSans text-black/75 border-b border-white pt-4 px-2'>
+    <header className='bg-beige font-reggae text-black/50 border-b border-white pt-4 px-2'>
       <div className='container mx-auto flex justify-between items-center '>
         <div className='hidden xl:flex'>
           <HomeButton width={300} height={96} />

@@ -87,7 +87,7 @@ const Home = ({ sutras, photos }: SutraListProps) => {
               </div>
 
               <div className='flex flex-col justify-center items-center'>
-                <div className='text-left text-lg sm:text-2xl md:text-2xl lg:text-2xl text-black/50 font-kinuta my-4 sm:my-4 md:my-4 lg:my-4 mx-6 sm:mx-12 md:mx-24 max-w-5xl'>
+                <div className='text-left text-base sm:text-xl  md:text-2xl lg:text-2xl text-black/50 font-kinuta my-4 sm:my-4 md:my-4 lg:my-4 mx-6 sm:mx-12 md:mx-24 max-w-5xl'>
                   <div className='flex flex-col justify-center items-center'>
                     <p className='mb-12'>自分探しならぬ、自分なくしの旅へ ...</p>
                     <Login />

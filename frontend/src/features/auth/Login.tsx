@@ -13,7 +13,7 @@ const Login = () => {
     return (
       <button
         onClick={() => signIn('google', { prompt: 'login', callbackUrl: '/' })}
-        className='text-sm bg-blue-600 hover:bg-blue-500 text-white font-notoSans py-2 px-4 rounded-full'
+        className='text-base bg-blue-600 hover:bg-blue-500 text-white font-notoSans py-2 px-4 rounded-full'
       >
         Googleでログインして始める
       </button>
