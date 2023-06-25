@@ -182,6 +182,7 @@ const SutraSmLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] })
 
       <br />
 
+      <div></div>
       <div className='vertical-sutras-container flex justify-center'>
         {sixthLayout.map((sutra) => {
           const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)

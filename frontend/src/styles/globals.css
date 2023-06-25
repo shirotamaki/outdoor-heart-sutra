@@ -9,6 +9,13 @@
   grid-template-rows: repeat(10, auto);
 }
 
+.vertical-sutras-over-xl-container {
+  direction: rtl;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(14, auto);
+}
+
 .crop-container {
   background: #333132;
   height: 400px;
