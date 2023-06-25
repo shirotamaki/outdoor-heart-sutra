@@ -16,7 +16,10 @@ type MobileMenuProps = {
 }
 
 const Menu = ({ href, children }: MenuProps) => (
-  <Link href={href} className='hover:opacity-50 transition-all duration-100'>
+  <Link
+    href={href}
+    className='hover:opacity-50 transition-all duration-100 no-underline hover:underline'
+  >
     {children}
   </Link>
 )
@@ -32,14 +35,16 @@ const DesktopMenu = () => (
 
 const MobileMenu = ({ isMenuOpen, toggleMenu }: MobileMenuProps) => {
   const menuAnimation = useSpring({
-    transform: isMenuOpen ? 'translate3d(0, 0, 0)' : 'translate3d(100%, 0, 0)',
+    transform: isMenuOpen ? 'translate3d(0, 0, 0)' : 'translate3d(0, -100%, 0)',
     opacity: isMenuOpen ? 0.9 : 0,
   })
 
   return (
     <animated.div
       style={menuAnimation}
-      className='absolute top-0 right-0 w-1/3 p-4 bg-white flex flex-col  justify-start space-y-4 z-10'
+      className={`absolute top-0 right-0 w-1/2 p-4 bg-white flex flex-col  justify-start space-y-8 z-10 ${
+        isMenuOpen ? '' : 'hidden'
+      }`}
     >
       <button
         type='button'
@@ -52,6 +57,7 @@ const MobileMenu = ({ isMenuOpen, toggleMenu }: MobileMenuProps) => {
       <Menu href='/about'>説明</Menu>
       <Menu href='/mypage'>マイページ</Menu>
       <Logout />
+      <br />
     </animated.div>
   )
 }

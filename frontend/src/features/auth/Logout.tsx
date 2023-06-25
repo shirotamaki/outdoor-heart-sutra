@@ -5,7 +5,7 @@ const Logout = () => {
 
   if (status === 'authenticated') {
     return (
-      <span className='cursor-pointer hover:opacity-50 transition-all duration-100'>
+      <span className='cursor-pointer hover:opacity-50 transition-all duration-100 no-underline hover:underline'>
         <span onClick={() => signOut()}>ログアウト</span>
       </span>
     )
