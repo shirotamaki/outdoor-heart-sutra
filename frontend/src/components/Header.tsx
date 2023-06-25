@@ -25,7 +25,7 @@ const Menu = ({ href, children }: MenuProps) => (
 )
 
 const DesktopMenu = () => (
-  <div className='space-x-8 flex-row mt-10'>
+  <div className='text-base xl:text-xl space-x-8 flex-row mt-8'>
     <Menu href='/maps'>全体地図</Menu>
     <Menu href='/about'>説明</Menu>
     <Menu href='/mypage'>マイページ</Menu>
@@ -67,7 +67,7 @@ const Header = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
   return (
-    <header className='bg-beige font-notoSans text-black/75 border-b border-white pt-4 px-2'>
+    <header className='bg-beige font-reggae text-black/50 border-b border-white pt-4 px-2'>
       <div className='container mx-auto flex justify-between items-center '>
         <div className='hidden xl:flex'>
           <HomeButton width={300} height={96} />
