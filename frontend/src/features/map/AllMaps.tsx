@@ -36,10 +36,10 @@ const AllMaps = ({ markerLocations }: AllMapsProps) => {
   }
 
   useEffect(() => {
-    if (map && markerLocations.length > 0) {
-      map.panTo(markerLocations[0])
+    if (map) {
+      map.panTo(center)
     }
-  }, [map, markerLocations])
+  }, [map])
 
   if (!mapsApiKey) {
     return <div>Google Maps APIキーが設定されていません</div>
@@ -51,7 +51,7 @@ const AllMaps = ({ markerLocations }: AllMapsProps) => {
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={center}
-          zoom={5.5}
+          zoom={5.0}
           onLoad={handleMapLoad}
         >
           {isLoaded &&
