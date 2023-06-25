@@ -10,6 +10,12 @@ const DeletePhoto = ({ photoId }: DeletePhotoProps) => {
   const router = useRouter()
 
   const handleDelete = async () => {
+    const confirmation = window.confirm('写真、位置情報、メモを削除しますか？')
+
+    if (!confirmation) {
+      return
+    }
+
     try {
       await axios.delete(`${railsApiUrl}/api/v1/photos/${photoId}`)
       alert('写真が削除されました') //最終的にはトーストにする
