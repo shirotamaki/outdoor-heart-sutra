@@ -7,18 +7,7 @@ import Header from '@/components/Header'
 import { railsApiUrl } from '@/config/index'
 import AllMaps from '@/features/map/AllMaps'
 import fetchUserId from '@/features/user/fetchUserId'
-
-type Photo = {
-  id: number
-  latitude: number
-  longitude: number
-  cropped_image_url: string
-  sutra_id: number
-}
-
-type MapsProps = {
-  photos: Photo[]
-}
+import { MapsProps } from '@/types/types'
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext,
@@ -46,20 +35,18 @@ export const getServerSideProps: GetServerSideProps = async (
 
 function Maps({ photos }: MapsProps) {
   return (
-    <div>
+    <div className='flex flex-col min-h-screen'>
       <CustomHead title='全体地図' />
       <Header />
-      <main>
-        <div>
-          <AllMaps
-            markerLocations={photos.map((photo) => ({
-              lat: photo.latitude,
-              lng: photo.longitude,
-              img: photo.cropped_image_url,
-              link: `/sutras/${photo.sutra_id}`,
-            }))}
-          />
-        </div>
+      <main className='flex-grow bg-tetsuguro'>
+        <AllMaps
+          markerLocations={photos.map((photo) => ({
+            lat: photo.latitude,
+            lng: photo.longitude,
+            img: photo.cropped_image_url,
+            link: `/sutras/${photo.sutra_id}`,
+          }))}
+        />
       </main>
       <Footer />
     </div>

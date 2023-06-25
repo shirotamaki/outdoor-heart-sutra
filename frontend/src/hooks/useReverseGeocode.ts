@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { geocodingApiUrl, geocodingApiKey } from '@/config/index'
-import { LocationProps } from '@/types/location'
+import { LocationProps } from '@/types/types'
 
 const useReverseGeocode = (location: LocationProps) => {
   const [address, setAddress] = useState<string | null>(null)

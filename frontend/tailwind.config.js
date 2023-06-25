@@ -8,9 +8,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        gold: '#CAB54F', // 仏像カラー
-        gray: '#d0cbcb', // 背景カラー
-        tetsuguro: '#1D1506', //てつぐろ（フォント用）
+        gold: '#d4c991', // 仏像カラー
+        beige: '#e9e5dc', // 背景カラー
+        tetsuguro: '#404146', //てつぐろ（フォント用）
+      },
+      fontFamily: {
+        kinuta: ['Yuji Syuku', 'serif'],
+        reggae: ['Reggae One', 'cursive'],
+        notoSerif: ['Noto Serif', 'serif'],
+        notoSans: ['Noto Sans JP', 'sans-serif'],
       },
     },
   },

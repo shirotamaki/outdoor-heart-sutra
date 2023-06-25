@@ -1,11 +1,15 @@
 import axios from 'axios'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
-import Link from 'next/link'
 import { getSession } from 'next-auth/react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { railsApiUrl } from '@/config/index'
-import CapturedImage from '@/features/photo/CapturedImage'
+import SutraMdLayout from '@/features/sutra/SutraMdLayout'
+import SutraOverXlLayout from '@/features/sutra/SutraOverXlLayout'
+import SutraSmLayout from '@/features/sutra/SutraSmLayout'
+import SutraXlLayout from '@/features/sutra/SutraXlLayout'
 import fetchUserId from '@/features/user/fetchUserId'
+import useWindowWidth from '@/hooks/useWindowWidth'
+import { SutraListProps } from '@/types/types'
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext,
@@ -65,87 +69,59 @@ export const getServerSideProps: GetServerSideProps = async (
   }
 }
 
-type Sutra = {
-  id: number
-  kanji: string
-}
-
-type Photo = {
-  id: number
-  note: string
-  address: string
-  longitude: number
-  latitude: number
-  image_url: string
-  cropped_image_url: string
-  user_id: number
-  sutra_id: number
-}
-
-type SutraListProps = {
-  sutras: Sutra[]
-  photos: Photo[]
-}
-
 const SutraList = ({ sutras, photos }: SutraListProps) => {
-  return (
-    <div>
-      <SutraOrPhoto sutras={sutras} photos={photos} />
-    </div>
-  )
-}
+  const windowWidth = useWindowWidth()
+  const [isSmView, setIsSmView] = useState(false)
+  const [isMdView, setIsMdView] = useState(false)
+  const [isXlView, setIsXlView] = useState(false)
 
-function SutraOrPhoto({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] }) {
-  const [currentPage, setCurrentPage] = useState(1)
-  const itemsPerPage = 50
+  useEffect(() => {
+    if (windowWidth !== null) {
+      if (windowWidth <= 640) {
+        setIsSmView(true)
+        setIsMdView(false)
+        setIsXlView(false)
+      } else if (windowWidth > 640 && windowWidth <= 768) {
+        setIsSmView(false)
+        setIsMdView(true)
+        setIsXlView(false)
+      } else if (windowWidth > 768 && windowWidth <= 1280) {
+        setIsSmView(false)
+        setIsMdView(false)
+        setIsXlView(true)
+      } else if (windowWidth > 1280) {
+        setIsSmView(false)
+        setIsMdView(false)
+        setIsXlView(false)
+      }
+    }
+  }, [windowWidth])
 
-  const indexOfLastItem = currentPage * itemsPerPage
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage
-  const currentItems = sutras.slice(indexOfFirstItem, indexOfLastItem)
-
-  const paginate = (pageNumber: number) => {
-    setCurrentPage(pageNumber)
+  if (isSmView) {
+    return (
+      <div className='mx-4 my-4'>
+        <SutraSmLayout sutras={sutras} photos={photos} />
+      </div>
+    )
+  } else if (isMdView) {
+    return (
+      <div className='mx-12 my-6'>
+        <SutraMdLayout sutras={sutras} photos={photos} />
+      </div>
+    )
+  } else if (isXlView) {
+    return (
+      <div className='mx-12 my-8'>
+        <SutraXlLayout sutras={sutras} photos={photos} />
+      </div>
+    )
+  } else {
+    return (
+      <div className='mx-12 my-10'>
+        <SutraOverXlLayout sutras={sutras} photos={photos} />
+      </div>
+    )
   }
-
-  return (
-    <div>
-      <div className='vertical-sutras-container flex justify-center'>
-        {currentItems.map((sutra) => {
-          const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
-
-          return (
-            <div key={sutra.id}>
-              {correspondingPhoto && correspondingPhoto.cropped_image_url ? (
-                <div>
-                  <Link href={`/sutras/${sutra.id}`}>
-                    <CapturedImage
-                      capturedImageUrl={correspondingPhoto.cropped_image_url}
-                      width={48}
-                      height={48}
-                      borderRadius='5px'
-                    />
-                  </Link>
-                </div>
-              ) : (
-                <div className='text-5xl'>
-                  <Link href={`/sutras/${sutra.id}`} className='text-black no-underline'>
-                    {sutra.kanji}
-                  </Link>
-                </div>
-              )}
-            </div>
-          )
-        })}
-      </div>
-      <div className='flex flex-row-reverse justify-center'>
-        {Array.from({ length: 6 }, (_, i) => (
-          <button key={i} onClick={() => paginate(i + 1)} className='mx-1 my-1 px-1 py-1'>
-            {i + 1}
-          </button>
-        ))}
-      </div>
-    </div>
-  )
 }
 
 export default SutraList

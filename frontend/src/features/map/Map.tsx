@@ -48,13 +48,18 @@ const Map = ({ markerLocation }: MarkerLocation) => {
 
   return (
     <LoadScriptNext googleMapsApiKey={mapsApiKey} onLoad={() => setIsLoaded(true)}>
-      <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={8} onLoad={handleMapLoad}>
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={16}
+        onLoad={handleMapLoad}
+      >
         {isLoaded && currentMarkerLocation && (
           <MarkerF
             position={{ lat: currentMarkerLocation.lat, lng: currentMarkerLocation.lng }}
             icon={{
               url: currentMarkerLocation.img,
-              scaledSize: new google.maps.Size(25, 25),
+              scaledSize: new google.maps.Size(30, 30),
             }}
           />
         )}

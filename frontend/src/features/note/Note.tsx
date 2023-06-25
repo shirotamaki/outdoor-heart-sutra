@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import ActionButton from '@/components/ActionButton'
 import { railsApiUrl } from '@/config/index'
 
 type NoteProps = {
@@ -17,10 +18,18 @@ const Note = ({ photoId, sutraId, photoNote, setEditNote }: NoteProps) => {
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const input = event.target.value
-    if (input.length <= 256) {
-      setNote(input)
+    if (input.length > 100) {
+      alert('メモは100文字を超えることはできません') //最終的にはトーストにする
+      return
     }
+    setNote(input)
   }
+
+  const cancelNote = async () => {
+    setEditNote(false)
+    await router.push(`/sutras/${sutraId}`)
+  }
+
   const saveNote = async () => {
     let success = false
 
@@ -53,10 +62,14 @@ const Note = ({ photoId, sutraId, photoNote, setEditNote }: NoteProps) => {
         onChange={handleChange}
         placeholder={note ? note : 'メモを入力してください'}
         rows={4}
-        cols={46}
+        cols={45}
+        className='block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
       ></textarea>
-      <br />
-      <button onClick={saveNote}>メモ保存</button>
+      <div className='flex justify-around'>
+        <div className=' bg-blue-500 hover:bg-blue-400 text-white rounded-full font-notoSans text-xs  ml-auto  my-2 px-2 py-1'>
+          <ActionButton onClick={saveNote} text='メモ保存' />
+        </div>
+      </div>
     </div>
   )
 }

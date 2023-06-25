@@ -1,4 +1,4 @@
-import { LocationProps } from '@/types/location'
+import { LocationProps } from '@/types/types'
 
 const useCurrentLocation = () => {
   const fetchCurrentLocation = async () => {

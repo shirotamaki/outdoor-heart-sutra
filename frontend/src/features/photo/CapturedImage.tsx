@@ -12,7 +12,7 @@ const CapturedImage = ({ capturedImageUrl, width, height, borderRadius }: Props)
     <>
       <Image
         src={capturedImageUrl as string}
-        alt='Screenshot'
+        alt='Image'
         width={width}
         height={height}
         style={{ borderRadius: borderRadius }}

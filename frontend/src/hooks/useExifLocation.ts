@@ -1,5 +1,5 @@
 import { parse } from 'exifr'
-import { LocationProps } from '@/types/location'
+import { LocationProps } from '@/types/types'
 
 const useExifLocation = () => {
   const fetchExifLocation = async (file: File): Promise<LocationProps | null> => {

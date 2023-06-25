@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react'
 import { mapsApiKey } from '@/config/index'
 
 const containerStyle = {
-  width: '720px',
-  height: '720px',
+  width: '100%',
+  height: 'calc(100vh - 226px)',
 }
 
 const center = {
@@ -45,22 +45,29 @@ const AllMaps = ({ markerLocations }: AllMapsProps) => {
   }
 
   return (
-    <LoadScriptNext googleMapsApiKey={mapsApiKey} onLoad={() => setIsLoaded(true)}>
-      <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={8} onLoad={handleMapLoad}>
-        {isLoaded &&
-          markerLocations.map((location, index) => (
-            <MarkerF
-              key={index}
-              position={{ lat: location.lat, lng: location.lng }}
-              icon={{
-                url: location.img,
-                scaledSize: new google.maps.Size(25, 25),
-              }}
-              onClick={() => router.push(location.link)}
-            />
-          ))}
-      </GoogleMap>
-    </LoadScriptNext>
+    <div className='z-0'>
+      <LoadScriptNext googleMapsApiKey={mapsApiKey} onLoad={() => setIsLoaded(true)}>
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          center={center}
+          zoom={8}
+          onLoad={handleMapLoad}
+        >
+          {isLoaded &&
+            markerLocations.map((location, index) => (
+              <MarkerF
+                key={index}
+                position={{ lat: location.lat, lng: location.lng }}
+                icon={{
+                  url: location.img,
+                  scaledSize: new google.maps.Size(30, 30),
+                }}
+                onClick={() => router.push(location.link)}
+              />
+            ))}
+        </GoogleMap>
+      </LoadScriptNext>
+    </div>
   )
 }
 
