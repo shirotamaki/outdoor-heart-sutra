@@ -22,7 +22,7 @@ const Menu = ({ href, children }: MenuProps) => (
 )
 
 const DesktopMenu = () => (
-  <div className='space-x-8 flex-row'>
+  <div className='space-x-8 flex-row mt-10'>
     <Menu href='/maps'>全体地図</Menu>
     <Menu href='/about'>説明</Menu>
     <Menu href='/mypage'>マイページ</Menu>
@@ -39,16 +39,15 @@ const MobileMenu = ({ isMenuOpen, toggleMenu }: MobileMenuProps) => {
   return (
     <animated.div
       style={menuAnimation}
-      className='absolute top-0 right-0 w-1/4 p-2 bg-white flex flex-col  justify-start space-y-4 z-10'
+      className='absolute top-0 right-0 w-1/3 p-4 bg-white flex flex-col  justify-start space-y-4 z-10'
     >
       <button
         type='button'
         onClick={toggleMenu}
-        className='hover:opacity-50 transition-all duration-100'
+        className='ml-auto mt-2 hover:opacity-50 transition-all duration-100'
       >
         <Image src={`/images/xmark.png`} alt='Close Icon' width={36} height={36} />
       </button>
-
       <Menu href='/maps'>全体地図</Menu>
       <Menu href='/about'>説明</Menu>
       <Menu href='/mypage'>マイページ</Menu>
@@ -62,7 +61,7 @@ const Header = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
   return (
-    <header className='bg-beige font-notoSans border-b border-white p-2'>
+    <header className='bg-beige font-notoSans text-black/75 border-b border-white p-2'>
       <div className='container mx-auto flex justify-between items-center '>
         <div className='hidden xl:flex'>
           <HomeButton width={300} height={96} />
@@ -82,7 +81,13 @@ const Header = () => {
             onClick={toggleMenu}
             className='hover:opacity-50 transition-all duration-100'
           >
-            <Image src={`/images/bars.png`} alt='Menu Icon' width={36} height={36} />
+            <Image
+              src={`/images/bars.png`}
+              alt='Menu Icon'
+              width={36}
+              height={36}
+              className='mt-4'
+            />
           </button>
           <MobileMenu isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
         </div>
