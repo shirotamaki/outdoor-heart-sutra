@@ -23,3 +23,7 @@ export type SutraDetailsProps = {
   sutra: Sutra
   photo: Photo
 }
+
+export type MapsProps = {
+  photos: Photo[]
+}

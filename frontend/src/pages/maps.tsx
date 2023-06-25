@@ -7,18 +7,7 @@ import Header from '@/components/Header'
 import { railsApiUrl } from '@/config/index'
 import AllMaps from '@/features/map/AllMaps'
 import fetchUserId from '@/features/user/fetchUserId'
-
-type Photo = {
-  id: number
-  latitude: number
-  longitude: number
-  cropped_image_url: string
-  sutra_id: number
-}
-
-type MapsProps = {
-  photos: Photo[]
-}
+import { MapsProps } from '@/types/types'
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext,

@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
 import Image from 'next/image'
-import Link from 'next/link'
 import { useSession, getSession } from 'next-auth/react'
 import CustomHead from '@/components/CustomHead'
 import Footer from '@/components/Footer'
@@ -10,6 +9,7 @@ import { railsApiUrl } from '@/config/index'
 import Login from '@/features/auth/Login'
 import SutraList from '@/features/sutra/SutraList'
 import fetchUserId from '@/features/user/fetchUserId'
+import { SutraListProps } from '@/types/types'
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext,
@@ -61,28 +61,6 @@ export const getServerSideProps: GetServerSideProps = async (
       props: {},
     }
   }
-}
-
-type Sutra = {
-  id: number
-  kanji: string
-}
-
-type Photo = {
-  id: number
-  note: string
-  address: string
-  longitude: number
-  latitude: number
-  image_url: string
-  cropped_image_url: string
-  user_id: number
-  sutra_id: number
-}
-
-type SutraListProps = {
-  sutras: Sutra[]
-  photos: Photo[]
 }
 
 const Home = ({ sutras, photos }: SutraListProps) => {
