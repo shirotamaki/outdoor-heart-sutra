@@ -61,7 +61,7 @@ const Header = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
   return (
-    <header className='bg-beige font-notoSans text-black/75 border-b border-white p-2'>
+    <header className='bg-beige font-notoSans text-black/75 border-b border-white pt-4 px-2'>
       <div className='container mx-auto flex justify-between items-center '>
         <div className='hidden xl:flex'>
           <HomeButton width={300} height={96} />

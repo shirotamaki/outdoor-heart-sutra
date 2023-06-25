@@ -9,7 +9,7 @@ type HomeButtonProps = {
 const HomeButton = ({ width, height }: HomeButtonProps) => {
   return (
     <Link href='/'>
-      <div className='hover:opacity-50 transition-all duration-100'>
+      <div className='hover:opacity-75 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110'>
         <Image
           src='/images/logo_main.png'
           alt={'アウトドア般若心経のロゴ'}
