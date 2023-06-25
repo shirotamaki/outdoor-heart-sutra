@@ -46,7 +46,7 @@ const MobileMenu = ({ isMenuOpen, toggleMenu }: MobileMenuProps) => {
         onClick={toggleMenu}
         className='ml-auto mt-2 hover:opacity-50 transition-all duration-100'
       >
-        <Image src={`/images/xmark.png`} alt='Close Icon' width={36} height={36} />
+        <Image src={`/images/xmark.png`} alt='Close Icon' width={42} height={42} />
       </button>
       <Menu href='/maps'>全体地図</Menu>
       <Menu href='/about'>説明</Menu>
