@@ -45,7 +45,7 @@ const MyPage = () => {
           <p className='font-kinuta text-black/50 text-xl mb-12'>ユーザ名：{session?.user?.name}</p>
           <Link
             href='/delete-account'
-            className='hover:opacity-50 transition-all duration-100 font-kinuta text-xl text-red-600'
+            className='hover:opacity-50 transition-all duration-100 font-kinuta text-2xl text-red-600'
           >
             退会する
           </Link>
