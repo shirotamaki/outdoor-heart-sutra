@@ -8,9 +8,10 @@ const containerStyle = {
   height: 'calc(100vh - 226px)',
 }
 
+// 長野県付近
 const center = {
-  lat: 35.693905085681585,
-  lng: 139.74912823866393,
+  lat: 36.2048,
+  lng: 138.2529,
 }
 
 type MarkerLocation = {
@@ -50,7 +51,7 @@ const AllMaps = ({ markerLocations }: AllMapsProps) => {
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={center}
-          zoom={8}
+          zoom={5.5}
           onLoad={handleMapLoad}
         >
           {isLoaded &&
