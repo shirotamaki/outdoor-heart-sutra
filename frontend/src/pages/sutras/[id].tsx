@@ -102,10 +102,10 @@ const SutraDetails = ({ sutra, photo }: SutraDetailsProps) => {
     } else {
       return (
         <div className='flex flex-col justify-center items-center '>
-          <div className='w-96 h-32 rounded-lg border-2 border-gray-300 overflow-hidden'>
+          <div className='w-80 h-32 rounded-lg bg-gray-300 overflow-hidden'>
             <div className='mx-2 my-1'>{photo.note}</div>
           </div>
-          <div className=' bg-blue-500 hover:bg-blue-400 text-white rounded font-notoSans mx-2 my-2 px-4 py-2'>
+          <div className=' bg-blue-500 hover:bg-blue-400 text-white rounded-full font-notoSans text-xs  ml-auto my-2 px-2 py-1'>
             <button onClick={() => setEditNote(true)}>メモ編集</button>
           </div>
         </div>
@@ -117,25 +117,28 @@ const SutraDetails = ({ sutra, photo }: SutraDetailsProps) => {
     if (editMode) {
       return (
         <div>
-          <PhotoUploadAndPreview sutraId={sutra.id} photoId={photo.id} />
+          <PhotoUploadAndPreview sutraId={sutra.id} photoId={photo.id} sutra={sutra} />
         </div>
       )
     } else {
       return (
         <div className='flex flex-col justify-center items-center'>
+          <div className='flex justify-center mb-8'>
+            <div className='text-5xl text-black/25 font-kinuta mx-4'>{sutra.kanji}</div>
+            <div className='mx-4 mt-1'>
+              <CapturedImage
+                capturedImageUrl={photo.cropped_image_url}
+                width={48}
+                height={48}
+                borderRadius='5px'
+              />
+            </div>
+          </div>
           <div>
             <CapturedImage
               capturedImageUrl={photo.image_url}
               width={360}
               height={360}
-              borderRadius='5px'
-            />
-          </div>
-          <div className='mt-16 mb-8'>
-            <CapturedImage
-              capturedImageUrl={photo.cropped_image_url}
-              width={100}
-              height={100}
               borderRadius='5px'
             />
           </div>
@@ -145,10 +148,10 @@ const SutraDetails = ({ sutra, photo }: SutraDetailsProps) => {
           <div className='mb-8'>住所：{photo.address}</div>
           <div>{renderNote()}</div>
           <div className='flex justify-center content-between'>
-            <div className='bg-blue-200 hover:bg-blue-100 text-gray-700 rounded font-notoSans mx-4 my-8 px-4 py-2'>
+            <div className='bg-blue-300 hover:bg-blue-200 text-gray-700 rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2'>
               <EditPhoto setEditMode={setEditMode} />
             </div>
-            <div className=' bg-gray-400 hover:bg-gray-300 text-white rounded font-notoSans mx-4 my-8 px-4 py-2'>
+            <div className=' bg-gray-400 hover:bg-gray-300 text-white rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2'>
               <DeletePhoto photoId={photo.id} />
             </div>
           </div>
@@ -162,16 +165,13 @@ const SutraDetails = ({ sutra, photo }: SutraDetailsProps) => {
       <CustomHead title='詳細' />
       <Header />
       <main className='mx-12 my-12 flex-grow'>
-        <div className='flex flex-col justify-center items-center'>
-          <h1 className='text-5xl text-black/25 font-kinuta my-12'>{sutra.kanji}</h1>
           {photo.image_url === null ? (
             <div>
-              <PhotoUploadAndPreview sutraId={sutra.id} photoId={photo.id} />
+              <PhotoUploadAndPreview sutraId={sutra.id} photoId={photo.id} sutra={sutra} />
             </div>
           ) : (
             renderSutraDetails()
           )}
-        </div>
       </main>
       <Footer />
     </div>

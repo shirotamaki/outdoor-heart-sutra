@@ -14,6 +14,7 @@ import useReverseGeocode from '@/hooks/useReverseGeocode'
 type PhotoUploadAndPreviewProps = {
   sutraId: number
   photoId: number | null
+  sutra: Sutra
 }
 
 type Point = {
@@ -28,7 +29,9 @@ type Area = {
   y: number
 }
 
-const PhotoUploadAndPreview = ({ sutraId, photoId }: PhotoUploadAndPreviewProps) => {
+type Sutra = { id: number; kanji: string }
+
+const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPreviewProps) => {
   const router = useRouter()
 
   const [crop, setCrop] = useState<Point>({ x: 0, y: 0 })
@@ -173,7 +176,8 @@ const PhotoUploadAndPreview = ({ sutraId, photoId }: PhotoUploadAndPreviewProps)
   }
 
   return (
-    <div>
+    <div className='flex flex-col justify-center items-center'>
+      <h1 className='text-5xl text-black/25 font-kinuta my-12'>{sutra.kanji}</h1>
       {previewImage && isSelectedImage && (
         <div className='crop-container'>
           <Cropper
@@ -210,10 +214,10 @@ const PhotoUploadAndPreview = ({ sutraId, photoId }: PhotoUploadAndPreviewProps)
       <div>
         {previewImage && isSelectedImage && !croppedImage && (
           <div className='flex justify-center content-between'>
-            <div className='bg-blue-200 hover:bg-blue-100 text-gray-700 rounded font-notoSans mx-4 my-8 px-4 py-2'>
+            <div className='bg-blue-300 hover:bg-blue-200 text-gray-700 rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2'>
               <ActionButton onClick={handleFileCancel} text='写真を再選択' />
             </div>
-            <div className=' bg-blue-500 hover:bg-blue-400 text-white rounded font-notoSans mx-4 my-8 px-4 py-2'>
+            <div className=' bg-blue-500 hover:bg-blue-400 text-white rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2'>
               <ActionButton onClick={handleCropConfirm} text='決定' />
             </div>
           </div>
@@ -221,10 +225,10 @@ const PhotoUploadAndPreview = ({ sutraId, photoId }: PhotoUploadAndPreviewProps)
 
         {previewImage && isSelectedImage && croppedImage && (
           <div className='flex justify-center content-between'>
-            <div className=' bg-gray-400 hover:bg-gray-300 text-white rounded font-notoSans mx-4 my-8 px-4 py-2'>
+            <div className=' bg-gray-400 hover:bg-gray-300 text-white rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2'>
               <ActionButton onClick={handleFileReSelecte} text='キャンセル' />
             </div>
-            <div className=' bg-blue-500 hover:bg-blue-400 text-white rounded font-notoSans mx-4 my-8 px-4 py-2'>
+            <div className=' bg-blue-500 hover:bg-blue-400 text-white rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2'>
               <ActionButton onClick={savePhotoData} text='保存' />
             </div>
           </div>
@@ -239,10 +243,10 @@ const PhotoUploadAndPreview = ({ sutraId, photoId }: PhotoUploadAndPreviewProps)
             onChange={handleFileChange}
             className='block w-full text-sm text-slate-400
       file:mr-4 file:py-2 file:px-4
-      file:rounded file:border-0
+      file:rounded-full file:border-0
       file:text-sm file:font-notoSans
-      file:bg-blue-200 file:text-gray-700
-      hover:file:bg-blue-100'
+      file:bg-blue-300 file:text-gray-700
+      hover:file:bg-blue-200 file:cursor-pointer'
           />
         )}
       </div>
