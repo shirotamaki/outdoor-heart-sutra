@@ -123,7 +123,15 @@ const SutraDetails = ({ sutra, photo }: SutraDetailsProps) => {
     } else {
       return (
         <div className='flex flex-col justify-center items-center'>
-          <div className='flex justify-center mb-8'>
+          <div>
+            <CapturedImage
+              capturedImageUrl={photo.image_url}
+              width={360}
+              height={360}
+              borderRadius='5px'
+            />
+          </div>
+          <div className='flex justify-center mt-8'>
             <div className='text-5xl text-black/25 font-kinuta mx-4'>{sutra.kanji}</div>
             <div className='mx-4 mt-1'>
               <CapturedImage
@@ -133,14 +141,6 @@ const SutraDetails = ({ sutra, photo }: SutraDetailsProps) => {
                 borderRadius='5px'
               />
             </div>
-          </div>
-          <div>
-            <CapturedImage
-              capturedImageUrl={photo.image_url}
-              width={360}
-              height={360}
-              borderRadius='5px'
-            />
           </div>
           <div className='mt-8 mb-2'>
             <Map markerLocation={currentLocation} />
