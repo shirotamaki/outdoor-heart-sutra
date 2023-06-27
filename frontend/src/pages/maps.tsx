@@ -7,7 +7,7 @@ import Header from '@/components/Header'
 import { railsApiUrl } from '@/config/index'
 import AllMaps from '@/features/map/AllMaps'
 import fetchUserId from '@/features/user/fetchUserId'
-import { MapsProps } from '@/types/types'
+import { PhotosProps } from '@/types/types'
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext,
@@ -33,7 +33,7 @@ export const getServerSideProps: GetServerSideProps = async (
   }
 }
 
-function Maps({ photos }: MapsProps) {
+function Maps({ photos }: PhotosProps) {
   return (
     <div className='flex flex-col min-h-screen'>
       <CustomHead title='全体地図' />

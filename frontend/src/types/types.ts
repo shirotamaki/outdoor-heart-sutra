@@ -31,7 +31,7 @@ export type SutraDetailsProps = {
   photo: Photo
 }
 
-export type MapsProps = {
+export type PhotosProps = {
   photos: Photo[]
 }
 
