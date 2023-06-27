@@ -11,7 +11,7 @@ module Api
         if user
           render json: { user_id: user.id }
         else
-          render json: { error: "ユーザーが見つかりませんでした" }, status: :not_found
+          render json: { error: 'ユーザーが見つかりませんでした' }, status: :not_found
         end
       end
 
@@ -21,7 +21,7 @@ module Api
         if user
           head :ok
         else
-          render json: { error: "ログインに失敗しました" }, status: :unprocessable_entity
+          render json: { error: 'ログインに失敗しました' }, status: :unprocessable_entity
         end
       rescue StandardError => e
         render json: { error: e.message }, status: :internal_server_error
@@ -40,7 +40,7 @@ module Api
           user.destroy
           head :no_content
         else
-          render json: { error: "ユーザーが見つかりませんでした" }, status: :not_found
+          render json: { error: 'ユーザーが見つかりませんでした' }, status: :not_found
         end
       rescue StandardError => e
         render json: { error: e.message }, status: :internal_server_error
