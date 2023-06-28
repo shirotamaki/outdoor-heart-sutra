@@ -4,10 +4,10 @@ import Header from '@/components/Header'
 
 const PrivacyPolicy = () => {
   return (
-    <div>
+    <div className='flex flex-col min-h-screen'>
       <CustomHead title='privacy-policy' />
       <Header />
-      <main></main>
+      <main className='bg-beige flex-grow'>プライバシーポリシー</main>
       <Footer />
     </div>
   )

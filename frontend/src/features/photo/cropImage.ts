@@ -37,7 +37,7 @@ export default function cropImage(
           }
         },
         'image/jpeg',
-        0.1,
+        0.5,
       )
     }
     image.onerror = reject

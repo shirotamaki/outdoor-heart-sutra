@@ -27,6 +27,13 @@ module Api
         render json: { error: e.message }, status: :internal_server_error
       end
 
+      def show
+        user = User.find(params[:id])
+        render json: user
+      rescue ActiveRecord::RecordNotFound => e
+        render json: { error: e.message }, status: :not_found
+      end
+
       def destroy
         user = User.find_by(email: params[:email])
         if user

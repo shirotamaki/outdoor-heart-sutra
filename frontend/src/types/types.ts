@@ -14,6 +14,13 @@ export type Photo = {
   sutra_id: number
 }
 
+export type User = {
+  id: number
+  name: string
+  email: string
+  created_at: string
+}
+
 export type SutraListProps = {
   sutras: Sutra[]
   photos: Photo[]
@@ -24,6 +31,11 @@ export type SutraDetailsProps = {
   photo: Photo
 }
 
-export type MapsProps = {
+export type PhotosProps = {
+  photos: Photo[]
+}
+
+export type MyPageProps = {
+  user: User
   photos: Photo[]
 }

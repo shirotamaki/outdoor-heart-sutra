@@ -22,7 +22,7 @@ class MyDocument extends Document {
           <link
             rel='apple-touch-icon'
             sizes='180x180'
-            href='frontend/public/images/favicons/apple-touch-icon_square_a.png'
+            href='/images/favicons/apple-touch-icon_square_a.png'
           />
         </Head>
         <body>
