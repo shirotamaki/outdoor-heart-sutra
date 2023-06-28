@@ -164,7 +164,7 @@ const SutraDetails = ({ sutra, photo }: SutraDetailsProps) => {
     <div className='flex flex-col min-h-screen bg-beige'>
       <CustomHead title='詳細' />
       <Header />
-      <main className='mx-12 my-12 flex-grow'>
+      <main className='mx-auto my-12 flex-grow'>
         {photo.image_url === null ? (
           <div>
             <PhotoUploadAndPreview sutraId={sutra.id} photoId={photo.id} sutra={sutra} />
