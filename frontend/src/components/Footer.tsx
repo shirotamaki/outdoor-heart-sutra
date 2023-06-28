@@ -4,20 +4,22 @@ import TwitterLink from '@/components/TwitterLink'
 
 const Footer = () => {
   return (
-    <footer className='flex flex-col justify-center items-center bg-tetsuguro font-notoSans text-base text-white py-2'>
-      <div className='flex justify-center items-center space-x-4 mb-4'>
-        <Link href='/terms-of-service' className='hover:opacity-50 transition-all duration-100'>
-          利用規約
-        </Link>
-        <Link href='/privacy-policy' className='hover:opacity-50 transition-all duration-100'>
-          プライバシーポリシー
-        </Link>
+    <footer className='bg-tetsuguro font-notoSans text-white'>
+      <div className='flex flex-col justify-center items-center md:py-4 py-2'>
+        <nav className='space-x-4 mb-2 md:text-base text-xs'>
+          <Link href='/terms-of-service' className='hover:opacity-50 transition-all duration-100'>
+            利用規約
+          </Link>
+          <Link href='/privacy-policy' className='hover:opacity-50 transition-all duration-100'>
+            プライバシーポリシー
+          </Link>
+        </nav>
+        <nav className='space-x-6 mb-2'>
+          <TwitterLink />
+          <GitHubLink />
+        </nav>
+        <small className='md:text-base text-xs'>© 2023 shirotamaki</small>
       </div>
-      <div className='flex justify-center items-center space-x-4 mb-4'>
-        <TwitterLink />
-        <GitHubLink />
-      </div>
-      <div className='flex justify-center items-center space-x-4 mb-4'>© 2023 shirotamaki</div>
     </footer>
   )
 }
