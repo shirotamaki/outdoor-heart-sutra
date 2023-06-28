@@ -4,7 +4,7 @@ import { mapsApiKey } from '@/config/index'
 
 const containerStyle = {
   width: '360px',
-  height: '360px',
+  height: '480px',
 }
 
 const center = {

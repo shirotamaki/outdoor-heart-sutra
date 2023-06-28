@@ -9,9 +9,11 @@ type NoteProps = {
   sutraId: number
   photoNote: string | null
   setEditNote: (value: boolean) => void
+  rows: number
+  cols: number
 }
 
-const Note = ({ photoId, sutraId, photoNote, setEditNote }: NoteProps) => {
+const Note = ({ photoId, sutraId, photoNote, setEditNote, rows, cols }: NoteProps) => {
   const [note, setNote] = useState<string>(photoNote || '')
 
   const router = useRouter()
@@ -25,10 +27,10 @@ const Note = ({ photoId, sutraId, photoNote, setEditNote }: NoteProps) => {
     setNote(input)
   }
 
-  const cancelNote = async () => {
-    setEditNote(false)
-    await router.push(`/sutras/${sutraId}`)
-  }
+  // const cancelNote = async () => {
+  //   setEditNote(false)
+  //   await router.push(`/sutras/${sutraId}`)
+  // }
 
   const saveNote = async () => {
     let success = false
@@ -61,8 +63,8 @@ const Note = ({ photoId, sutraId, photoNote, setEditNote }: NoteProps) => {
         value={note}
         onChange={handleChange}
         placeholder={note ? note : 'メモを入力してください'}
-        rows={4}
-        cols={45}
+        rows={rows}
+        cols={cols}
         className='block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
       ></textarea>
       <div className='flex justify-around'>
