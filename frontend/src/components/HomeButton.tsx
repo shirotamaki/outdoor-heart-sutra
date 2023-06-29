@@ -1,10 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-
-type HomeButtonProps = {
-  width: number
-  height: number
-}
+import { HomeButtonProps } from '@/types/types'
 
 const HomeButton = ({ width, height }: HomeButtonProps) => {
   return (

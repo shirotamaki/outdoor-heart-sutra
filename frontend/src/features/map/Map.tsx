@@ -1,6 +1,7 @@
 import { GoogleMap, LoadScriptNext, MarkerF } from '@react-google-maps/api'
 import { useEffect, useState } from 'react'
 import { mapsApiKey } from '@/config/index'
+import { MarkerLocationProps } from '@/types/types'
 
 const containerStyle = {
   width: '360px',
@@ -12,15 +13,7 @@ const center = {
   lng: 139.74912823866393,
 }
 
-type MarkerLocation = {
-  markerLocation?: {
-    lat: number
-    lng: number
-    img: string
-  }
-}
-
-const Map = ({ markerLocation }: MarkerLocation) => {
+const Map = ({ markerLocation }: MarkerLocationProps) => {
   const [map, setMap] = useState<google.maps.Map | null>(null)
   const [isLoaded, setIsLoaded] = useState<boolean>(false)
 

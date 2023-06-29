@@ -1,13 +1,7 @@
 import Image from 'next/image'
+import { CapturedImageProps } from '@/types/types'
 
-type Props = {
-  capturedImageUrl: string | null
-  width: number
-  height: number
-  borderRadius: string
-}
-
-const CapturedImage = ({ capturedImageUrl, width, height, borderRadius }: Props) => {
+const CapturedImage = ({ capturedImageUrl, width, height, borderRadius }: CapturedImageProps) => {
   return (
     <>
       <Image

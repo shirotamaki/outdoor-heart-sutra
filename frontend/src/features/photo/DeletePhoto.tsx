@@ -1,10 +1,8 @@
 import axios from 'axios'
 import { useRouter } from 'next/router'
+import { toast } from 'react-toastify'
 import { railsApiUrl } from '@/config/index'
-
-type DeletePhotoProps = {
-  photoId: number
-}
+import { DeletePhotoProps } from '@/types/types'
 
 const DeletePhoto = ({ photoId }: DeletePhotoProps) => {
   const router = useRouter()
@@ -18,11 +16,10 @@ const DeletePhoto = ({ photoId }: DeletePhotoProps) => {
 
     try {
       await axios.delete(`${railsApiUrl}/api/v1/photos/${photoId}`)
-      alert('写真が削除されました') //最終的にはトーストにする
-      router.reload()
+      router.push('/')
     } catch (error) {
       console.error('Error deleting photo:', error)
-      alert('写真の削除に失敗しました') //最終的にはトーストにする
+      toast.error('写真の削除に失敗しました')
     }
   }
 
