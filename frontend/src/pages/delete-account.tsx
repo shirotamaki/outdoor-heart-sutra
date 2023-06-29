@@ -18,9 +18,9 @@ export const getServerSideProps: GetServerSideProps = async (
       },
     }
   }
-    return {
-      props: {}, 
-    }
+  return {
+    props: {},
+  }
 }
 
 const DeleteAccount = () => {

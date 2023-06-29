@@ -222,7 +222,13 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
             <div className=' bg-gray-400 hover:bg-gray-300 text-white rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2'>
               <ActionButton onClick={handleFileReSelecte} text='キャンセル' />
             </div>
-            <div className={isSaving ? 'bg-gray-500 text-white rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2' : 'bg-blue-500 hover:bg-blue-400 text-white rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2'}>
+            <div
+              className={
+                isSaving
+                  ? 'bg-gray-500 text-white rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2'
+                  : 'bg-blue-500 hover:bg-blue-400 text-white rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2'
+              }
+            >
               <ActionButton onClick={savePhotoData} text={isSaving ? '保存中...' : '保存'} />
             </div>
           </div>
