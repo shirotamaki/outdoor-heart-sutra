@@ -16,7 +16,7 @@ const DeletePhoto = ({ photoId }: DeletePhotoProps) => {
 
     try {
       await axios.delete(`${railsApiUrl}/api/v1/photos/${photoId}`)
-      router.reload()
+      router.push('/')
     } catch (error) {
       console.error('Error deleting photo:', error)
       toast.error('写真の削除に失敗しました')
