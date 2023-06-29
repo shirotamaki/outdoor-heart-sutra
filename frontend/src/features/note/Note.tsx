@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import { toast } from 'react-toastify'
 import ActionButton from '@/components/ActionButton'
 import { railsApiUrl } from '@/config/index'
 
@@ -21,7 +22,7 @@ const Note = ({ photoId, sutraId, photoNote, setEditNote, rows, cols }: NoteProp
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const input = event.target.value
     if (input.length > 100) {
-      alert('メモは100文字を超えることはできません') //最終的にはトーストにする
+      toast.warning('メモは100文字を超えることはできません')
       return
     }
     setNote(input)
@@ -37,7 +38,7 @@ const Note = ({ photoId, sutraId, photoNote, setEditNote, rows, cols }: NoteProp
 
     if (!note) {
       console.error('メモが空です')
-      alert('メモが空です') //最終的にはトーストにする
+      toast.warning('メモが空です')
       return
     }
     try {
@@ -45,12 +46,12 @@ const Note = ({ photoId, sutraId, photoNote, setEditNote, rows, cols }: NoteProp
         noteData: note,
       })
       console.log('メモが保存されました:', note)
-      alert('メモが保存されました') //最終的にはトーストにする
+      toast.success('メモが保存されました')
       success = true
-      setEditNote(false) //親コンポーネントに値を渡すことができる
+      setEditNote(false)
     } catch (error) {
       console.error('メモの保存に失敗しました:', error)
-      alert('メモの保存に失敗しました') //最終的にはトーストにする
+      toast.error('メモの保存に失敗しました')
     }
     if (success) {
       await router.push(`/sutras/${sutraId}`)

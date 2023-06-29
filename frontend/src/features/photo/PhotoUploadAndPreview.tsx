@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
 import { useState, useEffect, useCallback } from 'react'
 import Cropper from 'react-easy-crop'
+import { toast } from 'react-toastify'
 import ActionButton from '@/components/ActionButton'
 import { railsApiUrl } from '@/config/index'
 import cropImage from '@/features/photo/cropImage'
@@ -160,18 +161,20 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
           })
         }
         console.log('写真が保存されました')
-        alert('写真が保存されました') //最終的にはトーストにする
+        toast.success('写真が保存されました')
         success = true
       } catch (error) {
         console.error('写真の保存に失敗しました:', error)
-        alert('写真の保存に失敗しました') //最終的にはトーストにする
+        toast.error('写真の保存に失敗しました')
       }
       if (success) {
-        await router.reload()
+        setTimeout(async () => {
+          await router.reload()
+        }, 3000)
+      } else {
+        console.log('写真の保存に失敗しました')
+        toast.error('写真の保存に失敗しました')
       }
-    } else {
-      console.log('写真の保存に失敗しました')
-      alert('写真の保存に失敗しました') //最終的にはトーストにする
     }
   }
 
