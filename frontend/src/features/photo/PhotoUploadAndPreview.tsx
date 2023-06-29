@@ -21,6 +21,7 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
   const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null)
 
   const [isSelectedImage, setSelectedImage] = useState(false)
+  const [isSaving, setIsSaving] = useState(false)
 
   const [originalBlob, setOriginalBlob] = useState<Blob | File | null>(null)
   const [croppedBlob, setCroppedBlob] = useState<Blob | File | null>(null)
@@ -112,50 +113,59 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
     console.log('Original Blob:', originalBlob)
     console.log('Cropped Blob:', croppedBlob)
 
-    if (originalBlob && croppedBlob && session?.user?.email && location && address) {
-      let success = false
+    if (isSaving) return
+    setIsSaving(true)
 
-      const currentUserId: number | null = await fetchUserId(session.user.email)
-      const currentSutraId: number = sutraId
+    try {
+      if (originalBlob && croppedBlob && session?.user?.email && location && address) {
+        let success = false
 
-      const formData = new FormData()
-      formData.append('image', originalBlob)
-      formData.append('croppedImage', croppedBlob, 'croppedImage.jpeg')
-      formData.append('latitudeData', String(location.lat))
-      formData.append('longitudeData', String(location.lng))
-      formData.append('addressData', address)
-      formData.append('currentUserId', String(currentUserId))
-      formData.append('currentSutraId', String(currentSutraId))
+        const currentUserId: number | null = await fetchUserId(session.user.email)
+        const currentSutraId: number = sutraId
 
-      try {
-        if (photoId) {
-          await axios.patch(`${railsApiUrl}/api/v1/photos/${photoId}`, formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          })
-        } else {
-          await axios.post(`${railsApiUrl}/api/v1/photos`, formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          })
+        const formData = new FormData()
+        formData.append('image', originalBlob)
+        formData.append('croppedImage', croppedBlob, 'croppedImage.jpeg')
+        formData.append('latitudeData', String(location.lat))
+        formData.append('longitudeData', String(location.lng))
+        formData.append('addressData', address)
+        formData.append('currentUserId', String(currentUserId))
+        formData.append('currentSutraId', String(currentSutraId))
+
+        try {
+          if (photoId) {
+            await axios.patch(`${railsApiUrl}/api/v1/photos/${photoId}`, formData, {
+              headers: {
+                'Content-Type': 'multipart/form-data',
+              },
+            })
+          } else {
+            await axios.post(`${railsApiUrl}/api/v1/photos`, formData, {
+              headers: {
+                'Content-Type': 'multipart/form-data',
+              },
+            })
+          }
+          console.log('写真が保存されました')
+          toast.success('写真が保存されました')
+          success = true
+        } catch (error) {
+          console.error('写真の保存に失敗しました:', error)
+          toast.error('写真の保存に失敗しました')
         }
-        console.log('写真が保存されました')
-        toast.success('写真が保存されました')
-        success = true
-      } catch (error) {
-        console.error('写真の保存に失敗しました:', error)
-        toast.error('写真の保存に失敗しました')
+        if (success) {
+          setTimeout(async () => {
+            await router.reload()
+          }, 2000)
+        } else {
+          console.log('写真の保存に失敗しました')
+          toast.error('写真の保存に失敗しました')
+        }
       }
-      if (success) {
-        setTimeout(async () => {
-          await router.reload()
-        }, 3000)
-      } else {
-        console.log('写真の保存に失敗しました')
-        toast.error('写真の保存に失敗しました')
-      }
+    } finally {
+      setTimeout(async () => {
+        await setIsSaving(false)
+      }, 4000)
     }
   }
 
@@ -212,8 +222,8 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
             <div className=' bg-gray-400 hover:bg-gray-300 text-white rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2'>
               <ActionButton onClick={handleFileReSelecte} text='キャンセル' />
             </div>
-            <div className=' bg-blue-500 hover:bg-blue-400 text-white rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2'>
-              <ActionButton onClick={savePhotoData} text='保存' />
+            <div className={isSaving ? 'bg-gray-500 text-white rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2' : 'bg-blue-500 hover:bg-blue-400 text-white rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2'}>
+              <ActionButton onClick={savePhotoData} text={isSaving ? '保存中...' : '保存'} />
             </div>
           </div>
         )}
