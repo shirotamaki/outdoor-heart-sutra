@@ -11,26 +11,7 @@ import cropImage from '@/features/photo/cropImage'
 import fetchUserId from '@/features/user/fetchUserId'
 import useFetchLocation from '@/hooks/useFetchLocation'
 import useReverseGeocode from '@/hooks/useReverseGeocode'
-
-type PhotoUploadAndPreviewProps = {
-  sutraId: number
-  photoId: number | null
-  sutra: Sutra
-}
-
-type Point = {
-  x: number
-  y: number
-}
-
-type Area = {
-  width: number
-  height: number
-  x: number
-  y: number
-}
-
-type Sutra = { id: number; kanji: string }
+import { PhotoUploadAndPreviewProps, Point, Area } from '@/types/types'
 
 const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPreviewProps) => {
   const router = useRouter()

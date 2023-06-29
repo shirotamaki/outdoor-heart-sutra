@@ -1,10 +1,6 @@
-type Props = {
-  onClick: () => void
-  disabled?: boolean
-  text: string
-}
+import { ActionButtonProps } from '@/types/types'
 
-const ActionButton = ({ onClick, disabled = false, text }: Props) => {
+const ActionButton = ({ onClick, disabled = false, text }: ActionButtonProps) => {
   return (
     <button onClick={onClick} disabled={disabled}>
       {text}

@@ -1,8 +1,5 @@
 import Head from 'next/head'
-
-type CustomHeadProps = {
-  title: string
-}
+import { CustomHeadProps } from '@/types/types'
 
 const CustomHead = ({ title }: CustomHeadProps) => (
   <Head>

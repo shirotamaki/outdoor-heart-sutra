@@ -2,6 +2,7 @@ import { GoogleMap, LoadScriptNext, MarkerF } from '@react-google-maps/api'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { mapsApiKey } from '@/config/index'
+import { AllMapsProps } from '@/types/types'
 
 const containerStyle = {
   width: '100%',
@@ -12,17 +13,6 @@ const containerStyle = {
 const center = {
   lat: 36.2048,
   lng: 138.2529,
-}
-
-type MarkerLocation = {
-  lat: number
-  lng: number
-  img: string
-  link: string
-}
-
-type AllMapsProps = {
-  markerLocations: MarkerLocation[]
 }
 
 const AllMaps = ({ markerLocations }: AllMapsProps) => {

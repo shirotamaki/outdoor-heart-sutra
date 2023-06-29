@@ -2,10 +2,7 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import { toast } from 'react-toastify'
 import { railsApiUrl } from '@/config/index'
-
-type DeletePhotoProps = {
-  photoId: number
-}
+import { DeletePhotoProps } from '@/types/types'
 
 const DeletePhoto = ({ photoId }: DeletePhotoProps) => {
   const router = useRouter()

@@ -2,9 +2,7 @@ import { parse } from 'exifr'
 import { useState } from 'react'
 import useCurrentLocation from '@/hooks/useCurrentLocation'
 import useExifLocation from '@/hooks/useExifLocation'
-import { LocationProps } from '@/types/types'
-
-type FetchLocationProps = { file: File | null }
+import { LocationProps, FetchLocationProps } from '@/types/types'
 
 const useFetchLocation = () => {
   const [location, setLocation] = useState<LocationProps>(null)

@@ -4,15 +4,7 @@ import { useState } from 'react'
 import { toast } from 'react-toastify'
 import ActionButton from '@/components/ActionButton'
 import { railsApiUrl } from '@/config/index'
-
-type NoteProps = {
-  photoId: number
-  sutraId: number
-  photoNote: string | null
-  setEditNote: (value: boolean) => void
-  rows: number
-  cols: number
-}
+import { NoteProps } from '@/types/types'
 
 const Note = ({ photoId, sutraId, photoNote, setEditNote, rows, cols }: NoteProps) => {
   const [note, setNote] = useState<string>(photoNote || '')

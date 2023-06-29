@@ -5,16 +5,7 @@ import { useState } from 'react'
 import { useSpring, animated } from 'react-spring'
 import HomeButton from '@/components/HomeButton'
 import Logout from '@/features/auth/Logout'
-
-type MenuProps = {
-  href: string
-  children: React.ReactNode
-}
-
-type MobileMenuProps = {
-  isMenuOpen: boolean
-  toggleMenu: () => void
-}
+import { MenuProps, MobileMenuProps } from '@/types/types'
 
 const Menu = ({ href, children }: MenuProps) => (
   <Link href={href} className='hover:opacity-50 transition-all duration-100'>
