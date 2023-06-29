@@ -1,7 +1,27 @@
+import { GetServerSideProps, GetServerSidePropsContext } from 'next'
+import { getSession } from 'next-auth/react'
 import CustomHead from '@/components/CustomHead'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import DeleteUser from '@/features/user/DeleteUser'
+
+export const getServerSideProps: GetServerSideProps = async (
+  context: GetServerSidePropsContext,
+) => {
+  const session = await getSession(context)
+
+  if (!session || !session.user || !session.user.email) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
+  }
+    return {
+      props: {}, 
+    }
+}
 
 const DeleteAccount = () => {
   return (
