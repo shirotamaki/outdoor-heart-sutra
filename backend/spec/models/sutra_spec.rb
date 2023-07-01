@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe Sutra, type: :model do
   before do
@@ -286,8 +286,8 @@ RSpec.describe Sutra, type: :model do
     ]
   end
 
-  describe "attributes" do
-    it "has the correct kanji" do
+  describe 'attributes' do
+    it 'has the correct kanji' do
       Sutra.all.each_with_index do |sutra, i|
         expect(sutra.kanji).to eq @sutras[i]
       end
