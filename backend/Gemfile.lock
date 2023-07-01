@@ -120,6 +120,8 @@ GEM
       ruby-vips (>= 2.0.17, < 3)
     jmespath (1.6.2)
     json (2.6.3)
+    launchy (2.5.2)
+      addressable (~> 2.8)
     loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -263,6 +265,7 @@ DEPENDENCIES
   dockerfile-rails (>= 1.2)
   factory_bot_rails
   image_processing (~> 1.2)
+  launchy
   pg (~> 1.1)
   puma (~> 5.0)
   rack-cors
