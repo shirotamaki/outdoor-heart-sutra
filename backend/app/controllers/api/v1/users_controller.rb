@@ -9,7 +9,7 @@ module Api
       def find_user
         user = User.find_by(email: params[:email])
         if user
-          render json: { user_id: user.id }
+          render json: { user_id: user.id }, status: :ok
         else
           render json: { error: 'ユーザーが見つかりませんでした' }, status: :not_found
         end
