@@ -11,7 +11,7 @@ module Api
       def find_photo_by_sutra_and_user
         photo = Photo.find_by(sutra_id: params[:sutraId], user_id: params[:userId])
         if photo
-          render json: { photo_id: photo.id }
+          render json: { photo_id: photo.id }, status: :ok
         else
           render json: { error: '写真が見つかりませんでした' }, status: :not_found
         end
