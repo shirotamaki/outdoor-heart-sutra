@@ -3,5 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe Photo, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'associations' do
+    it { should belong_to(:user) }
+    it { should belong_to(:sutra) }
+  end
+
+  describe 'validations' do
+    it { should validate_length_of(:note).is_at_most(256) }
+  end
 end

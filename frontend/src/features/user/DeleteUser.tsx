@@ -18,7 +18,7 @@ const DeleteUser = () => {
     }
 
     try {
-      const response = await axios.delete(`${railsApiUrl}/users/${session.user.email}`)
+      const response = await axios.delete(`${railsApiUrl}/api/v1/users/${session.user.email}`)
 
       if (response.status === 204) {
         signOut({

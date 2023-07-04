@@ -9,20 +9,22 @@ module Api
       def find_user
         user = User.find_by(email: params[:email])
         if user
-          render json: { user_id: user.id }
+          render json: { user_id: user.id }, status: :ok
         else
           render json: { error: 'ユーザーが見つかりませんでした' }, status: :not_found
         end
       end
 
       def create
-        # 引数の条件に該当するデータがあればそれを返す。なければ新規作成する
-        user = User.find_or_create_by(provider: params[:provider], uid: params[:uid], name: params[:name], email: params[:email])
-        if user
-          head :ok
-        else
-          render json: { error: 'ログインに失敗しました' }, status: :unprocessable_entity
+        user = User.find_by(provider: params[:provider], uid: params[:uid])
+        if user.nil?
+          user = User.create(provider: params[:provider], uid: params[:uid], name: params[:name], email: params[:email])
+          unless user.valid?
+            render json: { error: 'ログインに失敗しました' }, status: :unprocessable_entity
+            return
+          end
         end
+        head :ok
       rescue StandardError => e
         render json: { error: e.message }, status: :internal_server_error
       end
