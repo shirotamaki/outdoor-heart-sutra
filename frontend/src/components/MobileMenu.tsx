@@ -1,14 +1,8 @@
 import Image from 'next/image'
-import Link from 'next/link'
 import { useSpring, animated } from 'react-spring'
+import Menu from '@/components/Menu'
 import Logout from '@/features/auth/Logout'
-import { MenuProps, MobileMenuProps } from '@/types/types'
-
-const Menu = ({ href, children }: MenuProps) => (
-  <Link href={href} className='hover:opacity-50 transition-all duration-100'>
-    {children}
-  </Link>
-)
+import { MobileMenuProps } from '@/types/types'
 
 const MobileMenu = ({ isMenuOpen, toggleMenu }: MobileMenuProps) => {
   const menuAnimation = useSpring({
