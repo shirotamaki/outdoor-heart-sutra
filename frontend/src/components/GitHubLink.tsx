@@ -7,6 +7,7 @@ const GitHubLink = () => (
   <Link
     href='https://github.com/shirotamaki/outdoor-heart-sutra'
     className='hover:opacity-50 transition-all duration-100'
+    data-testid='github-link'
   >
     <FontAwesomeIcon icon={faGithub} size='lg' />
   </Link>
