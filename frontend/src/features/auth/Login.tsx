@@ -1,6 +1,4 @@
-import Image from 'next/image'
 import { useSession, signIn } from 'next-auth/react'
-import { useState } from 'react'
 
 const Login = () => {
   const { data: session, status } = useSession()
