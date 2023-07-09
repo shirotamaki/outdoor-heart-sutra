@@ -1,13 +1,14 @@
 import { render, screen, waitFor } from '@testing-library/react'
+import { SessionProvider } from 'next-auth/react'
 import DesktopMenu from '@/components/DesktopMenu'
-
-jest.mock('@/features/auth/Logout', () => {
-  return jest.fn(() => <div>ログアウト</div>)
-})
 
 describe('DesktopMenu', () => {
   it('renders the desktop menu texts', async () => {
-    render(<DesktopMenu />)
+    render(
+      <SessionProvider session={{ user: { name: 'Test User' }, expires: '1' }}>
+        <DesktopMenu />
+      </SessionProvider>,
+    )
 
     await waitFor(() => {
       expect(screen.getByText('全体地図')).toBeInTheDocument()
