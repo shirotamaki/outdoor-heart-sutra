@@ -3,13 +3,6 @@ import { useSession, signIn } from 'next-auth/react'
 import Login from '@/features/auth/Login'
 
 jest.mock('next-auth/react')
-jest.mock('next/router', () => ({
-  useRouter() {
-    return {
-      pathname: '/',
-    }
-  },
-}))
 
 describe('Login', () => {
   let useSessionMock: jest.Mock
