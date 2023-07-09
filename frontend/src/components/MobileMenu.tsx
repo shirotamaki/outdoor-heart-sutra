@@ -16,6 +16,7 @@ const MobileMenu = ({ isMenuOpen, toggleMenu }: MobileMenuProps) => {
       className={`absolute top-0 right-0 w-1/2 p-4 bg-white flex flex-col  justify-start space-y-8 z-10 ${
         isMenuOpen ? '' : 'hidden'
       }`}
+      data-testid='mobile-menu-link'
     >
       <button
         type='button'

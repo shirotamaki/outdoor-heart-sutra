@@ -15,13 +15,13 @@ const Header = () => {
   return (
     <header className='bg-beige font-reggae text-black/50 border-b border-white pt-4 px-2'>
       <div className='container mx-auto flex justify-between items-center '>
-        <div className='hidden xl:flex'>
+        <div className='hidden xl:flex' data-testid='homebutton-xl-link'>
           <HomeButton width={300} height={96} />
         </div>
-        <div className='hidden md:flex xl:hidden'>
+        <div className='hidden md:flex xl:hidden' data-testid='homebutton-md-link'>
           <HomeButton width={240} height={72} />
         </div>
-        <div className='flex md:hidden'>
+        <div className='flex md:hidden' data-testid='homebutton-sm-link'>
           <HomeButton width={160} height={48} />
         </div>
 
