@@ -6,7 +6,7 @@ const TwitterLink = () => (
   <Link
     href='https://twitter.com/od_heart_sutra'
     className='hover:opacity-50 transition-all duration-100'
-    data-testid="twitter-link"
+    data-testid='twitter-link'
   >
     <FontAwesomeIcon icon={faTwitter} size='lg' />
   </Link>
