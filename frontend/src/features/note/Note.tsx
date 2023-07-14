@@ -20,11 +20,6 @@ const Note = ({ photoId, sutraId, photoNote, setEditNote, rows, cols }: NoteProp
     setNote(input)
   }
 
-  // const cancelNote = async () => {
-  //   setEditNote(false)
-  //   await router.push(`/sutras/${sutraId}`)
-  // }
-
   const saveNote = async () => {
     let success = false
 
