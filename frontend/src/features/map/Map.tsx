@@ -42,6 +42,7 @@ const Map = ({ markerLocation }: MarkerLocationProps) => {
   return (
     <LoadScriptNext googleMapsApiKey={mapsApiKey} onLoad={() => setIsLoaded(true)}>
       <GoogleMap
+        data-testid='google-map'
         mapContainerStyle={containerStyle}
         center={center}
         zoom={16}
