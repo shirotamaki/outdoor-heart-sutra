@@ -8,6 +8,14 @@ const DeleteUser = () => {
   const { data: session } = useSession()
   const [modalIsOpen, setIsOpen] = useState(false)
 
+  const openModal = () => {
+    setIsOpen(true)
+  }
+
+  const closeModal = () => {
+    setIsOpen(false)
+  }
+
   const handleDeleteUser = async () => {
     if (!session || !session.user) {
       console.error('セッションが存在しません')
@@ -16,25 +24,16 @@ const DeleteUser = () => {
 
     try {
       const response = await axios.delete(`${railsApiUrl}/api/v1/users/${session.user.email}`)
-
-      if (response.status === 204) {
+      if (response.status === 200 || response.status === 204) {
         signOut({
           callbackUrl: `/`,
         })
       } else {
-        console.error('アカウント削除に失敗しました')
+        console.error(`Error deleting user, status code: ${response.status}`)
       }
     } catch (error) {
-      console.error('エラー', error)
+      console.error('Error deleting user:', error)
     }
-  }
-
-  const openModal = () => {
-    setIsOpen(true)
-  }
-
-  const closeModal = () => {
-    setIsOpen(false)
   }
 
   if (session) {
@@ -51,7 +50,7 @@ const DeleteUser = () => {
           onRequestClose={closeModal}
           className='fixed inset-0 flex items-center justify-center z-50 backdrop-filter backdrop-blur-sm transition-transform duration-300 ease-in-out'
           overlayClassName='fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity duration-300 ease-in-out'
-          contentLabel='Example Modal'
+          contentLabel='Delete User Modal'
         >
           <div className='bg-white rounded-md px-4 pt-5 pb-4 overflow-auto shadow-xl transform transition-all sm:max-w-lg sm:w-full sm:p-6'>
             <div className='sm:flex sm:items-start'>
