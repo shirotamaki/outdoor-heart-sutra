@@ -31,6 +31,8 @@
     "heic2any": "^0.0.4",
     "next": "^13.4.6",
     "next-auth": "^4.22.1",
+    "playwright-extra": "^4.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-easy-crop": "^4.7.4",
