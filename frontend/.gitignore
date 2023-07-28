@@ -25,6 +25,9 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
+# env file
+.env
+
 # local env files
 .env*.local
 
@@ -37,3 +40,10 @@ next-env.d.ts
 /test-results/
 /playwright-report/
 /playwright/.cache/
+
+# playwright
+/playwright/.auth/
+/playwright/setup/
+/playwright/screenshots/
+/test-results/
+/playwright-report/
