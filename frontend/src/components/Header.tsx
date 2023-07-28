@@ -37,6 +37,7 @@ const Header = () => {
                 className='hover:opacity-50 transition-all duration-100'
               >
                 <Image
+                  data-testid='mobile-menu-button'
                   src={`/images/bars.png`}
                   alt='Menu Icon'
                   width={36}

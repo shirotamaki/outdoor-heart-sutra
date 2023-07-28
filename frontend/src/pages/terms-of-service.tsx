@@ -7,7 +7,9 @@ const TermsOfService = () => {
     <div className='flex flex-col min-h-screen'>
       <CustomHead title='terms-of-service' />
       <Header />
-      <main className='bg-beige flex-grow'>利用規約</main>
+      <main className='bg-beige flex-grow'>
+        <h1>利用規約</h1>
+      </main>
       <Footer />
     </div>
   )
