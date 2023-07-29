@@ -18,6 +18,8 @@ const config = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   testMatch: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[tj]s?(x)'],
 
+  testPathIgnorePatterns: ['<rootDir>/playwright/'],
+
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
