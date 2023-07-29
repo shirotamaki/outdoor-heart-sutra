@@ -12,6 +12,9 @@ require('dotenv').config();
 export default defineConfig({
   testDir: './playwright',
   /* Run tests in files in parallel */
+
+  timeout: 60 * 1000,
+
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
@@ -46,6 +49,7 @@ export default defineConfig({
       use: {
         ...devices['Desktop Chrome'],
         storageState: './playwright/.auth/user.json',
+        headless: false,
       },
       dependencies: ['setup'],
     },
