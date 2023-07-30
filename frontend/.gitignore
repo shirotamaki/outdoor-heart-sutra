@@ -42,7 +42,6 @@ next-env.d.ts
 /playwright/.cache/
 
 # playwright
-/playwright/.auth/
 /playwright/setup/
 /playwright/screenshots/
 /test-results/

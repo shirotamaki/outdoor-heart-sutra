@@ -6,7 +6,7 @@ chromium.use(StealthPlugin())
 
 const baseURL = 'http://localhost:4000'
 
-const authFile = 'playwright/.auth/user.json'
+const authFile = 'playwright/setup/storage-state.json'
 
 async function globalSetup(): Promise<void> {
   const browser = await chromium.launch({ headless: true })
