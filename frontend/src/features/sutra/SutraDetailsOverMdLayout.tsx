@@ -2,8 +2,8 @@ import { useState } from 'react'
 import Map from '@/features/map/Map'
 import Note from '@/features/note/Note'
 import CapturedImage from '@/features/photo/CapturedImage'
-import DeletePhoto from '@/features/photo/DeletePhoto'
-import EditPhoto from '@/features/photo/EditPhoto'
+import DeletePhotoForOverMdLayout from '@/features/photo/DeletePhotoForOverMdLayout'
+import EditPhotoForOverMdLayout from '@/features/photo/EditPhotoForOverMdLayout'
 import PhotoUploadAndPreview from '@/features/photo/PhotoUploadAndPreview'
 import { SutraDetailsProps } from '@/types/types'
 
@@ -76,17 +76,20 @@ const SutraDetailsOverMdLayout = ({ sutra, photo }: SutraDetailsProps) => {
           <div className='row-span-1 col-start-2'>
             <Map markerLocation={currentLocation} />
           </div>
-          <div className='grid-row-start-2 grid-col-span-2 flex justify-center'>
+          <div
+            data-testid='photo-address-for-over-md-layout'
+            className='grid-row-start-2 grid-col-span-2 flex justify-center'
+          >
             住所：{photo.address}
           </div>
           <div className='grid-row-start-3 col-span-2 flex justify-center'>{renderNote()}</div>
           <div className='grid-row-start-4 col-span-2'>
             <div className='flex justify-center'>
               <div className='bg-blue-300 hover:bg-blue-200 text-gray-700 rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2'>
-                <EditPhoto setEditMode={setEditMode} />
+                <EditPhotoForOverMdLayout setEditMode={setEditMode} />
               </div>
               <div className=' bg-gray-400 hover:bg-gray-300 text-white rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2'>
-                <DeletePhoto photoId={photo.id} />
+                <DeletePhotoForOverMdLayout photoId={photo.id} />
               </div>
             </div>
           </div>

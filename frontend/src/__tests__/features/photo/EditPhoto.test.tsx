@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import EditPhoto from '@/features/photo/EditPhoto'
+import EditPhoto from '@/features/photo/EditPhotoForOverMdLayout'
 
 describe('EditPhoto', () => {
   it('renders display edit photo button', () => {
