@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react'
-import EditPhoto from '@/features/photo/EditPhotoForOverMdLayout'
+import EditPhotoForMdLayout from '@/features/photo/EditPhotoForMdLayout'
 
-describe('EditPhoto', () => {
+describe('EditPhotoForMdLayout', () => {
   it('renders display edit photo button', () => {
-    render(<EditPhoto setEditMode={() => {}} />)
+    render(<EditPhotoForMdLayout setEditMode={() => {}} />)
 
     const editPhotoButton = screen.getByText('写真を再選択')
     expect(editPhotoButton).toBeInTheDocument()
