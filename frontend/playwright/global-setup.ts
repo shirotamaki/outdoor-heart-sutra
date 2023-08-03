@@ -37,7 +37,7 @@ async function globalSetup(): Promise<void> {
   }
 
   // Wait for redirect back to tested site after authentication
-  await page.waitForURL(baseURL)
+  await page.waitForURL(baseURL, { timeout: 60000 })
   // Save signed in state
   await page.context().storageState({ path: authFile })
 
