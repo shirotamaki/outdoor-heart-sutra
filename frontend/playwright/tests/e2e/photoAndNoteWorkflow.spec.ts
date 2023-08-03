@@ -37,7 +37,7 @@ test.describe('Photo Save Workflow For Over Md Layout', () => {
 
     await page.getByRole('link', { name: '仏' }).nth(0).click()
     await page.waitForSelector('[data-testid="file-input"]')
-    // `ファイルを選択`ボタンのクリック操作は不要。以下isVisible()を実行すると自動的にinput操作が実行されるため。
+    // `ファイルを選択`ボタンのクリック操作は不要。PlaywrightはisVisible()を呼び出すときに自動的にinput操作を実行するため。
     const fileInputVisible = await page.getByRole('button').isVisible()
 
     if (!fileInputVisible) {
@@ -58,7 +58,7 @@ test.describe('Photo Save Workflow For Over Md Layout', () => {
           userId: 1,
         },
       })
-      // responseが空の場合は何もせず終了する
+      // responseが空の場合は何もせず終了する。これにより、テストが不必要な削除操作を試みるのを防ぐ。
       if (!response.data.photo_id) {
         return
       }
@@ -66,7 +66,8 @@ test.describe('Photo Save Workflow For Over Md Layout', () => {
       const deleteResponse = await axios.delete(`http://localhost:3000/api/v1/photos/${photoId}`)
       expect(deleteResponse.status).toBe(204)
     } catch (error) {
-      // エラー発生しても何もしない。delete処理を実行したいだけ。
+      console.log(error)
+      // photoの削除を行うことが目的。Rails APIを叩いてもphotoを保存していない場合はエラーが返ってくる。そのため、エラーが発生した場合は無視する。
     }
   })
 
@@ -126,18 +127,18 @@ test.describe('Photo Save Workflow For Over Md Layout', () => {
     await page.screenshot({ path: 'playwright/screenshots/example.png' })
   })
 
-  test('should return to reselection mode when clicked reselection-file-input-after-saving-photo-button-for-over-md-layout after saving photo', async () => {
+  test('should return to reselection mode when clicked reselect-file-input-after-saving-photo-button-for-over-md-layout after saving photo', async () => {
     await page.waitForSelector('[data-testid="file-input-confirm-button"]')
     await page.getByTestId('file-input-confirm-button').click()
-
+    
     await page.waitForSelector('[data-testid="save-photo-button"]')
     await page.getByTestId('save-photo-button').click()
 
     await page.waitForSelector(
-      '[data-testid="reselection-file-input-after-saving-photo-button-for-over-md-layout"]',
+      '[data-testid="reselect-file-input-after-saving-photo-button-for-over-md-layout"]',
     )
     await page
-      .getByTestId('reselection-file-input-after-saving-photo-button-for-over-md-layout')
+      .getByTestId('reselect-file-input-after-saving-photo-button-for-over-md-layout')
       .click()
     const content = await page.textContent('h1')
     expect(content).toContain('仏')
