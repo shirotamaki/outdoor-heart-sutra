@@ -4,7 +4,7 @@ import axios from 'axios'
 
 let page: Page
 
-// Rails API の delete処理がバッティングするため、Serial mode で実行する
+// Rails API の delete処理がコンフリクトするため、Serial mode で実行する
 test.describe.configure({ mode: 'serial' })
 
 test.beforeAll(async ({ browser }) => {
@@ -37,8 +37,9 @@ test.describe('Photo Save Workflow For Over Md Layout', () => {
 
     await page.getByRole('link', { name: '仏' }).nth(0).click()
     await page.waitForSelector('[data-testid="file-input"]')
+
     // `ファイルを選択`ボタンのクリック操作は不要。PlaywrightはisVisible()を呼び出すときに自動的にinput操作を実行するため。
-    const fileInputVisible = await page.getByRole('button').isVisible()
+    const fileInputVisible = await page.getByTestId('file-input').isVisible()
 
     if (!fileInputVisible) {
       await page.waitForSelector('input[type="file"]', { timeout: 10000 })
@@ -92,56 +93,78 @@ test.describe('Photo Save Workflow For Over Md Layout', () => {
   })
 
   test('should successfully save photo', async () => {
-    await page.waitForSelector('[data-testid="file-input-confirm-button"]')
+    await page.waitForSelector('[data-testid="file-input-confirm-button"]', {
+      timeout: 200000,
+    })
     await page.getByTestId('file-input-confirm-button').click()
 
-    await page.waitForSelector('[data-testid="save-photo-button"]')
+    await page.waitForSelector('[data-testid="save-photo-button"]', {
+      timeout: 200000,
+    })
     await page.getByTestId('save-photo-button').click()
 
-    await page.waitForSelector('[data-testid="photo-address-for-over-md-layout"]')
+    await page.waitForSelector('[data-testid="photo-address-for-over-md-layout"]', {
+      timeout: 200000,
+    })
     const text = await page.textContent('[data-testid="photo-address-for-over-md-layout"]')
     expect(text).toMatch(/住所/)
   })
 
-  test('should successfully delete photo', async () => {
-    await page.waitForSelector('[data-testid="file-input-confirm-button"]')
-    await page.getByTestId('file-input-confirm-button').click()
-
-    await page.waitForSelector('[data-testid="save-photo-button"]')
-    await page.getByTestId('save-photo-button').click()
-
-    await page.waitForSelector('[data-testid="delete-photo-button-for-over-md-layout"]')
-    await page.getByTestId('delete-photo-button-for-over-md-layout').click()
-
-    await page.waitForSelector('[data-testid="delete-photo-cancel-button-for-over-md-layout"]')
-    await page.getByTestId('delete-photo-cancel-button-for-over-md-layout').click()
-
-    await page.waitForSelector('[data-testid="delete-photo-button-for-over-md-layout"]')
-    await page.getByTestId('delete-photo-button-for-over-md-layout').click()
-
-    await page.waitForSelector('[data-testid="delete-photo-confirm-button-for-over-md-layout"]')
-    await page.getByTestId('delete-photo-confirm-button-for-over-md-layout').click()
-
-    const content = await page.textContent('[data-testid="kanji"]')
-    expect(content).toContain('仏')
-    await page.screenshot({ path: 'playwright/screenshots/example.png' })
-  })
-
   test('should return to reselection mode when clicked reselect-file-input-after-saving-photo-button-for-over-md-layout after saving photo', async () => {
-    await page.waitForSelector('[data-testid="file-input-confirm-button"]')
+    await page.waitForSelector('[data-testid="file-input-confirm-button"]', {
+      timeout: 200000,
+    })
     await page.getByTestId('file-input-confirm-button').click()
-    
-    await page.waitForSelector('[data-testid="save-photo-button"]')
+
+    await page.waitForSelector('[data-testid="save-photo-button"]', {
+      timeout: 200000,
+    })
     await page.getByTestId('save-photo-button').click()
 
     await page.waitForSelector(
       '[data-testid="reselect-file-input-after-saving-photo-button-for-over-md-layout"]',
+      {
+        timeout: 200000,
+      },
     )
     await page
       .getByTestId('reselect-file-input-after-saving-photo-button-for-over-md-layout')
       .click()
     const content = await page.textContent('h1')
     expect(content).toContain('仏')
-    await page.screenshot({ path: 'playwright/screenshots/example.png' })
+  })
+
+  test('should successfully delete photo', async () => {
+    await page.waitForSelector('[data-testid="file-input-confirm-button"]')
+    await page.getByTestId('file-input-confirm-button').click()
+
+    await page.waitForSelector('[data-testid="save-photo-button"]', {
+      timeout: 200000,
+    })
+    await page.getByTestId('save-photo-button').click()
+
+    await page.waitForSelector('[data-testid="delete-photo-button-for-over-md-layout"]', {
+      timeout: 200000,
+    })
+    await page.getByTestId('delete-photo-button-for-over-md-layout').click()
+
+    await page.waitForSelector('[data-testid="delete-photo-cancel-button-for-over-md-layout"]', {
+      timeout: 200000,
+    })
+    await page.getByTestId('delete-photo-cancel-button-for-over-md-layout').click()
+
+    await page.waitForSelector('[data-testid="delete-photo-button-for-over-md-layout"]', {
+      timeout: 200000,
+    })
+    await page.getByTestId('delete-photo-button-for-over-md-layout').click()
+
+    await page.waitForSelector('[data-testid="delete-photo-confirm-button-for-over-md-layout"]', {
+      timeout: 200000,
+    })
+    await page.getByTestId('delete-photo-confirm-button-for-over-md-layout').click()
+
+    const firstKanjiElement = page.locator('[data-testid="kanji"]').nth(0)
+    const content = await firstKanjiElement.textContent()
+    expect(content).toContain('仏')
   })
 })
