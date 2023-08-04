@@ -35,7 +35,9 @@ const SutraDetailsMdLayout = ({ sutra, photo }: SutraDetailsProps) => {
       return (
         <div className='flex flex-col justify-center items-center '>
           <div className='w-80 h-32 rounded-lg bg-blue-200 overflow-hidden'>
-            <div data-testid='saved-note-for-md-layout' className='mx-2 my-1'>{photo.note}</div>
+            <div data-testid='saved-note-for-md-layout' className='mx-2 my-1'>
+              {photo.note}
+            </div>
           </div>
           <div className=' bg-blue-500 hover:bg-blue-400 text-white rounded-full font-notoSans text-xs  ml-auto my-2 px-2 py-1'>
             <button data-testid='edit-note-button-for-md-layout' onClick={() => setEditNote(true)}>

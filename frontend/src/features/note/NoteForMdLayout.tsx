@@ -6,14 +6,7 @@ import ActionButton from '@/components/ActionButton'
 import { railsApiUrl } from '@/config/index'
 import { NoteProps } from '@/types/types'
 
-const NoteForMdLayout = ({
-  photoId,
-  sutraId,
-  photoNote,
-  setEditNote,
-  rows,
-  cols,
-}: NoteProps) => {
+const NoteForMdLayout = ({ photoId, sutraId, photoNote, setEditNote, rows, cols }: NoteProps) => {
   const [note, setNote] = useState<string>(photoNote || '')
 
   const router = useRouter()
@@ -68,7 +61,7 @@ const NoteForMdLayout = ({
           data-testid='save-note-button-for-md-layout'
           className=' bg-blue-500 hover:bg-blue-400 text-white rounded-full font-notoSans text-xs  ml-auto  my-2 px-2 py-1'
         >
-          <ActionButton  onClick={saveNote} text='メモ保存' />
+          <ActionButton onClick={saveNote} text='メモ保存' />
         </div>
       </div>
     </div>
