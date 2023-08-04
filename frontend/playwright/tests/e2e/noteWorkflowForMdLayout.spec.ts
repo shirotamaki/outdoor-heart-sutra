@@ -35,7 +35,7 @@ test.describe('Note Workflow For Md Layout', () => {
     await page.goto('/')
     await page.waitForLoadState('domcontentloaded')
 
-    await page.getByRole('link', { name: '摩' }).nth(0).click()
+    await page.getByRole('link', { name: '訶' }).nth(0).click()
 
     await page.waitForSelector('[data-testid="file-input"]', {
       timeout: 60000,
@@ -58,8 +58,7 @@ test.describe('Note Workflow For Md Layout', () => {
     try {
       const response = await axios.get('http://localhost:3000/api/v1/photos/find', {
         params: {
-          // 1だとコンフリクトするため3にする
-          sutraId: 3,
+          sutraId: 4, // 訶
           userId: 1,
         },
       })

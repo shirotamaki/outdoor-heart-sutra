@@ -35,7 +35,7 @@ test.describe('Photo Workflow For Md Layout', () => {
     await page.goto('/')
     await page.waitForLoadState('domcontentloaded')
 
-    await page.getByRole('link', { name: '摩' }).nth(0).click()
+    await page.getByRole('link', { name: '説' }).nth(0).click()
 
     await page.waitForSelector('[data-testid="file-input"]', {
       timeout: 60000,
@@ -58,8 +58,8 @@ test.describe('Photo Workflow For Md Layout', () => {
     try {
       const response = await axios.get('http://localhost:3000/api/v1/photos/find', {
         params: {
-          // 1だとコンフリクトするため3にする
-          sutraId: 3,
+          // コンフリクトするためsutraIdは2にしている
+          sutraId: 2, // 説
           userId: 1,
         },
       })
@@ -83,7 +83,7 @@ test.describe('Photo Workflow For Md Layout', () => {
     await page.getByTestId('reselect-file-input-button').click()
 
     const content = await page.textContent('h1')
-    expect(content).toContain('摩')
+    expect(content).toContain('説')
   })
 
   test('should return to cropping mode when clicked cancel-photo-button', async () => {
@@ -141,7 +141,7 @@ test.describe('Photo Workflow For Md Layout', () => {
     )
     await page.getByTestId('reselect-file-input-after-saving-photo-button-for-md-layout').click()
     const content = await page.textContent('h1')
-    expect(content).toContain('摩')
+    expect(content).toContain('説')
   })
 
   test('should successfully delete photo', async () => {
@@ -175,8 +175,8 @@ test.describe('Photo Workflow For Md Layout', () => {
     })
     await page.getByTestId('delete-photo-confirm-button-for-md-layout').click()
 
-    const thirdKanjiElement = page.locator('[data-testid="kanji"]').nth(2)
+    const thirdKanjiElement = page.locator('[data-testid="kanji"]').nth(1)
     const content = await thirdKanjiElement.textContent()
-    expect(content).toContain('摩')
+    expect(content).toContain('説')
   })
 })
