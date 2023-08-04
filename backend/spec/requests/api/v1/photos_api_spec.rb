@@ -87,14 +87,12 @@ RSpec.describe 'Api::V1::Photos', type: :request do
     context 'with valid parameters' do
       it 'creates a new photo' do
         expect do
-          post '/api/v1/photos',
-               params: valid_attributes, headers: valid_headers, as: :json
+          post '/api/v1/photos', params: valid_attributes, headers: valid_headers, as: :json
         end.to change(Photo, :count).by(1)
       end
 
       it 'renders a successful response' do
-        post '/api/v1/photos',
-             params: valid_attributes, headers: valid_headers, as: :json
+        post '/api/v1/photos', params: valid_attributes, headers: valid_headers, as: :json
         expect(response).to be_successful
       end
     end
@@ -102,14 +100,12 @@ RSpec.describe 'Api::V1::Photos', type: :request do
     context 'with invalid parameters' do
       it 'does not create a new photo' do
         expect do
-          post '/api/v1/photos',
-               params: invalid_attributes, headers: valid_headers, as: :json
+          post '/api/v1/photos', params: invalid_attributes, headers: valid_headers, as: :json
         end.to change(Photo, :count).by(0)
       end
 
       it 'renders a JSON response with errors for the new photo' do
-        post '/api/v1/photos',
-             params: invalid_attributes, headers: valid_headers, as: :json
+        post '/api/v1/photos', params: invalid_attributes, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to match(a_string_including('application/json'))
       end

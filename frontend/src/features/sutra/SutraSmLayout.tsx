@@ -17,7 +17,7 @@ const SutraSmLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] })
           const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
 
           return (
-            <div key={sutra.id} className='hover:opacity-70'>
+            <div data-testid='kanji' key={sutra.id} className='hover:opacity-70'>
               {correspondingPhoto && correspondingPhoto.cropped_image_url ? (
                 <div>
                   <Link href={`/sutras/${sutra.id}`}>

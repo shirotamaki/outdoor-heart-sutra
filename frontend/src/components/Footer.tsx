@@ -7,10 +7,18 @@ const Footer = () => {
     <footer className='bg-tetsuguro font-notoSans text-white'>
       <div className='flex flex-col justify-center items-center md:py-4 py-2'>
         <nav className='space-x-4 mb-2 md:text-base text-xs'>
-          <Link href='/terms-of-service' className='hover:opacity-50 transition-all duration-100'>
+          <Link
+            data-testid='terms-of-service'
+            href='/terms-of-service'
+            className='hover:opacity-50 transition-all duration-100'
+          >
             利用規約
           </Link>
-          <Link href='/privacy-policy' className='hover:opacity-50 transition-all duration-100'>
+          <Link
+            data-testid='privacy-policy'
+            href='/privacy-policy'
+            className='hover:opacity-50 transition-all duration-100'
+          >
             プライバシーポリシー
           </Link>
         </nav>

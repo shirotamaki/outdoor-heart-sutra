@@ -39,6 +39,7 @@ const AllMaps = ({ markerLocations }: AllMapsProps) => {
     <div className='z-0 flex flex-grow h-full' style={{ height: '100%' }}>
       <LoadScriptNext googleMapsApiKey={mapsApiKey} onLoad={() => setIsLoaded(true)}>
         <GoogleMap
+          data-testid='google-map'
           mapContainerStyle={containerStyle}
           center={center}
           zoom={5.0}

@@ -208,10 +208,16 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
       <div>
         {previewImage && isSelectedImage && !croppedImage && (
           <div className='flex justify-center content-between'>
-            <div className='bg-blue-300 hover:bg-blue-200 text-gray-700 rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2'>
+            <div
+              data-testid='reselect-file-input-button'
+              className='bg-blue-300 hover:bg-blue-200 text-gray-700 rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2'
+            >
               <ActionButton onClick={handleFileCancel} text='写真を再選択' />
             </div>
-            <div className=' bg-blue-500 hover:bg-blue-400 text-white rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2'>
+            <div
+              data-testid='file-input-confirm-button'
+              className=' bg-blue-500 hover:bg-blue-400 text-white rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2'
+            >
               <ActionButton onClick={handleCropConfirm} text='決定' />
             </div>
           </div>
@@ -219,10 +225,14 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
 
         {previewImage && isSelectedImage && croppedImage && (
           <div className='flex justify-center content-between'>
-            <div className=' bg-gray-400 hover:bg-gray-300 text-white rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2'>
+            <div
+              data-testid='cancel-photo-button'
+              className=' bg-gray-400 hover:bg-gray-300 text-white rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2'
+            >
               <ActionButton onClick={handleFileReSelecte} text='キャンセル' />
             </div>
             <div
+              data-testid='save-photo-button'
               className={
                 isSaving
                   ? 'bg-gray-500 text-white rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2'
@@ -238,6 +248,8 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
       <div>
         {!isSelectedImage && (
           <input
+            role='button'
+            data-testid='file-input'
             type='file'
             accept='image/jpeg, image/png, image/heic'
             onChange={handleFileChange}

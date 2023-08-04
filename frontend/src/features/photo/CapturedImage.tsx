@@ -6,7 +6,7 @@ const CapturedImage = ({ capturedImageUrl, width, height, borderRadius }: Captur
     <>
       <Image
         src={capturedImageUrl as string}
-        alt='Image'
+        alt='capturedImage'
         width={width}
         height={height}
         style={{ borderRadius: borderRadius }}

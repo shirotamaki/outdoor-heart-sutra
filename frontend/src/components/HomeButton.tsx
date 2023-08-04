@@ -5,7 +5,10 @@ import { HomeButtonProps } from '@/types/types'
 const HomeButton = ({ width, height }: HomeButtonProps) => {
   return (
     <Link href='/'>
-      <div className='hover:opacity-75 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110'>
+      <div
+        className='hover:opacity-75 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110'
+        data-testid='homebutton-link'
+      >
         <Image
           src='/images/logo_main.png'
           alt={'アウトドア般若心経のロゴ'}

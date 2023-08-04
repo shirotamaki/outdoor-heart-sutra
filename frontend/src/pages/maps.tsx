@@ -38,7 +38,7 @@ function Maps({ photos }: PhotosProps) {
     <div className='flex flex-col h-screen'>
       <CustomHead title='全体地図' />
       <Header />
-      <main className='flex-grow h-screen'>
+      <main data-testid='all-maps' className='flex-grow h-screen'>
         <AllMaps
           markerLocations={photos.map((photo) => ({
             lat: photo.latitude,
