@@ -1,6 +1,6 @@
 import { render, fireEvent, waitFor, screen } from '@testing-library/react'
 import axios from 'axios'
-import Note from '@/features/note/Note'
+import Note from '@/features/note/NoteForMdLayout'
 
 jest.mock('axios')
 const mockedAxios = axios as jest.Mocked<typeof axios>

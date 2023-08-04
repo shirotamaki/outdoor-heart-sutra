@@ -6,7 +6,14 @@ import ActionButton from '@/components/ActionButton'
 import { railsApiUrl } from '@/config/index'
 import { NoteProps } from '@/types/types'
 
-const Note = ({ photoId, sutraId, photoNote, setEditNote, rows, cols }: NoteProps) => {
+const NoteForOverMdLayout = ({
+  photoId,
+  sutraId,
+  photoNote,
+  setEditNote,
+  rows,
+  cols,
+}: NoteProps) => {
   const [note, setNote] = useState<string>(photoNote || '')
 
   const router = useRouter()
@@ -48,6 +55,7 @@ const Note = ({ photoId, sutraId, photoNote, setEditNote, rows, cols }: NoteProp
   return (
     <div>
       <textarea
+        data-testid='note-textarea-for-over-md-layout'
         value={note}
         onChange={handleChange}
         placeholder={note ? note : 'メモを入力してください'}
@@ -56,7 +64,10 @@ const Note = ({ photoId, sutraId, photoNote, setEditNote, rows, cols }: NoteProp
         className='block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
       ></textarea>
       <div className='flex justify-around'>
-        <div className=' bg-blue-500 hover:bg-blue-400 text-white rounded-full font-notoSans text-xs  ml-auto  my-2 px-2 py-1'>
+        <div
+          data-testid='save-note-button-for-over-md-layout'
+          className=' bg-blue-500 hover:bg-blue-400 text-white rounded-full font-notoSans text-xs  ml-auto  my-2 px-2 py-1'
+        >
           <ActionButton onClick={saveNote} text='メモ保存' />
         </div>
       </div>
@@ -64,4 +75,4 @@ const Note = ({ photoId, sutraId, photoNote, setEditNote, rows, cols }: NoteProp
   )
 }
 
-export default Note
+export default NoteForOverMdLayout

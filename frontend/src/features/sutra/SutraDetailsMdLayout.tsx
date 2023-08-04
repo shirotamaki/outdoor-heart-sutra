@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Map from '@/features/map/Map'
-import Note from '@/features/note/Note'
+import NoteForMdLayout from '@/features/note/NoteForMdLayout'
 import CapturedImage from '@/features/photo/CapturedImage'
 import DeletePhotoForMdLayout from '@/features/photo/DeletePhotoForMdLayout'
 import EditPhotoForMdLayout from '@/features/photo/EditPhotoForMdLayout'
@@ -22,7 +22,7 @@ const SutraDetailsMdLayout = ({ sutra, photo }: SutraDetailsProps) => {
   const renderNote = () => {
     if (editNote) {
       return (
-        <Note
+        <NoteForMdLayout
           photoId={photo.id}
           sutraId={sutra.id}
           photoNote={photo.note}
@@ -35,10 +35,12 @@ const SutraDetailsMdLayout = ({ sutra, photo }: SutraDetailsProps) => {
       return (
         <div className='flex flex-col justify-center items-center '>
           <div className='w-80 h-32 rounded-lg bg-blue-200 overflow-hidden'>
-            <div className='mx-2 my-1'>{photo.note}</div>
+            <div data-testid='saved-note-for-md-layout' className='mx-2 my-1'>{photo.note}</div>
           </div>
           <div className=' bg-blue-500 hover:bg-blue-400 text-white rounded-full font-notoSans text-xs  ml-auto my-2 px-2 py-1'>
-            <button onClick={() => setEditNote(true)}>メモ編集</button>
+            <button data-testid='edit-note-button-for-md-layout' onClick={() => setEditNote(true)}>
+              メモ編集
+            </button>
           </div>
         </div>
       )
