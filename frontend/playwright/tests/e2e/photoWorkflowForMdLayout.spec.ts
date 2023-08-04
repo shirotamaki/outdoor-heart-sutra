@@ -29,7 +29,7 @@ test.afterAll(async () => {
   await page.close()
 })
 
-test.describe('Photo Save Workflow For Md Layout', () => {
+test.describe('Photo Workflow For Md Layout', () => {
   test.beforeEach(async () => {
     await page.setViewportSize({ width: 375, height: 720 })
     await page.goto('/')
