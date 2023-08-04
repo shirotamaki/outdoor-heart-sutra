@@ -118,7 +118,5 @@ test.describe('Note Workflow For Md Layout', () => {
     })
     const editedTextarea = await page.textContent('[data-testid="saved-note-for-md-layout"]')
     expect(editedTextarea).toContain('This is edited note.')
-
-    await page.screenshot({ path: 'playwright/screenshots/error2.png', fullPage: true })
   })
 })
