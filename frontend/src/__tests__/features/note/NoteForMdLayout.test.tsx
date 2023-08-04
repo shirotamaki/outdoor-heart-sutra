@@ -1,6 +1,6 @@
 import { render, fireEvent, waitFor, screen } from '@testing-library/react'
 import axios from 'axios'
-import Note from '@/features/note/NoteForMdLayout'
+import NoteForMdLayout from '@/features/note/NoteForMdLayout'
 
 jest.mock('axios')
 const mockedAxios = axios as jest.Mocked<typeof axios>
@@ -10,21 +10,35 @@ const useRouterMock = {
 }
 jest.spyOn(require('next/router'), 'useRouter').mockReturnValue(useRouterMock)
 
-describe('Note', () => {
+describe('NoteForMdLayout', () => {
   beforeEach(() => {
     jest.clearAllMocks()
   })
 
   it('renders without crashing', () => {
     render(
-      <Note photoId={1} sutraId={1} photoNote={''} setEditNote={jest.fn()} rows={4} cols={45} />,
+      <NoteForMdLayout
+        photoId={1}
+        sutraId={1}
+        photoNote={''}
+        setEditNote={jest.fn()}
+        rows={4}
+        cols={45}
+      />,
     )
     expect(screen.getByPlaceholderText('メモを入力してください')).toBeInTheDocument()
   })
 
   it('allows user to input text', () => {
     render(
-      <Note photoId={1} sutraId={1} photoNote={''} setEditNote={jest.fn()} rows={4} cols={45} />,
+      <NoteForMdLayout
+        photoId={1}
+        sutraId={1}
+        photoNote={''}
+        setEditNote={jest.fn()}
+        rows={4}
+        cols={45}
+      />,
     )
     fireEvent.change(screen.getByPlaceholderText('メモを入力してください'), {
       target: { value: 'Test Note' },
@@ -35,7 +49,14 @@ describe('Note', () => {
   it('allows user to save note', async () => {
     mockedAxios.patch.mockResolvedValue({ data: {} })
     render(
-      <Note photoId={1} sutraId={1} photoNote={''} setEditNote={jest.fn()} rows={4} cols={45} />,
+      <NoteForMdLayout
+        photoId={1}
+        sutraId={1}
+        photoNote={''}
+        setEditNote={jest.fn()}
+        rows={4}
+        cols={45}
+      />,
     )
     fireEvent.change(screen.getByPlaceholderText('メモを入力してください'), {
       target: { value: 'Test Note' },
