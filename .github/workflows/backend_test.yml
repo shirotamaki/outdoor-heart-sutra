@@ -22,11 +22,20 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+        # キャッシュを削除するために一時的追加
+      - name: Cache Ruby gems
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ruby-gems-${{ runner.os }}-${{ hashFiles('**/Gemfile.lock') }}-temp-invalidate
+
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.2.1"
-          bundler-cache: true
+          bundler-cache: false
+
       - name: Install dependencies
         run: bundle install
         working-directory: ./backend
@@ -36,16 +45,25 @@ jobs:
       - name: Run RSpec
         run: bundle exec rspec
         working-directory: ./backend
+
   lint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+        # キャッシュを削除するために一時的追加
+      - name: Cache Ruby gems
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ruby-gems-${{ runner.os }}-${{ hashFiles('**/Gemfile.lock') }}-temp-invalidate
+
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.2.1"
-          bundler-cache: true
+          bundler-cache: false
       - name: Rubocop
         run: bundle exec rubocop
         working-directory: ./backend
