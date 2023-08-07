@@ -290,6 +290,7 @@ DEPENDENCIES
   rack-cors
   rails (~> 7.0.4, >= 7.0.4.2)
   rspec-rails
+  rubocop
   rubocop-fjord
   rubocop-rails
   rubocop-rspec
