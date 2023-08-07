@@ -1,11 +1,9 @@
 name: "Backend Test"
 on:
   push:
-    paths:
-      - "backend/**"
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -31,9 +29,10 @@ jobs:
           bundler-cache: true
       - name: Set up database schema
         run: bin/rails db:schema:load
+        working-directory: ./backend
       - name: Run RSpec
         run: bundle exec rspec
-
+        working-directory: ./backend
   lint:
     runs-on: ubuntu-latest
     steps:
@@ -46,3 +45,4 @@ jobs:
           bundler-cache: true
       - name: Rubocop
         run: bundle exec rubocop
+        working-directory: ./backend
