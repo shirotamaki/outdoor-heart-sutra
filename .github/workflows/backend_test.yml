@@ -22,18 +22,27 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.2.1"
           bundler-cache: false
 
+      - name: Debug gem environment
+        run: |
+          gem env
+          gem list
+        working-directory: ./backend
+
       - name: Install dependencies
         run: bundle install
         working-directory: ./backend
+
       - name: Set up database schema
         run: bin/rails db:schema:load
         working-directory: ./backend
+
       - name: Run RSpec
         run: bundle exec rspec
         working-directory: ./backend
