@@ -22,7 +22,7 @@ jobs:
         working-directory: ./frontend
 
       - name: Start frontend server
-        run: npm run start &
+        run: npm run dev &
         working-directory: ./frontend
 
       - name: Wait for server to be ready
