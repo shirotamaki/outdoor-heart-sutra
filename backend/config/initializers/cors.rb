@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors, debug: true do
   allow do
-    origins Rails.application.credentials.next_url
+    origins Rails.application.credentials.next_url || "https://www.outdoor-heart-sutra.com"
 
     resource "*",
             headers: :any,
