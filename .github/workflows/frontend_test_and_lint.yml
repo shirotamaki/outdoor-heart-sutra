@@ -20,6 +20,14 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
         working-directory: ./frontend
+
+      - name: Start frontend server
+        run: npm run start &
+        working-directory: ./frontend
+
+      - name: Wait for server to be ready
+        run: sleep 30
+
       - name: Run Playwright tests
         run: npx playwright test
         working-directory: ./frontend/playwright
