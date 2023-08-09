@@ -10,7 +10,32 @@ jobs:
     timeout-minutes: 30
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
+        with:
+          ruby-version: "3.2.1"
+          bundler-cache: true
+      - name: Install dependencies
+        run: |
+          cd backend
+          bundle install
+      - name: Set up database schema
+        run: bin/rails db:schema:load
+        working-directory: ./backend
+      - name: Start Rails API server
+        run: |
+          cd backend
+          bundle exec rails s -e test -p 3000 &
+        env:
+          RAILS_ENV: test
+      - name: Wait for Rails API server to be ready
+        run: sleep 15
+
+        
       - uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -37,6 +62,8 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+
+
   lint:
     runs-on: ubuntu-latest
     steps:
