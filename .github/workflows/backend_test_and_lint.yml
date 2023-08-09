@@ -1,4 +1,4 @@
-name: "Backend Test"
+name: "Backend Test And Lint"
 on:
   push:
     branches: ["main"]
