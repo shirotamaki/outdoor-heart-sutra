@@ -54,15 +54,15 @@ export default defineConfig({
       dependencies: ['setup'],
     },
 
-    {
-      name: 'firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        storageState: './playwright/setup/storage-state.json',
-        // headless: false,
-      },
-      dependencies: ['setup'],
-    },
+    // {
+    //   name: 'firefox',
+    //   use: {
+    //     ...devices['Desktop Firefox'],
+    //     storageState: './playwright/setup/storage-state.json',
+    //     // headless: false,
+    //   },
+    //   dependencies: ['setup'],
+    // },
 
     // {
     //   name: 'webkit',
