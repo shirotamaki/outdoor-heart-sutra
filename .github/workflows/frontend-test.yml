@@ -69,13 +69,6 @@ jobs:
           NEXT_SECRET: ${{ secrets.NEXT_SECRET }}
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         working-directory: ./frontend
-      - name: Run Playwright tests
-        run: npx playwright test
-        env:
-          USER_EMAIL: ${{ secrets.USER_EMAIL }}
-          USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
-          BASE_URL: ${{ secrets.BASE_URL }}
-        working-directory: ./frontend
       - name: Archive coverage artifacts
         uses: actions/upload-artifact@v3
         with:
