@@ -1,0 +1,26 @@
+name: "Backend Lint"
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
+        with:
+          ruby-version: "3.2.1"
+          bundler-cache: true
+      - name: Install dependencies
+        run: |
+          cd backend
+          bundle install
+      - name: Rubocop
+        run: bundle exec rubocop
+        working-directory: ./backend
