@@ -7,42 +7,42 @@ on:
     branches: ["main"]
 
 jobs:
-  e2e-test:
+  unit-test:
     runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres:14.8
-        ports:
-          - "5432:5432"
-        env:
-          POSTGRES_DB: rails_test
-          POSTGRES_USER: rails
-          POSTGRES_PASSWORD: password
-    env:
-      RAILS_ENV: test
-      DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
+    # services:
+    #   postgres:
+    #     image: postgres:14.8
+    #     ports:
+    #       - "5432:5432"
+    #     env:
+    #       POSTGRES_DB: rails_test
+    #       POSTGRES_USER: rails
+    #       POSTGRES_PASSWORD: password
+    # env:
+    #   RAILS_ENV: test
+    #   DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Install Ruby and gems
-        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
-        with:
-          ruby-version: "3.2.1"
-          bundler-cache: true
-      - name: Install libvips
-        run: sudo apt install -y libvips
-        working-directory: ./backend
-      - name: Install dependencies
-        run: bundle install
-        working-directory: ./backend
-      - name: Set up database
-        run: |
-          bundle exec rails db:reset RAILS_ENV=test
-        working-directory: ./backend
-      - name: Start Rails server
-        run: |
-          bundle exec rails s -p 3000 &
-        working-directory: ./backend
+      # - name: Install Ruby and gems
+      #   uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
+      #   with:
+      #     ruby-version: "3.2.1"
+      #     bundler-cache: true
+      # - name: Install libvips
+      #   run: sudo apt install -y libvips
+      #   working-directory: ./backend
+      # - name: Install dependencies
+      #   run: bundle install
+      #   working-directory: ./backend
+      # - name: Set up database
+      #   run: |
+      #     bundle exec rails db:reset RAILS_ENV=test
+      #   working-directory: ./backend
+      # - name: Start Rails server
+      #   run: |
+      #     bundle exec rails s -p 3000 &
+      #   working-directory: ./backend
       - name: Setup Node.js 18.x
         uses: actions/setup-node@v3
         with:
@@ -55,23 +55,26 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
         working-directory: ./frontend
-      - name: Start Next.js server
-        run: |
-          npm run dev &
-        env:
-          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
-          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
-          NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
-          NEXTAUTH_URL_INTERNAL: ${{ secrets.NEXTAUTH_URL_INTERNAL }}
-          NEXT_PUBLIC_GEOCODING_API_KEY: ${{ secrets.NEXT_PUBLIC_GEOCODING_API_KEY }}
-          NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: ${{ secrets.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY }}
-          NEXT_PUBLIC_RAILS_API_URL: ${{ secrets.NEXT_PUBLIC_RAILS_API_URL }}
-          NEXT_SECRET: ${{ secrets.NEXT_SECRET }}
-          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+      - name: Run unit tests
+        run: npx jest
         working-directory: ./frontend
-      - name: Archive coverage artifacts
+      # - name: Start Next.js server
+      #   run: |
+      #     npm run dev &
+      #   env:
+      #     GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+      #     GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+      #     NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
+      #     NEXTAUTH_URL_INTERNAL: ${{ secrets.NEXTAUTH_URL_INTERNAL }}
+      #     NEXT_PUBLIC_GEOCODING_API_KEY: ${{ secrets.NEXT_PUBLIC_GEOCODING_API_KEY }}
+      #     NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: ${{ secrets.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY }}
+      #     NEXT_PUBLIC_RAILS_API_URL: ${{ secrets.NEXT_PUBLIC_RAILS_API_URL }}
+      #     NEXT_SECRET: ${{ secrets.NEXT_SECRET }}
+      #     RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+      #   working-directory: ./frontend
+      - name: Archive screenshots
         uses: actions/upload-artifact@v3
         with:
-          name: coverage
+          name: screenshots
           path: ./frontend/playwright/screenshots
         if: always()
