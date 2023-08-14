@@ -1,0 +1,40 @@
+name: "Backend Test"
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:14.8
+        ports:
+          - "5432:5432"
+        env:
+          POSTGRES_DB: rails_test
+          POSTGRES_USER: rails
+          POSTGRES_PASSWORD: password
+    env:
+      RAILS_ENV: test
+      DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
+        with:
+          ruby-version: "3.2.1"
+          bundler-cache: true
+      - name: Install dependencies
+        run: |
+          cd backend
+          bundle install
+      - name: Set up database schema
+        run: bin/rails db:schema:load
+        working-directory: ./backend
+      - name: Run RSpec
+        run: bundle exec rspec
+        working-directory: ./backend/spec

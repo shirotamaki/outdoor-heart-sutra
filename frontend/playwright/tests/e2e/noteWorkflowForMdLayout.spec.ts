@@ -1,6 +1,7 @@
 import path from 'path'
 import { test, expect, Page } from '@playwright/test'
 import axios from 'axios'
+import { baseURL } from 'playwright/config/index'
 
 let page: Page
 
@@ -32,7 +33,7 @@ test.afterAll(async () => {
 test.describe('Note Workflow For Md Layout', () => {
   test.beforeEach(async () => {
     await page.setViewportSize({ width: 375, height: 720 })
-    await page.goto('/')
+    await page.goto(baseURL)
     await page.waitForLoadState('domcontentloaded')
 
     await page.getByRole('link', { name: '訶' }).nth(0).click()
