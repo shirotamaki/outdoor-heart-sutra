@@ -133,6 +133,7 @@ export type Photo = {
   latitude: number
   image_url: string
   cropped_image_url: string
+  created_at: string
   user_id: number
   sutra_id: number
 }

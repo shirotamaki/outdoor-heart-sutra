@@ -13,6 +13,10 @@ const SutraDetailsOverMdLayout = ({ sutra, photo }: SutraDetailsProps) => {
     lng: photo.longitude,
     img: photo.cropped_image_url,
   }
+
+  const regex = /(\d{4})-(\d{2})-(\d{2}).*/
+  const shootingDate = photo.created_at.replace(regex, '$1年$2月$3日')
+
   const [editNote, setEditNote] = useState(!photo.note)
   const [editMode, setEditMode] = useState(false)
 
@@ -34,8 +38,11 @@ const SutraDetailsOverMdLayout = ({ sutra, photo }: SutraDetailsProps) => {
     } else {
       return (
         <div className='flex flex-col justify-center items-center '>
-          <div className='w-96 h-32 rounded-lg bg-blue-200 overflow-hidden'>
-            <div data-testid='saved-note-for-over-md-layout' className='mx-2 my-1'>
+          <div className='w-479 h-32 rounded-lg bg-beige border border-gray-300 overflow-hidden'>
+            <div
+              data-testid='saved-note-for-over-md-layout'
+              className='mx-2 my-1 whitespace-pre-line overflow-hidden break-words'
+            >
               {photo.note}
             </div>
           </div>
@@ -85,9 +92,10 @@ const SutraDetailsOverMdLayout = ({ sutra, photo }: SutraDetailsProps) => {
           </div>
           <div
             data-testid='photo-address-for-over-md-layout'
-            className='grid-row-start-2 grid-col-span-2 flex justify-center'
+            className='grid-row-start-2 grid-col-span-2 flex flex-col justify-center'
           >
             住所：{photo.address}
+            <div className='mt-2'>撮影日：{shootingDate}</div>
           </div>
           <div className='grid-row-start-3 col-span-2 flex justify-center'>{renderNote()}</div>
           <div className='grid-row-start-4 col-span-2'>
