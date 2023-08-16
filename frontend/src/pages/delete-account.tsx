@@ -34,7 +34,7 @@ const DeleteAccount = () => {
 
           <div className='items-left'>
             <p className='pb-4'>削除すると以下の情報が全て失われます</p>
-            <ul className='list-disc'>
+            <ul className='list-disc px-6'>
               <li className='pb-2'>写真</li>
               <li className='pb-2'>位置情報</li>
               <li className='pb-2'>メモ</li>
