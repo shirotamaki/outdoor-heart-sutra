@@ -19,9 +19,9 @@ module.exports = {
         notoSans: ['Noto Sans JP', 'sans-serif'],
       },
       width: {
-        '479': '479px',
-        '366': '366px',
-      }
+        479: '479px',
+        366: '366px',
+      },
     },
   },
   plugins: [],

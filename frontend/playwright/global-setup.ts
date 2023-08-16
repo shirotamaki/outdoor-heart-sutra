@@ -28,9 +28,9 @@ async function globalSetup(): Promise<void> {
     await page.fill('#password >> input[type="password"]', userPassword)
     await page.locator('button >> nth=1').click()
   }
-    await page.waitForURL(baseURL, { timeout: 10000 })
-    await page.context().storageState({ path: authFile })
-    await browser.close()
+  await page.waitForURL(baseURL, { timeout: 10000 })
+  await page.context().storageState({ path: authFile })
+  await browser.close()
 }
 
 export default globalSetup
