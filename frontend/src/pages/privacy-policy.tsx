@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import CustomHead from '@/components/CustomHead'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
@@ -10,21 +11,21 @@ const PrivacyPolicy = () => {
       <Header />
       <main className='bg-beige flex flex-grow justify-center items-center'>
         <article className='max-w-screen-sm  font-kinuta text-black/50 p-6'>
-          <h1 className='text-2xl mb-6 text-black/70'>プライバシーポリシー</h1>
-          <p className='mb-6'>
+          <h1 className='text-2xl mb-4 text-black/50 text-center'>プライバシーポリシー</h1>
+          <p className='mb-8'>
             「アウトドア般若心経」（以下、「本サービス」といいます。）における、ユーザーの個人情報の取扱いについて、以下のとおりプライバシーポリシー（以下、「本ポリシー」といいます。）を定めます。
           </p>
           <h2 className='text-xl mb-4 text-black/70'>第1条（個人情報）</h2>
-          <p className='mb-6'>
+          <p className='mb-8'>
             「個人情報」とは、個人情報保護法にいう「個人情報」を指すものとし、生存する個人に関する情報であって、当該情報に含まれる氏名、生年月日、住所、電話番号、連絡先その他の記述等により特定の個人を識別できる情報及び容貌、指紋、声紋にかかるデータ、及び健康保険証の保険者番号などの当該情報単体から特定の個人を識別できる情報（個人識別情報）を指します。
           </p>
           <h2 className='text-xl mb-4 text-black/70'>第2条（個人情報の収集方法）</h2>
-          <p className='mb-6'>
+          <p className='mb-8'>
             本サービスは、ユーザーが利用登録をする際にユーザーのGoogleアカウント情報を取得します。
           </p>
           <h2 className='text-xl mb-4 text-black/70'>第3条（個人情報を収集・利用する目的）</h2>
-          <p className='mb-6'>本サービスが個人情報を収集・利用する目的は、以下のとおりです。</p>
-          <ol className='list-decimal mb-6 px-6'>
+          <p className='mb-4'>本サービスが個人情報を収集・利用する目的は、以下のとおりです。</p>
+          <ol className='list-decimal mb-8 px-6'>
             <li>本サービスの提供・運営のため</li>
             <li>ユーザーからのお問い合わせに回答するため（本人確認を行うことを含む）</li>
             <li>メンテナンス、重要なお知らせなど必要に応じたご連絡のため</li>
@@ -38,7 +39,7 @@ const PrivacyPolicy = () => {
           </ol>
           <h2 className='text-xl mb-4 text-black/70'>第4条（利用目的の変更）</h2>
           <ol
-            className='list-decimal mb-6
+            className='list-decimal mb-8
           px-6'
           >
             <li>
@@ -49,7 +50,7 @@ const PrivacyPolicy = () => {
             </li>
           </ol>
           <h2 className='text-xl mb-4 text-black/70'>第5条（個人情報の第三者提供）</h2>
-          <ol className='list-decimal mb-6 px-6'>
+          <ol className='list-decimal mb-8 px-6'>
             <li>
               本サービスは、次に掲げる場合を除いて、あらかじめユーザーの同意を得ることなく、第三者に個人情報を提供することはありません。ただし、個人情報保護法その他の法令で認められる場合を除きます。
               <ol className='list-decimal px-6 py-4'>
@@ -88,11 +89,11 @@ const PrivacyPolicy = () => {
             </li>
           </ol>
           <h2 className='text-xl mb-4 text-black/70'>第6条（退会時）</h2>
-          <p className='mb-6'>
+          <p className='mb-8'>
             ユーザーが本サービスの退会手続きを行った場合、本サービスはユーザーの個人情報を全て削除します。
           </p>
           <h2 className='text-xl mb-4 text-black/70'>第7条（プライバシーポリシーの変更）</h2>
-          <ol className='list-decimal mb-6 px-6'>
+          <ol className='list-decimal mb-8 px-6'>
             <li>
               本ポリシーの内容は、法令その他本ポリシーに別段の定めのある事項を除いて、ユーザーに通知することなく、変更することができるものとします。
             </li>
@@ -108,9 +109,14 @@ const PrivacyPolicy = () => {
           </h2>
           <p className='mb-1'>本ポリシーに関するお問い合わせは，下記の窓口までお願いいたします。</p>
           <p>
-            <Image src='/images/email_address.png' alt='Email' width={300} height={24} />
+            <Image src='/images/email_address.png' alt='メールアドレス' width={300} height={24} />
           </p>
-          <p className='mb-6 text-right'>以上</p>
+          <p className='mb-8 text-right'>以上</p>
+          <p className='mb-8 text-center'>
+            <Link href='/' className='hover:opacity-50 transition-all duration-100'>
+              トップページに戻る
+            </Link>
+          </p>
         </article>
       </main>
       <Footer />
