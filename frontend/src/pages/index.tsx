@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useSession, getSession } from 'next-auth/react'
 import CustomHead from '@/components/CustomHead'
 import Footer from '@/components/Footer'
@@ -85,13 +86,31 @@ const Home = ({ sutras, photos }: SutraListProps) => {
                   height={200}
                 />
               </div>
-
               <div className='flex flex-col justify-center items-center'>
                 <div className='text-left text-base sm:text-xl  md:text-2xl lg:text-2xl text-black/50 font-kinuta my-4 sm:my-4 md:my-4 lg:my-4 mx-6 sm:mx-12 md:mx-24 max-w-5xl'>
                   <div className='flex flex-col justify-center items-center'>
                     <p className='mb-12'>自分探しならぬ、自分なくしの旅へ ...</p>
                     <Login />
-                    <p className='text-sm font-notoSans'>※ 無料でご利用いただけます</p>
+                    <div className='text-left'>
+                      <p className='text-xs font-notoSans my-2'>
+                        ※上記ボタンをクリックすることで&nbsp;
+                        <Link
+                          className='text-xs font-notoSans underline text-black/35 hover:opacity-50 transition-all duration-100'
+                          href='/terms-of-service'
+                        >
+                          利用規約
+                        </Link>
+                        <span className='text-black/135'>・</span>
+                        <Link
+                          className='text-xs font-notoSans underline text-black/35 hover:opacity-50 transition-all duration-100'
+                          href='/privacy-policy'
+                        >
+                          プライバシーポリシー
+                        </Link>
+                        &nbsp;に同意したものとみなします
+                      </p>
+                      <p className='text-xs font-notoSans'>※ 無料でご利用いただけます</p>
+                    </div>
                     <div className='mt-4'>
                       <Image
                         src='/images/sample_index.png'
