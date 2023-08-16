@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import CustomHead from '@/components/CustomHead'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
@@ -106,7 +107,9 @@ const PrivacyPolicy = () => {
             第8条（お問い合わせ窓口）
           </h2>
           <p className='mb-1'>本ポリシーに関するお問い合わせは，下記の窓口までお願いいたします。</p>
-          <p className='mb-4 underline'>outdoor.heart.sutra@gmail.com</p>
+          <p>
+            <Image src='/images/email_address.png' alt='Email' width={300} height={24} />
+          </p>
           <p className='mb-6 text-right'>以上</p>
         </article>
       </main>
