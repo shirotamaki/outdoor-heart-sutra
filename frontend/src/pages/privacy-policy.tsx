@@ -9,8 +9,8 @@ const PrivacyPolicy = () => {
     <div className='flex flex-col min-h-screen'>
       <CustomHead title='privacy-policy' />
       <Header />
-      <main className='bg-beige flex flex-grow justify-center items-center'>
-        <article className='max-w-screen-sm  font-kinuta text-black/50 p-6'>
+      <main className='bg-beige flex flex-grow justify-center'>
+        <article className='max-w-screen-sm  font-kinuta text-black/50 p-8'>
           <h1 className='text-2xl mb-4 text-black/50 text-center'>プライバシーポリシー</h1>
           <p className='mb-8'>
             「アウトドア般若心経」（以下、「本サービス」といいます。）における、ユーザーの個人情報の取扱いについて、以下のとおりプライバシーポリシー（以下、「本ポリシー」といいます。）を定めます。
