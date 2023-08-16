@@ -73,7 +73,7 @@ const Home = ({ sutras, photos }: SutraListProps) => {
 
   return (
     <div>
-      <CustomHead title='Top' />
+      <CustomHead title='トップ' />
       {status !== 'authenticated' ? (
         <div className='flex flex-col min-h-screen'>
           <main className='bg-beige flex-grow'>

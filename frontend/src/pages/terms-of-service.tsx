@@ -6,7 +6,7 @@ import Header from '@/components/Header'
 const TermsOfService = () => {
   return (
     <div className='flex flex-col min-h-screen'>
-      <CustomHead title='terms-of-service' />
+      <CustomHead title='利用規約' />
       <Header />
       <main className='bg-beige flex flex-grow justify-center'>
         <article className='max-w-screen-sm  font-kinuta text-black/50 p-8'>
