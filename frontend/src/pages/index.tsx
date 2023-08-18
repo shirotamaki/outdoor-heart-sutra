@@ -73,7 +73,10 @@ const Home = ({ sutras, photos }: SutraListProps) => {
 
   return (
     <div>
-      <CustomHead title='トップ' />
+      <CustomHead
+        isHomePage={true}
+        description='アウトドア般若心経とは、街の看板から「般若心経」に含まれる文字を写真に収め管理することができるアプリです。'
+      />
       {status !== 'authenticated' ? (
         <div className='flex flex-col min-h-screen'>
           <main className='bg-beige flex-grow'>
@@ -87,7 +90,7 @@ const Home = ({ sutras, photos }: SutraListProps) => {
                 />
               </div>
               <div className='flex flex-col justify-center items-center'>
-                <div className='text-left text-base sm:text-xl  md:text-2xl lg:text-2xl text-black/50 font-kinuta my-4 sm:my-4 md:my-4 lg:my-4 mx-6 sm:mx-12 md:mx-24 max-w-5xl'>
+                <div className='text-left text-base md:text-xl lg:text-xl text-black/50 font-kinuta my-4 sm:my-4 md:my-4 lg:my-4 mx-6 sm:mx-12 md:mx-24 max-w-5xl'>
                   <div className='flex flex-col justify-center items-center'>
                     <p className='mb-12'>自分探しならぬ、自分なくしの旅へ ...</p>
                     <Login />

@@ -7,7 +7,11 @@ import Header from '@/components/Header'
 const PrivacyPolicy = () => {
   return (
     <div className='flex flex-col min-h-screen'>
-      <CustomHead title='プライバシーポリシー' />
+      <CustomHead
+        title='プライバシーポリシー'
+        description='アウトドア般若心経のプライバシーポリシーです。'
+        ogUrl='https://www.outdoor-heart-sutra.com/privacy-policy'
+      />
       <Header />
       <main className='bg-beige flex flex-grow justify-center'>
         <article className='max-w-screen-sm  font-kinuta text-black/50 p-8'>

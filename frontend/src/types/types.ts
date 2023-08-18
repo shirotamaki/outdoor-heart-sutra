@@ -6,7 +6,18 @@ export type ActionButtonProps = {
 }
 
 export type CustomHeadProps = {
-  title: string
+  title?: string
+  description?: string
+  ogImage?: string
+  ogUrl?: string
+  siteName?: string
+  favicon?: string
+  twitterCard?: string
+  twitterSite?: string
+  appleTouchIcons?: { size: string; href: string }[]
+  canonicalUrl?: string
+  lang?: string
+  isHomePage?: boolean
 }
 
 export type MenuProps = {
