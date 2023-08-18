@@ -6,7 +6,9 @@ import Header from '@/components/Header'
 const TermsOfService = () => {
   return (
     <div className='flex flex-col min-h-screen'>
-      <CustomHead title='利用規約' description='アウトドア般若心経の利用規約です。'
+      <CustomHead
+        title='利用規約'
+        description='アウトドア般若心経の利用規約です。'
         ogUrl='https://www.outdoor-heart-sutra.com/terms-of-service'
       />
       <Header />
