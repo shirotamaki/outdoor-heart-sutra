@@ -73,7 +73,8 @@ test.describe('Photo Workflow For Over Md Layout', () => {
       expect(deleteResponse.status).toBe(204)
     } catch (error) {
       // photoの削除を行うことが目的。Rails APIを叩いても事前にphotoを保存していない場合はエラーが返ってくる。そのためエラーが発生した場合は無視する。
-      console.error('Error occurred during API request:', error)
+      // デバッグ時にコメントアウトを解除する
+      // console.error('Error occurred during API request:', error)
     }
   })
 
