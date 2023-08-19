@@ -57,6 +57,13 @@ export type MarkerLocationProps = {
   }
 }
 
+export type MapWidthHeightProps = {
+  width?: number
+  height?: number
+}
+
+export type MapProps = MarkerLocationProps & MapWidthHeightProps
+
 // note
 export type NoteProps = {
   photoId: number
