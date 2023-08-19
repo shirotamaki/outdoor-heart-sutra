@@ -122,8 +122,10 @@ test.describe('Photo Workflow For Md Layout', () => {
     await page.waitForSelector('[data-testid="photo-address-for-md-layout"]', {
       timeout: 60000,
     })
-    const text = await page.textContent('[data-testid="photo-address-for-md-layout"]')
-    expect(text).toMatch(/住所/)
+    const address = await page.textContent('[data-testid="photo-address-for-md-layout"]')
+    expect(address).toMatch(/住所/)
+    const shootingDate = await page.textContent('[data-testid="photo-shootingDate-for-md-layout"]')
+    expect(shootingDate).toMatch(/撮影日/)
   })
 
   test('should return to reselection mode when clicked reselect-file-input-after-saving-photo-button-for-md-layout after saving photo', async () => {
