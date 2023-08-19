@@ -122,7 +122,9 @@ test.describe('Photo Workflow For Over Md Layout', () => {
     })
     const address = await page.textContent('[data-testid="photo-address-for-over-md-layout"]')
     expect(address).toMatch(/住所/)
-    const shootingDate = await page.textContent('[data-testid="photo-shootingDate-for-over-md-layout"]')
+    const shootingDate = await page.textContent(
+      '[data-testid="photo-shootingDate-for-over-md-layout"]',
+    )
     expect(shootingDate).toMatch(/撮影日/)
   })
 

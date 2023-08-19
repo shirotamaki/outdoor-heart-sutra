@@ -85,23 +85,22 @@ const SutraDetails = ({ sutra, photo }: SutraDetailsProps) => {
         ogUrl='https://www.outdoor-heart-sutra.com/sutras/[id]'
       />
       <Header />
-
-        <main className='p-4 flex-grow'>
-          {photo.image_url === null ? (
-            <div>
-              <PhotoUploadAndPreview sutraId={sutra.id} photoId={photo.id} sutra={sutra} />
+      <main className='p-4 flex-grow'>
+        {photo.image_url === null ? (
+          <div>
+            <PhotoUploadAndPreview sutraId={sutra.id} photoId={photo.id} sutra={sutra} />
+          </div>
+        ) : (
+          <div>
+            <div className='md:hidden'>
+              <SutraDetailsMdLayout sutra={sutra} photo={photo} />
             </div>
-          ) : (
-            <div>
-              <div className='md:hidden'>
-                <SutraDetailsMdLayout sutra={sutra} photo={photo} />
-              </div>
-              <div className='hidden md:flex'>
-                <SutraDetailsOverMdLayout sutra={sutra} photo={photo} />
-              </div>
+            <div className='hidden md:flex'>
+              <SutraDetailsOverMdLayout sutra={sutra} photo={photo} />
             </div>
-          )}
-        </main>
+          </div>
+        )}
+      </main>
       <Footer />
     </div>
   )
