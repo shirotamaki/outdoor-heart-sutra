@@ -91,7 +91,7 @@ const SutraDetailsMdLayout = ({ sutra, photo }: SutraDetailsProps) => {
           <div>
             <Map markerLocation={currentLocation} width={360} height={480} />
           </div>
-          <div className='m-2 flex justify-center'>
+          <div className='w-360 m-2 flex justify-center'>
             <div className='flex flex-col'>
               <div data-testid='photo-address-for-md-layout'>住所：{photo.address}</div>
               <div data-testid='photo-shootingDate-for-md-layout' className='mt-1'>
