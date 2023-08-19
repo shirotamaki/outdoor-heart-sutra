@@ -4,8 +4,9 @@ import { CustomHeadProps } from '@/types/types'
 const CustomHead = ({
   title = 'title',
   description = 'description',
-  ogImage = '/images/logo_main.png',
+  ogType = 'article',
   ogUrl = 'https://www.outdoor-heart-sutra.com',
+  ogImage = '/images/logo_main.png',
   siteName = 'アウトドア般若心経',
   favicon = '/images/favicons/favicon_a.png',
   twitterCard = 'summary_large_image',
@@ -23,19 +24,22 @@ const CustomHead = ({
   return (
     <Head>
       <title>{pageTitle}</title>
+
       <meta name='description' content={description} />
 
-      <meta property='og:type' content='article' />
       <meta property='og:title' content={pageTitle} />
       <meta property='og:description' content={description} />
+      <meta property='og:type' content={ogType} />
       <meta property='og:url' content={ogUrl} />
       <meta property='og:image' content={ogImage} />
       <meta property='og:site_name' content={siteName} />
       <meta property='og:locale' content={lang} />
 
       <meta name='twitter:card' content={twitterCard} />
-      <meta name='twitter:site' content={twitterSite} />
+      <meta name='twitter:title' content={pageTitle} />
+      <meta name='twitter:description' content={description} />
       <meta name='twitter:image' content={ogImage} />
+      <meta name='twitter:site' content={twitterSite} />
 
       <link rel='icon' type='image/png' sizes='16x16' href={favicon} />
       <link rel='icon' type='image/png' sizes='32x32' href={favicon} />

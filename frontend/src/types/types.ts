@@ -8,8 +8,9 @@ export type ActionButtonProps = {
 export type CustomHeadProps = {
   title?: string
   description?: string
-  ogImage?: string
+  ogType?: string
   ogUrl?: string
+  ogImage?: string
   siteName?: string
   favicon?: string
   twitterCard?: string
