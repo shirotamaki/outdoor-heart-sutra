@@ -38,7 +38,11 @@ const DeletePhotoForOverMdLayout = ({ photoId }: DeletePhotoProps) => {
 
   return (
     <>
-      <button data-testid='delete-photo-button-for-over-md-layout' onClick={openModal}>
+      <button
+        data-testid='delete-photo-button-for-over-md-layout'
+        onClick={openModal}
+        className='w-280 bg-gray-400 hover:bg-gray-300 text-white rounded-full font-notoSans text-sm mx-4 m-4 px-4 py-2'
+      >
         削除する
       </button>
       <Modal

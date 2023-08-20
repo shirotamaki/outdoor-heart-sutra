@@ -1,19 +1,14 @@
 import { GoogleMap, LoadScriptNext, MarkerF } from '@react-google-maps/api'
 import { useEffect, useState } from 'react'
 import { mapsApiKey } from '@/config/index'
-import { MarkerLocationProps } from '@/types/types'
-
-const containerStyle = {
-  width: '360px',
-  height: '480px',
-}
+import { MapProps } from '@/types/types'
 
 const center = {
   lat: 35.693905085681585,
   lng: 139.74912823866393,
 }
 
-const Map = ({ markerLocation }: MarkerLocationProps) => {
+const Map = ({ markerLocation, width, height }: MapProps) => {
   const [map, setMap] = useState<google.maps.Map | null>(null)
   const [isLoaded, setIsLoaded] = useState<boolean>(false)
 
@@ -22,6 +17,11 @@ const Map = ({ markerLocation }: MarkerLocationProps) => {
     lng: number
     img: string
   } | null>(null)
+
+  const containerStyle = {
+    width: width ? `${width}px` : '100%',
+    height: height ? `${height}px` : '100%',
+  }
 
   const handleMapLoad = (mapInstance: google.maps.Map) => {
     setMap(mapInstance)

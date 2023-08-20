@@ -1,4 +1,4 @@
-import { faTwitter } from '@fortawesome/free-brands-svg-icons'
+import { faXTwitter } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 
@@ -8,7 +8,7 @@ const TwitterLink = () => (
     className='hover:opacity-50 transition-all duration-100'
     data-testid='twitter-link'
   >
-    <FontAwesomeIcon icon={faTwitter} size='lg' />
+    <FontAwesomeIcon icon={faXTwitter} size='lg' />
   </Link>
 )
 

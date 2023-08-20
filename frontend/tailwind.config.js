@@ -18,6 +18,12 @@ module.exports = {
         notoSerif: ['Noto Serif', 'serif'],
         notoSans: ['Noto Sans JP', 'sans-serif'],
       },
+      width: {
+        280: '280px',
+        300: '300px',
+        360: '360px',
+        480: '480px',
+      },
     },
   },
   plugins: [],

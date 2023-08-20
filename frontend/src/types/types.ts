@@ -6,7 +6,19 @@ export type ActionButtonProps = {
 }
 
 export type CustomHeadProps = {
-  title: string
+  title?: string
+  description?: string
+  ogType?: string
+  ogUrl?: string
+  ogImage?: string
+  siteName?: string
+  favicon?: string
+  twitterCard?: string
+  twitterSite?: string
+  appleTouchIcons?: { size: string; href: string }[]
+  canonicalUrl?: string
+  lang?: string
+  isHomePage?: boolean
 }
 
 export type MenuProps = {
@@ -44,6 +56,13 @@ export type MarkerLocationProps = {
     img: string
   }
 }
+
+export type MapWidthHeightProps = {
+  width?: number
+  height?: number
+}
+
+export type MapProps = MarkerLocationProps & MapWidthHeightProps
 
 // note
 export type NoteProps = {
@@ -133,6 +152,7 @@ export type Photo = {
   latitude: number
   image_url: string
   cropped_image_url: string
+  created_at: string
   user_id: number
   sutra_id: number
 }
