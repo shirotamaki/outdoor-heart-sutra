@@ -60,3 +60,7 @@ end
 gem 'dockerfile-rails', '>= 1.2', group: :development
 
 gem 'aws-sdk-s3', require: false
+
+gem "sentry-ruby", "~> 5.10"
+
+gem "sentry-rails", "~> 5.10"
