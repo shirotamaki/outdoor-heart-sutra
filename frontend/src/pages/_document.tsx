@@ -26,7 +26,7 @@ class MyDocument extends Document {
           />
           <meta
             name='twitter:image'
-            content='https://www.outdoor-heart-sutra.com/images/logo_main.png'
+            content='https://www.outdoor-heart-sutra.com/images/bars.png'
           />
           <meta name='twitter:site' content='@outdoor_heart_sutra' />
         </Head>
