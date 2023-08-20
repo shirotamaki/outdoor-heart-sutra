@@ -24,7 +24,10 @@ class MyDocument extends Document {
             name='twitter:description'
             content='アウトドア般若心経とは、街の看板から「般若心経」に含まれる文字を写真に収め管理することができるアプリです。'
           />
-          <meta name='twitter:image' content='/images/logo_main.png' />
+          <meta
+            name='twitter:image'
+            content='https://www.outdoor-heart-sutra.com/images/logo_main.png'
+          />
           <meta name='twitter:site' content='@outdoor_heart_sutra' />
         </Head>
         <body>
