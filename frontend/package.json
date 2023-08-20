@@ -46,6 +46,7 @@
     "typescript": "5.0.2"
   },
   "devDependencies": {
+    "@flydotio/dockerfile": "^0.4.7",
     "@playwright/test": "^1.36.2",
     "@testing-library/dom": "^9.3.1",
     "@testing-library/jest-dom": "^5.16.5",
