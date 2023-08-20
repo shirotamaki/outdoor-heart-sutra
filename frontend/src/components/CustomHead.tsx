@@ -35,11 +35,11 @@ const CustomHead = ({
       <meta property='og:site_name' content={siteName} />
       <meta property='og:locale' content={lang} />
 
-      <meta name='twitter:card' content={twitterCard} />
+      {/* <meta name='twitter:card' content={twitterCard} />
       <meta name='twitter:title' content={pageTitle} />
       <meta name='twitter:description' content={description} />
       <meta name='twitter:image' content={ogImage} />
-      <meta name='twitter:site' content={twitterSite} />
+      <meta name='twitter:site' content={twitterSite} /> */}
 
       <link rel='icon' type='image/png' sizes='16x16' href={favicon} />
       <link rel='icon' type='image/png' sizes='32x32' href={favicon} />
