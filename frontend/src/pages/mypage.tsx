@@ -50,8 +50,6 @@ const MyPage = ({ photos, user }: MyPageProps) => {
     <div className='flex flex-col min-h-screen'>
       <CustomHead
         title='マイページ'
-        description='ユーザー情報を確認できます。'
-        ogUrl='https://www.outdoor-heart-sutra.com/mypage'
       />
       <Header />
       <main className=' bg-beige flex-grow'>

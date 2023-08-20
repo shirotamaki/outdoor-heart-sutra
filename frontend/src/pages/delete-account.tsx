@@ -28,8 +28,6 @@ const DeleteAccount = () => {
     <div className='flex flex-col min-h-screen'>
       <CustomHead
         title='退会'
-        description='アカウントを削除することができます。'
-        ogUrl='https://www.outdoor-heart-sutra.com/delete-account'
       />
       <Header />
       <main className=' bg-beige flex-grow'>

@@ -9,8 +9,6 @@ const ErrorPage: NextPage = () => {
     <div className='flex flex-col min-h-screen'>
       <CustomHead
         title='エラー'
-        description='エラーページです。トップページに戻りやり直してください。'
-        ogUrl='https://www.outdoor-heart-sutra.com/error'
       />
       <main className='bg-beige flex-grow'>
         <div className='flex flex-col justify-center items-center my-48'>

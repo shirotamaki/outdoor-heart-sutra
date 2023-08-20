@@ -27,8 +27,6 @@ const About = () => {
     <div className='flex flex-col min-h-screen'>
       <CustomHead
         title='説明'
-        description='アウトドア般若心経の説明ページです。'
-        ogUrl='https://www.outdoor-heart-sutra.com/about'
       />
       <Header />
       <main className='bg-beige flex flex-grow justify-center'>
