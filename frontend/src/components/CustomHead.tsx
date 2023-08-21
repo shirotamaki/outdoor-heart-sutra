@@ -12,8 +12,8 @@ const CustomHead = ({
   // twitterCard = 'summary_large_image',
   // twitterSite = '@outdoor_heart_sutra',
   // appleTouchIcons = [
-  //   { size: '32x32', href: '/images/apple-touch-icon.svg' },
-  //   { size: '180x180', href: '/images/apple-touch-icon.svg' },
+  //   { size: '32x32', href: '/images/apple-touch-icon.png' },
+  //   { size: '180x180', href: '/images/apple-touch-icon.png' },
   // ],
   canonicalUrl = 'https://www.outdoor-heart-sutra.com',
   // lang = 'ja',
