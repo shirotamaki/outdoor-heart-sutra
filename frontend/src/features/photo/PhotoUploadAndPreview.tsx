@@ -59,7 +59,7 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
           const convertedImage = await heic2any({
             blob: file,
             toType: 'image/jpeg',
-            quality: 0.1,
+            quality: 0,
           })
           if (Array.isArray(convertedImage)) {
             throw new Error('Unexpected multiple blobs')
