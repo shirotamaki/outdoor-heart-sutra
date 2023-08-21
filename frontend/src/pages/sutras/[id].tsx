@@ -81,8 +81,6 @@ const SutraDetails = ({ sutra, photo }: SutraDetailsProps) => {
     <div className='flex flex-col min-h-screen bg-beige'>
       <CustomHead
         title='詳細'
-        description='写経した文字の詳細情報になります。'
-        ogUrl='https://www.outdoor-heart-sutra.com/sutras/[id]'
       />
       <Header />
       <main className='p-4 flex-grow'>
