@@ -73,16 +73,14 @@ const Home = ({ sutras, photos }: SutraListProps) => {
 
   return (
     <div>
-      <CustomHead
-        isHomePage={true}
-      />
+      <CustomHead isHomePage={true} />
       {status !== 'authenticated' ? (
         <div className='flex flex-col min-h-screen'>
           <main className='bg-beige flex-grow'>
             <div className='flex flex-col justify-center items-center'>
               <div className='mt-12'>
                 <Image
-                  src='/images/logo_main.png'
+                  src='/images/logo.svg'
                   alt={'アウトドア般若心経のロゴ'}
                   width={640}
                   height={200}

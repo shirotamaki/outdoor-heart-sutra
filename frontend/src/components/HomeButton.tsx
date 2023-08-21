@@ -10,7 +10,7 @@ const HomeButton = ({ width, height }: HomeButtonProps) => {
         data-testid='homebutton-link'
       >
         <Image
-          src='/images/logo_main.png'
+          src='/images/logo.svg'
           alt={'アウトドア般若心経のロゴ'}
           width={width}
           height={height}
