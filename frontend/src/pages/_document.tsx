@@ -41,7 +41,7 @@ class MyDocument extends Document {
           />
           <meta
             name='twitter:image'
-            content='https://www.outdoor-heart-sutra.com/images/logo.svg'
+            content='https://www.outdoor-heart-sutra.com/images/twitter_card.png'
           />
           <meta name='twitter:site' content='@outdoor_heart_sutra' />
           {/* apple-touch-icon */}
