@@ -48,13 +48,11 @@ const MyPage = ({ photos, user }: MyPageProps) => {
 
   return (
     <div className='flex flex-col min-h-screen'>
-      <CustomHead
-        title='マイページ'
-      />
+      <CustomHead title='マイページ' />
       <Header />
       <main className=' bg-beige flex-grow'>
         <div className='flex flex-col justify-center items-center'>
-          <div className='my-12'>
+          <h1 className='my-12'>
             <Image
               src={session?.user?.image || ''}
               alt='UserIcon'
@@ -62,7 +60,7 @@ const MyPage = ({ photos, user }: MyPageProps) => {
               height={100}
               style={{ borderRadius: '50px' }}
             />
-          </div>
+          </h1>
           <ul className='font-kinuta text-black/50 text-xl mb-12'>
             <li>ユーザ名：{user.name}</li>
             <li>出家日：{formattedDate}</li>
@@ -75,7 +73,7 @@ const MyPage = ({ photos, user }: MyPageProps) => {
           </div>
           <Link
             href='/delete-account'
-            className='hover:opacity-50 transition-all duration-100 font-kinuta text-2xl text-black/75'
+            className='hover:opacity-50 transition-all duration-100 font-kinuta text-2xl text-black/75 mb-8'
           >
             退会する
           </Link>

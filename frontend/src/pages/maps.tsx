@@ -36,9 +36,7 @@ export const getServerSideProps: GetServerSideProps = async (
 function Maps({ photos }: PhotosProps) {
   return (
     <div className='flex flex-col h-screen'>
-      <CustomHead
-        title='全体地図'
-      />
+      <CustomHead title='全体地図' />
       <Header />
       <main data-testid='all-maps' className='flex-grow h-screen'>
         <AllMaps

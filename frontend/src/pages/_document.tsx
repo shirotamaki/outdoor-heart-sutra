@@ -29,10 +29,7 @@ class MyDocument extends Document {
           />
           <meta property='og:type' content='article' />
           <meta property='og:url' content='https://www.outdoor-heart-sutra.com' />
-          <meta
-            property='og:image'
-            content='https://www.outdoor-heart-sutra.com/images/logo_main.png'
-          />
+          <meta property='og:image' content='https://www.outdoor-heart-sutra.com/images/logo.svg' />
           <meta property='og:site_name' content='アウトドア般若心経' />
           <meta property='og:locale' content='ja' />
           {/* TwitterCard */}
@@ -44,14 +41,14 @@ class MyDocument extends Document {
           />
           <meta
             name='twitter:image'
-            content='https://www.outdoor-heart-sutra.com/images/logo_main.png'
+            content='https://www.outdoor-heart-sutra.com/images/logo.svg'
           />
           <meta name='twitter:site' content='@outdoor_heart_sutra' />
           {/* apple-touch-icon */}
           <link
             rel='apple-touch-icon'
             sizes='180x180'
-            href='frontend/public/images/favicons/apple-touch-icon_square_a.png'
+            href='frontend/public/images/apple-touch-icon.svg'
           />
         </Head>
         <body>
