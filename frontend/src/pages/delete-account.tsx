@@ -31,9 +31,8 @@ const DeleteAccount = () => {
       />
       <Header />
       <main className=' bg-beige flex-grow'>
-        <div className='flex flex-col justify-center items-center text-black/50 font-kinuta text-xl my-12'>
+        <div className='flex flex-col justify-center items-center text-black/50 font-kinuta text-xl m-12'>
           <h1 className='text-2xl mb-12'>アカウントを削除する</h1>
-
           <div className='items-left'>
             <p className='pb-4'>削除すると以下の情報が全て失われます</p>
             <ul className='list-disc px-6'>

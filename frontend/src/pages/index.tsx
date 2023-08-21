@@ -77,15 +77,15 @@ const Home = ({ sutras, photos }: SutraListProps) => {
       {status !== 'authenticated' ? (
         <div className='flex flex-col min-h-screen'>
           <main className='bg-beige flex-grow'>
-            <div className='flex flex-col justify-center items-center'>
-              <div className='mt-12'>
+            <div className='flex flex-col justify-center items-center p-4'>
+              <h1 className='mt-12'>
                 <Image
                   src='/images/logo.svg'
                   alt={'アウトドア般若心経のロゴ'}
                   width={640}
                   height={200}
                 />
-              </div>
+              </h1>
               <div className='flex flex-col justify-center items-center'>
                 <div className='text-left text-base md:text-xl lg:text-xl text-black/50 font-kinuta my-4 sm:my-4 md:my-4 lg:my-4 mx-6 sm:mx-12 md:mx-24 max-w-5xl'>
                   <div className='flex flex-col justify-center items-center'>

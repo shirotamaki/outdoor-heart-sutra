@@ -245,11 +245,11 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
         )}
       </div>
 
-      <div>
+      <div className='flex justify-center mb-8'>
         {!isSelectedImage && (
           <input
             role='button'
-            data-testid='file-input'
+            data-testid='flex file-input'
             type='file'
             accept='image/jpeg, image/png, image/heic'
             onChange={handleFileChange}
