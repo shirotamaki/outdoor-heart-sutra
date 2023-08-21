@@ -25,9 +25,7 @@ export const getServerSideProps: GetServerSideProps = async (
 const About = () => {
   return (
     <div className='flex flex-col min-h-screen'>
-      <CustomHead
-        title='説明'
-      />
+      <CustomHead title='説明' />
       <Header />
       <main className='bg-beige flex flex-grow justify-center'>
         <article className='max-w-screen-sm  font-kinuta text-black/50 p-8'>

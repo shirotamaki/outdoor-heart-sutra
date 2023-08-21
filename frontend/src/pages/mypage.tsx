@@ -48,9 +48,7 @@ const MyPage = ({ photos, user }: MyPageProps) => {
 
   return (
     <div className='flex flex-col min-h-screen'>
-      <CustomHead
-        title='マイページ'
-      />
+      <CustomHead title='マイページ' />
       <Header />
       <main className=' bg-beige flex-grow'>
         <div className='flex flex-col justify-center items-center'>

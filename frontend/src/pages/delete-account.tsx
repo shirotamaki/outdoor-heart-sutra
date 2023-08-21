@@ -26,9 +26,7 @@ export const getServerSideProps: GetServerSideProps = async (
 const DeleteAccount = () => {
   return (
     <div className='flex flex-col min-h-screen'>
-      <CustomHead
-        title='退会'
-      />
+      <CustomHead title='退会' />
       <Header />
       <main className=' bg-beige flex-grow'>
         <div className='flex flex-col justify-center items-center text-black/50 font-kinuta text-xl m-12'>

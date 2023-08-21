@@ -79,9 +79,7 @@ export const getServerSideProps: GetServerSideProps = async (
 const SutraDetails = ({ sutra, photo }: SutraDetailsProps) => {
   return (
     <div className='flex flex-col min-h-screen bg-beige'>
-      <CustomHead
-        title='詳細'
-      />
+      <CustomHead title='詳細' />
       <Header />
       <main className='p-4 flex-grow'>
         {photo.image_url === null ? (

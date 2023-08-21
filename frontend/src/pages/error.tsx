@@ -7,9 +7,7 @@ import Footer from '@/components/Footer'
 const ErrorPage: NextPage = () => {
   return (
     <div className='flex flex-col min-h-screen'>
-      <CustomHead
-        title='エラー'
-      />
+      <CustomHead title='エラー' />
       <main className='bg-beige flex-grow'>
         <div className='flex flex-col justify-center items-center my-48'>
           <h1 className='text-black/75 text-8xl font-notoSans mb-4'>404</h1>
