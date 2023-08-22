@@ -29,12 +29,6 @@ module Api
 
             photo.as_json.merge(image_url:, cropped_image_url:)
           end
-
-          # デバッグ用で一時的に追加
-          Rails.logger.debug '======================photos======s==========================='
-          Rails.logger.debug photos
-          Rails.logger.debug '======================photos======f==========================='
-
           render json: photos
         end
       end
@@ -46,11 +40,6 @@ module Api
 
         if photo.save
           head :ok
-
-          # デバッグ用で一時的に追加
-          Rails.logger.debug '======================photos======s=save=========================='
-          Rails.logger.debug photo
-          Rails.logger.debug '======================photos======f=save========================='
         else
           render json: { error: '保存に失敗しました' }, status: :unprocessable_entity
         end
@@ -62,12 +51,6 @@ module Api
         image_url = rails_blob_url(@photo.image) if @photo.image.attached?
         cropped_image_url = rails_blob_url(@photo.cropped_image) if @photo.cropped_image.attached?
         render json: @photo.as_json.merge(image_url:, cropped_image_url:)
-
-        # デバッグ用で一時的に追加
-        Rails.logger.debug '======================photos======s=show=========================='
-        Rails.logger.debug image_url
-        Rails.logger.debug cropped_image_url
-        Rails.logger.debug '======================photos======f=show=========================='
       end
 
       def update
