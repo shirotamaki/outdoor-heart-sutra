@@ -49,7 +49,7 @@ export default defineConfig({
       use: {
         ...devices['Desktop Chrome'],
         storageState: './playwright/setup/storage-state.json',
-        // headless: false,
+        headless: false,
       },
       dependencies: ['setup'],
     },
