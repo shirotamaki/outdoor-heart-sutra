@@ -24,7 +24,7 @@ https://www.outdoor-heart-sutra.com
 Google アカウントをお持ちの方はすぐに始めることができます。
 ![readme_demo_login](frontend/public/images/readme_demo_login.png)
 
-### 般若心経 278 文字の一覧
+### 般若心経 278 文字の一覧管理
 
 般若心経 278 文字の写経状況を一覧で確認することができます。
 ![readme_demo_index](frontend/public/images/readme_demo_index.png)
@@ -34,7 +34,7 @@ Google アカウントをお持ちの方はすぐに始めることができま�
 HEIC,JPEG,PNG 形式の写真を登録することができます。
 ![readme_demo_create_photo.png](frontend/public/images/readme_demo_create_photo.png)
 
-### メモの編集
+### メモの登録
 
 メモは 100 文字まで登録が可能です。
 ![readme_demo_show.png](frontend/public/images/readme_demo_show.png)
@@ -45,7 +45,7 @@ HEIC,JPEG,PNG 形式の写真を登録することができます。
 ![readme_demo_maps.png](frontend/public/images/readme_demo_maps.png)
 
 ### マイページ
-
+出家日（サービスを開始した日）と写経済みの文字の総数を確認することができます。退会の手続きもこちらから行うことができます。
 ![readme_demo_mypage.png](frontend/public/images/readme_demo_mypage.png)
 
 ## 開発環境
@@ -63,7 +63,6 @@ HEIC,JPEG,PNG 形式の写真を登録することができます。
 
 - バックエンド
   - Fly.io
-  - Amazon S3
 - フロントエンド
   - Vercel
 
