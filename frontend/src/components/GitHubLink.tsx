@@ -8,7 +8,13 @@ const GitHubLink = () => (
     className='hover:opacity-50 transition-all duration-100'
     data-testid='github-link'
   >
-    <FontAwesomeIcon icon={faGithub} size='lg' />
+    <FontAwesomeIcon
+      icon={faGithub}
+      style={{
+        width: '18px',
+        height: '18px',
+      }}
+    />
   </Link>
 )
 

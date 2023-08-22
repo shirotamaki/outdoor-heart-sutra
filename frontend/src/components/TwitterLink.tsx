@@ -8,7 +8,13 @@ const TwitterLink = () => (
     className='hover:opacity-50 transition-all duration-100'
     data-testid='twitter-link'
   >
-    <FontAwesomeIcon icon={faXTwitter} size='lg' />
+    <FontAwesomeIcon
+      icon={faXTwitter}
+      style={{
+        width: '18px',
+        height: '18px',
+      }}
+    />
   </Link>
 )
 

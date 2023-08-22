@@ -22,7 +22,7 @@ const Footer = () => {
             プライバシーポリシー
           </Link>
         </nav>
-        <nav className='space-x-6 mb-2'>
+        <nav className='flex flex-row space-x-4 mb-2'>
           <TwitterLink />
           <GitHubLink />
         </nav>
