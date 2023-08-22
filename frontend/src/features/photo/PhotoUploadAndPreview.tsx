@@ -231,7 +231,7 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
         {!isSelectedImage && (
           <input
             role='button'
-            data-testid='flex file-input'
+            data-testid='file-input'
             type='file'
             accept='image/jpeg, image/png, image/heic'
             onChange={handleFileChange}
