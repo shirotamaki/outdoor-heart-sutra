@@ -33,11 +33,6 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
   const reverseGeocodeResult = useReverseGeocode(location)
   const address = reverseGeocodeResult || null
 
-  // デバッグ用で一時的に追加
-  useEffect(() => {
-    console.log('Location updated:', location)
-  }, [location])
-
   const onCropComplete = useCallback(async (croppedArea: Area, croppedAreaPixels: Area) => {
     setCroppedAreaPixels(croppedAreaPixels)
   }, [])
@@ -50,9 +45,6 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
 
       await fetchLocation({ file })
 
-      // デバッグ用で一時的に追加
-      console.log(file)
-
       try {
         const heic2any = (await import('heic2any')).default
         if (file.type === 'image/heic') {
@@ -64,9 +56,6 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
           if (Array.isArray(convertedImage)) {
             throw new Error('Unexpected multiple blobs')
           }
-
-          // デバッグ用で一時的に追加
-          console.log(convertedImage)
 
           setPreviewUrl(URL.createObjectURL(convertedImage))
           setOriginalBlob(convertedImage)
@@ -88,9 +77,6 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
     const croppedImageUrl = URL.createObjectURL(croppedBlob)
     setCroppedImage(croppedImageUrl)
     setCroppedBlob(croppedBlob)
-
-    // デバッグ用で一時的に追加
-    console.log('Cropped Blob:', croppedBlob)
   }, [previewImage, croppedAreaPixels])
 
   const handleFileCancel = () => {
@@ -109,10 +95,6 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
   }
 
   const savePhotoData = async () => {
-    // デバッグ用で一時的に追加
-    console.log('Original Blob:', originalBlob)
-    console.log('Cropped Blob:', croppedBlob)
-
     if (isSaving) return
     setIsSaving(true)
 
@@ -249,7 +231,7 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
         {!isSelectedImage && (
           <input
             role='button'
-            data-testid='flex file-input'
+            data-testid='file-input'
             type='file'
             accept='image/jpeg, image/png, image/heic'
             onChange={handleFileChange}
