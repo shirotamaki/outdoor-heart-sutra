@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import GitHubLink from '@/components/GitHubLink'
+import SuzuriLink from '@/components/SuzuriLink'
 import TwitterLink from '@/components/TwitterLink'
 
 const Footer = () => {
@@ -25,6 +26,7 @@ const Footer = () => {
         <nav className='flex flex-row space-x-4 mb-2'>
           <TwitterLink />
           <GitHubLink />
+          <SuzuriLink width={18} height={18} />
         </nav>
         <small className='md:text-base text-xs'>© 2023 shirotamaki</small>
       </div>

@@ -51,4 +51,10 @@ test.describe('Footer Navigation Links', () => {
     const githubLink = await page.getByTestId('github-link').getAttribute('href')
     expect(githubLink).toBe('https://github.com/shirotamaki/outdoor-heart-sutra')
   })
+
+  test('should have correct url for suzuri-link', async () => {
+    await page.goto(baseURL)
+    const suzuriLink = await page.getByTestId('suzuri-link').getAttribute('href')
+    expect(suzuriLink).toBe('https://suzuri.jp/od_heart_sutra')
+  })
 })
