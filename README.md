@@ -17,7 +17,7 @@ Google アカウントがあれば無料でご利用いただけます。
 https://www.outdoor-heart-sutra.com
 ```
 
-## 主な機能
+## 機能
 
 ### Google 認証ログイン
 
@@ -41,7 +41,7 @@ HEIC,JPEG,PNG 形式の写真を登録することができます。
 
 ### 全体地図の確認
 
-写経済みの漢字の位置情報を Google Maps 上で確認することができます。写真をクリックすると詳細ページに遷移できます。
+写経済みの文字の位置情報を Google Maps 上で確認することができます。写真をクリックすると詳細ページに遷移できます。
 ![readme_demo_maps.png](frontend/public/images/readme_demo_maps.png)
 
 ### マイページ
