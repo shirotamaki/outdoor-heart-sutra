@@ -96,6 +96,7 @@ $ rails s
 ### フロントエンド
 
 ```
+$ cd outdoor-heart-sutra/frontend
 $ npm install
 $ npm run dev
 ```
