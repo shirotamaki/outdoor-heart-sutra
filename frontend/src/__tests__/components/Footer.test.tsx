@@ -12,6 +12,7 @@ describe('Footer', () => {
 
       expect(screen.getByTestId('twitter-link')).toBeInTheDocument()
       expect(screen.getByTestId('github-link')).toBeInTheDocument()
+      expect(screen.getByTestId('suzuri-link')).toBeInTheDocument()
     })
   })
 })
