@@ -31,7 +31,7 @@ export type MobileMenuProps = {
   toggleMenu: () => void
 }
 
-export type HomeButtonProps = {
+export type ButtonProps = {
   width: number
   height: number
 }

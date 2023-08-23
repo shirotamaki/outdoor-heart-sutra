@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { HomeButtonProps } from '@/types/types'
+import { ButtonProps } from '@/types/types'
 
-const HomeButton = ({ width, height }: HomeButtonProps) => {
+const HomeButton = ({ width, height }: ButtonProps) => {
   return (
     <Link href='/'>
       <div
