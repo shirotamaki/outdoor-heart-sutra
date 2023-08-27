@@ -11,10 +11,10 @@ RSpec.describe 'Api' do
 
       let(:valid_attributes) do
         {
-          noteData: 'Test Note',
-          latitudeData: '35.693539069879535',
-          longitudeData: '139.74961104672445',
-          addressData: 'Tokyo, Japan',
+          noteData: photo.note,
+          latitudeData: photo.latitude,
+          longitudeData: photo.longitude,
+          addressData: photo.address,
           currentUserId: user.id,
           currentSutraId: sutra.id
         }
@@ -22,7 +22,7 @@ RSpec.describe 'Api' do
 
       let(:invalid_attributes) do
         {
-          noteData: 'a' * 257,
+          noteData: 'a' * 141,
           latitudeData: nil,
           longitudeData: nil,
           addressData: nil,
@@ -138,7 +138,7 @@ RSpec.describe 'Api' do
           end
 
           it 'updates the photo' do
-            expect(photo.note).to eq('Test Note')
+            expect(photo.note).to eq('a' * 140)
             expect(photo.latitude).to eq(35.693539069879535)
             expect(photo.longitude).to eq(139.74961104672445)
             expect(photo.address).to eq('Tokyo, Japan')

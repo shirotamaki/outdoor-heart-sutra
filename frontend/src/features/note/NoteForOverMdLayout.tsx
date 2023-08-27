@@ -20,8 +20,8 @@ const NoteForOverMdLayout = ({
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const input = event.target.value
-    if (input.length > 100) {
-      toast.warning('メモは100文字を超えることはできません')
+    if (input.length > 140) {
+      toast.warning('メモは140文字を超えることはできません')
       return
     }
     setNote(input)
