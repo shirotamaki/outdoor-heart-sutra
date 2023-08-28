@@ -2,7 +2,7 @@
 
 require 'image_processing/vips'
 
-module Api
+module API
   module V1
     class PhotosController < ApplicationController
       skip_before_action :verify_authenticity_token

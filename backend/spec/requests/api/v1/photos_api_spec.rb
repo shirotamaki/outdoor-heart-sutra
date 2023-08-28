@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Api' do
+RSpec.describe 'API' do
   describe 'V1' do
     describe 'Photos', type: :request do
       let!(:user) { FactoryBot.create(:user) }

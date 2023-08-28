@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Api' do
+RSpec.describe 'API' do
   describe 'V1' do
     describe 'Sutras', type: :request do
       let(:sutras) { CSV.read(Rails.root.join('db', 'sutras_kanji_278_moji.csv')).flatten }

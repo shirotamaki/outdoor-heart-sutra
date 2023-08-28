@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  namespace :api do
+  namespace :API do
     namespace :v1 do
       get 'users/find', to: 'users#find_user'
       resources :users, only: [:create, :show]
