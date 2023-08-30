@@ -60,20 +60,22 @@ RSpec.describe 'API' do
       end
 
       describe 'DELETE /destroy' do
+        let(:non_existent_user_id) { 9999 }
+
         context 'when user exists' do
-          before { delete "/api/v1/users/#{user.email}" }
+          before { delete "/api/v1/users/#{user.id}" }
 
           it 'destroys the user' do
             expect(response).to have_http_status(:no_content)
           end
 
           it 'removes the user from the database' do
-            expect(User.find_by(email: user.email)).to be_nil
+            expect(User.find_by(id: user.id)).to be_nil
           end
         end
 
         context 'when user does not exist' do
-          before { delete '/api/v1/users/user-does-not-exist@example.com' }
+          before { delete "/api/v1/users/#{non_existent_user_id}" }
 
           it 'returns status code 404' do
             expect(response).to have_http_status(:not_found)
