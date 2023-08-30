@@ -8,7 +8,7 @@ module API
 
       def create
         user = User.find_by(provider: params[:provider], uid: params[:uid])
-        
+
         if user.nil?
           user = User.create(provider: params[:provider], uid: params[:uid], name: params[:name], email: params[:email])
           unless user.valid?
