@@ -11,7 +11,7 @@ module API
         if user.nil?
           user = User.create(provider: params[:provider], uid: params[:uid], name: params[:name], email: params[:email])
           unless user.valid?
-            render json: { error: "ログインに失敗しました" }, status: :unprocessable_entity
+            render json: { error: 'ログインに失敗しました' }, status: :unprocessable_entity
             return
           end
         end
@@ -33,7 +33,7 @@ module API
           user.destroy
           head :no_content
         else
-          render json: { error: "ユーザーが見つかりませんでした" }, status: :not_found
+          render json: { error: 'ユーザーが見つかりませんでした' }, status: :not_found
         end
       rescue StandardError => e
         render json: { error: e.message }, status: :internal_server_error

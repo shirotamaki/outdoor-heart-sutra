@@ -5,11 +5,11 @@ module API
     class FindUsersController < ApplicationController
       def index
         user = User.find_by(email: params[:email])
-        
+
         if user
           render json: { user_id: user.id }, status: :ok
         else
-          render json: { error: "ユーザーが見つかりませんでした" }, status: :not_found
+          render json: { error: 'ユーザーが見つかりませんでした' }, status: :not_found
         end
       end
     end

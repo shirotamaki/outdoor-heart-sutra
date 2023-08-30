@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "image_processing/vips"
+require 'image_processing/vips'
 
 module API
   module V1
@@ -12,7 +12,7 @@ module API
         user = User.find_by(id: params[:id])
 
         if user.nil?
-          render json: { error: "ユーザーが見つかりません" }, status: :not_found
+          render json: { error: 'ユーザーが見つかりません' }, status: :not_found
         else
           photos = user.photos.map do |photo|
             image_url = rails_blob_url(photo.image) if photo.image.attached?
@@ -32,10 +32,10 @@ module API
         if photo.save
           head :ok
         else
-          render json: { error: "保存に失敗しました" }, status: :unprocessable_entity
+          render json: { error: '保存に失敗しました' }, status: :unprocessable_entity
         end
       rescue StandardError => e
-        render json: { error: "保存に失敗しました", errors: e.message }, status: :internal_server_error
+        render json: { error: '保存に失敗しました', errors: e.message }, status: :internal_server_error
       end
 
       def show
@@ -51,10 +51,10 @@ module API
 
           head :ok
         else
-          render json: { error: "更新に失敗しました" }, status: :unprocessable_entity
+          render json: { error: '更新に失敗しました' }, status: :unprocessable_entity
         end
       rescue StandardError => e
-        render json: { error: "更新に失敗しました", details: e.message }, status: :internal_server_error
+        render json: { error: '更新に失敗しました', details: e.message }, status: :internal_server_error
       end
 
       def destroy
@@ -64,7 +64,7 @@ module API
         @photo.destroy
         head :no_content
       rescue StandardError => e
-        render json: { error: "削除に失敗しました", details: e.message }, status: :internal_server_error
+        render json: { error: '削除に失敗しました', details: e.message }, status: :internal_server_error
       end
 
       private
@@ -80,18 +80,18 @@ module API
           longitude: params[:longitudeData],
           address: params[:addressData],
           user_id: params[:currentUserId],
-          sutra_id: params[:currentSutraId],
+          sutra_id: params[:currentSutraId]
         }.compact
       end
 
       def convert_to_webp(image)
-        webp_image = ImageProcessing::Vips.source(image).convert("webp").call
+        webp_image = ImageProcessing::Vips.source(image).convert('webp').call
 
         ActionDispatch::Http::UploadedFile.new(
           tempfile: webp_image,
-          filename: "#{image.original_filename.split(".").first}.webp",
-          original_filename: "#{image.original_filename.split(".").first}.webp",
-          content_type: "image/webp",
+          filename: "#{image.original_filename.split('.').first}.webp",
+          original_filename: "#{image.original_filename.split('.').first}.webp",
+          content_type: 'image/webp'
         )
       end
     end
