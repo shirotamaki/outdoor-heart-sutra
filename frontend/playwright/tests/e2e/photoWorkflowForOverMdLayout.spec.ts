@@ -58,7 +58,7 @@ test.describe('Photo Workflow For Over Md Layout', () => {
 
   test.afterEach(async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/v1/photos/find', {
+      const response = await axios.get('http://localhost:3000/api/v1/find_photos', {
         params: {
           sutraId: 1,
           userId: 1,

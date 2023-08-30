@@ -19,7 +19,7 @@ describe('fetchPhotoId', () => {
 
     const result = await fetchPhotoId(sutraId, userId)
 
-    expect(axios.get).toHaveBeenCalledWith(`${railsApiUrl}/api/v1/photos/find`, {
+    expect(axios.get).toHaveBeenCalledWith(`${railsApiUrl}/api/v1/find_photos`, {
       params: {
         sutraId: sutraId,
         userId: userId,

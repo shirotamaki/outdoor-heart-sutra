@@ -9,7 +9,7 @@ RSpec.describe 'API' do
 
       describe 'GET /find_user' do
         context 'when user exists' do
-          before { get '/api/v1/users/find', params: { email: user.email } }
+          before { get '/api/v1/find_users', params: { email: user.email } }
 
           it "returns the user's ID" do
             expect(JSON.parse(response.body)['user_id']).to eq(user.id)
@@ -21,7 +21,7 @@ RSpec.describe 'API' do
         end
 
         context 'when user does not exist' do
-          before { get '/api/v1/users/find', params: { email: 'user-does-not-exist@example.com' } }
+          before { get '/api/v1/find_users', params: { email: 'user-does-not-exist@example.com' } }
 
           it 'returns an error message' do
             expect(JSON.parse(response.body)).to have_key('error')

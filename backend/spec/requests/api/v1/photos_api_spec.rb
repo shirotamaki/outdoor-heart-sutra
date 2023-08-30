@@ -35,10 +35,10 @@ RSpec.describe 'API' do
         {}
       end
 
-      # find_photo_by_sutra_and_user
-      describe 'GET /api/v1/photos/find' do
+      # find_photos#index
+      describe 'GET /api/v1/find_photos' do
         before do
-          get '/api/v1/photos/find', params: { sutraId: sutra.id, userId: user.id }
+          get '/api/v1/find_photos', params: { sutraId: sutra.id, userId: user.id }
         end
 
         context 'when photo exists' do
@@ -56,7 +56,7 @@ RSpec.describe 'API' do
           let!(:other_sutra) { FactoryBot.create(:sutra) }
 
           before do
-            get '/api/v1/photos/find', params: { sutraId: other_sutra.id, userId: other_user.id }
+            get '/api/v1/find_photos', params: { sutraId: other_sutra.id, userId: other_user.id }
           end
 
           it 'returns an error message' do
@@ -69,8 +69,8 @@ RSpec.describe 'API' do
         end
       end
 
-      # index_by_user
-      describe 'GET /api/v1/users/:user_id/photos' do
+      # photos#index
+      describe 'GET /api/v1/users/:id/photos' do
         before do
           get "/api/v1/users/#{user.id}/photos"
         end
@@ -84,7 +84,7 @@ RSpec.describe 'API' do
         end
       end
 
-      # create
+      # photos#create
       describe 'POST /api/v1/photos' do
         context 'with valid parameters' do
           it 'creates a new photo' do
@@ -114,7 +114,7 @@ RSpec.describe 'API' do
         end
       end
 
-      # show
+      # photos#show
       describe 'GET /api/v1/photos/:id' do
         before do
           get "/api/v1/photos/#{photo.id}"
@@ -129,7 +129,7 @@ RSpec.describe 'API' do
         end
       end
 
-      # update
+      # photos#update
       describe 'PATCH /api/v1/photos/:id' do
         context 'with valid parameters' do
           before do
@@ -168,7 +168,7 @@ RSpec.describe 'API' do
         end
       end
 
-      # destroy
+      # photos#destroy
       describe 'DELETE /api/v1/photos/:id' do
         it 'destroys the photo' do
           expect do
