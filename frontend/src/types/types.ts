@@ -123,6 +123,11 @@ export type SutraListProps = {
   photos: Photo[]
 }
 
+// user
+export type CuttentUserIdProps = {
+  currentUserId: number | null
+}
+
 // hooks
 export type LocationProps = { lat: number; lng: number } | null
 

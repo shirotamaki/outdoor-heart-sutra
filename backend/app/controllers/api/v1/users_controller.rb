@@ -8,6 +8,7 @@ module API
 
       def create
         user = User.find_by(provider: params[:provider], uid: params[:uid])
+        
         if user.nil?
           user = User.create(provider: params[:provider], uid: params[:uid], name: params[:name], email: params[:email])
           unless user.valid?
@@ -28,7 +29,8 @@ module API
       end
 
       def destroy
-        user = User.find_by(email: params[:email])
+        user = User.find_by(id: params[:id])
+
         if user
           user.destroy
           head :no_content

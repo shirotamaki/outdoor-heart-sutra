@@ -3,9 +3,11 @@ import { useSession, signOut } from 'next-auth/react'
 import { useState } from 'react'
 import Modal from 'react-modal'
 import { railsApiUrl } from '@/config/index'
+import { CuttentUserIdProps } from '@/types/types'
 
-const DeleteUser = () => {
+const DeleteUser = ({ currentUserId }: CuttentUserIdProps) => {
   const { data: session } = useSession()
+
   const [modalIsOpen, setIsOpen] = useState(false)
 
   const openModal = () => {
@@ -23,7 +25,7 @@ const DeleteUser = () => {
     }
 
     try {
-      const response = await axios.delete(`${railsApiUrl}/api/v1/users/${session.user.email}`)
+      const response = await axios.delete(`${railsApiUrl}/api/v1/users/${currentUserId}`)
       if (response.status === 200 || response.status === 204) {
         signOut({
           callbackUrl: `/`,

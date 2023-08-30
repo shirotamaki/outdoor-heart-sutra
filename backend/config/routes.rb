@@ -6,11 +6,8 @@ Rails.application.routes.draw do
 
       get 'users/:id/photos', to: 'photos#index'
       resources :photos, only: [:create, :show, :update, :destroy]
-
       resources :sutras, only: [:index, :show]
-      
-      resources :users, only: [:create, :show]
-      delete "users/:email", to: "users#destroy", constraints: { email: /[^\/]+/ }
+      resources :users, only: [:create, :show, :destroy]
     end
   end
 end
