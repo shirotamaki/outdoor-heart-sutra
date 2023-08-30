@@ -20,7 +20,7 @@ export const getServerSideProps: GetServerSideProps = async (
       },
     }
   }
-  
+
   const currentUserId = await fetchUserId(session.user.email)
 
   return {
