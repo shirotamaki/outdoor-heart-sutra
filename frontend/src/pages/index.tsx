@@ -75,56 +75,60 @@ const Home = ({ sutras, photos }: SutraListProps) => {
     <div>
       <CustomHead isHomePage={true} ogType='website' />
       {status !== 'authenticated' ? (
-        <div className='flex flex-col min-h-screen'>
+        <div className='flex flex-col min-h-screen text-originalBlack font-kinuta'>
           <main className='bg-beige flex-grow'>
             <div className='flex flex-col justify-center items-center p-4'>
-              <h1 className='mt-12'>
+              <h1 className='mt-12 mb-2'>
                 <Image
                   src='/images/logo.svg'
                   alt={'アウトドア般若心経のロゴ'}
                   width={640}
-                  height={200}
+                  height={180}
                 />
               </h1>
               <div className='flex flex-col justify-center items-center'>
-                <div className='text-left text-base md:text-xl lg:text-xl text-black/50 font-kinuta my-4 sm:my-4 md:my-4 lg:my-4 mx-6 sm:mx-12 md:mx-24 max-w-5xl'>
-                  <div className='flex flex-col justify-center items-center'>
-                    <p className='mb-12'>自分探しならぬ、自分なくしの旅へ ...</p>
-                    <Login />
-                    <div className='text-left'>
-                      <p className='text-xs font-notoSans my-2'>
-                        ※上記ボタンをクリックすることで&nbsp;
-                        <Link
-                          className='text-xs font-notoSans underline text-black/35 hover:opacity-50 transition-all duration-100'
-                          href='/terms-of-service'
-                        >
-                          利用規約
-                        </Link>
-                        <span className='text-black/135'>・</span>
-                        <Link
-                          className='text-xs font-notoSans underline text-black/35 hover:opacity-50 transition-all duration-100'
-                          href='/privacy-policy'
-                        >
-                          プライバシーポリシー
-                        </Link>
-                        &nbsp;に同意したものとみなします
-                      </p>
-                      <p className='text-xs font-notoSans'>※ 無料でご利用いただけます</p>
-                    </div>
-                    <div className='mt-4'>
-                      <Image
-                        src='/images/sample_index.png'
-                        alt='Demo Image'
-                        width={480}
-                        height={270}
-                      />
-                    </div>
+                <div className='flex flex-col justify-center items-center'>
+                  <p className='mb-12'>自分探しならぬ、自分なくしの旅へ ...</p>
+                  <Login />
+                  <div className='text-left'>
+                    <p className='text-xs font-notoSans my-2 leading-normal'>
+                      ※上記ボタンをクリックすることで&nbsp;
+                      <Link
+                        className='text-xs font-notoSans underline text-black/35 hover:opacity-50 transition-all duration-100'
+                        href='/terms-of-service'
+                      >
+                        利用規約
+                      </Link>
+                      <span className='text-black/135'>・</span>
+                      <Link
+                        className='text-xs font-notoSans underline text-black/35 hover:opacity-50 transition-all duration-100'
+                        href='/privacy-policy'
+                      >
+                        プライバシーポリシー
+                      </Link>
+                      &nbsp;に同意したものとみなします
+                    </p>
+                    <p className='text-xs font-notoSans'>※ 無料でご利用いただけます</p>
                   </div>
-                  <p className='my-4'>
+                  <div className='mt-4'>
+                    <Image
+                      src='/images/sample_index.png'
+                      alt='Demo Image'
+                      width={530}
+                      height={450}
+                    />
+                  </div>
+                </div>
+                <div className='w-full md:w-640 mb-12 text-left text-base md:text-xl lg:text-xl'>
+                  <p className='w-full mt-4 leading-normal md:leading-8'>
                     アウトドア般若心経とは、「般若心経」278文字を、家を出て（これを「出家」と称す）、街の看板から経文に含まれている文字を捜し写真に収める（これを「写経（写真経）」と称す）行為のことを指します。
                   </p>
-                  <p className='my-4'>必要なのはカメラとGoogleアカウントのみ。</p>
-                  <p className='my-4'>アウトドア般若心経を通して般若心経の真髄を感じてください。</p>
+                  <p className='my-2 leading-normal md:leading-8'>
+                    必要なのはカメラとGoogleアカウントのみ。
+                  </p>
+                  <p className='my-2 leading-normal md:leading-8'>
+                    アウトドア般若心経を通して般若心経の真髄を感じてください。
+                  </p>
                 </div>
               </div>
             </div>
