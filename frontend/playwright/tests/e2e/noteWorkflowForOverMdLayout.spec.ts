@@ -59,8 +59,8 @@ test.describe('Note Workflow For Over Md Layout', () => {
     try {
       const response = await axios.get('http://localhost:3000/api/v1/find_photos', {
         params: {
-          sutraId: 3, // 摩
-          userId: 1,
+          sutra_id: 3, // 摩
+          user_id: 1,
         },
       })
       // responseが空の場合は何もせず終了する。これにより、テストが不必要なdelete操作を試みるのを防ぐ。

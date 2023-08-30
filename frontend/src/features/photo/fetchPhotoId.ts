@@ -8,8 +8,8 @@ const fetchPhotoId = async (
   try {
     const response = await axios.get(`${railsApiUrl}/api/v1/find_photos`, {
       params: {
-        sutraId: currentSutraId,
-        userId: currentUserId,
+        sutra_id: currentSutraId,
+        user_id: currentUserId,
       },
     })
 

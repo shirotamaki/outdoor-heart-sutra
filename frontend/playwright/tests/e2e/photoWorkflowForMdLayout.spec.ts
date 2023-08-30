@@ -62,8 +62,8 @@ test.describe('Photo Workflow For Md Layout', () => {
       const response = await axios.get('http://localhost:3000/api/v1/find_photos', {
         params: {
           // コンフリクトするためsutraIdは2にしている
-          sutraId: 2, // 説
-          userId: 1,
+          sutra_id: 2, // 説
+          user_id: 1,
         },
       })
       // responseが空の場合は何もせず終了する。これにより、テストが不必要なdelete操作を試みるのを防ぐ。

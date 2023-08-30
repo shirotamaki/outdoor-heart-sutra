@@ -4,7 +4,7 @@ module API
   module V1
     class FindPhotosController < ApplicationController
       def index
-        photo = Photo.find_by(sutra_id: params[:sutraId], user_id: params[:userId])
+        photo = Photo.find_by(sutra_id: params[:sutra_id], user_id: params[:user_id])
 
         if photo
           render json: { photo_id: photo.id }, status: :ok

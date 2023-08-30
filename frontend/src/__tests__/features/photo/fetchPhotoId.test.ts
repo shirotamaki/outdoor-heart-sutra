@@ -21,8 +21,8 @@ describe('fetchPhotoId', () => {
 
     expect(axios.get).toHaveBeenCalledWith(`${railsApiUrl}/api/v1/find_photos`, {
       params: {
-        sutraId: sutraId,
-        userId: userId,
+        sutra_id: sutraId,
+        user_id: userId,
       },
     })
     expect(result).toEqual(expectedPhotoId)
