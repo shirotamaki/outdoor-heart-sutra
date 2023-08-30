@@ -9,7 +9,7 @@ module API
       before_action :set_photo, only: %i[show update destroy]
 
       def index
-        user = User.find_by(id: params[:id])
+        user = User.find_by(id: params[:user_id])
 
         if user.nil?
           render json: { error: 'ユーザーが見つかりません' }, status: :not_found
