@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { useSession } from 'next-auth/react'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import DesktopMenu from '@/components/DesktopMenu'
 import HomeButton from '@/components/HomeButton'
 import MobileMenu from '@/components/MobileMenu'
@@ -12,8 +12,30 @@ const Header = () => {
   const { status } = useSession()
   const isAuthenticated = status === 'authenticated'
 
+  const insideRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const el = insideRef.current
+
+    if(!el) return
+
+    const handleClickOutside = (e: MouseEvent) => {
+        if (!el?.contains(e.target as Node)) {
+          setIsMenuOpen(false)
+        } else {
+          return
+        }
+    }
+
+    document.addEventListener('click', handleClickOutside)
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside)
+    }
+  }, [insideRef])
+
   return (
-    <header className='bg-beige font-reggae text-black/50 border-b border-white pt-4 px-2'>
+    <header className='bg-beige font-reggae text-originalBlack border-b border-white pt-2 px-2'>
       <div className='container mx-auto flex justify-between items-center '>
         <div className='hidden xl:flex' data-testid='homebutton-xl-link'>
           <HomeButton width={300} height={96} />
@@ -21,12 +43,12 @@ const Header = () => {
         <div className='hidden md:flex xl:hidden' data-testid='homebutton-md-link'>
           <HomeButton width={240} height={72} />
         </div>
-        <div className='flex md:hidden' data-testid='homebutton-sm-link'>
-          <HomeButton width={160} height={48} />
+        <div className='flex md:hidden ml-2 mb-2' data-testid='homebutton-sm-link'>
+          <HomeButton width={120} height={36} />
         </div>
 
         {isAuthenticated && (
-          <div>
+          <div ref={insideRef}>
             <div className='hidden md:flex'>
               <DesktopMenu />
             </div>
@@ -34,7 +56,7 @@ const Header = () => {
               <button
                 type='button'
                 onClick={toggleMenu}
-                className='hover:opacity-50 transition-all duration-100'
+                className='hover:opacity-50 transition-all duration-100 mt-1'
               >
                 <Image
                   data-testid='mobile-menu-button'
@@ -42,7 +64,6 @@ const Header = () => {
                   alt='Menu Icon'
                   width={36}
                   height={36}
-                  className='mt-4'
                 />
               </button>
               <MobileMenu isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
