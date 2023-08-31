@@ -35,28 +35,28 @@ const Header = () => {
   }, [insideRef])
 
   return (
-    <header className='bg-beige font-reggae text-originalBlack border-b border-white pt-2 px-2'>
-      <div className='container mx-auto flex justify-between items-center '>
+    <header className='bg-beige font-reggae text-originalBlack border-b border-white pt-4 pb-2 px-4'>
+      <div className='flex justify-between items-baseline'>
         <div className='hidden xl:flex' data-testid='homebutton-xl-link'>
-          <HomeButton width={300} height={96} />
+          <HomeButton width={160} height={46} />
         </div>
-        <div className='hidden md:flex xl:hidden' data-testid='homebutton-md-link'>
-          <HomeButton width={240} height={72} />
+        <div className='hidden sm:flex xl:hidden' data-testid='homebutton-md-link'>
+          <HomeButton width={140} height={40} />
         </div>
-        <div className='flex md:hidden ml-2 mb-2' data-testid='homebutton-sm-link'>
+        <div className='sm:hidden' data-testid='homebutton-sm-link'>
           <HomeButton width={120} height={36} />
         </div>
 
         {isAuthenticated && (
           <div ref={insideRef}>
-            <div className='hidden md:flex'>
+            <div className='hidden sm:flex'>
               <DesktopMenu />
             </div>
-            <div className='md:hidden'>
+            <div className='sm:hidden'>
               <button
                 type='button'
                 onClick={toggleMenu}
-                className='hover:opacity-50 transition-all duration-100 mt-1'
+                className='hover:opacity-50 transition-all duration-100 m-1'
               >
                 <Image
                   data-testid='mobile-menu-button'
