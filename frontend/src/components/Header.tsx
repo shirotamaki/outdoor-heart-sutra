@@ -35,8 +35,8 @@ const Header = () => {
   }, [insideRef])
 
   return (
-    <header className='bg-beige font-reggae text-originalBlack border-b border-white pt-4 pb-2 px-4'>
-      <div className='flex justify-between items-baseline'>
+    <header className='bg-beige font-reggae text-mainBlack border-b border-white pt-4 pb-2 px-4'>
+      <div className='flex justify-between items-baseline xl:max-w-1352 lg:max-w-776 md:max-w-776 sm:max-w-552 max-w-328 mx-auto'>
         <div className='hidden xl:flex' data-testid='homebutton-xl-link'>
           <HomeButton width={160} height={46} />
         </div>
@@ -56,7 +56,7 @@ const Header = () => {
               <button
                 type='button'
                 onClick={toggleMenu}
-                className='hover:opacity-50 transition-all duration-100 m-1'
+                className='hover:opacity-50 transition-all duration-100 mt-1'
               >
                 <Image
                   data-testid='mobile-menu-button'

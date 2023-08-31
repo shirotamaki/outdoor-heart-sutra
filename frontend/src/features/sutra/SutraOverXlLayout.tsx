@@ -7,7 +7,7 @@ const SutraOverXlLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[
 
   return (
     <div>
-      <div className='vertical-sutras-over-xl-container flex justify-center'>
+      <div className='vertical-sutras-over-xl-container grid gap-2 grid-cols-14 mb-12'>
         {firstLayout.map((sutra) => {
           const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
 
@@ -28,7 +28,7 @@ const SutraOverXlLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[
                 <div className='text-6xl'>
                   <Link
                     href={`/sutras/${sutra.id}`}
-                    className='text-black/25 no-underline font-kinuta'
+                    className='text-sutraBlack no-underline font-kinuta'
                   >
                     {sutra.kanji}
                   </Link>

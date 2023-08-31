@@ -75,7 +75,7 @@ const Home = ({ sutras, photos }: SutraListProps) => {
     <div>
       <CustomHead isHomePage={true} ogType='website' />
       {status !== 'authenticated' ? (
-        <div className='flex flex-col min-h-screen text-originalBlack font-kinuta'>
+        <div className='flex flex-col min-h-screen text-mainBlack font-kinuta'>
           <main className='bg-beige flex-grow'>
             <div className='flex flex-col justify-center items-center p-4'>
               <h1 className='mt-12 mb-2'>
@@ -138,7 +138,7 @@ const Home = ({ sutras, photos }: SutraListProps) => {
       ) : (
         <div className='flex flex-col min-h-screen'>
           <Header />
-          <main className='bg-beige flex-grow'>
+          <main className='bg-beige flex-grow flex justify-center'>
             <SutraList sutras={sutras} photos={photos} />
           </main>
           <Footer />

@@ -11,7 +11,7 @@ const SutraSmLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] })
 
   return (
     <div>
-      <div className='vertical-sutras-container flex justify-center'>
+      <div className='vertical-sutras-container grid gap-2 grid-cols-6 mb-6'>
         {firstLayout.map((sutra) => {
           const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
 
@@ -32,7 +32,7 @@ const SutraSmLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] })
                 <div className='text-5xl'>
                   <Link
                     href={`/sutras/${sutra.id}`}
-                    className='text-black/25 no-underline font-kinuta'
+                    className='text-sutraBlack no-underline font-kinuta'
                   >
                     {sutra.kanji}
                   </Link>
@@ -45,7 +45,7 @@ const SutraSmLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] })
 
       <br />
 
-      <div className='vertical-sutras-container flex justify-center'>
+      <div className='vertical-sutras-container grid gap-2 grid-cols-6 mb-6'>
         {secondLayout.map((sutra) => {
           const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
 
@@ -66,7 +66,7 @@ const SutraSmLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] })
                 <div className='text-5xl'>
                   <Link
                     href={`/sutras/${sutra.id}`}
-                    className='text-black/25 no-underline font-kinuta'
+                    className='text-sutraBlack no-underline font-kinuta'
                   >
                     {sutra.kanji}
                   </Link>
@@ -79,7 +79,7 @@ const SutraSmLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] })
 
       <br />
 
-      <div className='vertical-sutras-container flex justify-center'>
+      <div className='vertical-sutras-container grid gap-2 grid-cols-6 mb-6'>
         {thirdLayout.map((sutra) => {
           const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
 
@@ -100,7 +100,7 @@ const SutraSmLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] })
                 <div className='text-5xl'>
                   <Link
                     href={`/sutras/${sutra.id}`}
-                    className='text-black/25 no-underline font-kinuta'
+                    className='text-sutraBlack no-underline font-kinuta'
                   >
                     {sutra.kanji}
                   </Link>
@@ -113,7 +113,7 @@ const SutraSmLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] })
 
       <br />
 
-      <div className='vertical-sutras-container flex justify-center'>
+      <div className='vertical-sutras-container grid gap-2 grid-cols-6 mb-6'>
         {fourthLayout.map((sutra) => {
           const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
 
@@ -134,7 +134,7 @@ const SutraSmLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] })
                 <div className='text-5xl'>
                   <Link
                     href={`/sutras/${sutra.id}`}
-                    className='text-black/25 no-underline font-kinuta'
+                    className='text-sutraBlack no-underline font-kinuta'
                   >
                     {sutra.kanji}
                   </Link>
@@ -147,7 +147,7 @@ const SutraSmLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] })
 
       <br />
 
-      <div className='vertical-sutras-container flex justify-center'>
+      <div className='vertical-sutras-container grid gap-2 grid-cols-6 mb-12'>
         {fifthLayout.map((sutra) => {
           const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
 
@@ -168,7 +168,7 @@ const SutraSmLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] })
                 <div className='text-5xl'>
                   <Link
                     href={`/sutras/${sutra.id}`}
-                    className='text-black/25 no-underline font-kinuta'
+                    className='text-sutraBlack no-underline font-kinuta'
                   >
                     {sutra.kanji}
                   </Link>

@@ -11,7 +11,8 @@ module.exports = {
         gold: '#d4c991', // 仏像カラー
         beige: '#e9e5dc', // 背景カラー
         tetsuguro: '#404146', // 鉄黒：フッターのカラー
-        originalBlack: '#555451', // メインのフォントカラー,
+        mainBlack: '#555451', // メインのフォントカラー,
+        sutraBlack: '#AFACA5', // 経文のフォントカラー,
       },
       fontFamily: {
         kinuta: ['Yuji Syuku', 'serif'],
@@ -25,6 +26,12 @@ module.exports = {
         360: '360px',
         480: '480px',
         640: '640px',
+      },
+      maxWidth: {
+        328: '328px',
+        552: '552px',
+        776: '776px',
+        1352: '1352px',
       },
     },
   },

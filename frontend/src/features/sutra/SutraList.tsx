@@ -105,19 +105,19 @@ const SutraList = ({ sutras, photos }: SutraListProps) => {
     )
   } else if (isMdView) {
     return (
-      <div className='mx-12 my-6'>
+      <div className='mx-4 my-4'>
         <SutraMdLayout sutras={sutras} photos={photos} />
       </div>
     )
   } else if (isXlView) {
     return (
-      <div className='mx-12 my-8'>
+      <div className='mx-4 my-4'>
         <SutraXlLayout sutras={sutras} photos={photos} />
       </div>
     )
   } else {
     return (
-      <div className='mx-12 my-10'>
+      <div className='mx-4 my-4'>
         <SutraOverXlLayout sutras={sutras} photos={photos} />
       </div>
     )

@@ -9,7 +9,7 @@ const SutraMdLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] })
 
   return (
     <div>
-      <div className='vertical-sutras-container flex justify-center'>
+      <div className='vertical-sutras-container grid gap-2 grid-cols-10 mb-6'>
         {firstLayout.map((sutra) => {
           const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
 
@@ -30,7 +30,7 @@ const SutraMdLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] })
                 <div className='text-5xl'>
                   <Link
                     href={`/sutras/${sutra.id}`}
-                    className='text-black/25 no-underline font-kinuta'
+                    className='text-sutraBlack no-underline font-kinuta'
                   >
                     {sutra.kanji}
                   </Link>
@@ -43,7 +43,7 @@ const SutraMdLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] })
 
       <br />
 
-      <div className='vertical-sutras-container flex justify-center'>
+      <div className='vertical-sutras-container grid gap-2 grid-cols-10 mb-6'>
         {secondLayout.map((sutra) => {
           const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
 
@@ -64,7 +64,7 @@ const SutraMdLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] })
                 <div className='text-5xl'>
                   <Link
                     href={`/sutras/${sutra.id}`}
-                    className='text-black/25 no-underline font-kinuta'
+                    className='text-sutraBlack no-underline font-kinuta'
                   >
                     {sutra.kanji}
                   </Link>
@@ -77,7 +77,7 @@ const SutraMdLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] })
 
       <br />
 
-      <div className='vertical-sutras-container flex justify-center'>
+      <div className='vertical-sutras-container grid gap-2 grid-cols-10 mb-12'>
         {thirdLayout.map((sutra) => {
           const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
 
@@ -98,7 +98,7 @@ const SutraMdLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] })
                 <div className='text-5xl'>
                   <Link
                     href={`/sutras/${sutra.id}`}
-                    className='text-black/25 no-underline font-kinuta'
+                    className='text-sutraBlack no-underline font-kinuta'
                   >
                     {sutra.kanji}
                   </Link>
