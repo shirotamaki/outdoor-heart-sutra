@@ -2,7 +2,7 @@ import Link from 'next/link'
 import CapturedImage from '@/features/photo/CapturedImage'
 import { Sutra, Photo } from '@/types/types'
 
-const SutraOverXlLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] }) => {
+const SutraOver2XlLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] }) => {
   const firstLayout = sutras.slice(0, 279)
 
   return (
@@ -42,4 +42,4 @@ const SutraOverXlLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[
   )
 }
 
-export default SutraOverXlLayout
+export default SutraOver2XlLayout

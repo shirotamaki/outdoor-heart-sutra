@@ -2,7 +2,7 @@ import Link from 'next/link'
 import CapturedImage from '@/features/photo/CapturedImage'
 import { Sutra, Photo } from '@/types/types'
 
-const SutraMdLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] }) => {
+const SutraSmToLgLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] }) => {
   const firstLayout = sutras.slice(0, 100)
   const secondLayout = sutras.slice(100, 200)
   const thirdLayout = sutras.slice(200, 279)
@@ -112,4 +112,4 @@ const SutraMdLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] })
   )
 }
 
-export default SutraMdLayout
+export default SutraSmToLgLayout

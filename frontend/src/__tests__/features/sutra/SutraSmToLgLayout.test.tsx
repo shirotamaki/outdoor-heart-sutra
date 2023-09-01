@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import SutraOverXlLayout from '@/features/sutra/SutraOverXlLayout'
+import SutraSmToLgLayout from '@/features/sutra/SutraSmToLgLayout'
 import { Sutra, Photo } from '@/types/types'
 
 jest.mock('next/image', () => {
@@ -17,7 +17,7 @@ jest.mock('next/link', () => ({
   default: ({ children }: { children: React.ReactNode }) => children,
 }))
 
-describe('SutraOverXlLayout', () => {
+describe('SutraSmToLgLayout', () => {
   it('renders sutras and photos without crashing', () => {
     const mockSutras: Sutra[] = [
       { id: 1, kanji: '仏' },
@@ -40,7 +40,7 @@ describe('SutraOverXlLayout', () => {
       },
     ]
 
-    render(<SutraOverXlLayout sutras={mockSutras} photos={mockPhotos} />)
+    render(<SutraSmToLgLayout sutras={mockSutras} photos={mockPhotos} />)
 
     mockSutras.forEach((sutra) => {
       const correspondingPhoto = mockPhotos.find((photo) => photo.sutra_id === sutra.id)
