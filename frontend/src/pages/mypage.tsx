@@ -61,13 +61,13 @@ const MyPage = ({ photos, user }: MyPageProps) => {
               style={{ borderRadius: '50px' }}
             />
           </h1>
-          <div className='grid grid-rows-2 grid-cols-2 font-kinuta text-mainBlack text-base sm:text-xl mb-12 pr-20'>
+          <div className='grid grid-rows-2 grid-cols-2 font-kinuta text-mainBlack text-base md:text-xl mb-12 pr-20'>
             <div className='justify-self-end'>ユーザ名：</div>
             <div className='justify-self-start'>{user.name}</div>
             <div className='justify-self-end'>出家日：</div>
             <div className='justify-self-start'>{formattedDate}</div>
           </div>
-          <div className='font-kinuta text-mainBlack text-base sm:text-xl mb-12 flex flex-col justify-center items-center'>
+          <div className='font-kinuta text-mainBlack text-base md:text-xl mb-12 flex flex-col justify-center items-center'>
             <div>写経した総数</div>
             <div>
               <SutraCalculator photos={photos} />
@@ -75,7 +75,7 @@ const MyPage = ({ photos, user }: MyPageProps) => {
           </div>
           <Link
             href='/delete-account'
-            className='hover:opacity-50 transition-all duration-100 font-kinuta text-sm sm:text-lg text-gray-400 underline mb-8'
+            className='hover:opacity-50 transition-all duration-100 font-kinuta text-sm md:text-lg text-gray-400 underline mb-8'
           >
             退会する
           </Link>
