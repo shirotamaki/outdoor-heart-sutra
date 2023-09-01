@@ -68,10 +68,10 @@ const MyPage = ({ photos, user }: MyPageProps) => {
             <div className='justify-self-start'>{formattedDate}</div>
           </div>
           <div className='font-kinuta text-mainBlack text-base sm:text-xl mb-12 flex flex-col justify-center items-center'>
-            <p>写経した総数</p>
-            <p>
+            <div>写経した総数</div>
+            <div>
               <SutraCalculator photos={photos} />
-            </p>
+            </div>
           </div>
           <Link
             href='/delete-account'
