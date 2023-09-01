@@ -56,7 +56,7 @@ const Header = () => {
               <button
                 type='button'
                 onClick={toggleMenu}
-                className='hover:opacity-50 transition-all duration-100 mt-1'
+                className='hover:opacity-50 transition-all duration-100'
               >
                 <Image
                   data-testid='mobile-menu-button'
