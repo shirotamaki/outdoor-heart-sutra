@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import CapturedImage from '@/features/photo/CapturedImage'
+import SutraCalculator from '@/features/sutra/SutraCalculator'
 import { Sutra, Photo } from '@/types/types'
 
 const SutraSmToLgLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] }) => {
@@ -9,6 +10,9 @@ const SutraSmToLgLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[
 
   return (
     <div>
+      <div className='font-reggae text-mainBlack flex justify-end mb-2'>
+        <SutraCalculator photos={photos} />
+      </div>
       <div className='vertical-sutras-container grid gap-2 grid-cols-10 mb-6'>
         {firstLayout.map((sutra) => {
           const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
