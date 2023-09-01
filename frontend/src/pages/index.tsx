@@ -75,7 +75,7 @@ const Home = ({ sutras, photos }: SutraListProps) => {
     <div>
       <CustomHead isHomePage={true} ogType='website' />
       {status !== 'authenticated' ? (
-        <div className='flex flex-col min-h-screen text-mainBlack font-kinuta'>
+        <div className='flex flex-col min-h-screen'>
           <main className='bg-beige flex-grow'>
             <div className='flex flex-col justify-center items-center p-4'>
               <h1 className='mt-12 mb-2'>
@@ -88,27 +88,31 @@ const Home = ({ sutras, photos }: SutraListProps) => {
               </h1>
               <div className='flex flex-col justify-center items-center'>
                 <div className='flex flex-col justify-center items-center'>
-                  <p className='mb-12'>自分探しならぬ、自分なくしの旅へ ...</p>
+                  <p className='text-mainBlack font-kinuta text-sm md:text-base mb-12'>
+                    自分探しならぬ、自分なくしの旅へ ...
+                  </p>
                   <Login />
                   <div className='text-left'>
-                    <p className='text-xs font-notoSans my-2 leading-normal'>
+                    <p className='text-xs font-notoSans text-gray-500 my-2 leading-normal'>
                       ※上記ボタンをクリックすることで&nbsp;
                       <Link
-                        className='text-xs font-notoSans underline text-black/35 hover:opacity-50 transition-all duration-100'
+                        className='text-xs font-notoSans text-gray-500 underline hover:opacity-50 transition-all duration-100'
                         href='/terms-of-service'
                       >
                         利用規約
                       </Link>
-                      <span className='text-black/135'>・</span>
+                      <span className='text-xs font-notoSans text-gray-500'>・</span>
                       <Link
-                        className='text-xs font-notoSans underline text-black/35 hover:opacity-50 transition-all duration-100'
+                        className='text-xs font-notoSans text-gray-500 underline hover:opacity-50 transition-all duration-100'
                         href='/privacy-policy'
                       >
                         プライバシーポリシー
                       </Link>
                       &nbsp;に同意したものとみなします
                     </p>
-                    <p className='text-xs font-notoSans'>※ 無料でご利用いただけます</p>
+                    <p className='text-xs font-notoSans text-gray-500'>
+                      ※ 無料でご利用いただけます
+                    </p>
                   </div>
                   <div className='mt-4'>
                     <Image
@@ -119,14 +123,14 @@ const Home = ({ sutras, photos }: SutraListProps) => {
                     />
                   </div>
                 </div>
-                <div className='w-full md:w-640 mb-12 text-left text-base md:text-xl lg:text-xl'>
-                  <p className='w-full mt-4 leading-normal md:leading-8'>
+                <div className='w-full sm:w-640 mb-12 text-mainBlack font-kinuta text-left text-sm md:text-xl'>
+                  <p className='mt-4 leading-6 md:leading-8'>
                     アウトドア般若心経とは、「般若心経」278文字を、家を出て（これを「出家」と称す）、街の看板から経文に含まれている文字を捜し写真に収める（これを「写経（写真経）」と称す）行為のことを指します。
                   </p>
-                  <p className='my-2 leading-normal md:leading-8'>
+                  <p className='my-2 leading-6 md:leading-8'>
                     必要なのはカメラとGoogleアカウントのみ。
                   </p>
-                  <p className='my-2 leading-normal md:leading-8'>
+                  <p className='my-2 leading-6 md:leading-8'>
                     アウトドア般若心経を通して般若心経の真髄を感じてください。
                   </p>
                 </div>
