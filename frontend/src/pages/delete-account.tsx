@@ -29,9 +29,11 @@ const DeleteAccount = () => {
       <CustomHead title='退会' ogUrl='https://www.outdoor-heart-sutra.com/delete-account' />
       <Header />
       <main className=' bg-beige flex-grow'>
-        <div className='flex flex-col justify-center items-center text-black/50 font-kinuta text-xl m-12'>
-          <h1 className='text-2xl mb-12'>アカウントを削除する</h1>
-          <div className='items-left'>
+        <div className='flex flex-col justify-center items-center m-12'>
+          <h1 className='text-mainBlack font-kinuta text-lg md:text-2xl mb-12'>
+            アカウントを削除する
+          </h1>
+          <div className='items-left text-mainBlack font-kinuta text-base md:text-xl'>
             <p className='pb-4'>削除すると以下の情報が全て失われます</p>
             <ul className='list-disc px-6'>
               <li className='pb-2'>写真</li>
