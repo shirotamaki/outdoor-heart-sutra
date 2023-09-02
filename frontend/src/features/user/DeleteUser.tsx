@@ -42,7 +42,7 @@ const DeleteUser = () => {
         <button
           data-testid='delete-button'
           onClick={openModal}
-          className='transition-all duration-100 text-base bg-gray-500 hover:bg-gray-400 text-white font-notoSans py-2 px-4 rounded-full'
+          className='transition-all duration-100 text-base bg-gray-500 hover:bg-gray-400 text-white font-notoSans py-3 px-7 rounded-md'
         >
           アカウントを削除する
         </button>
