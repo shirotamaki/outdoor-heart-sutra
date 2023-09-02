@@ -13,6 +13,7 @@ module.exports = {
         tetsuguro: '#404146', // 鉄黒：フッターのカラー
         mainBlack: '#555451', // メインのフォントカラー,
         sutraBlack: '#AFACA5', // 経文のフォントカラー,
+        fileSelectButton: '#3F4D84', // ファイル選択ボタンのカラー
       },
       fontFamily: {
         kinuta: ['Yuji Syuku', 'serif'],
