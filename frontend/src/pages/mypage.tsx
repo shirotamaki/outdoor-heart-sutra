@@ -63,7 +63,7 @@ const MyPage = ({ photos, user }: MyPageProps) => {
           </h1>
           <div className='grid grid-rows-2 grid-cols-2 font-kinuta text-mainBlack text-base md:text-xl mb-12 pr-20'>
             <div className='justify-self-end'>ユーザ名：</div>
-            <div className='justify-self-start'>{user.name}</div>
+            <div className='justify-self-start' data-testid="user-name">{user.name}</div>
             <div className='justify-self-end'>出家日：</div>
             <div className='justify-self-start'>{formattedDate}</div>
           </div>

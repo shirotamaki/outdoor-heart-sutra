@@ -50,8 +50,11 @@ test.describe('Header Desktop Menu Navigation Links', () => {
     await page.waitForURL('http://localhost:4000/mypage', {
       timeout: 60000,
     })
-    const content = await page.textContent('li')
-    expect(content).toContain('ユーザ名：テスト太郎')
+    await page.waitForSelector('[data-testid="user-name"]', {
+      timeout: 60000,
+    })
+    const content = await page.textContent('[data-testid="user-name"]')
+    expect(content).toContain('テスト太郎')
   })
 })
 
@@ -104,8 +107,11 @@ test.describe('Header Mobile Menu Navigation Links', () => {
     await page.waitForURL('http://localhost:4000/mypage', {
       timeout: 60000,
     })
-    const content = await page.textContent('li')
-    expect(content).toContain('ユーザ名：テスト太郎')
+    await page.waitForSelector('[data-testid="user-name"]', {
+      timeout: 60000,
+    })
+    const content = await page.textContent('[data-testid="user-name"]')
+    expect(content).toContain('テスト太郎')
   })
 })
 
