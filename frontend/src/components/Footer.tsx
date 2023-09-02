@@ -23,7 +23,7 @@ const Footer = () => {
             プライバシーポリシー
           </Link>
         </nav>
-        <nav className='flex flex-row space-x-4 md:mb-3 mb-2'>
+        <nav className='flex flex-row space-x-4 items-center md:mb-3 mb-2'>
           <TwitterLink />
           <GitHubLink />
           <SuzuriLink width={18} height={18} />
