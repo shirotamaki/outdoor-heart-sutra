@@ -160,14 +160,16 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
   }
 
   return (
-    <div className='flex flex-col justify-center items-center'>
-      <h1 className='text-5xl text-sutraBlack font-kinuta my-12'>{sutra.kanji}</h1>
+    <div className='flex flex-col items-center'>
+      <h1 className='text-5xl text-sutraBlack font-kinuta mt-2 my-6 md:mt-8 md:mb-12'>
+        {sutra.kanji}
+      </h1>
 
       {!isSelectedImage && (
         <div className='flex justify-center mb-8'>
           <button
             onClick={onSelectFile}
-            className='bg-fileSelectButton hover:opacity-50 transition-all duration-100 font-notoSans text-base text-white rounded-md py-3 px-7'
+            className='bg-buttonBlack hover:opacity-50 transition-all duration-100 font-notoSans text-base text-white rounded-md py-2 px-7'
           >
             <div className='flex items-cneter'>
               <FontAwesomeIcon
@@ -216,7 +218,7 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
       )}
 
       {previewImage && croppedImage && isSelectedImage && (
-        <div className='flex justify-center content-between mt-16 mb-8'>
+        <div className='flex justify-center content-between my-6 md:m-12'>
           <Image
             src={croppedImage}
             alt='CroppedImage'
@@ -228,39 +230,39 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
       )}
 
       {previewImage && isSelectedImage && !croppedImage && (
-        <div className='flex justify-center content-between'>
-          <div
-            data-testid='reselect-file-input-button'
-            className='bg-blue-300 hover:bg-blue-200 text-gray-700 rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2'
-          >
-            <ActionButton onClick={handleFileCancel} text='写真を再選択' />
-          </div>
+        <div className='flex flex-col w-300'>
           <div
             data-testid='file-input-confirm-button'
-            className=' bg-blue-500 hover:bg-blue-400 text-white rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2'
+            className=' bg-buttonBlack hover:opacity-50 transition-all duration-100 font-notoSans text-base text-white font-extrabold rounded-md text-center py-2 my-6'
           >
             <ActionButton onClick={handleCropConfirm} text='決定' />
+          </div>
+          <div
+            data-testid='reselect-file-input-button'
+            className='border border-gray-400 hover:opacity-50 transition-all duration-100 font-notoSans text-base text-gray-400 font-extrabold rounded-md text-center py-2 mb-6'
+          >
+            <ActionButton onClick={handleFileCancel} text='写真を再選択' />
           </div>
         </div>
       )}
 
       {previewImage && isSelectedImage && croppedImage && (
-        <div className='flex justify-center content-between'>
-          <div
-            data-testid='cancel-photo-button'
-            className=' bg-gray-400 hover:bg-gray-300 text-white rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2'
-          >
-            <ActionButton onClick={handleFileReSelecte} text='キャンセル' />
-          </div>
+        <div className='flex flex-col w-300'>
           <div
             data-testid='save-photo-button'
             className={
               isSaving
-                ? 'bg-gray-500 text-white rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2'
-                : 'bg-blue-500 hover:bg-blue-400 text-white rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2'
+                ? 'bg-gray-400 font-notoSans text-base text-mainBlack font-extrabold rounded-md py-2 mb-4 md:mb-8'
+                : 'bg-buttonBlack hover:opacity-50 transition-all duration-100 font-notoSans text-base text-white font-extrabold rounded-md py-2 mb-4 md:mb-8'
             }
           >
             <ActionButton onClick={savePhotoData} text={isSaving ? '保存中...' : '保存'} />
+          </div>
+          <div
+            data-testid='cancel-photo-button'
+            className='border border-gray-400 hover:opacity-50 transition-all duration-100 font-notoSans text-base text-gray-400 font-extrabold rounded-md text-center py-2 mb-4 md:mb-8'
+          >
+            <ActionButton onClick={handleFileReSelecte} text='キャンセル' />
           </div>
         </div>
       )}
