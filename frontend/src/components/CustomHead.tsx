@@ -10,6 +10,7 @@ const CustomHead = ({
   siteName = 'アウトドア般若心経',
   favicon = 'https://www.outdoor-heart-sutra.com/images/favicons/favicon.svg',
   twitterCard = 'summary_large_image',
+  twitterImage = 'https://www.outdoor-heart-sutra.com/images/twitter_card.png',
   twitterSite = '@outdoor_heart_sutra',
   appleTouchIcons = [
     { size: '32x32', href: 'https://www.outdoor-heart-sutra.com/images/apple-touch-icon.png' },
@@ -38,7 +39,7 @@ const CustomHead = ({
       <meta name='twitter:card' content={twitterCard} />
       <meta name='twitter:title' content={pageTitle} />
       <meta name='twitter:description' content={description} />
-      <meta name='twitter:image' content={ogImage} />
+      <meta name='twitter:image' content={twitterImage} />
       <meta name='twitter:site' content={twitterSite} />
 
       <link rel='icon' type='image/png' sizes='16x16' href={favicon} />

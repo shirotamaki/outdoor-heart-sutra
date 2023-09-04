@@ -14,6 +14,7 @@ export type CustomHeadProps = {
   siteName?: string
   favicon?: string
   twitterCard?: string
+  twitterImage?: string
   twitterSite?: string
   appleTouchIcons?: { size: string; href: string }[]
   canonicalUrl?: string
