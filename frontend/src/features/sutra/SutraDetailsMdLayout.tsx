@@ -37,21 +37,18 @@ const SutraDetailsMdLayout = ({ sutra, photo }: SutraDetailsProps) => {
       )
     } else {
       return (
-        <div className='m-4 flex flex-col justify-center items-center '>
-          <div className='w-300 rounded-lg overflow-hidden'>
-            <div
-              data-testid='saved-note-for-md-layout'
-              className='mx-2 whitespace-pre-line overflow-hidden break-words
-              border-b-4 border-gray-400'
-            >
-              {photo.note}
-            </div>
+        <div className='flex flex-col justify-center items-center'>
+          <div
+            data-testid='saved-note-for-md-layout'
+            className='text-mainBlack text-sm whitespace-pre-line overflow-hidden break-words mb-8'
+          >
+            {photo.note}
           </div>
 
           <button
             data-testid='edit-note-button-for-md-layout'
             onClick={() => setEditNote(true)}
-            className=' bg-blue-300 hover:bg-blue-200 text-gray-700 rounded-full font-notoSans text-xs  mx-4 mt-4  px-28 py-2.5'
+            className='w-300 border border-blue-600  hover:opacity-50 transition-all duration-100 font-notoSans text-base text-blue-600 font-extrabold rounded-md text-center py-2 mt-4'
           >
             メモ編集
           </button>
@@ -68,7 +65,7 @@ const SutraDetailsMdLayout = ({ sutra, photo }: SutraDetailsProps) => {
       )
     } else {
       return (
-        <div className='flex flex-col justify-center items-center'>
+        <div className='flex flex-col justify-center items-center max-w-552 mx-auto'>
           <div>
             <CapturedImage
               capturedImageUrl={photo.image_url}
@@ -78,7 +75,7 @@ const SutraDetailsMdLayout = ({ sutra, photo }: SutraDetailsProps) => {
             />
           </div>
           <div className='flex justify-center m-4'>
-            <div className='text-5xl text-black/25 font-kinuta mx-4'>{sutra.kanji}</div>
+            <div className='text-5xl text-sutraBlack font-kinuta mx-4'>{sutra.kanji}</div>
             <div className='mx-4 mt-1'>
               <CapturedImage
                 capturedImageUrl={photo.cropped_image_url}
@@ -88,22 +85,30 @@ const SutraDetailsMdLayout = ({ sutra, photo }: SutraDetailsProps) => {
               />
             </div>
           </div>
-          <div>
-            <Map markerLocation={currentLocation} width={360} height={480} />
+          <div className='w-full'>
+            <Map markerLocation={currentLocation} width={'100%'} height={480} />
           </div>
-          <div className='w-360 m-2 flex justify-center'>
-            <div className='flex flex-col'>
-              <div data-testid='photo-address-for-md-layout'>住所：{photo.address}</div>
-              <div data-testid='photo-shootingDate-for-md-layout' className='mt-1'>
-                撮影日：{shootingDate}
-              </div>
+
+          <div className='grid grid-rows-2 grid-cols-4 auto-rows-min font-notoSans text-mainBlack text-sm my-4'>
+            <div className='justify-self-end col-span-1' data-testid='photo-address-for-md-layout'>
+              住所：
             </div>
+            <div className='justify-self-start col-span-3'>{photo.address}</div>
+            <div
+              className='justify-self-end col-span-1'
+              data-testid='photo-shootingDate-for-md-layout'
+            >
+              撮影日：
+            </div>
+            <div className='justify-self-start col-span-3'>{shootingDate}</div>
           </div>
-          <div>{renderNote()}</div>
-          <div className='flex justify-center content-between'>
+
+          <div className='w-full'>{renderNote()}</div>
+
+          <div className='w-300 flex justify-center mt-8'>
             <EditPhotoForMdLayout setEditMode={setEditMode} />
           </div>
-          <div>
+          <div className='w-300 text-right mt-4 mb-8'>
             <DeletePhotoForMdLayout photoId={photo.id} />
           </div>
         </div>
