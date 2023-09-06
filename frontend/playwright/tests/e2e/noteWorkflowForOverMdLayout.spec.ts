@@ -38,12 +38,12 @@ test.describe('Note Workflow For Over Md Layout', () => {
 
     await page.getByRole('link', { name: '摩' }).nth(0).click()
 
-    await page.waitForSelector('[data-testid="file-input"]', {
+    await page.waitForSelector('[data-testid="file-input-button"]', {
       timeout: 60000,
     })
 
     // `ファイルを選択`ボタンのクリック操作は不要。PlaywrightはisVisible()を呼び出すときに自動的にinput操作を実行するため。
-    const fileInputVisible = await page.getByTestId('file-input').isVisible()
+    const fileInputVisible = await page.getByTestId('file-input-button').isVisible()
 
     if (!fileInputVisible) {
       await page.waitForSelector('input[type="file"]', { timeout: 60000 })

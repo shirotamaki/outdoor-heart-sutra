@@ -168,6 +168,7 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
       {!isSelectedImage && (
         <div className='flex justify-center mb-8'>
           <button
+            data-testid='file-input-button'
             onClick={onSelectFile}
             className='bg-buttonBlack hover:opacity-50 transition-all duration-100 font-notoSans text-base text-white rounded-md py-2 px-7'
           >
@@ -188,7 +189,6 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
             ref={inputFileRef}
             className='hidden'
             role='button'
-            data-testid='file-input'
             type='file'
             accept='image/jpeg, image/png, image/heic'
             onChange={previewSelectedImage}
