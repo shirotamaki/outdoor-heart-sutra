@@ -60,7 +60,7 @@ export type MarkerLocationProps = {
 
 export type MapWidthHeightProps = {
   width?: number | string
-  height?: number
+  height?: number | string
 }
 
 export type MapProps = MarkerLocationProps & MapWidthHeightProps

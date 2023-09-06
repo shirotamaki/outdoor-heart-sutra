@@ -19,8 +19,8 @@ const Map = ({ markerLocation, width, height }: MapProps) => {
   } | null>(null)
 
   const containerStyle = {
-    width: width,
-    height: `${height}px`,
+    width: width === '100%' ? width : `${width}px`,
+    height: height === '100%' ? height : `${height}px`,
   }
 
   const handleMapLoad = (mapInstance: google.maps.Map) => {
