@@ -65,7 +65,7 @@ const SutraDetailsMdLayout = ({ sutra, photo }: SutraDetailsProps) => {
       )
     } else {
       return (
-        <div className='flex flex-col justify-center items-center max-w-552 mx-auto'>
+        <div className='flex flex-col justify-center items-center lg:max-w-776 sm:max-w-552 max-w-screen-sm mx-auto'>
           <div>
             <CapturedImage
               capturedImageUrl={photo.image_url}
@@ -74,7 +74,7 @@ const SutraDetailsMdLayout = ({ sutra, photo }: SutraDetailsProps) => {
               borderRadius='5px'
             />
           </div>
-          <div className='flex justify-center m-4'>
+          <div className='flex flex-row justify-center m-4'>
             <div className='text-5xl text-sutraBlack font-kinuta mx-4'>{sutra.kanji}</div>
             <div className='mx-4 mt-1'>
               <CapturedImage
