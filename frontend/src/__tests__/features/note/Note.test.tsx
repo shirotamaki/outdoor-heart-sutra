@@ -1,6 +1,6 @@
 import { render, fireEvent, waitFor, screen } from '@testing-library/react'
 import axios from 'axios'
-import NoteForMdLayout from '@/features/note/NoteForMdLayout'
+import Note from '@/features/note/Note'
 
 jest.mock('axios')
 const mockedAxios = axios as jest.Mocked<typeof axios>
@@ -10,14 +10,14 @@ const useRouterMock = {
 }
 jest.spyOn(require('next/router'), 'useRouter').mockReturnValue(useRouterMock)
 
-describe('NoteForMdLayout', () => {
+describe('Note', () => {
   beforeEach(() => {
     jest.clearAllMocks()
   })
 
   it('renders without crashing', () => {
     render(
-      <NoteForMdLayout
+      <Note
         photoId={1}
         sutraId={1}
         photoNote={''}
@@ -31,7 +31,7 @@ describe('NoteForMdLayout', () => {
 
   it('allows user to input text', () => {
     render(
-      <NoteForMdLayout
+      <Note
         photoId={1}
         sutraId={1}
         photoNote={''}
@@ -49,7 +49,7 @@ describe('NoteForMdLayout', () => {
   it('allows user to save note', async () => {
     mockedAxios.patch.mockResolvedValue({ data: {} })
     render(
-      <NoteForMdLayout
+      <Note
         photoId={1}
         sutraId={1}
         photoNote={''}

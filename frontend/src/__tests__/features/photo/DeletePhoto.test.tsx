@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { useRouter } from 'next/router'
-import DeletePhotoForMdLayout from '@/features/photo/DeletePhotoForMdLayout'
+import DeletePhoto from '@/features/photo/DeletePhoto'
 
 jest.mock('next/router', () => ({
   useRouter: () => ({
@@ -8,9 +8,9 @@ jest.mock('next/router', () => ({
   }),
 }))
 
-describe('DeletePhotoForMdLayout', () => {
+describe('DeletePhoto', () => {
   it('renders display delete button', () => {
-    render(<DeletePhotoForMdLayout photoId={1} />)
+    render(<DeletePhoto photoId={1} />)
 
     const deleteButton = screen.getByText('削除する')
     expect(deleteButton).toBeInTheDocument()
