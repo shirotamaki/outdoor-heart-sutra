@@ -37,11 +37,11 @@ const SutraDetailsOverMdLayout = ({ sutra, photo }: SutraDetailsProps) => {
       )
     } else {
       return (
-        <div className='m-4 flex flex-col justify-center items-center '>
+        <div className='flex flex-col justify-center items-center'>
           <div className='w-300 rounded-lg overflow-hidden'>
             <div
               data-testid='saved-note-for-over-md-layout'
-              className='mx-2 whitespace-pre-line overflow-hidden break-words border-b-4 border-gray-400'
+              className='text-mainBlack text-base whitespace-pre-line overflow-hidden break-words mb-8'
             >
               {photo.note}
             </div>
@@ -49,7 +49,7 @@ const SutraDetailsOverMdLayout = ({ sutra, photo }: SutraDetailsProps) => {
           <button
             data-testid='edit-note-button-for-over-md-layout'
             onClick={() => setEditNote(true)}
-            className=' bg-blue-300 hover:bg-blue-200 text-gray-700 rounded-full font-notoSans  text-sm mx-4 mt-4 px-28 py-2'
+            className='w-300 border border-blue-600  hover:opacity-50 transition-all duration-100 font-notoSans text-base text-blue-600 font-extrabold rounded-md text-center py-2 mt-4'
           >
             メモ編集
           </button>
@@ -66,47 +66,53 @@ const SutraDetailsOverMdLayout = ({ sutra, photo }: SutraDetailsProps) => {
       )
     } else {
       return (
-        <div className='w-full'>
-          <div className='flex flex-row'>
-            <div className='inline-block'>
-              <div className='flex justify-center w-480'>
+        <div className='flex flex-row justify-center max-w-1352 mx-auto'>
+          <div className='flex flex-col mr-4 min-height'>
+            <div className=''>
+              <CapturedImage
+                capturedImageUrl={photo.image_url}
+                width={360}
+                height={480}
+                borderRadius='5px'
+              />
+            </div>
+            <div className='flex flex-row justify-center mt-4'>
+              <div className='text-5xl text-sutraBlack font-kinuta mx-4'>{sutra.kanji}</div>
+              <div className='mx-4 mt-1'>
                 <CapturedImage
-                  capturedImageUrl={photo.image_url}
-                  width={360}
-                  height={480}
+                  capturedImageUrl={photo.cropped_image_url}
+                  width={48}
+                  height={48}
                   borderRadius='5px'
                 />
               </div>
-              <div className='m-4 flex justify-center'>
-                <div className='text-5xl text-black/25 font-kinuta mx-4'>{sutra.kanji}</div>
-                <div className='mx-4 mt-1'>
-                  <CapturedImage
-                    capturedImageUrl={photo.cropped_image_url}
-                    width={48}
-                    height={48}
-                    borderRadius='5px'
-                  />
-                </div>
-              </div>
-              <div className='m-2 flex justify-center'>
-                <div className='flex flex-col'>
-                  <div data-testid='photo-address-for-over-md-layout'>住所：{photo.address} </div>
-                  <div data-testid='photo-shootingDate-for-over-md-layout' className='mt-1'>
-                    撮影日：{shootingDate}
-                  </div>
-                </div>
-              </div>
-              <div className='flex justify-center'>{renderNote()}</div>
-              <div className='flex justify-center'>
-                <EditPhotoForOverMdLayout setEditMode={setEditMode} />
-              </div>
-              <div className='flex justify-center'>
-                <DeletePhotoForOverMdLayout photoId={photo.id} />
-              </div>
             </div>
-            <div className='basis-full'>
-              <Map markerLocation={currentLocation} />
+            <div className='grid grid-rows-2 grid-cols-4 auto-rows-min font-notoSans text-mainBlack text-sm my-4'>
+              <div
+                className='justify-self-end col-span-1'
+                data-testid='photo-address-for-over-md-layout'
+              >
+                住所：
+              </div>
+              <div className='justify-self-start col-span-3'>{photo.address}</div>
+              <div
+                className='justify-self-end col-span-1'
+                data-testid='photo-shootingDate-for-over-md-layout'
+              >
+                撮影日：
+              </div>
+              <div className='justify-self-start col-span-3'>{shootingDate}</div>
             </div>
+            <div className=''>{renderNote()}</div>
+            <div className='w-300 mt-8 mx-auto'>
+              <EditPhotoForOverMdLayout setEditMode={setEditMode} />
+            </div>
+            <div className='w-300 text-right mt-4 mb-8 mx-auto'>
+              <DeletePhotoForOverMdLayout photoId={photo.id} />
+            </div>
+          </div>
+          <div className='w-992'>
+            <Map markerLocation={currentLocation} width={'100%'} height={'100%'} />
           </div>
         </div>
       )

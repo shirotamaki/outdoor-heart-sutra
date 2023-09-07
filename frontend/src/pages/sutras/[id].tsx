@@ -88,11 +88,11 @@ const SutraDetails = ({ sutra, photo }: SutraDetailsProps) => {
           </div>
         ) : (
           <div>
-            <div className='md:hidden'>
+            <div className='2xl:hidden'>
               <SutraDetailsMdLayout sutra={sutra} photo={photo} />
             </div>
-            <div className='hidden md:flex'>
-              <SutraDetailsOverMdLayout sutra={sutra} photo={photo} />
+              <div className='hidden 2xl:flex'>
+                <SutraDetailsOverMdLayout sutra={sutra} photo={photo} />
             </div>
           </div>
         )}
