@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import Map from '@/features/map/Map'
-import NoteForMdLayout from '@/features/note/NoteForMdLayout'
+import Note from '@/features/note/Note'
 import CapturedImage from '@/features/photo/CapturedImage'
-import DeletePhotoForMdLayout from '@/features/photo/DeletePhotoForMdLayout'
-import EditPhotoForMdLayout from '@/features/photo/EditPhotoForMdLayout'
+import DeletePhoto from '@/features/photo/DeletePhoto'
+import EditPhoto from '@/features/photo/EditPhoto'
 import PhotoUploadAndPreview from '@/features/photo/PhotoUploadAndPreview'
 import { SutraDetailsProps } from '@/types/types'
 
-const SutraDetailsMdLayout = ({ sutra, photo }: SutraDetailsProps) => {
+const SutraDetails2XlOrBelowLayout = ({ sutra, photo }: SutraDetailsProps) => {
   const currentLocation = {
     lat: photo.latitude,
     lng: photo.longitude,
@@ -26,7 +26,7 @@ const SutraDetailsMdLayout = ({ sutra, photo }: SutraDetailsProps) => {
   const renderNote = () => {
     if (editNote) {
       return (
-        <NoteForMdLayout
+        <Note
           photoId={photo.id}
           sutraId={sutra.id}
           photoNote={photo.note}
@@ -38,15 +38,16 @@ const SutraDetailsMdLayout = ({ sutra, photo }: SutraDetailsProps) => {
     } else {
       return (
         <div className='flex flex-col justify-center items-center'>
-          <div
-            data-testid='saved-note-for-md-layout'
-            className='text-mainBlack text-sm whitespace-pre-line overflow-hidden break-words mb-8'
-          >
-            {photo.note}
+          <div className='w-300'>
+            <div
+              data-testid='saved-note-for-over-md-layout'
+              className='text-mainBlack text-sm whitespace-pre-line overflow-hidden break-words mb-12'
+            >
+              {photo.note}
+            </div>
           </div>
-
           <button
-            data-testid='edit-note-button-for-md-layout'
+            data-testid='edit-note-button-for-over-md-layout'
             onClick={() => setEditNote(true)}
             className='w-300 border border-blue-600  hover:opacity-50 transition-all duration-100 font-notoSans text-base text-blue-600 font-extrabold rounded-md text-center py-2 mt-4'
           >
@@ -56,6 +57,7 @@ const SutraDetailsMdLayout = ({ sutra, photo }: SutraDetailsProps) => {
       )
     }
   }
+
   const renderSutraDetails = () => {
     if (editMode) {
       return (
@@ -106,10 +108,10 @@ const SutraDetailsMdLayout = ({ sutra, photo }: SutraDetailsProps) => {
           <div className='w-full'>{renderNote()}</div>
 
           <div className='w-300 flex justify-center mt-8'>
-            <EditPhotoForMdLayout setEditMode={setEditMode} />
+            <EditPhoto setEditMode={setEditMode} />
           </div>
           <div className='w-300 text-right mt-4 mb-8'>
-            <DeletePhotoForMdLayout photoId={photo.id} />
+            <DeletePhoto photoId={photo.id} />
           </div>
         </div>
       )
@@ -119,4 +121,4 @@ const SutraDetailsMdLayout = ({ sutra, photo }: SutraDetailsProps) => {
   return renderSutraDetails()
 }
 
-export default SutraDetailsMdLayout
+export default SutraDetails2XlOrBelowLayout

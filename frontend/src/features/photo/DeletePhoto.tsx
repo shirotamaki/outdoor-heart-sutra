@@ -6,7 +6,7 @@ import { toast } from 'react-toastify'
 import { railsApiUrl } from '@/config/index'
 import { DeletePhotoProps } from '@/types/types'
 
-const DeletePhotoForOverMdLayout = ({ photoId }: DeletePhotoProps) => {
+const DeletePhoto = ({ photoId }: DeletePhotoProps) => {
   const router = useRouter()
   const [modalIsOpen, setIsOpen] = useState(false)
 
@@ -84,4 +84,4 @@ const DeletePhotoForOverMdLayout = ({ photoId }: DeletePhotoProps) => {
   )
 }
 
-export default DeletePhotoForOverMdLayout
+export default DeletePhoto

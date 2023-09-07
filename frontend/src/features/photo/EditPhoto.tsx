@@ -1,6 +1,6 @@
 import { EditPhotoProps } from '@/types/types'
 
-const EditPhotoForOverMdLayout = ({ setEditMode }: EditPhotoProps) => {
+const EditPhoto = ({ setEditMode }: EditPhotoProps) => {
   return (
     <button
       data-testid='reselect-file-input-after-saving-photo-button-for-over-md-layout'
@@ -11,4 +11,4 @@ const EditPhotoForOverMdLayout = ({ setEditMode }: EditPhotoProps) => {
     </button>
   )
 }
-export default EditPhotoForOverMdLayout
+export default EditPhoto

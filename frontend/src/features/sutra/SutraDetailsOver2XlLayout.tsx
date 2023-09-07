@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import Map from '@/features/map/Map'
-import NoteForOverMdLayout from '@/features/note/NoteForOverMdLayout'
+import Note from '@/features/note/Note'
 import CapturedImage from '@/features/photo/CapturedImage'
-import DeletePhotoForOverMdLayout from '@/features/photo/DeletePhotoForOverMdLayout'
-import EditPhotoForOverMdLayout from '@/features/photo/EditPhotoForOverMdLayout'
+import DeletePhoto from '@/features/photo/DeletePhoto'
+import EditPhoto from '@/features/photo/EditPhoto'
 import PhotoUploadAndPreview from '@/features/photo/PhotoUploadAndPreview'
 import { SutraDetailsProps } from '@/types/types'
 
-const SutraDetailsOverMdLayout = ({ sutra, photo }: SutraDetailsProps) => {
+const SutraDetailsOver2XlLayout = ({ sutra, photo }: SutraDetailsProps) => {
   const currentLocation = {
     lat: photo.latitude,
     lng: photo.longitude,
@@ -26,7 +26,7 @@ const SutraDetailsOverMdLayout = ({ sutra, photo }: SutraDetailsProps) => {
   const renderNote = () => {
     if (editNote) {
       return (
-        <NoteForOverMdLayout
+        <Note
           photoId={photo.id}
           sutraId={sutra.id}
           photoNote={photo.note}
@@ -38,10 +38,10 @@ const SutraDetailsOverMdLayout = ({ sutra, photo }: SutraDetailsProps) => {
     } else {
       return (
         <div className='flex flex-col justify-center items-center'>
-          <div className='w-300 rounded-lg overflow-hidden'>
+          <div className='w-300'>
             <div
               data-testid='saved-note-for-over-md-layout'
-              className='text-mainBlack text-base whitespace-pre-line overflow-hidden break-words mb-8'
+              className='text-mainBlack text-base whitespace-pre-line overflow-hidden break-words mb-12'
             >
               {photo.note}
             </div>
@@ -87,7 +87,7 @@ const SutraDetailsOverMdLayout = ({ sutra, photo }: SutraDetailsProps) => {
                 />
               </div>
             </div>
-            <div className='grid grid-rows-2 grid-cols-4 auto-rows-min font-notoSans text-mainBlack text-sm my-4'>
+            <div className='grid grid-rows-2 grid-cols-4 auto-rows-min font-notoSans text-mainBlack text-base my-4'>
               <div
                 className='justify-self-end col-span-1'
                 data-testid='photo-address-for-over-md-layout'
@@ -103,12 +103,12 @@ const SutraDetailsOverMdLayout = ({ sutra, photo }: SutraDetailsProps) => {
               </div>
               <div className='justify-self-start col-span-3'>{shootingDate}</div>
             </div>
-            <div className=''>{renderNote()}</div>
+            <div className='w-full'>{renderNote()}</div>
             <div className='w-300 mt-8 mx-auto'>
-              <EditPhotoForOverMdLayout setEditMode={setEditMode} />
+              <EditPhoto setEditMode={setEditMode} />
             </div>
             <div className='w-300 text-right mt-4 mb-8 mx-auto'>
-              <DeletePhotoForOverMdLayout photoId={photo.id} />
+              <DeletePhoto photoId={photo.id} />
             </div>
           </div>
           <div className='w-992'>
@@ -122,4 +122,4 @@ const SutraDetailsOverMdLayout = ({ sutra, photo }: SutraDetailsProps) => {
   return renderSutraDetails()
 }
 
-export default SutraDetailsOverMdLayout
+export default SutraDetailsOver2XlLayout
