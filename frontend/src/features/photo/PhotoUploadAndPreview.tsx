@@ -163,11 +163,7 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
   return (
     <div className='flex flex-col items-center'>
       <h1 className='text-5xl text-sutraBlack font-kinuta mt-2 my-6 md:mt-8 md:mb-12'>
-        <SutraKanji
-          sutraKanji={sutra.kanji}
-          width={48}
-          height={48}
-        />
+        <SutraKanji sutraKanji={sutra.kanji} width={48} height={48} />
       </h1>
 
       {!isSelectedImage && (

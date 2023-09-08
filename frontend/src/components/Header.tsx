@@ -17,14 +17,14 @@ const Header = () => {
   useEffect(() => {
     const el = insideRef.current
 
-    if(!el) return
+    if (!el) return
 
     const handleClickOutside = (e: MouseEvent) => {
-        if (!el?.contains(e.target as Node)) {
-          setIsMenuOpen(false)
-        } else {
-          return
-        }
+      if (!el?.contains(e.target as Node)) {
+        setIsMenuOpen(false)
+      } else {
+        return
+      }
     }
 
     document.addEventListener('click', handleClickOutside)

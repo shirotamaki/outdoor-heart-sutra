@@ -104,9 +104,7 @@ test.describe('Note Workflow For 2Xl Or Below Layout', () => {
         timeout: 60000,
       },
     )
-    const firstTextarea = await page.textContent(
-      '[data-testid="saved-note-2XlOrBelow"]',
-    )
+    const firstTextarea = await page.textContent('[data-testid="saved-note-2XlOrBelow"]')
     expect(firstTextarea).toContain('This is sample note.')
 
     await page.getByTestId('edit-note-button-2XlOrBelow').click()
@@ -119,9 +117,7 @@ test.describe('Note Workflow For 2Xl Or Below Layout', () => {
     await page.waitForSelector('[data-testid="saved-note-2XlOrBelow"]', {
       timeout: 60000,
     })
-    const editedTextarea = await page.textContent(
-      '[data-testid="saved-note-2XlOrBelow"]',
-    )
+    const editedTextarea = await page.textContent('[data-testid="saved-note-2XlOrBelow"]')
     expect(editedTextarea).toContain('This is edited note.')
   })
 })

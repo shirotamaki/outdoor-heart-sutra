@@ -17,28 +17,14 @@ describe('Note', () => {
 
   it('renders without crashing', () => {
     render(
-      <Note
-        photoId={1}
-        sutraId={1}
-        photoNote={''}
-        setEditNote={jest.fn()}
-        rows={4}
-        cols={45}
-      />,
+      <Note photoId={1} sutraId={1} photoNote={''} setEditNote={jest.fn()} rows={4} cols={45} />,
     )
     expect(screen.getByPlaceholderText('メモを入力してください')).toBeInTheDocument()
   })
 
   it('allows user to input text', () => {
     render(
-      <Note
-        photoId={1}
-        sutraId={1}
-        photoNote={''}
-        setEditNote={jest.fn()}
-        rows={4}
-        cols={45}
-      />,
+      <Note photoId={1} sutraId={1} photoNote={''} setEditNote={jest.fn()} rows={4} cols={45} />,
     )
     fireEvent.change(screen.getByPlaceholderText('メモを入力してください'), {
       target: { value: 'Test Note' },
@@ -49,14 +35,7 @@ describe('Note', () => {
   it('allows user to save note', async () => {
     mockedAxios.patch.mockResolvedValue({ data: {} })
     render(
-      <Note
-        photoId={1}
-        sutraId={1}
-        photoNote={''}
-        setEditNote={jest.fn()}
-        rows={4}
-        cols={45}
-      />,
+      <Note photoId={1} sutraId={1} photoNote={''} setEditNote={jest.fn()} rows={4} cols={45} />,
     )
     fireEvent.change(screen.getByPlaceholderText('メモを入力してください'), {
       target: { value: 'Test Note' },

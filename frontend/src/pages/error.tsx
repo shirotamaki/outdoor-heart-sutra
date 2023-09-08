@@ -15,7 +15,9 @@ const ErrorPage: NextPage = () => {
       />
       <main className='bg-beige flex-grow'>
         <div className='flex flex-col justify-center items-center p-4'>
-          <h1 className='text-mainBlack text-7xl md:text-8xl font-notoSans mt-24 md:mt-36 mb-4 md:mb-8 '>404</h1>
+          <h1 className='text-mainBlack text-7xl md:text-8xl font-notoSans mt-24 md:mt-36 mb-4 md:mb-8 '>
+            404
+          </h1>
           <Image
             src='/images/buddha_nehanbotoke_daibutsu.png'
             alt={'涅槃像_いらすとや'}

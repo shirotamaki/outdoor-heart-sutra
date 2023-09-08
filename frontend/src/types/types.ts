@@ -142,7 +142,6 @@ export type SutraKanjiProps = {
   height: number
 }
 
-
 // hooks
 export type LocationProps = { lat: number; lng: number } | null
 

@@ -122,9 +122,7 @@ test.describe('Photo Workflow For Over 2Xl Layout', () => {
     })
     const address = await page.textContent('[data-testid="photo-address-over2Xl"]')
     expect(address).toMatch(/住所/)
-    const shootingDate = await page.textContent(
-      '[data-testid="photo-shootingDate-over2Xl"]',
-    )
+    const shootingDate = await page.textContent('[data-testid="photo-shootingDate-over2Xl"]')
     expect(shootingDate).toMatch(/撮影日/)
   })
 
@@ -145,9 +143,7 @@ test.describe('Photo Workflow For Over 2Xl Layout', () => {
         timeout: 60000,
       },
     )
-    await page
-      .getByTestId('reselect-file-input-after-saving-photo-button-over2Xl')
-      .click()
+    await page.getByTestId('reselect-file-input-after-saving-photo-button-over2Xl').click()
     const content = await page.textContent('h1')
     expect(content).toContain('仏')
   })
