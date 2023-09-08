@@ -3,6 +3,8 @@ import { baseURL } from 'playwright/config/index'
 
 let page: Page
 
+test.describe.configure({ mode: 'serial' })
+
 test.beforeAll(async ({ browser }) => {
   page = await browser.newPage()
 
@@ -20,7 +22,7 @@ test.afterAll(async () => {
 })
 
 test.describe('HomeButton navigation on different viewport sizes', () => {
-  test('should navigate to home page when homebutton-xl-link is clicked', async () => {
+  test('should navigate to home page when homebutton-xl-link is clicked', async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 720 })
     await page.goto(`${baseURL}/about`)
     await page.click('[data-testid="homebutton-xl-link"]')
@@ -31,7 +33,7 @@ test.describe('HomeButton navigation on different viewport sizes', () => {
     expect(content).toContain('仏')
   })
 
-  test('should navigate to home page when homebutton-md-link is clicked', async () => {
+  test('should navigate to home page when homebutton-md-link is clicked', async ({ page }) => {
     await page.setViewportSize({ width: 768, height: 720 })
     await page.goto(`${baseURL}/about`)
     await page.click('[data-testid="homebutton-md-link"]')
@@ -42,7 +44,7 @@ test.describe('HomeButton navigation on different viewport sizes', () => {
     expect(content).toContain('仏')
   })
 
-  test('should navigate to home page when homebutton-sm-link is clicked', async () => {
+  test('should navigate to home page when homebutton-sm-link is clicked', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 720 })
     await page.goto(`${baseURL}/about`)
     await page.click('[data-testid="homebutton-sm-link"]')

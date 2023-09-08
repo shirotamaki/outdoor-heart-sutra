@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { useSession } from 'next-auth/react'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import DesktopMenu from '@/components/DesktopMenu'
 import HomeButton from '@/components/HomeButton'
 import MobileMenu from '@/components/MobileMenu'
@@ -12,25 +12,47 @@ const Header = () => {
   const { status } = useSession()
   const isAuthenticated = status === 'authenticated'
 
+  const insideRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const el = insideRef.current
+
+    if (!el) return
+
+    const handleClickOutside = (e: MouseEvent) => {
+      if (!el?.contains(e.target as Node)) {
+        setIsMenuOpen(false)
+      } else {
+        return
+      }
+    }
+
+    document.addEventListener('click', handleClickOutside)
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside)
+    }
+  }, [insideRef])
+
   return (
-    <header className='bg-beige font-reggae text-black/50 border-b border-white pt-4 px-2'>
-      <div className='container mx-auto flex justify-between items-center '>
+    <header className='bg-beige font-reggae text-mainBlack border-b border-white pt-4 pb-2 px-4'>
+      <div className='flex justify-between items-baseline 2xl:max-w-1352 lg:max-w-776 sm:max-w-552 max-w-screen-sm mx-auto'>
         <div className='hidden xl:flex' data-testid='homebutton-xl-link'>
-          <HomeButton width={300} height={96} />
+          <HomeButton width={160} height={46} />
         </div>
-        <div className='hidden md:flex xl:hidden' data-testid='homebutton-md-link'>
-          <HomeButton width={240} height={72} />
+        <div className='hidden sm:flex xl:hidden' data-testid='homebutton-md-link'>
+          <HomeButton width={140} height={40} />
         </div>
-        <div className='flex md:hidden' data-testid='homebutton-sm-link'>
-          <HomeButton width={160} height={48} />
+        <div className='sm:hidden' data-testid='homebutton-sm-link'>
+          <HomeButton width={120} height={36} />
         </div>
 
         {isAuthenticated && (
-          <div>
-            <div className='hidden md:flex'>
+          <div ref={insideRef}>
+            <div className='hidden sm:flex'>
               <DesktopMenu />
             </div>
-            <div className='md:hidden'>
+            <div className='sm:hidden'>
               <button
                 type='button'
                 onClick={toggleMenu}
@@ -42,7 +64,6 @@ const Header = () => {
                   alt='Menu Icon'
                   width={36}
                   height={36}
-                  className='mt-4'
                 />
               </button>
               <MobileMenu isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />

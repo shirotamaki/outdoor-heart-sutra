@@ -6,8 +6,8 @@ import TwitterLink from '@/components/TwitterLink'
 const Footer = () => {
   return (
     <footer className='bg-tetsuguro font-notoSans text-white'>
-      <div className='flex flex-col justify-center items-center md:py-4 py-2'>
-        <nav className='space-x-4 mb-2 md:text-base text-xs'>
+      <div className='flex flex-col justify-center items-center md:py-8 py-4'>
+        <nav className='space-x-4 md:mb-3 mb-2 md:text-base text-xs'>
           <Link
             data-testid='terms-of-service'
             href='/terms-of-service'
@@ -23,7 +23,7 @@ const Footer = () => {
             プライバシーポリシー
           </Link>
         </nav>
-        <nav className='flex flex-row space-x-4 mb-2'>
+        <nav className='flex flex-row space-x-4 items-center md:mb-3 mb-2'>
           <TwitterLink />
           <GitHubLink />
           <SuzuriLink width={18} height={18} />

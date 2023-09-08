@@ -23,3 +23,8 @@
   position: relative;
   width: 300px;
 }
+
+.min-height {
+  /* header: 74.4px + footer: 154px  */
+  min-height: calc(100vh - (229px));
+}

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { useRouter } from 'next/router'
-import SutraDetailsOverMdLayout from '@/features/sutra/SutraDetailsOverMdLayout'
+import SutraDetailsOver2XlLayout from '@/features/sutra/SutraDetailsOver2XlLayout'
 import { Sutra, Photo } from '@/types/types'
 
 jest.mock('next/router', () => ({
@@ -15,7 +15,7 @@ jest.mock('next/router', () => ({
   },
 }))
 
-describe('SutraDetailsOverMdLayout', () => {
+describe('SutraDetailsOver2XlLayout', () => {
   const mockSutra: Sutra = { id: 1, kanji: '仏' }
 
   const mockPhoto: Photo = {
@@ -32,10 +32,10 @@ describe('SutraDetailsOverMdLayout', () => {
   }
 
   beforeEach(() => {
-    render(<SutraDetailsOverMdLayout sutra={mockSutra} photo={mockPhoto} />)
+    render(<SutraDetailsOver2XlLayout sutra={mockSutra} photo={mockPhoto} is2XlOrBelow={false} />)
   })
 
-  it('should correctly display the SutraDetailsOverMdLayout component', () => {
+  it('should correctly display the SutraDetailsOver2XlLayout component', () => {
     const imageElements = screen.getAllByAltText('capturedImage')
     expect(imageElements).toHaveLength(2)
 
