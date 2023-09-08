@@ -131,7 +131,7 @@ export type SutraListProps = {
 export type SutraItemProps = {
   sutraId: number
   sutraKanji: string
-  correspondingPhoto: Photo | undefined
+  correspondingPhoto: Photo | null | undefined
   width: number
   height: number
 }
