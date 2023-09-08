@@ -91,7 +91,7 @@ const SutraDetails = ({ sutra, photo }: SutraDetailsProps) => {
             <div className='2xl:hidden'>
               <SutraDetails2XlOrBelowLayout sutra={sutra} photo={photo} is2XlOrBelow={true} />
             </div>
-            <div className='hidden 2xl:flex'>
+            <div className='hidden 2xl:flex justify-center'>
               <SutraDetailsOver2XlLayout sutra={sutra} photo={photo} is2XlOrBelow={false} />
             </div>
           </div>
