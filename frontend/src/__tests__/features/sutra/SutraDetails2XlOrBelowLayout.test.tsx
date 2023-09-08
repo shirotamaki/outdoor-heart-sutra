@@ -32,7 +32,7 @@ describe('SutraDetails2XlOrBelowLayout', () => {
   }
 
   beforeEach(() => {
-    render(<SutraDetails2XlOrBelowLayout sutra={mockSutra} photo={mockPhoto} />)
+    render(<SutraDetails2XlOrBelowLayout sutra={mockSutra} photo={mockPhoto} is2XlOrBelow={true} />)
   })
 
   it('should correctly display the SutraDetails2XlOrBelowLayout component', () => {

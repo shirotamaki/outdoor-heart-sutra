@@ -9,10 +9,17 @@ jest.mock('next/router', () => ({
 }))
 
 describe('DeletePhoto', () => {
-  it('renders display delete button', () => {
-    render(<DeletePhoto photoId={1} />)
+  it('renders display delete button for 2Xl or below', () => {
+    render(<DeletePhoto photoId={1} is2XlOrBelow={true} />)
 
-    const deleteButton = screen.getByText('削除する')
-    expect(deleteButton).toBeInTheDocument()
+    const deletePhotoButton = screen.getByText('削除する')
+    expect(deletePhotoButton).toBeInTheDocument()
+  })
+
+  it('renders display delete button for over 2Xl', () => {
+    render(<DeletePhoto photoId={1} is2XlOrBelow={false} />)
+
+    const deletePhotoButton = screen.getByText('削除する')
+    expect(deletePhotoButton).toBeInTheDocument()
   })
 })

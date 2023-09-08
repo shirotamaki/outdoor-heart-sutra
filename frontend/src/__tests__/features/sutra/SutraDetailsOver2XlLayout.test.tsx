@@ -32,7 +32,7 @@ describe('SutraDetailsOver2XlLayout', () => {
   }
 
   beforeEach(() => {
-    render(<SutraDetailsOver2XlLayout sutra={mockSutra} photo={mockPhoto} />)
+    render(<SutraDetailsOver2XlLayout sutra={mockSutra} photo={mockPhoto} is2XlOrBelow={false} />)
   })
 
   it('should correctly display the SutraDetailsOver2XlLayout component', () => {
