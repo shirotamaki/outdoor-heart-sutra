@@ -6,7 +6,7 @@ import { toast } from 'react-toastify'
 import { railsApiUrl } from '@/config/index'
 import { DeletePhotoProps } from '@/types/types'
 
-const DeletePhoto = ({ photoId }: DeletePhotoProps) => {
+const DeletePhoto = ({ photoId, is2XlOrBelow }: DeletePhotoProps) => {
   const router = useRouter()
   const [modalIsOpen, setIsOpen] = useState(false)
 
@@ -39,7 +39,7 @@ const DeletePhoto = ({ photoId }: DeletePhotoProps) => {
   return (
     <>
       <button
-        data-testid='delete-photo-button-for-over-md-layout'
+        data-testid={`delete-photo-button${is2XlOrBelow ? '-2XlOrBelow' : '-over2Xl'}`}
         onClick={openModal}
         className='hover:opacity-50 transition-all duration-100 font-notoSans text-base font-extrabold text-gray-400 underline'
       >
@@ -62,7 +62,9 @@ const DeletePhoto = ({ photoId }: DeletePhotoProps) => {
           </div>
           <div className='mt-5 sm:mt-4 sm:flex sm:flex-row-reverse'>
             <button
-              data-testid='delete-photo-confirm-button-for-over-md-layout'
+              data-testid={`delete-photo-confirm-button${
+                is2XlOrBelow ? '-2XlOrBelow' : '-over2Xl'
+              }`}
               type='button'
               className='w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-500 font-notoSans text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm'
               onClick={handleDelete}
@@ -70,7 +72,7 @@ const DeletePhoto = ({ photoId }: DeletePhotoProps) => {
               はい
             </button>
             <button
-              data-testid='delete-photo-cancel-button-for-over-md-layout'
+              data-testid={`delete-photo-cancel-button${is2XlOrBelow ? '-2XlOrBelow' : '-over2Xl'}`}
               type='button'
               className='mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white font-notoSans text-base font-medium text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:w-auto sm:text-sm'
               onClick={closeModal}

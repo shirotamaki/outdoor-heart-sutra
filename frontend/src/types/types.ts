@@ -73,6 +73,7 @@ export type NoteProps = {
   setEditNote: (value: boolean) => void
   rows: number
   cols: number
+  is2XlOrBelow: boolean
 }
 
 //photo
@@ -85,10 +86,12 @@ export type CapturedImageProps = {
 
 export type DeletePhotoProps = {
   photoId: number
+  is2XlOrBelow: boolean
 }
 
 export type EditPhotoProps = {
   setEditMode: (value: boolean) => void
+  is2XlOrBelow: boolean
 }
 
 export type PhotoUploadAndPreviewProps = {
@@ -117,6 +120,7 @@ export type PhotosProps = {
 export type SutraDetailsProps = {
   sutra: Sutra
   photo: Photo
+  is2XlOrBelow: boolean
 }
 
 export type SutraListProps = {

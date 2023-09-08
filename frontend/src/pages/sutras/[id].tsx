@@ -89,10 +89,10 @@ const SutraDetails = ({ sutra, photo }: SutraDetailsProps) => {
         ) : (
           <div>
             <div className='2xl:hidden'>
-              <SutraDetails2XlOrBelowLayout sutra={sutra} photo={photo} />
+              <SutraDetails2XlOrBelowLayout sutra={sutra} photo={photo} is2XlOrBelow={true} />
             </div>
             <div className='hidden 2xl:flex'>
-              <SutraDetailsOver2XlLayout sutra={sutra} photo={photo} />
+              <SutraDetailsOver2XlLayout sutra={sutra} photo={photo} is2XlOrBelow={false} />
             </div>
           </div>
         )}

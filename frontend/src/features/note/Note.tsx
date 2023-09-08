@@ -13,6 +13,7 @@ const Note = ({
   setEditNote,
   rows,
   cols,
+  is2XlOrBelow,
 }: NoteProps) => {
   const [note, setNote] = useState<string>(photoNote || '')
 
@@ -55,7 +56,7 @@ const Note = ({
   return (
     <div>
       <textarea
-        data-testid='note-textarea-for-over-md-layout'
+        data-testid={`note-textarea${is2XlOrBelow ? '-2XlOrBelow' : '-over2Xl'}`}
         value={note}
         onChange={handleChange}
         placeholder={note ? note : 'メモを入力してください'}
@@ -65,7 +66,7 @@ const Note = ({
       ></textarea>
       <div className='flex justify-around'>
         <div
-          data-testid='save-note-button-for-over-md-layout'
+          data-testid={`save-note-button${is2XlOrBelow ? '-2XlOrBelow' : '-over2Xl'}`}
           className=' bg-blue-500 hover:bg-blue-400 text-white rounded-full font-notoSans text-xs ml-auto  my-2 px-2 py-1'
         >
           <ActionButton onClick={saveNote} text='メモ保存' />

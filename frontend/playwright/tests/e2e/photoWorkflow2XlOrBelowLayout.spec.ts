@@ -30,7 +30,7 @@ test.afterAll(async () => {
   await page.close()
 })
 
-test.describe('Photo Workflow For Md Layout', () => {
+test.describe('Photo Workflow For 2Xl Or Below Layout', () => {
   test.beforeEach(async () => {
     await page.setViewportSize({ width: 375, height: 720 })
     await page.goto(baseURL)
@@ -119,16 +119,16 @@ test.describe('Photo Workflow For Md Layout', () => {
     })
     await page.getByTestId('save-photo-button').click()
 
-    await page.waitForSelector('[data-testid="photo-address-for-md-layout"]', {
+    await page.waitForSelector('[data-testid="photo-address-2XlOrBelow"]', {
       timeout: 60000,
     })
-    const address = await page.textContent('[data-testid="photo-address-for-md-layout"]')
+    const address = await page.textContent('[data-testid="photo-address-2XlOrBelow"]')
     expect(address).toMatch(/住所/)
-    const shootingDate = await page.textContent('[data-testid="photo-shootingDate-for-md-layout"]')
+    const shootingDate = await page.textContent('[data-testid="photo-shootingDate-2XlOrBelow"]')
     expect(shootingDate).toMatch(/撮影日/)
   })
 
-  test('should return to reselection mode when clicked reselect-file-input-after-saving-photo-button-for-md-layout after saving photo', async () => {
+  test('should return to reselection mode when clicked reselect-file-input-after-saving-photo-button-2XlOrBelow after saving photo', async () => {
     await page.waitForSelector('[data-testid="file-input-confirm-button"]', {
       timeout: 60000,
     })
@@ -140,12 +140,12 @@ test.describe('Photo Workflow For Md Layout', () => {
     await page.getByTestId('save-photo-button').click()
 
     await page.waitForSelector(
-      '[data-testid="reselect-file-input-after-saving-photo-button-for-md-layout"]',
+      '[data-testid="reselect-file-input-after-saving-photo-button-2XlOrBelow"]',
       {
         timeout: 60000,
       },
     )
-    await page.getByTestId('reselect-file-input-after-saving-photo-button-for-md-layout').click()
+    await page.getByTestId('reselect-file-input-after-saving-photo-button-2XlOrBelow').click()
     const content = await page.textContent('h1')
     expect(content).toContain('説')
   })
@@ -161,25 +161,25 @@ test.describe('Photo Workflow For Md Layout', () => {
     })
     await page.getByTestId('save-photo-button').click()
 
-    await page.waitForSelector('[data-testid="delete-photo-button-for-md-layout"]', {
+    await page.waitForSelector('[data-testid="delete-photo-button-2XlOrBelow"]', {
       timeout: 60000,
     })
-    await page.getByTestId('delete-photo-button-for-md-layout').click()
+    await page.getByTestId('delete-photo-button-2XlOrBelow').click()
 
-    await page.waitForSelector('[data-testid="delete-photo-cancel-button-for-md-layout"]', {
+    await page.waitForSelector('[data-testid="delete-photo-cancel-button-2XlOrBelow"]', {
       timeout: 60000,
     })
-    await page.getByTestId('delete-photo-cancel-button-for-md-layout').click()
+    await page.getByTestId('delete-photo-cancel-button-2XlOrBelow').click()
 
-    await page.waitForSelector('[data-testid="delete-photo-button-for-md-layout"]', {
+    await page.waitForSelector('[data-testid="delete-photo-button-2XlOrBelow"]', {
       timeout: 60000,
     })
-    await page.getByTestId('delete-photo-button-for-md-layout').click()
+    await page.getByTestId('delete-photo-button-2XlOrBelow').click()
 
-    await page.waitForSelector('[data-testid="delete-photo-confirm-button-for-md-layout"]', {
+    await page.waitForSelector('[data-testid="delete-photo-confirm-button-2XlOrBelow"]', {
       timeout: 60000,
     })
-    await page.getByTestId('delete-photo-confirm-button-for-md-layout').click()
+    await page.getByTestId('delete-photo-confirm-button-2XlOrBelow').click()
 
     const thirdKanjiElement = page.locator('[data-testid="kanji"]').nth(1)
     const content = await thirdKanjiElement.textContent()
