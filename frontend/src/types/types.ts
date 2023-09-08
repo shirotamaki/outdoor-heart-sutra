@@ -128,6 +128,21 @@ export type SutraListProps = {
   photos: Photo[]
 }
 
+export type SutraItemProps = {
+  sutraId: number
+  sutraKanji: string
+  correspondingPhoto: Photo | undefined
+  width: number
+  height: number
+}
+
+export type SutraKanjiProps = {
+  sutraKanji: string
+  width: number
+  height: number
+}
+
+
 // hooks
 export type LocationProps = { lat: number; lng: number } | null
 

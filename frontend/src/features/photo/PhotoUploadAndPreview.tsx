@@ -10,6 +10,7 @@ import { toast } from 'react-toastify'
 import ActionButton from '@/components/ActionButton'
 import { railsApiUrl } from '@/config/index'
 import cropImage from '@/features/photo/cropImage'
+import SutraKanji from '@/features/sutra/SutraKanji'
 import fetchUserId from '@/features/user/fetchUserId'
 import useFetchLocation from '@/hooks/useFetchLocation'
 import useReverseGeocode from '@/hooks/useReverseGeocode'
@@ -162,7 +163,11 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
   return (
     <div className='flex flex-col items-center'>
       <h1 className='text-5xl text-sutraBlack font-kinuta mt-2 my-6 md:mt-8 md:mb-12'>
-        {sutra.kanji}
+        <SutraKanji
+          sutraKanji={sutra.kanji}
+          width={48}
+          height={48}
+        />
       </h1>
 
       {!isSelectedImage && (

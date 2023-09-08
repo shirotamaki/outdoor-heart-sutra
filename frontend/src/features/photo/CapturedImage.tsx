@@ -10,7 +10,6 @@ const CapturedImage = ({ capturedImageUrl, width, height, borderRadius }: Captur
         width={width}
         height={height}
         style={{ borderRadius: borderRadius }}
-        className='mt-1'
       />
     </>
   )

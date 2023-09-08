@@ -5,6 +5,7 @@ import CapturedImage from '@/features/photo/CapturedImage'
 import DeletePhoto from '@/features/photo/DeletePhoto'
 import EditPhoto from '@/features/photo/EditPhoto'
 import PhotoUploadAndPreview from '@/features/photo/PhotoUploadAndPreview'
+import SutraKanji from '@/features/sutra/SutraKanji'
 import { SutraDetailsProps } from '@/types/types'
 
 const SutraDetailsOver2XlLayout = ({ sutra, photo, is2XlOrBelow }: SutraDetailsProps) => {
@@ -77,8 +78,10 @@ const SutraDetailsOver2XlLayout = ({ sutra, photo, is2XlOrBelow }: SutraDetailsP
                 borderRadius='5px'
               />
             </div>
-            <div className='flex flex-row justify-center mt-4'>
-              <div className='text-5xl text-sutraBlack font-kinuta mx-4'>{sutra.kanji}</div>
+            <div className='flex flex-row justify-center items-center mt-4'>
+              <div className='text-5xl text-sutraBlack font-kinuta mx-4'>
+                <SutraKanji sutraKanji={sutra.kanji} width={48} height={48} />
+              </div>
               <div className='mx-4 mt-1'>
                 <CapturedImage
                   capturedImageUrl={photo.cropped_image_url}
@@ -89,17 +92,11 @@ const SutraDetailsOver2XlLayout = ({ sutra, photo, is2XlOrBelow }: SutraDetailsP
               </div>
             </div>
             <div className='grid grid-rows-2 grid-cols-4 auto-rows-min font-notoSans text-mainBlack text-base my-4'>
-              <div
-                className='justify-self-end col-span-1'
-                data-testid='photo-address-over2Xl'
-              >
+              <div className='justify-self-end col-span-1' data-testid='photo-address-over2Xl'>
                 住所：
               </div>
               <div className='justify-self-start col-span-3'>{photo.address}</div>
-              <div
-                className='justify-self-end col-span-1'
-                data-testid='photo-shootingDate-over2Xl'
-              >
+              <div className='justify-self-end col-span-1' data-testid='photo-shootingDate-over2Xl'>
                 撮影日：
               </div>
               <div className='justify-self-start col-span-3'>{shootingDate}</div>

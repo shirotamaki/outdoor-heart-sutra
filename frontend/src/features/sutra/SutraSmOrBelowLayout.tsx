@@ -1,6 +1,5 @@
-import Link from 'next/link'
-import CapturedImage from '@/features/photo/CapturedImage'
 import SutraCalculator from '@/features/sutra/SutraCalculator'
+import SutraItem from '@/features/sutra/SutraItem'
 import { Sutra, Photo } from '@/types/types'
 
 const SutraSmOrBelowLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[] }) => {
@@ -16,33 +15,18 @@ const SutraSmOrBelowLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Pho
         <SutraCalculator photos={photos} />
       </div>
       <div className='vertical-sutras-container grid gap-2 grid-cols-6 mb-6'>
-        {firstLayout.map((sutra) => {
+        {firstLayout.map((sutra, index) => {
           const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
 
           return (
-            <div data-testid='kanji' key={sutra.id} className='hover:opacity-70'>
-              {correspondingPhoto && correspondingPhoto.cropped_image_url ? (
-                <div>
-                  <Link href={`/sutras/${sutra.id}`}>
-                    <CapturedImage
-                      capturedImageUrl={correspondingPhoto.cropped_image_url}
-                      width={48}
-                      height={48}
-                      borderRadius='5px'
-                    />
-                  </Link>
-                </div>
-              ) : (
-                <div className='text-5xl'>
-                  <Link
-                    href={`/sutras/${sutra.id}`}
-                    className='text-sutraBlack no-underline font-kinuta'
-                  >
-                    {sutra.kanji}
-                  </Link>
-                </div>
-              )}
-            </div>
+            <SutraItem
+              key={index}
+              sutraId={sutra.id}
+              sutraKanji={sutra.kanji}
+              correspondingPhoto={correspondingPhoto}
+              width={48}
+              height={48}
+            />
           )
         })}
       </div>
@@ -50,33 +34,18 @@ const SutraSmOrBelowLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Pho
       <br />
 
       <div className='vertical-sutras-container grid gap-2 grid-cols-6 mb-6'>
-        {secondLayout.map((sutra) => {
+        {secondLayout.map((sutra, index) => {
           const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
 
           return (
-            <div key={sutra.id} className='hover:opacity-70'>
-              {correspondingPhoto && correspondingPhoto.cropped_image_url ? (
-                <div>
-                  <Link href={`/sutras/${sutra.id}`}>
-                    <CapturedImage
-                      capturedImageUrl={correspondingPhoto.cropped_image_url}
-                      width={48}
-                      height={48}
-                      borderRadius='5px'
-                    />
-                  </Link>
-                </div>
-              ) : (
-                <div className='text-5xl'>
-                  <Link
-                    href={`/sutras/${sutra.id}`}
-                    className='text-sutraBlack no-underline font-kinuta'
-                  >
-                    {sutra.kanji}
-                  </Link>
-                </div>
-              )}
-            </div>
+            <SutraItem
+              key={index}
+              sutraId={sutra.id}
+              sutraKanji={sutra.kanji}
+              correspondingPhoto={correspondingPhoto}
+              width={48}
+              height={48}
+            />
           )
         })}
       </div>
@@ -84,33 +53,18 @@ const SutraSmOrBelowLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Pho
       <br />
 
       <div className='vertical-sutras-container grid gap-2 grid-cols-6 mb-6'>
-        {thirdLayout.map((sutra) => {
+        {thirdLayout.map((sutra, index) => {
           const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
 
           return (
-            <div key={sutra.id} className='hover:opacity-70'>
-              {correspondingPhoto && correspondingPhoto.cropped_image_url ? (
-                <div>
-                  <Link href={`/sutras/${sutra.id}`}>
-                    <CapturedImage
-                      capturedImageUrl={correspondingPhoto.cropped_image_url}
-                      width={48}
-                      height={48}
-                      borderRadius='5px'
-                    />
-                  </Link>
-                </div>
-              ) : (
-                <div className='text-5xl'>
-                  <Link
-                    href={`/sutras/${sutra.id}`}
-                    className='text-sutraBlack no-underline font-kinuta'
-                  >
-                    {sutra.kanji}
-                  </Link>
-                </div>
-              )}
-            </div>
+            <SutraItem
+              key={index}
+              sutraId={sutra.id}
+              sutraKanji={sutra.kanji}
+              correspondingPhoto={correspondingPhoto}
+              width={48}
+              height={48}
+            />
           )
         })}
       </div>
@@ -118,33 +72,18 @@ const SutraSmOrBelowLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Pho
       <br />
 
       <div className='vertical-sutras-container grid gap-2 grid-cols-6 mb-6'>
-        {fourthLayout.map((sutra) => {
+        {fourthLayout.map((sutra, index) => {
           const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
 
           return (
-            <div key={sutra.id} className='hover:opacity-70'>
-              {correspondingPhoto && correspondingPhoto.cropped_image_url ? (
-                <div>
-                  <Link href={`/sutras/${sutra.id}`}>
-                    <CapturedImage
-                      capturedImageUrl={correspondingPhoto.cropped_image_url}
-                      width={48}
-                      height={48}
-                      borderRadius='5px'
-                    />
-                  </Link>
-                </div>
-              ) : (
-                <div className='text-5xl'>
-                  <Link
-                    href={`/sutras/${sutra.id}`}
-                    className='text-sutraBlack no-underline font-kinuta'
-                  >
-                    {sutra.kanji}
-                  </Link>
-                </div>
-              )}
-            </div>
+            <SutraItem
+              key={index}
+              sutraId={sutra.id}
+              sutraKanji={sutra.kanji}
+              correspondingPhoto={correspondingPhoto}
+              width={48}
+              height={48}
+            />
           )
         })}
       </div>
@@ -152,33 +91,18 @@ const SutraSmOrBelowLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Pho
       <br />
 
       <div className='vertical-sutras-container grid gap-2 grid-cols-6 mb-12'>
-        {fifthLayout.map((sutra) => {
+        {fifthLayout.map((sutra, index) => {
           const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
 
           return (
-            <div key={sutra.id} className='hover:opacity-70'>
-              {correspondingPhoto && correspondingPhoto.cropped_image_url ? (
-                <div>
-                  <Link href={`/sutras/${sutra.id}`}>
-                    <CapturedImage
-                      capturedImageUrl={correspondingPhoto.cropped_image_url}
-                      width={48}
-                      height={48}
-                      borderRadius='5px'
-                    />
-                  </Link>
-                </div>
-              ) : (
-                <div className='text-5xl'>
-                  <Link
-                    href={`/sutras/${sutra.id}`}
-                    className='text-sutraBlack no-underline font-kinuta'
-                  >
-                    {sutra.kanji}
-                  </Link>
-                </div>
-              )}
-            </div>
+            <SutraItem
+              key={index}
+              sutraId={sutra.id}
+              sutraKanji={sutra.kanji}
+              correspondingPhoto={correspondingPhoto}
+              width={48}
+              height={48}
+            />
           )
         })}
       </div>
