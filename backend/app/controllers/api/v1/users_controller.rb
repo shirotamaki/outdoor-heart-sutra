@@ -6,6 +6,16 @@ module API
       # create, destroyアクションに対して、CSRF保護を無効にする
       skip_before_action :verify_authenticity_token, only: %i[create destroy]
 
+      def index
+        user = User.find_by(email: params[:email])
+
+        if user
+          render json: { user_id: user.id }, status: :ok
+        else
+          render json: { error: 'ユーザーが見つかりませんでした' }, status: :not_found
+        end
+      end
+
       def create
         user = User.find_by(provider: params[:provider], uid: params[:uid])
 

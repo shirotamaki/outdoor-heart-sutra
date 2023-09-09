@@ -59,7 +59,7 @@ test.describe('Photo Workflow For Md Layout', () => {
 
   test.afterEach(async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/v1/find_photos', {
+      const response = await axios.get('http://localhost:3000/api/v1/photos', {
         params: {
           // コンフリクトするためsutraIdは2にしている
           sutra_id: 2, // 説

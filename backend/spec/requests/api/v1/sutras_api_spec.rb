@@ -11,7 +11,7 @@ RSpec.describe 'API' do
         sutras.each { |kanji| FactoryBot.create(:sutra, kanji:) }
       end
 
-      describe 'GET /index' do
+      describe 'GET /api/v1/index' do
         before do
           get '/api/v1/sutras'
         end
@@ -29,7 +29,7 @@ RSpec.describe 'API' do
         end
       end
 
-      describe 'GET /show' do
+      describe 'GET /api/v1/show' do
         let(:sutra) { Sutra.first }
 
         context 'when sutra exists' do

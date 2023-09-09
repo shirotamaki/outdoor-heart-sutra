@@ -35,10 +35,10 @@ RSpec.describe 'API' do
         {}
       end
 
-      # find_photos#index
-      describe 'GET /api/v1/find_photos' do
+      # photos#index
+      describe 'GET /api/v1/photos' do
         before do
-          get '/api/v1/find_photos', params: { sutra_id: sutra.id, user_id: user.id }
+          get '/api/v1/photos', params: { sutra_id: sutra.id, user_id: user.id }
         end
 
         context 'when photo exists' do
@@ -56,7 +56,7 @@ RSpec.describe 'API' do
           let!(:other_sutra) { FactoryBot.create(:sutra) }
 
           before do
-            get '/api/v1/find_photos', params: { sutra_id: other_sutra.id, user_id: other_user.id }
+            get '/api/v1/photos', params: { sutra_id: other_sutra.id, user_id: other_user.id }
           end
 
           it 'returns an error message' do

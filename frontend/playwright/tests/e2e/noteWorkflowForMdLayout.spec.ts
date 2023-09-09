@@ -57,7 +57,7 @@ test.describe('Note Workflow For Md Layout', () => {
 
   test.afterEach(async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/v1/find_photos', {
+      const response = await axios.get('http://localhost:3000/api/v1/photos', {
         params: {
           sutra_id: 4, // 訶
           user_id: 1,

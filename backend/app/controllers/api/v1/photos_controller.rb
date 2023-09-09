@@ -9,18 +9,13 @@ module API
       before_action :set_photo, only: %i[show update destroy]
 
       def index
-        user = User.find_by(id: params[:user_id])
-
-        if user.nil?
-          render json: { error: 'ユーザーが見つかりません' }, status: :not_found
+        case check_received_params
+        when :by_sutra_and_user
+          find_photo_by_sutra_and_user
+        when :by_user
+          find_photos_owned_by_user
         else
-          photos = user.photos.map do |photo|
-            image_url = rails_blob_url(photo.image) if photo.image.attached?
-            cropped_image_url = rails_blob_url(photo.cropped_image) if photo.cropped_image.attached?
-
-            photo.as_json.merge(image_url:, cropped_image_url:)
-          end
-          render json: photos
+          render json: { error: '必要なパラメータが不足しています' }, status: :not_found
         end
       end
 
@@ -68,6 +63,39 @@ module API
       end
 
       private
+
+      def check_received_params
+        return :by_sutra_and_user if params[:sutra_id] && params[:user_id]
+        return :by_user if params[:user_id]
+
+        nil
+      end
+
+      def find_photo_by_sutra_and_user
+        photo = Photo.find_by(sutra_id: params[:sutra_id], user_id: params[:user_id])
+
+        if photo.nil?
+          render json: { error: '写真が見つかりませんでした' }, status: :not_found
+        else
+          render json: { photo_id: photo.id }, status: :ok
+        end
+      end
+
+      def find_photos_owned_by_user
+        user = User.find_by(id: params[:user_id])
+
+        if user.nil?
+          render json: { error: 'ユーザーが見つかりません' }, status: :not_found
+        else
+          photos = user.photos.map do |photo|
+            image_url = rails_blob_url(photo.image) if photo.image.attached?
+            cropped_image_url = rails_blob_url(photo.cropped_image) if photo.cropped_image.attached?
+
+            photo.as_json.merge(image_url:, cropped_image_url:)
+          end
+          render json: photos
+        end
+      end
 
       def set_photo
         @photo = Photo.find(params[:id])

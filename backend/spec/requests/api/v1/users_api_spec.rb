@@ -7,9 +7,9 @@ RSpec.describe 'API' do
     describe 'Users', type: :request do
       let!(:user) { FactoryBot.create(:user) }
 
-      describe 'GET /find_user' do
+      describe 'GET /api/v1/index' do
         context 'when user exists' do
-          before { get '/api/v1/find_users', params: { email: user.email } }
+          before { get '/api/v1/users', params: { email: user.email } }
 
           it "returns the user's ID" do
             expect(JSON.parse(response.body)['user_id']).to eq(user.id)
@@ -21,7 +21,7 @@ RSpec.describe 'API' do
         end
 
         context 'when user does not exist' do
-          before { get '/api/v1/find_users', params: { email: 'user-does-not-exist@example.com' } }
+          before { get '/api/v1/users', params: { email: 'user-does-not-exist@example.com' } }
 
           it 'returns an error message' do
             expect(JSON.parse(response.body)).to have_key('error')
@@ -33,7 +33,7 @@ RSpec.describe 'API' do
         end
       end
 
-      describe 'POST /create' do
+      describe 'POST /api/v1/create' do
         let(:valid_attributes) do
           { provider: 'google', uid: '123456', name: 'Test User', email: 'test@example.com' }
         end
@@ -59,7 +59,7 @@ RSpec.describe 'API' do
         end
       end
 
-      describe 'DELETE /destroy' do
+      describe 'DELETE /api/v1/destroy' do
         let(:non_existent_user_id) { 9999 }
 
         context 'when user exists' do
