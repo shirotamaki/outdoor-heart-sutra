@@ -1,61 +1,61 @@
 import { useState, useEffect } from 'react'
-import SutraMdLayout from '@/features/sutra/SutraMdLayout'
-import SutraOverXlLayout from '@/features/sutra/SutraOverXlLayout'
-import SutraSmLayout from '@/features/sutra/SutraSmLayout'
-import SutraXlLayout from '@/features/sutra/SutraXlLayout'
+import SutraLgTo2XlLayout from '@/features/sutra/SutraLgTo2XlLayout'
+import SutraOver2XlLayout from '@/features/sutra/SutraOver2XlLayout'
+import SutraSmOrBelowLayout from '@/features/sutra/SutraSmOrBelowLayout'
+import SutraSmToLgLayout from '@/features/sutra/SutraSmToLgLayout'
 import useWindowWidth from '@/hooks/useWindowWidth'
 import { SutraListProps } from '@/types/types'
 
 const SutraList = ({ sutras, photos }: SutraListProps) => {
   const windowWidth = useWindowWidth()
-  const [isSmView, setIsSmView] = useState(false)
-  const [isMdView, setIsMdView] = useState(false)
-  const [isXlView, setIsXlView] = useState(false)
+  const [isSmOrBelowView, setIsSmOrBelowView] = useState(false)
+  const [isSmToLgView, setIsSmToLgView] = useState(false)
+  const [isLgTo2XlView, setIsLgTo2XlView] = useState(false)
 
   useEffect(() => {
     if (windowWidth !== null) {
       if (windowWidth <= 640) {
-        setIsSmView(true)
-        setIsMdView(false)
-        setIsXlView(false)
-      } else if (windowWidth > 640 && windowWidth <= 768) {
-        setIsSmView(false)
-        setIsMdView(true)
-        setIsXlView(false)
-      } else if (windowWidth > 768 && windowWidth <= 1280) {
-        setIsSmView(false)
-        setIsMdView(false)
-        setIsXlView(true)
-      } else if (windowWidth > 1280) {
-        setIsSmView(false)
-        setIsMdView(false)
-        setIsXlView(false)
+        setIsSmOrBelowView(true)
+        setIsSmToLgView(false)
+        setIsLgTo2XlView(false)
+      } else if (windowWidth > 640 && windowWidth <= 1024) {
+        setIsSmOrBelowView(false)
+        setIsSmToLgView(true)
+        setIsLgTo2XlView(false)
+      } else if (windowWidth > 1024 && windowWidth <= 1536) {
+        setIsSmOrBelowView(false)
+        setIsSmToLgView(false)
+        setIsLgTo2XlView(true)
+      } else if (windowWidth > 1536) {
+        setIsSmOrBelowView(false)
+        setIsSmToLgView(false)
+        setIsLgTo2XlView(false)
       }
     }
   }, [windowWidth])
 
-  if (isSmView) {
+  if (isSmOrBelowView) {
     return (
       <div className='mx-4 my-4'>
-        <SutraSmLayout sutras={sutras} photos={photos} />
+        <SutraSmOrBelowLayout sutras={sutras} photos={photos} />
       </div>
     )
-  } else if (isMdView) {
+  } else if (isSmToLgView) {
     return (
-      <div className='mx-12 my-6'>
-        <SutraMdLayout sutras={sutras} photos={photos} />
+      <div className='mx-4 my-4'>
+        <SutraSmToLgLayout sutras={sutras} photos={photos} />
       </div>
     )
-  } else if (isXlView) {
+  } else if (isLgTo2XlView) {
     return (
-      <div className='mx-12 my-8'>
-        <SutraXlLayout sutras={sutras} photos={photos} />
+      <div className='mx-4 my-4'>
+        <SutraLgTo2XlLayout sutras={sutras} photos={photos} />
       </div>
     )
   } else {
     return (
-      <div className='mx-12 my-10'>
-        <SutraOverXlLayout sutras={sutras} photos={photos} />
+      <div className='mx-4 my-4'>
+        <SutraOver2XlLayout sutras={sutras} photos={photos} />
       </div>
     )
   }

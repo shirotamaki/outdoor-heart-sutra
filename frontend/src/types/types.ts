@@ -14,6 +14,7 @@ export type CustomHeadProps = {
   siteName?: string
   favicon?: string
   twitterCard?: string
+  twitterImage?: string
   twitterSite?: string
   appleTouchIcons?: { size: string; href: string }[]
   canonicalUrl?: string
@@ -58,8 +59,8 @@ export type MarkerLocationProps = {
 }
 
 export type MapWidthHeightProps = {
-  width?: number
-  height?: number
+  width?: number | string
+  height?: number | string
 }
 
 export type MapProps = MarkerLocationProps & MapWidthHeightProps
@@ -72,6 +73,7 @@ export type NoteProps = {
   setEditNote: (value: boolean) => void
   rows: number
   cols: number
+  is2XlOrBelow: boolean
 }
 
 //photo
@@ -84,10 +86,12 @@ export type CapturedImageProps = {
 
 export type DeletePhotoProps = {
   photoId: number
+  is2XlOrBelow: boolean
 }
 
 export type EditPhotoProps = {
   setEditMode: (value: boolean) => void
+  is2XlOrBelow: boolean
 }
 
 export type PhotoUploadAndPreviewProps = {
@@ -116,6 +120,7 @@ export type PhotosProps = {
 export type SutraDetailsProps = {
   sutra: Sutra
   photo: Photo
+  is2XlOrBelow: boolean
 }
 
 export type SutraListProps = {
@@ -124,8 +129,22 @@ export type SutraListProps = {
 }
 
 // user
-export type CuttentUserIdProps = {
+export type CurrentUserIdProps = {
   currentUserId: number | null
+}
+
+export type SutraItemProps = {
+  sutraId: number
+  sutraKanji: string
+  correspondingPhoto: Photo | null | undefined
+  width: number
+  height: number
+}
+
+export type SutraKanjiProps = {
+  sutraKanji: string
+  width: number
+  height: number
 }
 
 // hooks

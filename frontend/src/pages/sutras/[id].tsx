@@ -7,8 +7,8 @@ import Header from '@/components/Header'
 import { railsApiUrl } from '@/config/index'
 import PhotoUploadAndPreview from '@/features/photo/PhotoUploadAndPreview'
 import fetchPhotoId from '@/features/photo/fetchPhotoId'
-import SutraDetailsMdLayout from '@/features/sutra/SutraDetailsMdLayout'
-import SutraDetailsOverMdLayout from '@/features/sutra/SutraDetailsOverMdLayout'
+import SutraDetails2XlOrBelowLayout from '@/features/sutra/SutraDetails2XlOrBelowLayout'
+import SutraDetailsOver2XlLayout from '@/features/sutra/SutraDetailsOver2XlLayout'
 import fetchUserId from '@/features/user/fetchUserId'
 import { SutraDetailsProps } from '@/types/types'
 
@@ -88,11 +88,11 @@ const SutraDetails = ({ sutra, photo }: SutraDetailsProps) => {
           </div>
         ) : (
           <div>
-            <div className='md:hidden'>
-              <SutraDetailsMdLayout sutra={sutra} photo={photo} />
+            <div className='2xl:hidden'>
+              <SutraDetails2XlOrBelowLayout sutra={sutra} photo={photo} is2XlOrBelow={true} />
             </div>
-            <div className='hidden md:flex'>
-              <SutraDetailsOverMdLayout sutra={sutra} photo={photo} />
+            <div className='hidden 2xl:flex justify-center'>
+              <SutraDetailsOver2XlLayout sutra={sutra} photo={photo} is2XlOrBelow={false} />
             </div>
           </div>
         )}

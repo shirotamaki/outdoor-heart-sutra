@@ -1,13 +1,16 @@
+import { faCamera } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import axios from 'axios'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
-import { useState, useEffect, useCallback } from 'react'
+import React, { useState, useCallback, useRef } from 'react'
 import Cropper from 'react-easy-crop'
 import { toast } from 'react-toastify'
 import ActionButton from '@/components/ActionButton'
 import { railsApiUrl } from '@/config/index'
 import cropImage from '@/features/photo/cropImage'
+import SutraKanji from '@/features/sutra/SutraKanji'
 import fetchUserId from '@/features/user/fetchUserId'
 import useFetchLocation from '@/hooks/useFetchLocation'
 import useReverseGeocode from '@/hooks/useReverseGeocode'
@@ -33,11 +36,17 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
   const reverseGeocodeResult = useReverseGeocode(location)
   const address = reverseGeocodeResult || null
 
+  const inputFileRef = useRef<HTMLInputElement>(null)
+
+  const onSelectFile = () => {
+    inputFileRef.current?.click()
+  }
+
   const onCropComplete = useCallback(async (croppedArea: Area, croppedAreaPixels: Area) => {
     setCroppedAreaPixels(croppedAreaPixels)
   }, [])
 
-  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const previewSelectedImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedImage(true)
 
     if (event.target.files !== null) {
@@ -152,8 +161,42 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
   }
 
   return (
-    <div className='flex flex-col justify-center items-center'>
-      <h1 className='text-5xl text-black/25 font-kinuta my-12'>{sutra.kanji}</h1>
+    <div className='flex flex-col items-center'>
+      <h1 className='text-5xl text-sutraBlack font-kinuta mt-2 my-6 md:mt-8 md:mb-12'>
+        <SutraKanji sutraKanji={sutra.kanji} width={48} height={48} />
+      </h1>
+
+      {!isSelectedImage && (
+        <div className='flex justify-center mb-8'>
+          <button
+            data-testid='file-input-button'
+            onClick={onSelectFile}
+            className='bg-buttonBlack hover:opacity-50 transition-all duration-100 font-notoSans text-base text-white rounded-md py-2 px-7'
+          >
+            <div className='flex items-cneter'>
+              <FontAwesomeIcon
+                icon={faCamera}
+                style={{
+                  color: '#ffffff',
+                  width: '18px',
+                  height: '18px',
+                }}
+                className='mt-1'
+              />
+              <span className='ml-3'>写真を撮る/アップロード</span>
+            </div>
+          </button>
+          <input
+            ref={inputFileRef}
+            className='hidden'
+            role='button'
+            type='file'
+            accept='image/jpeg, image/png, image/heic'
+            onChange={previewSelectedImage}
+          />
+        </div>
+      )}
+
       {previewImage && isSelectedImage && (
         <div className='crop-container'>
           <Cropper
@@ -175,8 +218,8 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
         </div>
       )}
 
-      <div className='flex justify-center content-between mt-16 mb-8'>
-        {previewImage && croppedImage && isSelectedImage && (
+      {previewImage && croppedImage && isSelectedImage && (
+        <div className='flex justify-center content-between my-6 md:m-12'>
           <Image
             src={croppedImage}
             alt='CroppedImage'
@@ -184,66 +227,46 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
             height={100}
             className='rounded'
           />
-        )}
-      </div>
+        </div>
+      )}
 
-      <div>
-        {previewImage && isSelectedImage && !croppedImage && (
-          <div className='flex justify-center content-between'>
-            <div
-              data-testid='reselect-file-input-button'
-              className='bg-blue-300 hover:bg-blue-200 text-gray-700 rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2'
-            >
-              <ActionButton onClick={handleFileCancel} text='写真を再選択' />
-            </div>
-            <div
-              data-testid='file-input-confirm-button'
-              className=' bg-blue-500 hover:bg-blue-400 text-white rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2'
-            >
-              <ActionButton onClick={handleCropConfirm} text='決定' />
-            </div>
+      {previewImage && isSelectedImage && !croppedImage && (
+        <div className='flex flex-col w-300'>
+          <div
+            data-testid='file-input-confirm-button'
+            className=' bg-buttonBlack hover:opacity-50 transition-all duration-100 font-notoSans text-base text-white font-extrabold rounded-md text-center py-2 mt-12 mb-6'
+          >
+            <ActionButton onClick={handleCropConfirm} text='決定' />
           </div>
-        )}
-
-        {previewImage && isSelectedImage && croppedImage && (
-          <div className='flex justify-center content-between'>
-            <div
-              data-testid='cancel-photo-button'
-              className=' bg-gray-400 hover:bg-gray-300 text-white rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2'
-            >
-              <ActionButton onClick={handleFileReSelecte} text='キャンセル' />
-            </div>
-            <div
-              data-testid='save-photo-button'
-              className={
-                isSaving
-                  ? 'bg-gray-500 text-white rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2'
-                  : 'bg-blue-500 hover:bg-blue-400 text-white rounded-full font-notoSans text-sm mx-4 my-8 px-4 py-2'
-              }
-            >
-              <ActionButton onClick={savePhotoData} text={isSaving ? '保存中...' : '保存'} />
-            </div>
+          <div
+            data-testid='reselect-file-input-button'
+            className='border border-gray-400 hover:opacity-50 transition-all duration-100 font-notoSans text-base text-gray-400 font-extrabold rounded-md text-center py-2 mb-6'
+          >
+            <ActionButton onClick={handleFileCancel} text='写真を再選択' />
           </div>
-        )}
-      </div>
+        </div>
+      )}
 
-      <div className='flex justify-center mb-8'>
-        {!isSelectedImage && (
-          <input
-            role='button'
-            data-testid='file-input'
-            type='file'
-            accept='image/jpeg, image/png, image/heic'
-            onChange={handleFileChange}
-            className='block w-full text-sm text-slate-400
-      file:mr-4 file:py-2 file:px-4
-      file:rounded-full file:border-0
-      file:text-sm file:font-notoSans
-      file:bg-blue-300 file:text-gray-700
-      hover:file:bg-blue-200 file:cursor-pointer'
-          />
-        )}
-      </div>
+      {previewImage && isSelectedImage && croppedImage && (
+        <div className='flex flex-col w-300'>
+          <div
+            data-testid='save-photo-button'
+            className={
+              isSaving
+                ? 'bg-gray-400 font-notoSans text-base text-mainBlack font-extrabold rounded-md py-2 mb-4 md:mb-8'
+                : 'bg-buttonBlack hover:opacity-50 transition-all duration-100 font-notoSans text-base text-white font-extrabold rounded-md py-2 mb-4 md:mb-8'
+            }
+          >
+            <ActionButton onClick={savePhotoData} text={isSaving ? '保存中...' : '保存'} />
+          </div>
+          <div
+            data-testid='cancel-photo-button'
+            className='border border-gray-400 hover:opacity-50 transition-all duration-100 font-notoSans text-base text-gray-400 font-extrabold rounded-md text-center py-2 mb-4 md:mb-8'
+          >
+            <ActionButton onClick={handleFileReSelecte} text='キャンセル' />
+          </div>
+        </div>
+      )}
     </div>
   )
 }

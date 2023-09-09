@@ -3,9 +3,9 @@ import { useSession, signOut } from 'next-auth/react'
 import { useState } from 'react'
 import Modal from 'react-modal'
 import { railsApiUrl } from '@/config/index'
-import { CuttentUserIdProps } from '@/types/types'
+import { CurrentUserIdProps } from '@/types/types'
 
-const DeleteUser = ({ currentUserId }: CuttentUserIdProps) => {
+const DeleteUser = ({ currentUserId }: CurrentUserIdProps) => {
   const { data: session } = useSession()
 
   const [modalIsOpen, setIsOpen] = useState(false)
@@ -44,7 +44,7 @@ const DeleteUser = ({ currentUserId }: CuttentUserIdProps) => {
         <button
           data-testid='delete-button'
           onClick={openModal}
-          className='transition-all duration-100 text-base bg-gray-500 hover:bg-gray-400 text-white font-notoSans py-2 px-4 rounded-full'
+          className='transition-all duration-100 text-base bg-gray-500 hover:bg-gray-400 text-white font-notoSans py-2 px-7 rounded-md'
         >
           アカウントを削除する
         </button>

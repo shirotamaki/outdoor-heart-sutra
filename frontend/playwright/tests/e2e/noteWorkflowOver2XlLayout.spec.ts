@@ -30,20 +30,20 @@ test.afterAll(async () => {
   await page.close()
 })
 
-test.describe('Note Workflow For Over Md Layout', () => {
+test.describe('Note Workflow For Over 2Xl Layout', () => {
   test.beforeEach(async () => {
-    await page.setViewportSize({ width: 1280, height: 720 })
+    await page.setViewportSize({ width: 1536, height: 720 })
     await page.goto(baseURL)
     await page.waitForLoadState('domcontentloaded')
 
     await page.getByRole('link', { name: '摩' }).nth(0).click()
 
-    await page.waitForSelector('[data-testid="file-input"]', {
+    await page.waitForSelector('[data-testid="file-input-button"]', {
       timeout: 60000,
     })
 
     // `ファイルを選択`ボタンのクリック操作は不要。PlaywrightはisVisible()を呼び出すときに自動的にinput操作を実行するため。
-    const fileInputVisible = await page.getByTestId('file-input').isVisible()
+    const fileInputVisible = await page.getByTestId('file-input-button').isVisible()
 
     if (!fileInputVisible) {
       await page.waitForSelector('input[type="file"]', { timeout: 60000 })
@@ -88,36 +88,36 @@ test.describe('Note Workflow For Over Md Layout', () => {
     })
     await page.getByTestId('save-photo-button').click()
 
-    await page.waitForSelector('[data-testid="note-textarea-for-over-md-layout"]', {
+    await page.waitForSelector('[data-testid="note-textarea-over2Xl"]', {
       timeout: 60000,
     })
 
-    await page.getByTestId('note-textarea-for-over-md-layout').click()
-    await page.fill('[data-testid="note-textarea-for-over-md-layout"]', 'This is sample note.')
-    await page.click('[data-testid="save-note-button-for-over-md-layout"] >> button')
+    await page.getByTestId('note-textarea-over2Xl').click()
+    await page.fill('[data-testid="note-textarea-over2Xl"]', 'This is sample note.')
+    await page.click('[data-testid="save-note-button-over2Xl"] >> button')
 
     await page.waitForSelector('.Toastify__toast', { state: 'hidden' })
 
     await page.waitForSelector(
-      '[data-testid="saved-note-for-over-md-layout"]:has-text("This is sample note.")',
+      '[data-testid="saved-note-over2Xl"]:has-text("This is sample note.")',
       {
         timeout: 60000,
       },
     )
-    const firstTextarea = await page.textContent('[data-testid="saved-note-for-over-md-layout"]')
+    const firstTextarea = await page.textContent('[data-testid="saved-note-over2Xl"]')
     expect(firstTextarea).toContain('This is sample note.')
 
-    await page.getByTestId('edit-note-button-for-over-md-layout').click()
-    await page.getByTestId('note-textarea-for-over-md-layout').click()
-    await page.fill('[data-testid="note-textarea-for-over-md-layout"]', 'This is edited note.')
-    await page.click('[data-testid="save-note-button-for-over-md-layout"] >> button')
+    await page.getByTestId('edit-note-button-over2Xl').click()
+    await page.getByTestId('note-textarea-over2Xl').click()
+    await page.fill('[data-testid="note-textarea-over2Xl"]', 'This is edited note.')
+    await page.click('[data-testid="save-note-button-over2Xl"] >> button')
 
     await page.waitForSelector('.Toastify__toast', { state: 'hidden' })
 
-    await page.waitForSelector('[data-testid="saved-note-for-over-md-layout"]', {
+    await page.waitForSelector('[data-testid="saved-note-over2Xl"]', {
       timeout: 60000,
     })
-    const editedTextarea = await page.textContent('[data-testid="saved-note-for-over-md-layout"]')
+    const editedTextarea = await page.textContent('[data-testid="saved-note-over2Xl"]')
     expect(editedTextarea).toContain('This is edited note.')
   })
 })

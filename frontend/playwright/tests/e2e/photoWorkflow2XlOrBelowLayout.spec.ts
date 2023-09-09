@@ -30,21 +30,22 @@ test.afterAll(async () => {
   await page.close()
 })
 
-test.describe('Photo Workflow For Over Md Layout', () => {
+test.describe('Photo Workflow For 2Xl Or Below Layout', () => {
   test.beforeEach(async () => {
-    await page.setViewportSize({ width: 1280, height: 720 })
+    await page.setViewportSize({ width: 375, height: 720 })
     await page.goto(baseURL)
     await page.waitForLoadState('domcontentloaded', {
       timeout: 60000,
     })
 
-    await page.getByRole('link', { name: '仏' }).nth(0).click()
+    await page.getByRole('link', { name: '説' }).nth(0).click()
 
-    await page.waitForSelector('[data-testid="file-input"]', {
+    await page.waitForSelector('[data-testid="file-input-button"]', {
       timeout: 60000,
     })
+
     // `ファイルを選択`ボタンのクリック操作は不要。PlaywrightはisVisible()を呼び出すときに自動的にinput操作を実行するため。
-    const fileInputVisible = await page.getByTestId('file-input').isVisible()
+    const fileInputVisible = await page.getByTestId('file-input-button').isVisible()
 
     if (!fileInputVisible) {
       await page.waitForSelector('input[type="file"]', { timeout: 60000 })
@@ -60,7 +61,8 @@ test.describe('Photo Workflow For Over Md Layout', () => {
     try {
       const response = await axios.get('http://localhost:3000/api/v1/photos', {
         params: {
-          sutra_id: 1,
+          // コンフリクトするためsutraIdは2にしている
+          sutra_id: 2, // 説
           user_id: 1,
         },
       })
@@ -68,7 +70,7 @@ test.describe('Photo Workflow For Over Md Layout', () => {
       if (!response.data.photo_id) {
         return
       }
-      const photoId = response.data.photo_id
+      const photoId = await response.data.photo_id
       const deleteResponse = await axios.delete(`http://localhost:3000/api/v1/photos/${photoId}`)
       expect(deleteResponse.status).toBe(204)
     } catch (error) {
@@ -85,7 +87,7 @@ test.describe('Photo Workflow For Over Md Layout', () => {
     await page.getByTestId('reselect-file-input-button').click()
 
     const content = await page.textContent('h1')
-    expect(content).toContain('仏')
+    expect(content).toContain('説')
   })
 
   test('should return to cropping mode when clicked cancel-photo-button', async () => {
@@ -117,18 +119,16 @@ test.describe('Photo Workflow For Over Md Layout', () => {
     })
     await page.getByTestId('save-photo-button').click()
 
-    await page.waitForSelector('[data-testid="photo-address-for-over-md-layout"]', {
+    await page.waitForSelector('[data-testid="photo-address-2XlOrBelow"]', {
       timeout: 60000,
     })
-    const address = await page.textContent('[data-testid="photo-address-for-over-md-layout"]')
+    const address = await page.textContent('[data-testid="photo-address-2XlOrBelow"]')
     expect(address).toMatch(/住所/)
-    const shootingDate = await page.textContent(
-      '[data-testid="photo-shootingDate-for-over-md-layout"]',
-    )
+    const shootingDate = await page.textContent('[data-testid="photo-shootingDate-2XlOrBelow"]')
     expect(shootingDate).toMatch(/撮影日/)
   })
 
-  test('should return to reselection mode when clicked reselect-file-input-after-saving-photo-button-for-over-md-layout after saving photo', async () => {
+  test('should return to reselection mode when clicked reselect-file-input-after-saving-photo-button-2XlOrBelow after saving photo', async () => {
     await page.waitForSelector('[data-testid="file-input-confirm-button"]', {
       timeout: 60000,
     })
@@ -140,16 +140,14 @@ test.describe('Photo Workflow For Over Md Layout', () => {
     await page.getByTestId('save-photo-button').click()
 
     await page.waitForSelector(
-      '[data-testid="reselect-file-input-after-saving-photo-button-for-over-md-layout"]',
+      '[data-testid="reselect-file-input-after-saving-photo-button-2XlOrBelow"]',
       {
         timeout: 60000,
       },
     )
-    await page
-      .getByTestId('reselect-file-input-after-saving-photo-button-for-over-md-layout')
-      .click()
+    await page.getByTestId('reselect-file-input-after-saving-photo-button-2XlOrBelow').click()
     const content = await page.textContent('h1')
-    expect(content).toContain('仏')
+    expect(content).toContain('説')
   })
 
   test('should successfully delete photo', async () => {
@@ -163,28 +161,28 @@ test.describe('Photo Workflow For Over Md Layout', () => {
     })
     await page.getByTestId('save-photo-button').click()
 
-    await page.waitForSelector('[data-testid="delete-photo-button-for-over-md-layout"]', {
+    await page.waitForSelector('[data-testid="delete-photo-button-2XlOrBelow"]', {
       timeout: 60000,
     })
-    await page.getByTestId('delete-photo-button-for-over-md-layout').click()
+    await page.getByTestId('delete-photo-button-2XlOrBelow').click()
 
-    await page.waitForSelector('[data-testid="delete-photo-cancel-button-for-over-md-layout"]', {
+    await page.waitForSelector('[data-testid="delete-photo-cancel-button-2XlOrBelow"]', {
       timeout: 60000,
     })
-    await page.getByTestId('delete-photo-cancel-button-for-over-md-layout').click()
+    await page.getByTestId('delete-photo-cancel-button-2XlOrBelow').click()
 
-    await page.waitForSelector('[data-testid="delete-photo-button-for-over-md-layout"]', {
+    await page.waitForSelector('[data-testid="delete-photo-button-2XlOrBelow"]', {
       timeout: 60000,
     })
-    await page.getByTestId('delete-photo-button-for-over-md-layout').click()
+    await page.getByTestId('delete-photo-button-2XlOrBelow').click()
 
-    await page.waitForSelector('[data-testid="delete-photo-confirm-button-for-over-md-layout"]', {
+    await page.waitForSelector('[data-testid="delete-photo-confirm-button-2XlOrBelow"]', {
       timeout: 60000,
     })
-    await page.getByTestId('delete-photo-confirm-button-for-over-md-layout').click()
+    await page.getByTestId('delete-photo-confirm-button-2XlOrBelow').click()
 
-    const firstKanjiElement = page.locator('[data-testid="kanji"]').nth(0)
-    const content = await firstKanjiElement.textContent()
-    expect(content).toContain('仏')
+    const thirdKanjiElement = page.locator('[data-testid="kanji"]').nth(1)
+    const content = await thirdKanjiElement.textContent()
+    expect(content).toContain('説')
   })
 })
