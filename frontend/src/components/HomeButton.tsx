@@ -11,7 +11,7 @@ const HomeButton = ({ width, height }: ButtonProps) => {
       >
         <Image
           src='/images/logo.svg'
-          alt={'アウトドア般若心経のロゴ'}
+          alt={'Outdoor Heart Sutra Main Logo'}
           width={width}
           height={height}
         />

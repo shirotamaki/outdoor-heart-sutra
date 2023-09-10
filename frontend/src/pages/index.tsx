@@ -81,7 +81,7 @@ const Home = ({ sutras, photos }: SutraListProps) => {
               <h1 className='mt-12 mb-2'>
                 <Image
                   src='/images/logo.svg'
-                  alt={'アウトドア般若心経のロゴ'}
+                  alt={'Outdoor Heart Sutra Main Logo'}
                   width={640}
                   height={180}
                 />
@@ -117,7 +117,7 @@ const Home = ({ sutras, photos }: SutraListProps) => {
                   <div className='mt-4'>
                     <Image
                       src='/images/sample_index.png'
-                      alt='Demo Image'
+                      alt='Images of Journey to the West'
                       width={530}
                       height={450}
                     />

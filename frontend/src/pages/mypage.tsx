@@ -55,7 +55,7 @@ const MyPage = ({ photos, user }: MyPageProps) => {
           <h1 className='my-12'>
             <Image
               src={session?.user?.image || ''}
-              alt='UserIcon'
+              alt='User Icon'
               width={100}
               height={100}
               style={{ borderRadius: '50px' }}

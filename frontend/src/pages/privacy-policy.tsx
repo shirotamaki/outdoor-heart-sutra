@@ -121,7 +121,7 @@ const PrivacyPolicy = () => {
             本ポリシーに関するお問い合わせは，下記の窓口までお願いいたします。
           </p>
           <p className='mb-4 md:mb-8'>
-            <Image src='/images/email_address.png' alt='メールアドレス' width={300} height={24} />
+            <Image src='/images/email_address.png' alt='Email Adress' width={300} height={24} />
           </p>
           <p className='text-sm md:text-base text-right mb-4 md:mb-8'>以上</p>
           <p className='text-sm md:text-base mb-4 md:mb-8'>

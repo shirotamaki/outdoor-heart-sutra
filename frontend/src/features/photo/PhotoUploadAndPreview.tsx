@@ -222,7 +222,7 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
         <div className='flex justify-center content-between my-6 md:m-12'>
           <Image
             src={croppedImage}
-            alt='CroppedImage'
+            alt='Cropped Image'
             width={100}
             height={100}
             className='rounded'
