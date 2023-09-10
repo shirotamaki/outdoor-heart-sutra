@@ -14,6 +14,7 @@ const GitHubLink = () => (
         width: '18px',
         height: '18px',
       }}
+      aria-label='GitHub Icon'
     />
   </Link>
 )

@@ -14,6 +14,7 @@ const TwitterLink = () => (
         width: '18px',
         height: '18px',
       }}
+      aria-label='Twitter Icon'
     />
   </Link>
 )
