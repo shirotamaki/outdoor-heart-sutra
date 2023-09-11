@@ -51,7 +51,7 @@ const SutraDetailsOver2XlLayout = ({ sutra, photo, is2XlOrBelow }: SutraDetailsP
           <button
             data-testid='edit-note-button-over2Xl'
             onClick={() => setEditNote(true)}
-            className='w-300 border border-blue-600  hover:opacity-50 transition-all duration-100 font-notoSans text-base text-blue-600 font-extrabold rounded-md text-center py-2 mt-4'
+            className='w-300 border border-blue-600  hover:opacity-50 transition-all duration-100 font-notoSans text-base text-blue-600 rounded-md text-center py-2 mt-4'
           >
             メモ編集
           </button>

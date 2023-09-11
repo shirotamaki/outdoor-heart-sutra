@@ -41,7 +41,7 @@ const DeletePhoto = ({ photoId, is2XlOrBelow }: DeletePhotoProps) => {
       <button
         data-testid={`delete-photo-button${is2XlOrBelow ? '-2XlOrBelow' : '-over2Xl'}`}
         onClick={openModal}
-        className='hover:opacity-50 transition-all duration-100 font-notoSans text-base font-extrabold text-gray-400 underline'
+        className='hover:opacity-50 transition-all duration-100 font-notoSans text-base text-gray-400 underline'
       >
         削除する
       </button>
