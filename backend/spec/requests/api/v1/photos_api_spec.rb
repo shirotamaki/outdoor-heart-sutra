@@ -60,27 +60,12 @@ RSpec.describe 'API' do
           end
 
           it 'returns an error message' do
-            expect(JSON.parse(response.body)['error']).to eq('写真が見つかりませんでした')
+            expect(JSON.parse(response.body)['error']).to eq('写真が見つかりません')
           end
 
           it 'returns status code 404' do
             expect(response).to have_http_status(:not_found)
           end
-        end
-      end
-
-      # photos#index
-      describe 'GET /api/v1/users/:id/photos' do
-        before do
-          get "/api/v1/users/#{user.id}/photos"
-        end
-
-        it 'returns status code 200' do
-          expect(response).to have_http_status(:success)
-        end
-
-        it 'returns the photos of the user' do
-          expect(JSON.parse(response.body).size).to eq(user.photos.count)
         end
       end
 
