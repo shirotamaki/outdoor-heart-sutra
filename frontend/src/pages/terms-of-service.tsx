@@ -185,9 +185,7 @@ const TermsOfService = () => {
               本サービスに関して紛争が生じた場合には、本サービスの本店所在地を管轄する裁判所を専属的合意管轄とします。
             </li>
           </ol>
-          <p className='text-xs md:text-base text-right mb-4 md:mb-8'>
-            以上
-          </p>
+          <p className='text-xs md:text-base text-right mb-4 md:mb-8'>以上</p>
           <p className='text-center text-sm md:text-lg mb-4 md:mb-8'>
             <Link href='/' className='hover:opacity-50 transition-all duration-100'>
               トップページに戻る
