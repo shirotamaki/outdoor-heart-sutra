@@ -52,7 +52,7 @@ const MyPage = ({ photos, user }: MyPageProps) => {
       <Header />
       <main className=' bg-beige flex-grow'>
         <div className='flex flex-col justify-center items-center'>
-          <h1 className='my-12'>
+          <h1 className='mt-12 mb-2'>
             <Image
               src={session?.user?.image || ''}
               alt='UserIcon'
@@ -61,11 +61,14 @@ const MyPage = ({ photos, user }: MyPageProps) => {
               style={{ borderRadius: '50px' }}
             />
           </h1>
-          <div className='grid grid-rows-2 grid-cols-3 font-kinuta text-mainBlack text-base md:text-xl mb-12'>
-            <div className='justify-self-end col-span-1'>ユーザ名：</div>
-            <div className='justify-self-start col-span-2' data-testid='user-name'>
-              {user.name}
-            </div>
+          <div
+            className='font-kinuta text-mainBlack text-base md:text-xl mb-12'
+            data-testid='user-name'
+          >
+            {user.name}
+          </div>
+
+          <div className='grid grid-rows-1 grid-cols-3 font-kinuta text-mainBlack text-base md:text-xl mb-4'>
             <div className='justify-self-end col-span-1'>出家日：</div>
             <div className='justify-self-start col-span-2'>{formattedDate}</div>
           </div>

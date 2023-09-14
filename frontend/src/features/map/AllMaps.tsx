@@ -42,7 +42,7 @@ const AllMaps = ({ markerLocations }: AllMapsProps) => {
           data-testid='google-map'
           mapContainerStyle={containerStyle}
           center={center}
-          zoom={5.0}
+          zoom={4.0}
           onLoad={handleMapLoad}
         >
           {isLoaded &&
