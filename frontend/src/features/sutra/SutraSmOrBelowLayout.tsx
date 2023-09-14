@@ -14,7 +14,7 @@ const SutraSmOrBelowLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Pho
       <div className='font-reggae text-mainBlack flex justify-end mb-2'>
         <SutraCalculator photos={photos} />
       </div>
-      <div className='vertical-sutras-container grid gap-2 grid-cols-6 mb-6'>
+      <div className='vertical-sutras-container grid gap-2 grid-cols-6 mb-12'>
         {firstLayout.map((sutra, index) => {
           const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
 
@@ -30,10 +30,7 @@ const SutraSmOrBelowLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Pho
           )
         })}
       </div>
-
-      <br />
-
-      <div className='vertical-sutras-container grid gap-2 grid-cols-6 mb-6'>
+      <div className='vertical-sutras-container grid gap-2 grid-cols-6 mb-12'>
         {secondLayout.map((sutra, index) => {
           const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
 
@@ -49,10 +46,7 @@ const SutraSmOrBelowLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Pho
           )
         })}
       </div>
-
-      <br />
-
-      <div className='vertical-sutras-container grid gap-2 grid-cols-6 mb-6'>
+      <div className='vertical-sutras-container grid gap-2 grid-cols-6 mb-12'>
         {thirdLayout.map((sutra, index) => {
           const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
 
@@ -68,10 +62,7 @@ const SutraSmOrBelowLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Pho
           )
         })}
       </div>
-
-      <br />
-
-      <div className='vertical-sutras-container grid gap-2 grid-cols-6 mb-6'>
+      <div className='vertical-sutras-container grid gap-2 grid-cols-6 mb-12'>
         {fourthLayout.map((sutra, index) => {
           const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
 
@@ -87,10 +78,7 @@ const SutraSmOrBelowLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Pho
           )
         })}
       </div>
-
-      <br />
-
-      <div className='vertical-sutras-container grid gap-2 grid-cols-6 mb-12'>
+      <div className='vertical-sutras-container grid gap-2 grid-cols-6 mb-8'>
         {fifthLayout.map((sutra, index) => {
           const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
 

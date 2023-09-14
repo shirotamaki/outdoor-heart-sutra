@@ -42,7 +42,7 @@ const AllMaps = ({ markerLocations }: AllMapsProps) => {
           data-testid='google-map'
           mapContainerStyle={containerStyle}
           center={center}
-          zoom={5.0}
+          zoom={4.0}
           onLoad={handleMapLoad}
         >
           {isLoaded &&
@@ -52,7 +52,7 @@ const AllMaps = ({ markerLocations }: AllMapsProps) => {
                 position={{ lat: location.lat, lng: location.lng }}
                 icon={{
                   url: location.img,
-                  scaledSize: new google.maps.Size(30, 30),
+                  scaledSize: new google.maps.Size(32, 32),
                 }}
                 onClick={() => router.push(location.link)}
               />

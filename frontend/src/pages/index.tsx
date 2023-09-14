@@ -87,44 +87,32 @@ const Home = ({ sutras, photos }: SutraListProps) => {
                 />
               </h1>
               <div className='flex flex-col justify-center items-center'>
-                <div className='flex flex-col justify-center items-center'>
-                  <p className='text-mainBlack font-kinuta text-sm md:text-base mb-12'>
-                    自分探しならぬ、自分なくしの旅へ ...
+                <p className='text-mainBlack font-kinuta text-sm md:text-base mb-10'>
+                  自分探しならぬ、自分なくしの旅へ ...
+                </p>
+                <Login />
+                <div className='text-left mb-4'>
+                  <p className='text-xs font-notoSans text-gray-500 my-2 leading-normal'>
+                    ※上記ボタンをクリックすることで&nbsp;
+                    <Link
+                      className='text-xs font-notoSans text-gray-500 underline hover:opacity-50 transition-all duration-100'
+                      href='/terms-of-service'
+                    >
+                      利用規約
+                    </Link>
+                    <span className='text-xs font-notoSans text-gray-500'>・</span>
+                    <Link
+                      className='text-xs font-notoSans text-gray-500 underline hover:opacity-50 transition-all duration-100'
+                      href='/privacy-policy'
+                    >
+                      プライバシーポリシー
+                    </Link>
+                    &nbsp;に同意したものとみなします
                   </p>
-                  <Login />
-                  <div className='text-left'>
-                    <p className='text-xs font-notoSans text-gray-500 my-2 leading-normal'>
-                      ※上記ボタンをクリックすることで&nbsp;
-                      <Link
-                        className='text-xs font-notoSans text-gray-500 underline hover:opacity-50 transition-all duration-100'
-                        href='/terms-of-service'
-                      >
-                        利用規約
-                      </Link>
-                      <span className='text-xs font-notoSans text-gray-500'>・</span>
-                      <Link
-                        className='text-xs font-notoSans text-gray-500 underline hover:opacity-50 transition-all duration-100'
-                        href='/privacy-policy'
-                      >
-                        プライバシーポリシー
-                      </Link>
-                      &nbsp;に同意したものとみなします
-                    </p>
-                    <p className='text-xs font-notoSans text-gray-500'>
-                      ※ 無料でご利用いただけます
-                    </p>
-                  </div>
-                  <div className='mt-4'>
-                    <Image
-                      src='/images/sample_index.png'
-                      alt='Images of Journey to the West'
-                      width={530}
-                      height={450}
-                    />
-                  </div>
+                  <p className='text-xs font-notoSans text-gray-500'>※ 無料でご利用いただけます</p>
                 </div>
-                <div className='w-full sm:w-640 mb-12 text-mainBlack font-kinuta text-left text-sm md:text-xl'>
-                  <p className='mt-4 leading-6 md:leading-8'>
+                <div className='w-full sm:w-640 mt-8 mb-12 text-mainBlack font-kinuta text-left text-sm md:text-xl'>
+                  <p className='leading-6 md:leading-8'>
                     アウトドア般若心経とは、「般若心経」278文字を、家を出て（これを「出家」と称す）、街の看板から経文に含まれている文字を捜し写真に収める（これを「写経（写真経）」と称す）行為のことを指します。
                   </p>
                   <p className='my-2 leading-6 md:leading-8'>

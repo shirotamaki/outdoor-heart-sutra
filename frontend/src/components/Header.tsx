@@ -35,16 +35,16 @@ const Header = () => {
   }, [insideRef])
 
   return (
-    <header className='bg-beige font-reggae text-mainBlack border-b border-white pt-4 pb-2 px-4'>
-      <div className='flex justify-between items-baseline 2xl:max-w-1352 lg:max-w-776 sm:max-w-552 max-w-screen-sm mx-auto'>
+    <header className='bg-beige font-reggae text-mainBlack border-b border-white py-3 px-4'>
+      <div className='flex justify-between items-center 2xl:max-w-1352 lg:max-w-776 sm:max-w-552 max-w-screen-sm mx-auto'>
         <div className='hidden xl:flex' data-testid='homebutton-xl-link'>
-          <HomeButton width={160} height={46} />
+          <HomeButton width={160} height={44.4} />
         </div>
         <div className='hidden sm:flex xl:hidden' data-testid='homebutton-md-link'>
-          <HomeButton width={140} height={40} />
+          <HomeButton width={140} height={38.84} />
         </div>
         <div className='sm:hidden' data-testid='homebutton-sm-link'>
-          <HomeButton width={120} height={36} />
+          <HomeButton width={120} height={33.3} />
         </div>
 
         {isAuthenticated && (
@@ -52,7 +52,7 @@ const Header = () => {
             <div className='hidden sm:flex'>
               <DesktopMenu />
             </div>
-            <div className='sm:hidden'>
+            <div className='sm:hidden flex items-center'>
               <button
                 type='button'
                 onClick={toggleMenu}

@@ -12,7 +12,7 @@ const Login = () => {
       <button
         data-testid='login-button'
         onClick={() => signIn('google', { prompt: 'login', callbackUrl: '/' })}
-        className='text-base bg-blue-600 hover:bg-blue-500 text-white font-notoSans my-2 py-3 px-10 rounded-full'
+        className='w-full sm:w-fit text-lg sm:text-xl bg-buttonBlack hover:opacity-75 transition-all duration-100 font-notoSans text-white my-2 py-4 px-auto sm:px-20 rounded-md'
       >
         Googleでログインして始める
       </button>
