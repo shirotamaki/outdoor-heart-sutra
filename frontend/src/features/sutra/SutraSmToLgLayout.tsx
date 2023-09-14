@@ -12,7 +12,7 @@ const SutraSmToLgLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[
       <div className='font-reggae text-mainBlack flex justify-end mb-2'>
         <SutraCalculator photos={photos} />
       </div>
-      <div className='vertical-sutras-container grid gap-2 grid-cols-10 mb-6'>
+      <div className='vertical-sutras-container grid gap-2 grid-cols-10 mb-12'>
         {firstLayout.map((sutra, index) => {
           const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
 
@@ -28,10 +28,7 @@ const SutraSmToLgLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[
           )
         })}
       </div>
-
-      <br />
-
-      <div className='vertical-sutras-container grid gap-2 grid-cols-10 mb-6'>
+      <div className='vertical-sutras-container grid gap-2 grid-cols-10 mb-12'>
         {secondLayout.map((sutra, index) => {
           const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
 
@@ -47,10 +44,7 @@ const SutraSmToLgLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[
           )
         })}
       </div>
-
-      <br />
-
-      <div className='vertical-sutras-container grid gap-2 grid-cols-10 mb-12'>
+      <div className='vertical-sutras-container grid gap-2 grid-cols-10 mb-8'>
         {thirdLayout.map((sutra, index) => {
           const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
 
