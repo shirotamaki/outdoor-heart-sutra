@@ -171,7 +171,7 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
           <button
             data-testid='file-input-button'
             onClick={onSelectFile}
-            className='bg-buttonBlack hover:opacity-50 transition-all duration-100 font-notoSans text-base text-white rounded-md py-2 px-7'
+            className='bg-buttonBlack hover:opacity-75 transition-all duration-100 font-notoSans text-base text-white rounded-md py-2 px-7'
           >
             <div className='flex items-cneter'>
               <FontAwesomeIcon
@@ -234,13 +234,13 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
         <div className='flex flex-col w-300'>
           <div
             data-testid='file-input-confirm-button'
-            className=' bg-buttonBlack hover:opacity-50 transition-all duration-100 font-notoSans text-base text-white rounded-md text-center py-2 mt-12 mb-6'
+            className=' bg-buttonBlack hover:opacity-75 transition-all duration-100 font-notoSans text-base text-white rounded-md text-center py-2 mt-12 mb-6'
           >
             <ActionButton onClick={handleCropConfirm} text='決定' />
           </div>
           <div
             data-testid='reselect-file-input-button'
-            className='border border-gray-400 hover:opacity-50 transition-all duration-100 font-notoSans text-base text-gray-400 rounded-md text-center py-2 mb-6'
+            className='border border-gray-400 hover:opacity-75 transition-all duration-100 font-notoSans text-base text-gray-400 rounded-md text-center py-2 mb-6'
           >
             <ActionButton onClick={handleFileCancel} text='写真を再選択' />
           </div>
@@ -254,7 +254,7 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
             className={
               isSaving
                 ? 'bg-gray-400 font-notoSans text-base text-mainBlack rounded-md py-2 mb-4 md:mb-8'
-                : 'bg-buttonBlack hover:opacity-50 transition-all duration-100 font-notoSans text-base text-white rounded-md py-2 mb-4 md:mb-8'
+                : 'bg-buttonBlack hover:opacity-75 transition-all duration-100 font-notoSans text-base text-white rounded-md py-2 mb-4 md:mb-8'
             }
           >
             <ActionButton onClick={savePhotoData} text={isSaving ? '保存中...' : '保存'} />

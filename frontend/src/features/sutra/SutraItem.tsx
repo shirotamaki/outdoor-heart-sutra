@@ -10,7 +10,7 @@ const SutraItem = ({ sutraId, sutraKanji, correspondingPhoto, width, height }: S
   }
 
   return (
-    <div data-testid='kanji' key={sutraId} className='hover:opacity-70'>
+    <div data-testid='kanji' key={sutraId} className='hover:opacity-50'>
       {correspondingPhoto && correspondingPhoto.cropped_image_url ? (
         <div className='mt-1'>
           <Link href={`/sutras/${sutraId}`}>
