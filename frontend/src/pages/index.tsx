@@ -114,14 +114,6 @@ const Home = ({ sutras, photos }: SutraListProps) => {
                       ※ 無料でご利用いただけます
                     </p>
                   </div>
-                  <div className='mt-4'>
-                    <Image
-                      src='/images/sample_index.png'
-                      alt='Demo Image'
-                      width={530}
-                      height={450}
-                    />
-                  </div>
                 </div>
                 <div className='w-full sm:w-640 mb-12 text-mainBlack font-kinuta text-left text-sm md:text-xl'>
                   <p className='mt-4 leading-6 md:leading-8'>
