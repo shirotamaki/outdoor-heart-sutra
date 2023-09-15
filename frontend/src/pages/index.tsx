@@ -81,7 +81,7 @@ const Home = ({ sutras, photos }: SutraListProps) => {
               <h1 className='mt-12 mb-2'>
                 <Image
                   src='/images/logo.svg'
-                  alt={'アウトドア般若心経のロゴ'}
+                  alt={'Outdoor Heart Sutra Main Logo'}
                   width={640}
                   height={180}
                 />

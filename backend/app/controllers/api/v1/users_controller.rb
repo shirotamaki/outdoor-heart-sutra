@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
-module Api
+module API
   module V1
     class UsersController < ApplicationController
       # create, destroyアクションに対して、CSRF保護を無効にする
       skip_before_action :verify_authenticity_token, only: %i[create destroy]
 
-      def find_user
+      def index
         user = User.find_by(email: params[:email])
+
         if user
           render json: { user_id: user.id }, status: :ok
         else
@@ -17,6 +18,7 @@ module Api
 
       def create
         user = User.find_by(provider: params[:provider], uid: params[:uid])
+
         if user.nil?
           user = User.create(provider: params[:provider], uid: params[:uid], name: params[:name], email: params[:email])
           unless user.valid?
@@ -37,7 +39,8 @@ module Api
       end
 
       def destroy
-        user = User.find_by(email: params[:email])
+        user = User.find_by(id: params[:id])
+
         if user
           user.destroy
           head :no_content

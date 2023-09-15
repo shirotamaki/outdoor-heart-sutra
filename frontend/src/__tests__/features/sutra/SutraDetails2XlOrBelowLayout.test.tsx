@@ -36,7 +36,7 @@ describe('SutraDetails2XlOrBelowLayout', () => {
   })
 
   it('should correctly display the SutraDetails2XlOrBelowLayout component', () => {
-    const imageElements = screen.getAllByAltText('capturedImage')
+    const imageElements = screen.getAllByAltText('Captured Image')
     expect(imageElements).toHaveLength(2)
 
     expect(screen.getByText('Google Maps APIキーが設定されていません')).toBeInTheDocument()

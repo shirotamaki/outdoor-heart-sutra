@@ -30,7 +30,7 @@ describe('fetchUserId', () => {
 
     expect(userId).toBe(1)
     expect(mockedAxios.get).toHaveBeenCalledTimes(1)
-    expect(mockedAxios.get).toHaveBeenCalledWith(`http://localhost:3000/api/v1/users/find`, {
+    expect(mockedAxios.get).toHaveBeenCalledWith(`http://localhost:3000/api/v1/users`, {
       params: { email: 'test@example.com' },
     })
   })
@@ -42,7 +42,7 @@ describe('fetchUserId', () => {
 
     expect(userId).toBe(null)
     expect(mockedAxios.get).toHaveBeenCalledTimes(1)
-    expect(mockedAxios.get).toHaveBeenCalledWith(`http://localhost:3000/api/v1/users/find`, {
+    expect(mockedAxios.get).toHaveBeenCalledWith(`http://localhost:3000/api/v1/users`, {
       params: { email: 'test@example.com' },
     })
   })

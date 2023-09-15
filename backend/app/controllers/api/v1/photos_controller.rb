@@ -2,34 +2,19 @@
 
 require 'image_processing/vips'
 
-module Api
+module API
   module V1
     class PhotosController < ApplicationController
-      skip_before_action :verify_authenticity_token
+      skip_before_action :verify_authenticity_token, only: %i[create update destroy]
       before_action :set_photo, only: %i[show update destroy]
 
-      def find_photo_by_sutra_and_user
-        photo = Photo.find_by(sutra_id: params[:sutraId], user_id: params[:userId])
-        if photo
+      def index
+        photo = Photo.where(user_id: params[:user_id]).find_by(sutra_id: params[:sutra_id])
+
+        if photo.nil?
+          render json: { error: '写真が見つかりません' }, status: :not_found
+        else
           render json: { photo_id: photo.id }, status: :ok
-        else
-          render json: { error: '写真が見つかりませんでした' }, status: :not_found
-        end
-      end
-
-      def index_by_user
-        user = User.find_by(id: params[:user_id])
-
-        if user.nil?
-          render json: { error: 'ユーザーが見つかりません' }, status: :not_found
-        else
-          photos = user.photos.map do |photo|
-            image_url = rails_blob_url(photo.image) if photo.image.attached?
-            cropped_image_url = rails_blob_url(photo.cropped_image) if photo.cropped_image.attached?
-
-            photo.as_json.merge(image_url:, cropped_image_url:)
-          end
-          render json: photos
         end
       end
 

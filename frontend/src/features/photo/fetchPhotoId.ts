@@ -6,10 +6,10 @@ const fetchPhotoId = async (
   currentUserId: number,
 ): Promise<number | null> => {
   try {
-    const response = await axios.get(`${railsApiUrl}/api/v1/photos/find`, {
+    const response = await axios.get(`${railsApiUrl}/api/v1/photos`, {
       params: {
-        sutraId: currentSutraId,
-        userId: currentUserId,
+        sutra_id: currentSutraId,
+        user_id: currentUserId,
       },
     })
 

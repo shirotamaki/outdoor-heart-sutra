@@ -128,6 +128,11 @@ export type SutraListProps = {
   photos: Photo[]
 }
 
+// user
+export type CurrentUserIdProps = {
+  currentUserId: number | null
+}
+
 export type SutraItemProps = {
   sutraId: number
   sutraKanji: string

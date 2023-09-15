@@ -4,6 +4,8 @@ import CustomHead from '@/components/CustomHead'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import DeleteUser from '@/features/user/DeleteUser'
+import fetchUserId from '@/features/user/fetchUserId'
+import { CurrentUserIdProps } from '@/types/types'
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext,
@@ -18,12 +20,17 @@ export const getServerSideProps: GetServerSideProps = async (
       },
     }
   }
+
+  const currentUserId = await fetchUserId(session.user.email)
+
   return {
-    props: {},
+    props: {
+      currentUserId,
+    },
   }
 }
 
-const DeleteAccount = () => {
+const DeleteAccount = ({ currentUserId }: CurrentUserIdProps) => {
   return (
     <div className='flex flex-col min-h-screen'>
       <CustomHead title='退会' ogUrl='https://www.outdoor-heart-sutra.com/delete-account' />
@@ -41,8 +48,8 @@ const DeleteAccount = () => {
               <li className='pb-2'>メモ</li>
             </ul>
           </div>
-          <div className='mt-16 mb-4'>
-            <DeleteUser />
+          <div className='mt-12'>
+            <DeleteUser currentUserId={currentUserId} />
           </div>
         </div>
       </main>

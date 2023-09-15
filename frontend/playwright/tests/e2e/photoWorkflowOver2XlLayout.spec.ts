@@ -58,10 +58,10 @@ test.describe('Photo Workflow For Over 2Xl Layout', () => {
 
   test.afterEach(async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/v1/photos/find', {
+      const response = await axios.get('http://localhost:3000/api/v1/photos', {
         params: {
-          sutraId: 1,
-          userId: 1,
+          sutra_id: 1,
+          user_id: 1,
         },
       })
       // responseが空の場合は何もせず終了する。これにより、テストが不必要なdelete操作を試みるのを防ぐ。

@@ -46,7 +46,7 @@ describe('SutraSmToLgLayout', () => {
       const correspondingPhoto = mockPhotos.find((photo) => photo.sutra_id === sutra.id)
 
       if (correspondingPhoto && correspondingPhoto.cropped_image_url) {
-        expect(screen.getByAltText('capturedImage')).toBeInTheDocument()
+        expect(screen.getByAltText('Captured Image')).toBeInTheDocument()
       } else {
         expect(screen.getByText(sutra.kanji)).toBeInTheDocument()
       }

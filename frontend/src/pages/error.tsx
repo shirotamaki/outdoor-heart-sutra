@@ -20,7 +20,7 @@ const ErrorPage: NextPage = () => {
           </h1>
           <Image
             src='/images/buddha_nehanbotoke_daibutsu.png'
-            alt={'涅槃像_いらすとや'}
+            alt={'Images of Recling Budda'}
             width={340}
             height={240}
           />

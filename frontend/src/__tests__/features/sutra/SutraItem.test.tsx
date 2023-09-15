@@ -24,7 +24,7 @@ describe('SutraItem', () => {
 
     render(<SutraItem {...mockSutraItem} />)
 
-    expect(screen.getByTestId('kanji')).toContainElement(screen.getByAltText('capturedImage'))
+    expect(screen.getByTestId('kanji')).toContainElement(screen.getByAltText('Captured Image'))
   })
 
   it('renders sutraKanji text when no corresponding image or SVG exists', () => {

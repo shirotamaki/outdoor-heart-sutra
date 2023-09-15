@@ -55,7 +55,7 @@ const MyPage = ({ photos, user }: MyPageProps) => {
           <h1 className='mt-12 mb-2'>
             <Image
               src={session?.user?.image || ''}
-              alt='UserIcon'
+              alt='User Icon'
               width={100}
               height={100}
               style={{ borderRadius: '50px' }}
@@ -80,7 +80,7 @@ const MyPage = ({ photos, user }: MyPageProps) => {
           </div>
           <Link
             href='/delete-account'
-            className='hover:opacity-50 transition-all duration-100 font-kinuta text-sm md:text-lg text-gray-400 underline mb-8'
+            className='hover:opacity-50 transition-all duration-100 font-kinuta text-base md:text-lg text-gray-400 underline mb-8'
           >
             退会する
           </Link>
