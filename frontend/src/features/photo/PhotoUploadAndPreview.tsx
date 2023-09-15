@@ -253,8 +253,8 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
             data-testid='save-photo-button'
             className={
               isSaving
-                ? 'bg-gray-400 font-notoSans text-base text-mainBlack rounded-md py-2 mb-4 md:mb-8'
-                : 'bg-buttonBlack hover:opacity-75 transition-all duration-100 font-notoSans text-base text-white rounded-md py-2 mb-4 md:mb-8'
+                ? 'bg-gray-400 font-notoSans text-base text-mainBlack rounded-md py-2 mb-6'
+                : 'bg-buttonBlack hover:opacity-75 transition-all duration-100 font-notoSans text-base text-white rounded-md py-2 mb-6'
             }
           >
             <ActionButton onClick={savePhotoData} text={isSaving ? '保存中...' : '保存'} />

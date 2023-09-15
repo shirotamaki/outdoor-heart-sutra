@@ -40,18 +40,16 @@ const SutraDetailsOver2XlLayout = ({ sutra, photo, is2XlOrBelow }: SutraDetailsP
     } else {
       return (
         <div className='flex flex-col justify-center items-center'>
-          <div className='w-300'>
-            <div
-              data-testid='saved-note-over2Xl'
-              className='text-mainBlack text-base whitespace-pre-line overflow-hidden break-words mb-12'
-            >
-              {photo.note}
-            </div>
+          <div
+            data-testid='saved-note-over2Xl'
+            className='text-mainBlack text-base whitespace-pre-line overflow-hidden break-words mb-8'
+          >
+            {photo.note}
           </div>
           <button
             data-testid='edit-note-button-over2Xl'
             onClick={() => setEditNote(true)}
-            className='w-300 border border-blue-600  hover:opacity-75 transition-all duration-100 font-notoSans text-base text-blue-600 rounded-md text-center py-2 mt-4'
+            className='w-300 border border-blue-800  hover:opacity-50 transition-all duration-100 font-notoSans text-base text-blue-800 rounded-md text-center py-2'
           >
             メモ編集
           </button>
@@ -68,9 +66,10 @@ const SutraDetailsOver2XlLayout = ({ sutra, photo, is2XlOrBelow }: SutraDetailsP
       )
     } else {
       return (
+        // width内訳 左側（画像、メモ）360px、間のマージン48px, 右側（地図）944px = 合計1352px
         <div className='flex flex-row justify-center max-w-1352 mx-auto'>
-          <div className='flex flex-col mr-4 min-height'>
-            <div className=''>
+          <div className='flex flex-col mr-12 min-height'>
+            <div>
               <CapturedImage
                 capturedImageUrl={photo.image_url}
                 width={360}
@@ -91,7 +90,7 @@ const SutraDetailsOver2XlLayout = ({ sutra, photo, is2XlOrBelow }: SutraDetailsP
                 />
               </div>
             </div>
-            <div className='grid grid-rows-2 grid-cols-4 auto-rows-min font-notoSans text-mainBlack text-base my-4'>
+            <div className='w-360 grid grid-rows-2 grid-cols-4 auto-rows-min font-notoSans text-mainBlack text-base my-4'>
               <div className='justify-self-end col-span-1' data-testid='photo-address-over2Xl'>
                 住所：
               </div>
@@ -101,15 +100,15 @@ const SutraDetailsOver2XlLayout = ({ sutra, photo, is2XlOrBelow }: SutraDetailsP
               </div>
               <div className='justify-self-start col-span-3'>{shootingDate}</div>
             </div>
-            <div className='w-full'>{renderNote()}</div>
-            <div className='w-300 mt-8 mx-auto'>
+            <div className='w-360'>{renderNote()}</div>
+            <div className='w-300 mt-4 mx-auto'>
               <EditPhoto setEditMode={setEditMode} is2XlOrBelow={is2XlOrBelow} />
             </div>
             <div className='w-300 text-right mt-4 mb-8 mx-auto'>
               <DeletePhoto photoId={photo.id} is2XlOrBelow={is2XlOrBelow} />
             </div>
           </div>
-          <div className='w-992'>
+          <div className='w-944'>
             <Map markerLocation={currentLocation} width={'100%'} height={'100%'} />
           </div>
         </div>

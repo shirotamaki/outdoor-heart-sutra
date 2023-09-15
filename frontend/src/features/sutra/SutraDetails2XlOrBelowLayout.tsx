@@ -40,18 +40,16 @@ const SutraDetails2XlOrBelowLayout = ({ sutra, photo, is2XlOrBelow }: SutraDetai
     } else {
       return (
         <div className='flex flex-col justify-center items-center'>
-          <div className='w-300'>
-            <div
-              data-testid='saved-note-2XlOrBelow'
-              className='text-mainBlack text-sm whitespace-pre-line overflow-hidden break-words mb-12'
-            >
-              {photo.note}
-            </div>
+          <div
+            data-testid='saved-note-2XlOrBelow'
+            className='w-full text-mainBlack text-sm whitespace-pre-line overflow-hidden break-words mb-8'
+          >
+            {photo.note}
           </div>
           <button
             data-testid='edit-note-button-2XlOrBelow'
             onClick={() => setEditNote(true)}
-            className='w-300 border border-blue-600  hover:opacity-75 transition-all duration-100 font-notoSans text-base text-blue-600 rounded-md text-center py-2 mt-4'
+            className='w-300 border border-blue-800  hover:opacity-50 transition-all duration-100 font-notoSans text-base text-blue-800 rounded-md text-center py-2'
           >
             メモ編集
           </button>
@@ -94,7 +92,6 @@ const SutraDetails2XlOrBelowLayout = ({ sutra, photo, is2XlOrBelow }: SutraDetai
           <div className='w-full'>
             <Map markerLocation={currentLocation} width={'100%'} height={480} />
           </div>
-
           <div className='grid grid-rows-2 grid-cols-4 auto-rows-min font-notoSans text-mainBlack text-sm my-4'>
             <div className='justify-self-end col-span-1' data-testid='photo-address-2XlOrBelow'>
               住所：
@@ -108,10 +105,8 @@ const SutraDetails2XlOrBelowLayout = ({ sutra, photo, is2XlOrBelow }: SutraDetai
             </div>
             <div className='justify-self-start col-span-3'>{shootingDate}</div>
           </div>
-
           <div className='w-full'>{renderNote()}</div>
-
-          <div className='w-300 flex justify-center mt-8'>
+          <div className='w-300 flex justify-center mt-4'>
             <EditPhoto setEditMode={setEditMode} is2XlOrBelow={is2XlOrBelow} />
           </div>
           <div className='w-300 text-right mt-4 mb-8'>
