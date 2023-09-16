@@ -17,49 +17,48 @@ export const getServerSideProps: GetServerSideProps = async (
 ) => {
   const session = await getSession(context)
 
-  if (!session) {
+  if (!session || !session.user || !session.user.email) {
     return {
-      props: {},
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
     }
   }
 
-  if (session.user && session.user.email) {
-    const currentUserId = await fetchUserId(session.user.email)
+  const currentUserId = await fetchUserId(session.user.email)
 
-    if (!currentUserId) {
-      return {
-        redirect: {
-          destination: '/signout',
-          permanent: false,
-        },
-      }
-    }
-
-    try {
-      const sutraResponse = await axios.get(`${railsApiUrl}/api/v1/sutras`)
-      const sutras = sutraResponse.data
-
-      const photoResponse = await axios.get(`${railsApiUrl}/api/v1/users/${currentUserId}/photos`)
-      const photos = photoResponse.data
-
-      return {
-        props: {
-          sutras,
-          photos,
-        },
-      }
-    } catch (error) {
-      console.error(error)
-      return {
-        redirect: {
-          destination: '/error',
-          permanent: false,
-        },
-      }
-    }
-  } else {
+  if (!currentUserId) {
     return {
-      props: {},
+      redirect: {
+        destination: '/signout',
+        permanent: false,
+      },
+    }
+  }
+
+  try {
+    const [sutraResponse, photoResponse] = await Promise.all([
+      axios.get(`${railsApiUrl}/api/v1/sutras`),
+      axios.get(`${railsApiUrl}/api/v1/users/${currentUserId}/photos`),
+    ])
+
+    const sutras = sutraResponse.data
+    const photos = photoResponse.data
+
+    return {
+      props: {
+        sutras,
+        photos,
+      },
+    }
+  } catch (error) {
+    console.error(error)
+    return {
+      redirect: {
+        destination: '/error',
+        permanent: false,
+      },
     }
   }
 }
