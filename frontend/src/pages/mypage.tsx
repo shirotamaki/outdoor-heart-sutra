@@ -24,13 +24,16 @@ export const getServerSideProps: GetServerSideProps = async (
       },
     }
   }
+
   const currentUserId = await fetchUserId(session.user.email)
 
-  const photosResponse = await axios.get(`${railsApiUrl}/api/v1/users/${currentUserId}/photos`)
-  const photos = photosResponse.data
+  const [photosResponse, userResponse] = await Promise.all([
+    axios.get(`${railsApiUrl}/api/v1/users/${currentUserId}/photos`),
+    axios.get(`${railsApiUrl}/api/v1/users/${currentUserId}`),
+  ])
 
-  const UserResponse = await axios.get(`${railsApiUrl}/api/v1/users/${currentUserId}`)
-  const user = UserResponse.data
+  const photos = photosResponse.data
+  const user = userResponse.data
 
   return {
     props: {

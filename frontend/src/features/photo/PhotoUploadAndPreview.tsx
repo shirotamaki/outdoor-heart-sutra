@@ -234,7 +234,7 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
         <div className='flex flex-col w-300'>
           <div
             data-testid='file-input-confirm-button'
-            className=' bg-buttonBlack hover:opacity-75 transition-all duration-100 font-notoSans text-base text-white rounded-md text-center py-2 mt-12 mb-6'
+            className=' bg-buttonBlack hover:opacity-75 transition-all duration-100 font-notoSans text-base text-white rounded-md text-center py-2 mt-6 md:mt-12 mb-6'
           >
             <ActionButton onClick={handleCropConfirm} text='決定' />
           </div>

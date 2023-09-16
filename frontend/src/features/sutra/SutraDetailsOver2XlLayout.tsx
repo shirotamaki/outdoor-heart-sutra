@@ -42,7 +42,7 @@ const SutraDetailsOver2XlLayout = ({ sutra, photo, is2XlOrBelow }: SutraDetailsP
         <div className='flex flex-col justify-center items-center'>
           <div
             data-testid='saved-note-over2Xl'
-            className='text-mainBlack text-base whitespace-pre-line overflow-hidden break-words mb-8'
+            className='w-full text-mainBlack text-base whitespace-pre-line overflow-hidden break-words mb-8'
           >
             {photo.note}
           </div>
