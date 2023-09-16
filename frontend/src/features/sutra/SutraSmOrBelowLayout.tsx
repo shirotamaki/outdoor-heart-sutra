@@ -78,7 +78,7 @@ const SutraSmOrBelowLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Pho
           )
         })}
       </div>
-      <div className='vertical-sutras-container grid gap-2 grid-cols-6 mb-8'>
+      <div className='vertical-sutras-container grid gap-2 grid-cols-6 mb-12'>
         {fifthLayout.map((sutra, index) => {
           const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
 

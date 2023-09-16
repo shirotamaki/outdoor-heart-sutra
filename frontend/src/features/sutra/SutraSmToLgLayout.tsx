@@ -44,7 +44,7 @@ const SutraSmToLgLayout = ({ sutras, photos }: { sutras: Sutra[]; photos: Photo[
           )
         })}
       </div>
-      <div className='vertical-sutras-container grid gap-2 grid-cols-10 mb-8'>
+      <div className='vertical-sutras-container grid gap-2 grid-cols-10 mb-12'>
         {thirdLayout.map((sutra, index) => {
           const correspondingPhoto = photos.find((photo) => photo.sutra_id === sutra.id)
 
