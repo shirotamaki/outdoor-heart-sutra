@@ -1,9 +1,9 @@
 import axios from 'axios'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
+import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useSession, getSession } from 'next-auth/react'
-import CustomHead from '@/components/CustomHead'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import { railsApiUrl } from '@/config/index'
@@ -48,7 +48,9 @@ const MyPage = ({ photos, user }: MyPageProps) => {
 
   return (
     <div className='flex flex-col min-h-screen'>
-      <CustomHead title='マイページ' ogUrl='https://www.outdoor-heart-sutra.com/mypage' />
+      <Head>
+        <title>マイページ | アウトドア般若心経</title>
+      </Head>
       <Header />
       <main className=' bg-beige flex-grow'>
         <div className='flex flex-col justify-center items-center'>

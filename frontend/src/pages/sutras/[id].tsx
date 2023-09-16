@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
+import Head from 'next/head'
 import { getSession } from 'next-auth/react'
-import CustomHead from '@/components/CustomHead'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import { railsApiUrl } from '@/config/index'
@@ -79,7 +79,9 @@ export const getServerSideProps: GetServerSideProps = async (
 const SutraDetails = ({ sutra, photo }: SutraDetailsProps) => {
   return (
     <div className='flex flex-col min-h-screen bg-beige'>
-      <CustomHead title='詳細' ogUrl='https://www.outdoor-heart-sutra.com/sutras/[id]' />
+      <Head>
+        <title>詳細 | アウトドア般若心経</title>
+      </Head>
       <Header />
       <main className='p-4 flex-grow'>
         {photo.image_url === null ? (

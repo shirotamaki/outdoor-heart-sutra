@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
+import Head from 'next/head'
 import { getSession } from 'next-auth/react'
-import CustomHead from '@/components/CustomHead'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import { railsApiUrl } from '@/config/index'
@@ -36,7 +36,9 @@ export const getServerSideProps: GetServerSideProps = async (
 function Maps({ photos }: PhotosProps) {
   return (
     <div className='flex flex-col h-screen'>
-      <CustomHead title='全体地図' ogUrl='https://www.outdoor-heart-sutra.com/maps' />
+      <Head>
+        <title>全体地図 | アウトドア般若心経</title>
+      </Head>
       <Header />
       <main data-testid='all-maps' className='flex-grow h-screen'>
         <AllMaps

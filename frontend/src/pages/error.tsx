@@ -1,18 +1,15 @@
 import { NextPage } from 'next'
+import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import CustomHead from '@/components/CustomHead'
 import Footer from '@/components/Footer'
 
 const ErrorPage: NextPage = () => {
   return (
     <div className='flex flex-col min-h-screen'>
-      <CustomHead
-        title='エラー'
-        description='エラーページです。トップページに戻りやり直してください。'
-        ogUrl='https://www.outdoor-heart-sutra.com/error'
-        ogImage='https://www.outdoor-heart-sutra.com/images/buddha_nehanbotoke_daibutsu.png'
-      />
+      <Head>
+        <title>エラー | アウトドア般若心経</title>
+      </Head>
       <main className='bg-beige flex-grow'>
         <div className='flex flex-col justify-center items-center p-4'>
           <h1 className='text-mainBlack text-7xl md:text-8xl font-notoSans mt-24 md:mt-36 mb-4 md:mb-8 '>

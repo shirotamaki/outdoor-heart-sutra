@@ -1,12 +1,14 @@
+import Head from 'next/head'
 import Link from 'next/link'
-import CustomHead from '@/components/CustomHead'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 
 const TermsOfService = () => {
   return (
     <div className='flex flex-col min-h-screen'>
-      <CustomHead title='利用規約' ogUrl='https://www.outdoor-heart-sutra.com/terms-of-service' />
+      <Head>
+        <title>利用規約 | アウトドア般若心経</title>
+      </Head>
       <Header />
       <main className='bg-beige flex flex-grow justify-center'>
         <article className='lg:max-w-screen-sm max-w-552 font-kinuta text-gray-500 m-4'>

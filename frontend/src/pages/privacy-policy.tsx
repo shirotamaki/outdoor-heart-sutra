@@ -1,16 +1,15 @@
+import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import CustomHead from '@/components/CustomHead'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 
 const PrivacyPolicy = () => {
   return (
     <div className='flex flex-col min-h-screen'>
-      <CustomHead
-        title='プライバシーポリシー'
-        ogUrl='https://www.outdoor-heart-sutra.com/privacy-policy'
-      />
+      <Head>
+        <title>プライバシーポリシー | アウトドア般若心経</title>
+      </Head>
       <Header />
       <main className='bg-beige flex flex-grow justify-center'>
         <article className='lg:max-w-screen-sm max-w-552 font-kinuta text-gray-500 m-4'>

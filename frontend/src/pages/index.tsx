@@ -1,9 +1,9 @@
 import axios from 'axios'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
+import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useSession, getSession } from 'next-auth/react'
-import CustomHead from '@/components/CustomHead'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import { railsApiUrl } from '@/config/index'
@@ -73,7 +73,9 @@ const Home = ({ sutras, photos }: SutraListProps) => {
 
   return (
     <div>
-      <CustomHead isHomePage={true} ogType='website' />
+      <Head>
+        <title>アウトドア般若心経</title>
+      </Head>
       {status !== 'authenticated' ? (
         <div className='flex flex-col min-h-screen'>
           <main className='bg-beige flex-grow'>
