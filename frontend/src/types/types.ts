@@ -5,23 +5,6 @@ export type ActionButtonProps = {
   text: string
 }
 
-export type CustomHeadProps = {
-  title?: string
-  description?: string
-  ogType?: string
-  ogUrl?: string
-  ogImage?: string
-  siteName?: string
-  favicon?: string
-  twitterCard?: string
-  twitterImage?: string
-  twitterSite?: string
-  appleTouchIcons?: { size: string; href: string }[]
-  canonicalUrl?: string
-  lang?: string
-  isHomePage?: boolean
-}
-
 export type MenuProps = {
   href: string
   children: React.ReactNode

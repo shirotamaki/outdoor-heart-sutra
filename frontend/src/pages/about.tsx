@@ -1,6 +1,6 @@
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
+import Head from 'next/head'
 import { getSession } from 'next-auth/react'
-import CustomHead from '@/components/CustomHead'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 
@@ -25,7 +25,9 @@ export const getServerSideProps: GetServerSideProps = async (
 const About = () => {
   return (
     <div className='flex flex-col min-h-screen'>
-      <CustomHead title='説明' ogUrl='https://www.outdoor-heart-sutra.com/about' />
+      <Head>
+        <title>説明 | アウトドア般若心経</title>
+      </Head>
       <Header />
       <main className='bg-beige flex flex-grow justify-center'>
         <article className='font-kinuta text-mainBlack lg:max-w-776 sm:max-w-552 max-w-screen-sm m-4'>

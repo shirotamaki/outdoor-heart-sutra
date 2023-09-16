@@ -1,6 +1,6 @@
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
+import Head from 'next/head'
 import { getSession } from 'next-auth/react'
-import CustomHead from '@/components/CustomHead'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import DeleteUser from '@/features/user/DeleteUser'
@@ -33,7 +33,9 @@ export const getServerSideProps: GetServerSideProps = async (
 const DeleteAccount = ({ currentUserId }: CurrentUserIdProps) => {
   return (
     <div className='flex flex-col min-h-screen'>
-      <CustomHead title='退会' ogUrl='https://www.outdoor-heart-sutra.com/delete-account' />
+      <Head>
+        <title>退会 | アウトドア般若心経</title>
+      </Head>
       <Header />
       <main className=' bg-beige flex-grow'>
         <div className='flex flex-col justify-center items-center m-4'>
