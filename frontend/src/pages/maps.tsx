@@ -22,7 +22,7 @@ export const getServerSideProps: GetServerSideProps = async (
       },
     }
   }
-  
+
   const currentUserId = await fetchUserId(session.user.email)
   const response = await axios.get(`${railsApiUrl}/api/v1/users/${currentUserId}/photos`)
   const photos = response.data
