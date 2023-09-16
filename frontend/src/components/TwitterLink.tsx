@@ -9,6 +9,7 @@ const TwitterLink = () => (
       rel='noopener noreferrer'
       className='hover:opacity-50 transition-all duration-100'
       data-testid='twitter-link'
+      aria-label='Twitter Icon'
     >
       <FontAwesomeIcon
         icon={faXTwitter}
@@ -16,7 +17,6 @@ const TwitterLink = () => (
           width: '18px',
           height: '18px',
         }}
-        aria-label='Twitter Icon'
       />
     </a>
   </Link>

@@ -9,6 +9,7 @@ const GitHubLink = () => (
       rel='noopener noreferrer'
       className='hover:opacity-50 transition-all duration-100'
       data-testid='github-link'
+      aria-label='GitHub Icon'
     >
       <FontAwesomeIcon
         icon={faGithub}
@@ -16,7 +17,6 @@ const GitHubLink = () => (
           width: '18px',
           height: '18px',
         }}
-        aria-label='GitHub Icon'
       />
     </a>
   </Link>
