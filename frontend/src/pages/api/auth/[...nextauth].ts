@@ -24,10 +24,10 @@ export default NextAuth({
 
       try {
         const response = await axios.post(`${railsApiUrl}/api/v1/users`, {
-          provider,
-          uid,
-          name,
-          email,
+          provider: provider,
+          uid: uid,
+          name: name,
+          email: email,
         })
 
         if (response.status === 200) {

@@ -4,7 +4,7 @@ import { railsApiUrl } from '@/config/index'
 const fetchUserId = async (email: string): Promise<number | null> => {
   try {
     const response = await axios.get(`${railsApiUrl}/api/v1/users`, {
-      params: { email },
+      params: { email: email },
     })
 
     if (response.status === 200) {
