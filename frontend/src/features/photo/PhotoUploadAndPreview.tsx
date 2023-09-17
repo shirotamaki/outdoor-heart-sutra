@@ -8,6 +8,7 @@ import React, { useState, useCallback, useRef } from 'react'
 import Cropper from 'react-easy-crop'
 import { toast } from 'react-toastify'
 import ActionButton from '@/components/ActionButton'
+import LoadingSpinner from '@/components/LoadingSpinner'
 import { railsApiUrl } from '@/config/index'
 import cropImage from '@/features/photo/cropImage'
 import SutraKanji from '@/features/sutra/SutraKanji'
@@ -18,6 +19,8 @@ import { PhotoUploadAndPreviewProps, Point, Area } from '@/types/types'
 
 const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPreviewProps) => {
   const router = useRouter()
+
+  const [isLoading, setIsLoading] = useState(false)
 
   const [crop, setCrop] = useState<Point>({ x: 0, y: 0 })
   const [zoom, setZoom] = useState(1)
@@ -47,6 +50,7 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
   }, [])
 
   const previewSelectedImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    setIsLoading(true)
     setSelectedImage(true)
 
     if (event.target.files !== null) {
@@ -78,6 +82,7 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
     } else {
       return
     }
+    setIsLoading(false)
   }
 
   const handleCropConfirm = useCallback(async () => {
@@ -267,6 +272,8 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
           </div>
         </div>
       )}
+
+      {isLoading && (<LoadingSpinner />)}
     </div>
   )
 }
