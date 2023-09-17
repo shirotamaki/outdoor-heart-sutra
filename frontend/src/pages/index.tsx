@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { useSession, getSession } from 'next-auth/react'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
+import LoadingSpinner from '@/components/LoadingSpinner'
 import { railsApiUrl } from '@/config/index'
 import Login from '@/features/auth/Login'
 import SutraList from '@/features/sutra/SutraList'
@@ -64,7 +65,7 @@ const Home = ({ sutras, photos }: SutraListProps) => {
   const { data: session, status } = useSession()
 
   if (status === 'loading') {
-    return <div>Loading...</div>
+    return <LoadingSpinner />
   }
 
   return (
