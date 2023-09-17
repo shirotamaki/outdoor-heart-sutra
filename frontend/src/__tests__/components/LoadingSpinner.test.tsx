@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react'
 import LoadingSpinner from '@/components/LoadingSpinner'
 
-describe('LoadingSpinner Component', () => {
+describe('LoadingSpinner', () => {
   it('renders Loading Spinner', () => {
     const { getByLabelText } = render(<LoadingSpinner />)
 

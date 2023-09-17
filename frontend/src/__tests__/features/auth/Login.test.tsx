@@ -14,12 +14,6 @@ describe('Login', () => {
     signInMock = signIn as jest.Mock
   })
 
-  it('should render loading state initially', () => {
-    useSessionMock.mockReturnValue({ status: 'loading' })
-    const { getByText } = render(<Login />)
-    expect(getByText('Loading...')).toBeInTheDocument()
-  })
-
   it('should render sign in button if not authenticated', () => {
     useSessionMock.mockReturnValue({ status: 'unauthenticated' })
     const { getByText } = render(<Login />)

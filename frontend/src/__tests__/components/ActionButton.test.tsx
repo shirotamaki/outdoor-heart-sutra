@@ -1,7 +1,7 @@
 import { render, fireEvent, screen } from '@testing-library/react'
 import ActionButton from '@/components/ActionButton'
 
-describe('ActionButton component', () => {
+describe('ActionButton', () => {
   it('should render button correctly', () => {
     render(<ActionButton onClick={() => {}} text='Test Button' />)
 
