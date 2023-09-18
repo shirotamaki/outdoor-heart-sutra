@@ -7,6 +7,5 @@ describe('LoadingSpinner', () => {
 
     const loadingSpinner = getByLabelText('Loading Spinner')
     expect(loadingSpinner).toBeInTheDocument()
-
   })
 })

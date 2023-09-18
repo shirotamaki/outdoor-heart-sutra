@@ -273,7 +273,7 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
         </div>
       )}
 
-      {isLoading && (<LoadingSpinner />)}
+      {isLoading && <LoadingSpinner />}
     </div>
   )
 }
