@@ -112,7 +112,7 @@ const Home = ({ sutras, photos }: SutraListProps) => {
                   </p>
                   <p className='text-xs font-notoSans text-gray-500'>※ 無料でご利用いただけます</p>
                 </div>
-                <div className='w-full sm:w-640 sm:mt-6 sm:mb-10 text-mainBlack font-kinuta text-left text-sm md:text-base'>
+                <div className='w-full sm:w-640 sm:mt-6 sm:mb-10 mt-4 mb-8 text-mainBlack font-kinuta text-left text-sm md:text-base'>
                   <p className='leading-6 md:leading-8'>
                     アウトドア般若心経とは、「般若心経」278文字を、家を出て（これを「出家」と称す）、街の看板から経文に含まれている文字を捜し写真に収める（これを「写経と称す）行為のことを指します。
                   </p>
@@ -124,10 +124,10 @@ const Home = ({ sutras, photos }: SutraListProps) => {
                   </p>
                 </div>
               </div>
-              <div className='sm:hidden'>
+              <div className='sm:hidden mb-10'>
                 <ComicsSmOrBelow />
               </div>
-              <div className='hidden sm:flex'>
+              <div className='hidden sm:flex mb-12'>
                 <Comics />
               </div>
             </div>

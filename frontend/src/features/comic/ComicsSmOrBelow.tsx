@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 const ComicsSmOrBelow = () => {
   return (
-    <section className='flex flex-col items-center font-kinuta text-mainBlack my-10'>
+    <section className='flex flex-col items-center font-kinuta text-mainBlack'>
       <div className='w-full h-300 border border-gray-400 rounded p-2 mb-2'>
         <p className=''>1. 出家</p>
         <p className=''>スマホを持って家を出ましょう</p>

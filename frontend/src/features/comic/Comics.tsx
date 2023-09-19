@@ -3,7 +3,7 @@ import Image from 'next/image'
 const Comics = () => {
   return (
     <section className='font-kinuta text-mainBlack'>
-      <div className='grid grid-cols-2 gap-2  mt-2 mb-12'>
+      <div className='grid grid-cols-2 gap-2'>
         <div className='col-span-1 w-316 h-316 border border-gray-400 rounded p-2'>
           <p className=''>1. 出家</p>
           <p className=''>スマホを持って家を出ましょう</p>
