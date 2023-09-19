@@ -53,34 +53,33 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
     setIsLoading(true)
     setSelectedImage(true)
 
-    if (event.target.files !== null) {
-      const file = event.target.files[0]
-
-      await fetchLocation({ file })
-
-      try {
-        const heic2any = (await import('heic2any')).default
-        if (file.type === 'image/heic') {
-          const convertedImage = await heic2any({
-            blob: file,
-            toType: 'image/jpeg',
-            quality: 0.1,
-          })
-          if (Array.isArray(convertedImage)) {
-            throw new Error('Unexpected multiple blobs')
-          }
-
-          setPreviewUrl(URL.createObjectURL(convertedImage))
-          setOriginalBlob(convertedImage)
-        } else {
-          setPreviewUrl(URL.createObjectURL(file))
-          setOriginalBlob(file)
-        }
-      } catch (error) {
-        console.error('Error converting image: ', error)
-      }
-    } else {
+    if (!event.target.files) {
       return
+    }
+
+    const file = event.target.files[0]
+
+    await fetchLocation({ file })
+
+    try {
+      const heic2any = (await import('heic2any')).default
+      if (file.type === 'image/heic') {
+        const convertedImage = await heic2any({
+          blob: file,
+          toType: 'image/jpeg',
+          quality: 0.1,
+        })
+        if (Array.isArray(convertedImage)) {
+          throw new Error('Unexpected multiple blobs')
+        }
+        setPreviewUrl(URL.createObjectURL(convertedImage))
+        setOriginalBlob(convertedImage)
+      } else {
+        setPreviewUrl(URL.createObjectURL(file))
+        setOriginalBlob(file)
+      }
+    } catch (error) {
+      console.error('Error converting image: ', error)
     }
     setIsLoading(false)
   }
@@ -108,59 +107,59 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
     }
   }
 
+  const createFormData = async () => {
+    if (!originalBlob || !croppedBlob || !session?.user?.email || !location || !address) {
+      console.error('必要なデータが足りません')
+      throw new Error('必要なデータが足りません')
+    }
+
+    const formData = new FormData()
+    formData.append('image', originalBlob)
+    formData.append('croppedImage', croppedBlob, 'croppedImage.jpeg')
+    formData.append('latitudeData', String(location.lat))
+    formData.append('longitudeData', String(location.lng))
+    formData.append('addressData', address)
+    formData.append('currentUserId', String(await fetchUserId(session.user.email)))
+    formData.append('currentSutraId', String(sutraId))
+    return formData
+  }
+
+  const uploadPhoto = async (formData: FormData) => {
+    if (photoId) {
+      return await axios.patch(`${railsApiUrl}/api/v1/photos/${photoId}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+    } else {
+      return await axios.post(`${railsApiUrl}/api/v1/photos`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+    }
+  }
+
   const savePhotoData = async () => {
     if (isSaving) return
     setIsSaving(true)
 
     try {
-      if (originalBlob && croppedBlob && session?.user?.email && location && address) {
-        let success = false
-
-        const currentUserId: number | null = await fetchUserId(session.user.email)
-        const currentSutraId: number = sutraId
-
-        const formData = new FormData()
-        formData.append('image', originalBlob)
-        formData.append('croppedImage', croppedBlob, 'croppedImage.jpeg')
-        formData.append('latitudeData', String(location.lat))
-        formData.append('longitudeData', String(location.lng))
-        formData.append('addressData', address)
-        formData.append('currentUserId', String(currentUserId))
-        formData.append('currentSutraId', String(currentSutraId))
-
-        try {
-          if (photoId) {
-            await axios.patch(`${railsApiUrl}/api/v1/photos/${photoId}`, formData, {
-              headers: {
-                'Content-Type': 'multipart/form-data',
-              },
-            })
-          } else {
-            await axios.post(`${railsApiUrl}/api/v1/photos`, formData, {
-              headers: {
-                'Content-Type': 'multipart/form-data',
-              },
-            })
-          }
-          console.log('写真が保存されました')
-          toast.success('写真が保存されました')
-          success = true
-        } catch (error) {
-          console.error('写真の保存に失敗しました:', error)
-          toast.error('写真の保存に失敗しました')
-        }
-        if (success) {
-          setTimeout(async () => {
-            await router.reload()
-          }, 2000)
-        } else {
-          console.log('写真の保存に失敗しました')
-          toast.error('写真の保存に失敗しました')
-        }
+      const formData = await createFormData()
+      if (formData) {
+        await uploadPhoto(formData)
+        console.log('写真が保存されました')
+        toast.success('写真が保存されました')
+        setTimeout(async () => {
+          router.reload()
+        }, 2000)
       }
+    } catch (error) {
+      console.error('写真の保存に失敗しました:', error)
+      toast.error('写真の保存に失敗しました')
     } finally {
       setTimeout(async () => {
-        await setIsSaving(false)
+        setIsSaving(false)
       }, 4000)
     }
   }
@@ -273,7 +272,7 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
         </div>
       )}
 
-      {isLoading && (<LoadingSpinner />)}
+      {isLoading && <LoadingSpinner />}
     </div>
   )
 }
