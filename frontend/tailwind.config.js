@@ -22,17 +22,21 @@ module.exports = {
         notoSans: ['Noto Sans JP', 'sans-serif'],
       },
       width: {
+        272: '272px',
         280: '280px',
         300: '300px',
         316: '316px',
         360: '360px',
+        384: '384px',
         480: '480px',
         640: '640px',
         944: '944px',
       },
       height: {
+        272: '272px',
         300: '300px',
         316: '316px',
+        384: '384px',
       },
       maxWidth: {
         328: '328px',
