@@ -17,8 +17,9 @@ describe('MobileMenu', () => {
     )
 
     await waitFor(() => {
-      expect(screen.getByText('全体地図')).toBeInTheDocument()
+      expect(screen.getByText('地図')).toBeInTheDocument()
       expect(screen.getByText('説明')).toBeInTheDocument()
+      expect(screen.getByText('使い方')).toBeInTheDocument()
       expect(screen.getByText('マイページ')).toBeInTheDocument()
       expect(screen.getByText('ログアウト')).toBeInTheDocument()
     })
@@ -32,8 +33,9 @@ describe('MobileMenu', () => {
     )
 
     await waitFor(() => {
-      expect(screen.queryByText('全体地図')).not.toBeVisible()
+      expect(screen.queryByText('地図')).not.toBeVisible()
       expect(screen.queryByText('説明')).not.toBeVisible()
+      expect(screen.queryByText('使い方')).not.toBeVisible()
       expect(screen.queryByText('マイページ')).not.toBeVisible()
       expect(screen.queryByText('ログアウト')).not.toBeVisible()
     })

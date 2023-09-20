@@ -26,7 +26,7 @@ test.describe('Header Desktop Menu Navigation Links', () => {
 
   test('should navigate to maps page when maps-link is clicked', async () => {
     await page.goto(baseURL)
-    await page.getByRole('link', { name: '全体地図' }).click()
+    await page.getByRole('link', { name: '地図' }).click()
     await page.waitForURL('http://localhost:4000/maps', {
       timeout: 60000,
     })
@@ -85,7 +85,7 @@ test.describe('Header Mobile Menu Navigation Links', () => {
   })
 
   test('should navigate to maps page when maps-link is clicked', async () => {
-    await page.getByRole('link', { name: '全体地図' }).click()
+    await page.getByRole('link', { name: '地図' }).click()
     await page.waitForURL('http://localhost:4000/maps', {
       timeout: 60000,
     })
