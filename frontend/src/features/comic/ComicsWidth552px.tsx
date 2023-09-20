@@ -32,7 +32,7 @@ const ComicsWidth552px = () => {
         </div>
         <div className='w-272 h-272 border border-gray-400 rounded p-3'>
           <p>3. 写経</p>
-          <p className=''>文字を見つけたら写真を撮りアプリに登録しましょう</p>
+          <p className=''>文字を見つけたら写真を撮りアプリに保存しましょう</p>
           <div className='flex justify-center'>
             <Image
               src='/images/chojugiga/shoot.svg'

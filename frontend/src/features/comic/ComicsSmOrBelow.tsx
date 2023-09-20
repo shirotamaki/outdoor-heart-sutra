@@ -31,7 +31,7 @@ const ComicsSmOrBelow = () => {
       </div>
       <div className='w-full h-300 border border-gray-400 rounded p-3 mb-2'>
         <p>3. 写経</p>
-        <p className=''>文字を見つけたら写真を撮りアプリに登録しましょう</p>
+        <p className=''>文字を見つけたら写真を撮りアプリに保存しましょう</p>
         <div className='flex justify-center'>
           <Image
             src='/images/chojugiga/shoot.svg'
