@@ -19,7 +19,6 @@ test.afterAll(async () => {
   await page.close()
 })
 
-
 test.describe('Header Mobile Menu Navigation Links', () => {
   test.beforeEach(async () => {
     await page.setViewportSize({ width: 375, height: 667 })
