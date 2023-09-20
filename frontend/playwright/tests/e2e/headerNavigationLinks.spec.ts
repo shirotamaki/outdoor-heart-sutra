@@ -45,7 +45,6 @@ test.describe('Header Desktop Menu Navigation Links', () => {
   })
 
   test('should navigate to about page when how-to-use-link is clicked', async () => {
-    await page.goto(baseURL)
     await page.getByRole('link', { name: '使い方' }).click()
     await page.waitForURL('http://localhost:4000/how-to-use', {
       timeout: 60000,
@@ -113,7 +112,6 @@ test.describe('Header Mobile Menu Navigation Links', () => {
   })
 
   test('should navigate to about page when how-to-use-link is clicked', async () => {
-    await page.goto(baseURL)
     await page.getByRole('link', { name: '使い方' }).click()
     await page.waitForURL('http://localhost:4000/how-to-use', {
       timeout: 60000,
