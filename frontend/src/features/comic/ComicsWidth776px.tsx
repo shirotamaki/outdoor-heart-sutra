@@ -45,8 +45,7 @@ const ComicsWidth776px = () => {
         </div>
         <div className='w-384 h-384 border border-gray-400 rounded p-3'>
           <p>4. 森羅万象</p>
-          <p className=''>般若心経278文字のコンプリートを目指し悟りの境地へと至りましょう</p>
-          <p className=''></p>
+          <p className=''>般若心経278文字をコンプリートし悟りの境地へと至りましょう</p>
           <div className='flex justify-center'>
             <Image
               src='/images/chojugiga/mindfulness.svg'
