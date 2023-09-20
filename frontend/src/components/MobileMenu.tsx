@@ -31,8 +31,9 @@ const MobileMenu = ({ isMenuOpen, toggleMenu }: MobileMenuProps) => {
           className='ml-24'
         />
       </button>
-      <Menu href='/maps'>全体地図</Menu>
+      <Menu href='/maps'>地図</Menu>
       <Menu href='/about'>説明</Menu>
+      <Menu href='/how-to-use'>使い方</Menu>
       <Menu href='/mypage'>マイページ</Menu>
       <Logout />
       <br />

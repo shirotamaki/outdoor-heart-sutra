@@ -11,8 +11,9 @@ describe('DesktopMenu', () => {
     )
 
     await waitFor(() => {
-      expect(screen.getByText('全体地図')).toBeInTheDocument()
+      expect(screen.getByText('地図')).toBeInTheDocument()
       expect(screen.getByText('説明')).toBeInTheDocument()
+      expect(screen.getByText('使い方')).toBeInTheDocument()
       expect(screen.getByText('マイページ')).toBeInTheDocument()
       expect(screen.getByText('ログアウト')).toBeInTheDocument()
     })

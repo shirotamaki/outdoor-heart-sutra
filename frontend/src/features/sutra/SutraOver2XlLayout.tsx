@@ -31,8 +31,8 @@ const renderSutraLayout = (sutraLayout: Sutra[], photoMap: { [key: number]: Phot
         sutraId={sutra.id}
         sutraKanji={sutra.kanji}
         correspondingPhoto={correspondingPhoto}
-        width={48}
-        height={48}
+        width={60}
+        height={60}
       />
     )
   })

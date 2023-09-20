@@ -39,7 +39,7 @@ HEIC,JPEG,PNG 形式の写真を登録することができます。
 メモは 100 文字まで登録が可能です。
 ![readme_demo_show.png](frontend/public/images/readme_demo_show.png)
 
-### 全体地図の確認
+### 地図の確認
 
 写経済みの文字の位置情報を Google Maps 上で確認することができます。写真をクリックすると詳細ページに遷移できます。
 ![readme_demo_maps.png](frontend/public/images/readme_demo_maps.png)

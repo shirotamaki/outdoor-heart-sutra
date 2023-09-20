@@ -49,10 +49,10 @@ const Header = () => {
 
         {isAuthenticated && (
           <div ref={insideRef}>
-            <div className='hidden sm:flex'>
+            <div className='hidden md:flex'>
               <DesktopMenu />
             </div>
-            <div className='sm:hidden flex items-center'>
+            <div className='md:hidden flex items-center'>
               <button
                 type='button'
                 onClick={toggleMenu}

@@ -38,7 +38,7 @@ function Maps({ photos }: PhotosProps) {
   return (
     <div className='flex flex-col h-screen'>
       <Head>
-        <title>全体地図 | アウトドア般若心経</title>
+        <title>地図 | アウトドア般若心経</title>
       </Head>
       <Header />
       <main data-testid='all-maps' className='flex-grow h-screen'>
