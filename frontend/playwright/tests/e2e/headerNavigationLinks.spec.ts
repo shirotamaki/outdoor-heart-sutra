@@ -44,6 +44,16 @@ test.describe('Header Desktop Menu Navigation Links', () => {
     expect(content).toContain('アウトドア般若心経とは')
   })
 
+  test('should navigate to about page when how-to-use-link is clicked', async () => {
+    await page.goto(baseURL)
+    await page.getByRole('link', { name: '使い方' }).click()
+    await page.waitForURL('http://localhost:4000/how-to-use', {
+      timeout: 60000,
+    })
+    const content = await page.textContent('h1')
+    expect(content).toContain('使い方')
+  })
+
   test('should navigate to mypage page when mypage-link is clicked', async () => {
     await page.goto(baseURL)
     await page.getByRole('link', { name: 'マイページ' }).click()
@@ -100,6 +110,16 @@ test.describe('Header Mobile Menu Navigation Links', () => {
     })
     const content = await page.textContent('h1')
     expect(content).toContain('アウトドア般若心経とは')
+  })
+
+  test('should navigate to about page when how-to-use-link is clicked', async () => {
+    await page.goto(baseURL)
+    await page.getByRole('link', { name: '使い方' }).click()
+    await page.waitForURL('http://localhost:4000/how-to-use', {
+      timeout: 60000,
+    })
+    const content = await page.textContent('h1')
+    expect(content).toContain('使い方')
   })
 
   test('should navigate to mypage page when mypage-link is clicked', async () => {
