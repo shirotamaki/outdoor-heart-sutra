@@ -130,6 +130,15 @@ const Home = ({ sutras, photos }: SutraListProps) => {
               <div className='hidden sm:flex mb-12'>
                 <Comics />
               </div>
+              <div className='mb-12'>
+                <Link
+                  data-testid='how-to-use'
+                  href='/how-to-use'
+                  className='font-notoSans text-gray-500 underline hover:opacity-50 transition-all duration-100'
+                >
+                  使い方
+                </Link>
+              </div>
             </div>
           </main>
           <Footer />
