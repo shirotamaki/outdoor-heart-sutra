@@ -43,7 +43,7 @@ const ComicsSmOrBelow = () => {
         </div>
       </div>
       <div className='w-full h-300 border border-gray-400 rounded p-3 mb-2'>
-        <p>4. 悟り</p>
+        <p>4. 森羅万象</p>
         <p className=''>般若心経278文字のコンプリートを目指し悟りの境地へと至りましょう</p>
         <div className='flex justify-center'>
           <Image
