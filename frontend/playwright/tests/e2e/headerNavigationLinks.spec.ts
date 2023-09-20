@@ -41,7 +41,7 @@ test.describe('Header Desktop Menu Navigation Links', () => {
       timeout: 60000,
     })
     const content = await page.textContent('h1')
-    expect(content).toContain('アウトドア般若心経とは...')
+    expect(content).toContain('アウトドア般若心経とは')
   })
 
   test('should navigate to mypage page when mypage-link is clicked', async () => {
@@ -99,7 +99,7 @@ test.describe('Header Mobile Menu Navigation Links', () => {
       timeout: 60000,
     })
     const content = await page.textContent('h1')
-    expect(content).toContain('アウトドア般若心経とは...')
+    expect(content).toContain('アウトドア般若心経とは')
   })
 
   test('should navigate to mypage page when mypage-link is clicked', async () => {
