@@ -124,7 +124,7 @@ const PrivacyPolicy = () => {
           </p>
           <p className='text-xs md:text-base text-right mb-4 md:mb-8'>以上</p>
           <p className='text-center text-sm md:text-lg mb-4 md:mb-8'>
-            <Link href='/' className='hover:opacity-50 transition-all duration-100'>
+            <Link href='/' className='underline hover:opacity-50 transition-all duration-100'>
               トップページに戻る
             </Link>
           </p>
