@@ -4,7 +4,7 @@ const ComicsWidth776px = () => {
   return (
     <section className='font-kinuta text-mainBlack'>
       <div className='grid grid-cols-2 gap-2'>
-        <div className='col-span-1 w-384 h-384 border border-gray-400 rounded p-2'>
+        <div className='col-span-1 w-384 h-384 border border-gray-400 rounded p-3'>
           <p className=''>1. 出家</p>
           <p className=''>スマホを持って家を出ましょう</p>
           <div className='flex justify-center'>
@@ -17,7 +17,7 @@ const ComicsWidth776px = () => {
             />
           </div>
         </div>
-        <div className='w-384 h-384 border border-gray-400 rounded p-2'>
+        <div className='w-384 h-384 border border-gray-400 rounded p-3'>
           <p>2. 無我夢中</p>
           <p className=''>街の看板などから般若心経に含まれている文字を捜しましょう</p>
           <div className='flex justify-center'>
@@ -30,7 +30,7 @@ const ComicsWidth776px = () => {
             />
           </div>
         </div>
-        <div className='w-384 h-384 border border-gray-400 rounded p-2'>
+        <div className='w-384 h-384 border border-gray-400 rounded p-3'>
           <p>3. 写経</p>
           <p className=''>文字を見つけたら写真を撮りアプリに登録しましょう</p>
           <div className='flex justify-center'>
@@ -43,11 +43,9 @@ const ComicsWidth776px = () => {
             />
           </div>
         </div>
-        <div className='w-384 h-384 border border-gray-400 rounded p-2'>
-          <p>4. 悟り</p>
-          <p className=''>
-            これらを繰り返し般若心経278文字のコンプリートを目指す旅、これが「アウトドア般若心経」です
-          </p>
+        <div className='w-384 h-384 border border-gray-400 rounded p-3'>
+          <p>4. 森羅万象</p>
+          <p className=''>般若心経278文字のコンプリートを目指し悟りの境地へと至りましょう</p>
           <p className=''></p>
           <div className='flex justify-center'>
             <Image
@@ -55,7 +53,7 @@ const ComicsWidth776px = () => {
               alt={'chojugiga-mindfulness'}
               width={180}
               height={180}
-              className='mt-8'
+              className='mt-12'
             />
           </div>
         </div>
