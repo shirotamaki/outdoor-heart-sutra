@@ -132,7 +132,7 @@ const Home = ({ sutras, photos }: SutraListProps) => {
               </div>
               <div className='mb-12'>
                 <Link
-                  data-testid='how-to-use'
+                  data-testid='how-to-use-link'
                   href='/how-to-use'
                   className='font-notoSans text-gray-500 underline hover:opacity-50 transition-all duration-100'
                 >

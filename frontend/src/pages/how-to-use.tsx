@@ -92,7 +92,7 @@ const HowToUse = () => {
 
             <div className='mb-12 text-center'>
               <Link
-                data-testid='how-to-use-top-page'
+                data-testid='welcome-page-from-how-to-use-page'
                 href='/'
                 className='font-notoSans text-gray-500 underline hover:opacity-50 transition-all duration-100'
               >
