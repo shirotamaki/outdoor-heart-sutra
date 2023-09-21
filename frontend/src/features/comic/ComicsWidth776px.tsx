@@ -11,8 +11,8 @@ const ComicsWidth776px = () => {
             <Image
               src='/images/chojugiga/walk.svg'
               alt={'chojugiga-walk'}
-              width={200}
-              height={200}
+              width={220}
+              height={220}
               className='mt-14'
             />
           </div>
@@ -24,8 +24,8 @@ const ComicsWidth776px = () => {
             <Image
               src='/images/chojugiga/look-for-sutra.svg'
               alt={'chojugiga-look-for-sutra'}
-              width={200}
-              height={200}
+              width={220}
+              height={220}
               className='mt-9'
             />
           </div>
@@ -37,21 +37,21 @@ const ComicsWidth776px = () => {
             <Image
               src='/images/chojugiga/shoot.svg'
               alt={'chojugiga-shoot'}
-              width={200}
-              height={200}
+              width={220}
+              height={220}
               className='mt-10 ml-4'
             />
           </div>
         </div>
         <div className='w-384 h-384 border border-gray-400 rounded p-3'>
           <p>4. 森羅万象</p>
-          <p className=''>般若心経278文字をコンプリートし悟りの境地へと至りましょう</p>
+          <p className=''>般若心経278文字をコンプリートし悟りの境地に到達しましょう</p>
           <div className='flex justify-center'>
             <Image
               src='/images/chojugiga/mindfulness.svg'
               alt={'chojugiga-mindfulness'}
-              width={180}
-              height={180}
+              width={200}
+              height={200}
               className='mt-12'
             />
           </div>
