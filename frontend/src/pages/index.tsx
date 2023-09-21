@@ -35,30 +35,30 @@ export const getServerSideProps: GetServerSideProps = async (
         permanent: false,
       },
     }
-  }
+  } else {
+    try {
+      const [sutraResponse, photoResponse] = await Promise.all([
+        axios.get(`${railsApiUrl}/api/v1/sutras`),
+        axios.get(`${railsApiUrl}/api/v1/users/${currentUserId}/photos`),
+      ])
 
-  try {
-    const [sutraResponse, photoResponse] = await Promise.all([
-      axios.get(`${railsApiUrl}/api/v1/sutras`),
-      axios.get(`${railsApiUrl}/api/v1/users/${currentUserId}/photos`),
-    ])
+      const sutras = sutraResponse.data
+      const photos = photoResponse.data
 
-    const sutras = sutraResponse.data
-    const photos = photoResponse.data
-
-    return {
-      props: {
-        sutras,
-        photos,
-      },
-    }
-  } catch (error) {
-    console.error(error)
-    return {
-      redirect: {
-        destination: '/error',
-        permanent: false,
-      },
+      return {
+        props: {
+          sutras,
+          photos,
+        },
+      }
+    } catch (error) {
+      console.error(error)
+      return {
+        redirect: {
+          destination: '/error',
+          permanent: false,
+        },
+      }
     }
   }
 }
