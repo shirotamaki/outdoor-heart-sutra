@@ -16,7 +16,7 @@ const HowToUse = () => {
           <section className='sm:w-552 w-full mx-auto'>
             <h1 className='text-lg sm:text-2xl text-center mt-4 mb-8 sm:m-8'>使い方</h1>
             <div className='mb-12 w-full'>
-              <h2 className='text-sm sm:text-base mb-2'>1. Googleアカウントでログインする</h2>
+              <h2 className='text-sm sm:text-base mb-3'>1. Googleアカウントでログインする</h2>
               <div className='flex justify-center'>
                 <Image
                   src='/images/how-to-use/login.png'
@@ -27,7 +27,7 @@ const HowToUse = () => {
               </div>
             </div>
             <div className='mb-12'>
-              <h2 className='text-sm sm:text-base mb-2'>2. 写経する文字を選択する</h2>
+              <h2 className='text-sm sm:text-base mb-3'>2. 写経する文字を選択する</h2>
               <div className='flex justify-center'>
                 <Image
                   src='/images/how-to-use/index.png'
@@ -38,7 +38,7 @@ const HowToUse = () => {
               </div>
             </div>
             <div className='mb-12'>
-              <h2 className='text-sm sm:text-base mb-2'>3. 撮影または写真をアップロードする</h2>
+              <h2 className='text-sm sm:text-base mb-3'>3. 撮影または写真をアップロードする</h2>
               <div className='flex justify-center mb-2'>
                 <Image
                   src='/images/how-to-use/new.png'
@@ -57,7 +57,7 @@ const HowToUse = () => {
               </div>
             </div>
             <div className='mb-12'>
-              <h2 className='text-sm sm:text-base mb-2'>4. 写真から文字を切り取る</h2>
+              <h2 className='text-sm sm:text-base mb-3'>4. 写真から文字を切り取る</h2>
               <div className='flex justify-center'>
                 <Image
                   src='/images/how-to-use/trim.png'
@@ -68,7 +68,7 @@ const HowToUse = () => {
               </div>
             </div>
             <div className='mb-12'>
-              <h2 className='text-sm sm:text-base mb-2'>5. 保存した写真・地図を確認する</h2>
+              <h2 className='text-sm sm:text-base mb-3'>5. 保存した写真・地図を確認する</h2>
               <div className='flex justify-center'>
                 <Image
                   src='/images/how-to-use/show.png'
@@ -79,7 +79,7 @@ const HowToUse = () => {
               </div>
             </div>
             <div className='mb-12'>
-              <h2 className='text-sm sm:text-base mb-2'>6. メモを登録する（最大140文字）</h2>
+              <h2 className='text-sm sm:text-base mb-3'>6. メモを登録する（最大140文字）</h2>
               <div className='flex justify-center'>
                 <Image
                   src='/images/how-to-use/note.png'
@@ -89,7 +89,6 @@ const HowToUse = () => {
                 />
               </div>
             </div>
-
             <div className='mb-12 text-center'>
               <Link
                 data-testid='welcome-page-from-how-to-use-page'

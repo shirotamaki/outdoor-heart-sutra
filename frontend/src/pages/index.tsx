@@ -124,10 +124,10 @@ const Home = ({ sutras, photos }: SutraListProps) => {
                   </p>
                 </div>
               </div>
-              <div className='sm:hidden mb-10'>
+              <div className='sm:hidden mb-8'>
                 <ComicsSmOrBelow />
               </div>
-              <div className='hidden sm:flex mb-12'>
+              <div className='hidden sm:flex mb-8'>
                 <Comics />
               </div>
               <div className='mb-12'>
