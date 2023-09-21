@@ -93,7 +93,7 @@ const HowToUse = () => {
               <Link
                 data-testid='welcome-page-from-how-to-use-page'
                 href='/'
-                className='font-notoSans text-gray-500 underline hover:opacity-50 transition-all duration-100'
+                className='font-kinuta text-gray-500 underline hover:opacity-50 transition-all duration-100'
               >
                 トップページに戻る
               </Link>
