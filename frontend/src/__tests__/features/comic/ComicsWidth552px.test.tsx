@@ -18,7 +18,7 @@ describe('ComicsWidth552px', () => {
 
     expect(screen.getByText('4. 森羅万象')).toBeInTheDocument()
     expect(
-      screen.getByText('般若心経278文字をコンプリートし悟りの境地へと至りましょう'),
+      screen.getByText('般若心経278文字をコンプリートし悟りの境地に到達しましょう'),
     ).toBeInTheDocument()
 
     expect(screen.getByAltText('chojugiga-walk')).toBeInTheDocument()

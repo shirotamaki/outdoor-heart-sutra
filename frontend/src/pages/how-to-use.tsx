@@ -68,7 +68,7 @@ const HowToUse = () => {
               </div>
             </div>
             <div className='mb-12'>
-              <h2 className='text-sm sm:text-base mb-2'>5. 保存した写真、地図を確認する</h2>
+              <h2 className='text-sm sm:text-base mb-2'>5. 保存した写真・地図を確認する</h2>
               <div className='flex justify-center'>
                 <Image
                   src='/images/how-to-use/show.png'
