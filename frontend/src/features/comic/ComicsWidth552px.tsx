@@ -50,9 +50,9 @@ const ComicsWidth552px = () => {
             <Image
               src='/images/chojugiga/mindfulness.svg'
               alt={'chojugiga-mindfulness'}
-              width={130}
-              height={130}
-              className='mt-2'
+              width={140}
+              height={140}
+              className='mt-6'
             />
           </div>
         </div>
