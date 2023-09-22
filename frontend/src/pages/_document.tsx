@@ -22,10 +22,14 @@ class MyDocument extends Document {
             type='image/svg+xml'
             href='https://www.outdoor-heart-sutra.com/images/favicons/favicon.svg'
           />
+          <link
+            rel='icon'
+            href='https://www.outdoor-heart-sutra.com/images/favicons/favicon.ico'
+          />
           {/* apple-touch-icon */}
           <link
             rel='apple-touch-icon'
-            sizes='32x32'
+            sizes='180x180'
             href='https://www.outdoor-heart-sutra.com/images/apple-touch-icon.png'
           />
           {/* canonical */}
