@@ -14,7 +14,7 @@ class MyDocument extends Document {
           {/* meta description */}
           <meta
             name='description'
-            content='アウトドア般若心経とは、街の看板から「般若心経」に含まれる文字を写真に収め管理することができるアプリです。'
+            content='アウトドア般若心経とは、全国各地の看板や標識から「般若心経」に含まれる文字を写真に収め管理することができるアプリです。'
           />
           {/* favicon */}
           <link
@@ -22,10 +22,7 @@ class MyDocument extends Document {
             type='image/svg+xml'
             href='https://www.outdoor-heart-sutra.com/images/favicons/favicon.svg'
           />
-          <link
-            rel='icon'
-            href='https://www.outdoor-heart-sutra.com/images/favicons/favicon.ico'
-          />
+          <link rel='icon' href='https://www.outdoor-heart-sutra.com/images/favicons/favicon.ico' />
           {/* apple-touch-icon */}
           <link
             rel='apple-touch-icon'
@@ -38,7 +35,7 @@ class MyDocument extends Document {
           <meta property='og:title' content='アウトドア般若心経' />
           <meta
             property='og:description'
-            content='アウトドア般若心経とは、街の看板から「般若心経」に含まれる文字を写真に収め管理することができるアプリです。'
+            content='アウトドア般若心経とは、全国各地の看板や標識から「般若心経」に含まれる文字を写真に収め管理することができるアプリです。'
           />
           <meta property='og:type' content='website' />
           <meta property='og:url' content='https://www.outdoor-heart-sutra.com' />
@@ -53,7 +50,7 @@ class MyDocument extends Document {
           <meta name='twitter:title' content='アウトドア般若心経' />
           <meta
             name='twitter:description'
-            content='アウトドア般若心経とは、街の看板から「般若心経」に含まれる文字を写真に収め管理することができるアプリです。'
+            content='アウトドア般若心経とは、全国各地の看板や標識から「般若心経」に含まれる文字を写真に収め管理することができるアプリです。'
           />
           <meta
             name='twitter:image'

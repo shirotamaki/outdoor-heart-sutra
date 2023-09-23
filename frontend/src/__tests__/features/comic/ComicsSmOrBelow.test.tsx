@@ -10,7 +10,7 @@ describe('ComicsSmOrBelow', () => {
 
     expect(screen.getByText('2. 無我夢中')).toBeInTheDocument()
     expect(
-      screen.getByText('街の看板などから般若心経に含まれている文字を捜しましょう'),
+      screen.getByText('街の看板や標識から般若心経に含まれている文字を探しましょう'),
     ).toBeInTheDocument()
 
     expect(screen.getByText('3. 写経')).toBeInTheDocument()
