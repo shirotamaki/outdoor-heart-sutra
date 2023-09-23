@@ -7,79 +7,94 @@
 アウトドア般若心経というサービスは、街の看板等から集めた般若心経 278 文字の写真の管理が面倒な問題を解決することができる、
 アウトドア般若心経ユーザー向けの写真管理アプリです。
 
-ユーザーは、般若心経 278 文字を写真に収め管理することができ、文字の収集状況を経文の並び順で視覚的に確認することができます。また撮影場所の位置情報、メモを記録する機能も備えています。
+ユーザーは、般若心経に含まれる 278 文字を一文字ずつ写真に収め管理することができ、文字の収集状況を経文の並び順で視覚的に確認することができます。また撮影場所の位置情報、メモを記録する機能も備えています。
 
 Google アカウントがあれば無料でご利用いただけます。
 
 ## サービス URL
 
-```
 https://www.outdoor-heart-sutra.com
-```
 
 ## 機能
 
 ### Google 認証ログイン
 
 Google アカウントをお持ちの方はすぐに始めることができます。
-![readme_demo_login](frontend/public/images/readme_demo_login.png)
 
-### 般若心経 278 文字の一覧管理
+<img src="frontend/public/images/how-to-use/login.png" style="width: 300px; height: auto;">
+
+### 般若心経 278 文字を一覧で管理
 
 般若心経 278 文字の写経状況を一覧で確認することができます。
-![readme_demo_index](frontend/public/images/readme_demo_index.png)
+
+<img src="frontend/public/images/how-to-use/index.png" style="width: 300px; height: auto;">
 
 ### 写真の登録
 
-HEIC,JPEG,PNG 形式の写真を登録することができます。
-![readme_demo_create_photo.png](frontend/public/images/readme_demo_create_photo.png)
+HEIC,JPEG,PNG 形式の写真を登録することができます。またカメラ付きのデバイスの場合は、写真を撮影しアップロードすることも可能です。
+
+<img src="frontend/public/images/how-to-use/new.png" style="width: 300px; height: auto;">
+
+<img src="frontend/public/images/how-to-use/create.png" style="width: 300px; height: auto;">
+
+<img src="frontend/public/images/how-to-use/trim.png" style="width: 300px; height: auto;">
+
+<img src="frontend/public/images/how-to-use/show.png" style="width: 300px; height: auto;">
 
 ### メモの登録
 
-メモは 100 文字まで登録が可能です。
-![readme_demo_show.png](frontend/public/images/readme_demo_show.png)
+メモは 最大 140 文字まで登録が可能です。
+
+<img src="frontend/public/images/how-to-use/note.png" style="width: 300px; height: auto;">
 
 ### 地図の確認
 
-写経済みの文字の位置情報を Google Maps 上で確認することができます。写真をクリックすると詳細ページに遷移できます。
-![readme_demo_maps.png](frontend/public/images/readme_demo_maps.png)
+メニューから「地図」を選択すると、写経済みの全ての文字の位置情報を Google Maps 上で確認することができます。写真をクリックすると詳細ページに遷移できます。
+
+<img src="frontend/public/images/how-to-use/maps.png" style="width: 300px; height: auto;">
 
 ### マイページ
+
 出家日（サービスを開始した日）と写経済みの文字の総数を確認することができます。退会の手続きもこちらから行うことができます。
-![readme_demo_mypage.png](frontend/public/images/readme_demo_mypage.png)
+
+<img src="frontend/public/images/how-to-use/mypage.png" style="width: 300px; height: auto;">
+
+<img src="frontend/public/images/how-to-use/delete.png" style="width: 300px; height: auto;">
 
 ## 開発環境
 
 ### バックエンド
 
-- Rails 7.0.4.2(API Mode)
+- [Ruby](https://www.ruby-lang.org/ja/) 3.2.1
+- [Rails](https://rubyonrails.org/) 7.0.4.2(API Mode)
 
 ### フロントエンド
 
-- Next.js 13.4.6
-- TypeScript 5.0.2
+- [Next.js](https://nextjs.org/) 13.4.6
+- [TypeScript](https://www.typescriptlang.org/) 5.0.2
 
 ### インフラ
 
 - バックエンド
-  - Fly.io
+  - [Fly.io](https://fly.io/)
 - フロントエンド
-  - Vercel
+  - [Vercel](https://vercel.com/)
 
 ### テスト
 
 - バックエンド
-  - RSpec
+  - [RSpec](https://rspec.info/)
 - フロントエンド
-  - Jest
-  - Playwright
+  - [Jest](https://jestjs.io/ja/)
+  - [React Testing Library](https://testing-library.com/)
+  - [Playwright](https://playwright.dev/)
 
 ### 外部サービス
 
-- Google Maps API
-- Google GeoCoding API
-- NextAuth.js 4.22.1
-- Amazon S3
+- [Google Maps API](https://developers.google.com/maps?hl=ja)
+- [Google GeoCoding API](https://developers.google.com/maps?hl=ja)
+- [NextAuth.js](https://next-auth.js.org/) 4.22.1
+- [Amazon S3](https://aws.amazon.com/jp/s3/)
 
 ## 開発環境の構築手順
 
