@@ -19,10 +19,14 @@ class MyDocument extends Document {
           {/* favicon */}
           <link
             rel='icon'
+            href='https://www.outdoor-heart-sutra.com/images/favicons/favicon.ico'
+            sizes='any'
+          />
+          <link
+            rel='icon'
             type='image/svg+xml'
             href='https://www.outdoor-heart-sutra.com/images/favicons/favicon.svg'
           />
-          <link rel='icon' href='https://www.outdoor-heart-sutra.com/images/favicons/favicon.ico' />
           {/* apple-touch-icon */}
           <link
             rel='apple-touch-icon'
