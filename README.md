@@ -31,7 +31,7 @@ Google アカウントをお持ちの方はすぐに始めることができま�
 
 ### 写真の登録
 
-HEIC,JPEG,PNG 形式の写真を登録することができます。またカメラ付きのデバイスの場合は、写真を撮影しアップロードすることも可能です。
+HEIC、JPEG、PNG 形式の写真を登録することができます。またカメラ付きのデバイスの場合は、写真を撮影しアップロードすることも可能です。
 
 <img src="frontend/public/images/how-to-use/new.png" style="width: 300px; height: auto;">
 
@@ -73,12 +73,9 @@ HEIC,JPEG,PNG 形式の写真を登録することができます。またカメ
 - [Next.js](https://nextjs.org/) 13.4.6
 - [TypeScript](https://www.typescriptlang.org/) 5.0.2
 
-### インフラ
+### データベース
 
-- バックエンド
-  - [Fly.io](https://fly.io/)
-- フロントエンド
-  - [Vercel](https://vercel.com/)
+- [PostgreSQL](https://www.postgresql.org/)
 
 ### テスト
 
@@ -88,6 +85,13 @@ HEIC,JPEG,PNG 形式の写真を登録することができます。またカメ
   - [Jest](https://jestjs.io/ja/)
   - [React Testing Library](https://testing-library.com/)
   - [Playwright](https://playwright.dev/)
+
+### インフラ
+
+- バックエンド
+  - [Fly.io](https://fly.io/)
+- フロントエンド
+  - [Vercel](https://vercel.com/)
 
 ### 外部サービス
 
