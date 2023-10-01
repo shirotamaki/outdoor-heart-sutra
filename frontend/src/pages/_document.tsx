@@ -22,11 +22,11 @@ class MyDocument extends Document {
             href='https://www.outdoor-heart-sutra.com/images/favicons/favicon.ico'
             sizes='any'
           />
-          <link
+          {/* <link
             rel='icon'
             type='image/svg+xml'
             href='https://www.outdoor-heart-sutra.com/images/favicons/favicon.svg'
-          />
+          /> */}
           {/* apple-touch-icon */}
           <link
             rel='apple-touch-icon'
