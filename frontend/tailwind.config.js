@@ -14,6 +14,8 @@ module.exports = {
         mainBlack: '#555451', // メインのフォントカラー,
         sutraBlack: '#AFACA5', // 経文のフォントカラー,
         buttonBlack: '#3F4D84', // ファイル選択ボタンのカラー
+        comicBackground: '#EDEAE3', // コミックの背景カラー
+        comicBorder: '#D1CEC6', // コミックのボーダーカラー
       },
       fontFamily: {
         kinuta: ['Yuji Syuku', 'serif'],
@@ -22,11 +24,14 @@ module.exports = {
         notoSans: ['Noto Sans JP', 'sans-serif'],
       },
       width: {
+        264: '264px',
         272: '272px',
         280: '280px',
         300: '300px',
+        308: '308px',
         316: '316px',
         360: '360px',
+        376: '376px',
         384: '384px',
         480: '480px',
         552: '552px',
@@ -35,9 +40,12 @@ module.exports = {
         944: '944px',
       },
       height: {
+        264: '264px',
         272: '272px',
         300: '300px',
+        308: '308px',
         316: '316px',
+        376: '376px',
         384: '384px',
       },
       maxWidth: {
