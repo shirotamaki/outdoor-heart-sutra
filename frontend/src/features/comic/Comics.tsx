@@ -13,7 +13,7 @@ const Comics = () => {
               alt={'chojugiga-walk'}
               width={140}
               height={140}
-              className='mt-16'
+              className='mt-14'
             />
           </div>
         </div>

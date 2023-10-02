@@ -13,7 +13,7 @@ const ComicsWidth776px = () => {
               alt={'chojugiga-walk'}
               width={190}
               height={190}
-              className='mt-20'
+              className='mt-16'
             />
           </div>
         </div>
@@ -26,7 +26,7 @@ const ComicsWidth776px = () => {
               alt={'chojugiga-look-for-sutra'}
               width={280}
               height={280}
-              className='mt-8'
+              className='mt-6'
             />
           </div>
         </div>

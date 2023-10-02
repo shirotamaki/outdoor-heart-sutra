@@ -38,7 +38,7 @@ const ComicsSmOrBelow = () => {
             alt={'chojugiga-shoot'}
             width={190}
             height={190}
-            className='mt-4 mr-4'
+            className='mt-3 mr-4'
           />
         </div>
       </div>
