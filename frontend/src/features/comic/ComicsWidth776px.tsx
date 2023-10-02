@@ -9,11 +9,11 @@ const ComicsWidth776px = () => {
           <p className='text-base'>スマホを持って家を出ましょう</p>
           <div className='flex justify-center'>
             <Image
-              src='/images/chojugiga/walk.svg'
+              src='/images/chojugiga/walk.png'
               alt={'chojugiga-walk'}
-              width={220}
-              height={220}
-              className='mt-14'
+              width={190}
+              height={190}
+              className='mt-20'
             />
           </div>
         </div>
@@ -22,11 +22,11 @@ const ComicsWidth776px = () => {
           <p className='text-base'>街の看板や標識から般若心経に含まれている文字を探しましょう</p>
           <div className='flex justify-center'>
             <Image
-              src='/images/chojugiga/look-for-sutra.svg'
+              src='/images/chojugiga/look-for-sutra.png'
               alt={'chojugiga-look-for-sutra'}
-              width={220}
-              height={220}
-              className='mt-9'
+              width={280}
+              height={280}
+              className='mt-8'
             />
           </div>
         </div>
@@ -35,11 +35,11 @@ const ComicsWidth776px = () => {
           <p className='text-base'>文字を見つけたら写真を撮りアプリに保存しましょう</p>
           <div className='flex justify-center'>
             <Image
-              src='/images/chojugiga/shoot.svg'
+              src='/images/chojugiga/shoot.png'
               alt={'chojugiga-shoot'}
-              width={220}
-              height={220}
-              className='mt-10 ml-4'
+              width={240}
+              height={240}
+              className='mt-6 mr-4'
             />
           </div>
         </div>
@@ -48,10 +48,10 @@ const ComicsWidth776px = () => {
           <p className='text-base'>般若心経278文字をコンプリートし悟りの境地に到達しましょう</p>
           <div className='flex justify-center'>
             <Image
-              src='/images/chojugiga/mindfulness.svg'
+              src='/images/chojugiga/mindfulness.png'
               alt={'chojugiga-mindfulness'}
-              width={200}
-              height={200}
+              width={300}
+              height={300}
               className='mt-12'
             />
           </div>
