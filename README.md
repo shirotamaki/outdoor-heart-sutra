@@ -23,7 +23,7 @@ Google アカウントをお持ちの方はすぐに始めることができま�
 
 <img src="frontend/public/images/how-to-use/login.png" style="width: 300px; height: auto;">
 
-### 般若心経 278 文字を一覧で管理
+### 般若心経の全文を一覧で管理
 
 般若心経 278 文字の写経状況を一覧で確認することができます。
 
@@ -72,6 +72,7 @@ HEIC、JPEG、PNG 形式の写真を登録することができます。また�
 
 - [Next.js](https://nextjs.org/) 13.4.6
 - [TypeScript](https://www.typescriptlang.org/) 5.0.2
+- [Tailwind CSS](https://tailwindcss.com/) 3.3.2
 
 ### データベース
 
