@@ -1,6 +1,6 @@
 # アウトドア般若心経
 
-![title](frontend/public/images/logo.svg)
+![title](frontend/public/images/logo_bg_white.svg)
 
 ## 概要
 
