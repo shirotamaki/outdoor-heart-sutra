@@ -123,6 +123,18 @@ const Home = ({ sutras, photos }: SutraListProps) => {
                     アウトドア般若心経を通して般若心経の真髄を感じてください。
                   </p>
                 </div>
+                <div className='w-full sm:w-640 sm:mb-10 mb-8 text-mainBlack font-kinuta text-left text-sm md:text-base'>
+                  <h2 className='text-center text-lg font-bold mb-4'>お知らせ</h2>
+                  <p className='border-b border-gray-300 pb-2 mb-2'>
+                    iPhone、iPad ユーザーの皆様へ
+                  </p>
+                  <p className='border-b border-gray-300 pb-2 mb-2'>
+                    iOS版のChromeブラウザで写真の登録ができない不具合が確認されています。
+                  </p>
+                  <p className='border-b border-gray-300 pb-2 mb-2'>
+                    iOS Safariのご利用を推奨いたします。
+                  </p>
+                </div>
               </div>
               <div className='sm:hidden mb-8'>
                 <ComicsSmOrBelow />
