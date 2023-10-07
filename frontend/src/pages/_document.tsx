@@ -20,7 +20,6 @@ class MyDocument extends Document {
           <link
             rel='icon'
             href='https://www.outdoor-heart-sutra.com/images/favicons/favicon.ico'
-            sizes='any'
           />
           <link
             rel='icon'
