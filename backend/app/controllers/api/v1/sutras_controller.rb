@@ -4,7 +4,7 @@ module API
   module V1
     class SutrasController < ApplicationController
       def index
-        sutras = Sutra.all
+        sutras = Sutra.all.order(:id)
         render json: sutras
       end
 
