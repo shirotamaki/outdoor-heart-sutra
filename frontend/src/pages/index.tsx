@@ -88,9 +88,10 @@ const Home = ({ sutras, photos }: SutraListProps) => {
                 />
               </h1>
               <div className='flex flex-col justify-center items-center'>
-                <p className='text-mainBlack font-kinuta text-sm md:text-base mb-10'>
+                <p className='text-mainBlack font-kinuta text-sm md:text-base mb-2'>
                   自分探しならぬ、自分なくしの旅へ
                 </p>
+                <p className='text-mainBlack font-kinuta text-base md:text-lg mb-10'>Since 2023</p>
                 <Login />
                 <div className='text-left mb-4'>
                   <p className='text-xs font-notoSans text-gray-500 my-2 leading-normal'>
@@ -124,15 +125,17 @@ const Home = ({ sutras, photos }: SutraListProps) => {
                   </p>
                 </div>
                 <div className='w-full sm:w-640 sm:mb-10 mb-8 text-mainBlack font-kinuta text-left text-sm md:text-base'>
-                  <h2 className='text-center text-lg font-bold mb-4'>お知らせ</h2>
+                  <h2 className='border-b border-gray-400 text-center text-lg mb-2 pb-2'>
+                    お知らせ
+                  </h2>
                   <p className='border-b border-gray-300 pb-2 mb-2'>
-                    iPhone、iPad ユーザーの皆様へ
+                    iPhone、iPad ユーザーの皆さまへ
                   </p>
                   <p className='border-b border-gray-300 pb-2 mb-2'>
                     iOS版のChromeブラウザで写真の登録ができない不具合が確認されています。
                   </p>
                   <p className='border-b border-gray-300 pb-2 mb-2'>
-                    iOS Safariのご利用を推奨いたします。
+                    Safariのご利用を推奨いたします。
                   </p>
                 </div>
               </div>
