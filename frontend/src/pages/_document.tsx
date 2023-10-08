@@ -17,10 +17,7 @@ class MyDocument extends Document {
             content='アウトドア般若心経とは、全国各地の看板や標識から「般若心経」に含まれる文字を写真に収め管理することができるアプリです。'
           />
           {/* favicon */}
-          <link
-            rel='icon'
-            href='https://www.outdoor-heart-sutra.com/images/favicons/favicon.ico'
-          />
+          <link rel='icon' href='https://www.outdoor-heart-sutra.com/images/favicons/favicon.ico' />
           {/* <link
             rel='icon'
             type='image/svg+xml'
