@@ -6,7 +6,7 @@
 
 ### アウトドア般若心経とは
 
-[アウトドア般若心経](https://www.outdoor-heart-sutra.com)とは、イラストレーターの[みうらじゅん](http://miurajun.net/profile/profile.html)氏が提唱した「般若心経」の新しい写経手法です。
+[アウトドア般若心経](https://www.outdoor-heart-sutra.com)とは、イラストレーターの[みうらじゅん](http://miurajun.net/profile/profile.html)氏が提唱した「般若心経」の新しい写経方法です。
 
 > みうらじゅんは「般若心経」278 文字を、家を出て（これを「出家」と称す）、経文の文字のある市街の看板等の文字を写真に撮り（これを「写経」と称す）、経文の完成を目指すことを「アウトドア般若心経」と定義した。
 >
