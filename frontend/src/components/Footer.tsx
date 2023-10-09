@@ -27,7 +27,7 @@ const Footer = () => {
             href='/faq'
             className='hover:opacity-50 transition-all duration-100'
           >
-            FAQ
+            よくある質問
           </Link>
         </nav>
         <nav className='flex flex-row space-x-6 items-center md:mb-3 mb-2'>
