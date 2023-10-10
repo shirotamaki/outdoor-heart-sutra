@@ -65,7 +65,7 @@ const Faq = () => {
                 </h2>
                 <p className='text-xs sm:text-sm flex flex-row leading-5 md:leading-6'>
                   <div className='mr-2'>A.</div>
-                  <div>いいえ、他のユーザーには写真は公開されません。</div>
+                  <div>他のユーザーには写真は公開されません。</div>
                 </p>
               </li>
               <li className='mb-10 pb-2 border-b border-gray-400'>
@@ -85,7 +85,7 @@ const Faq = () => {
                 </h2>
                 <p className='text-xs sm:text-sm flex flex-row leading-5 md:leading-6'>
                   <div className='mr-2'>A.</div>
-                  <div>いいえ、ありません。</div>
+                  <div>ありません。</div>
                 </p>
               </li>
               <li className='mb-10 pb-2 border-b border-gray-400'>
