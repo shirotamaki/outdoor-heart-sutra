@@ -12,81 +12,157 @@ const Faq = () => {
       </Head>
       <Header />
       <main className='bg-beige flex flex-grow w-full'>
-        <article className='flex flex-col items-center font-kinuta text-mainBlack p-4 w-full'>
+        <article className='flex flex-col items-center font-kinuta text-gray-500 p-4 w-full'>
           <section className='sm:w-552 w-full mx-auto'>
-            <h1 className='text-lg sm:text-2xl text-center mt-4 mb-8 sm:m-8'>よくある質問</h1>
+            <h1 className='text-mainBlack text-lg sm:text-2xl text-center mt-4  mb-8 sm:mt-8 sm:mb-14'>
+              よくある質問
+            </h1>
             <ul>
-              <li>
-                <h2 className='text-sm sm:text-base mb-3'>Q. 利用料金はかかりますか？</h2>
-                <p className='text-xs sm:text-sm mb-8'>A. 無料でご利用いただけます</p>
-              </li>
-              <li>
-                <h2 className='text-sm sm:text-base mb-3'>
-                  Q. このアプリで撮影した写真はどこに保存されていますか？
+              <li className='mb-10 pb-2 border-b border-gray-400 leading-6 md:leading-8'>
+                <h2 className='text-mainBlack  text-sm sm:text-base mb-3 flex flex-row'>
+                  <div className='mr-2'>Q.</div>
+                  <div>料金はかかりますか？</div>
                 </h2>
-                <p className='text-xs sm:text-sm mb-8'>
-                  A. Amazon S3 に保存されています（
-                  <Link
-                    href='https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/Welcome.html'
-                    className='underline hover:opacity-50 transition-all duration-100'
-                  >
-                    Amazon S3
-                  </Link>
-                  とは、Amazon 社が提供するクラウドストレージサービスです）
+                <p className='text-xs sm:text-sm flex flex-row leading-4 md:leading-6'>
+                  <div className='mr-2'>A.</div>
+                  <div>
+                    無料でご利用いただけます。ただし、ご利用時にかかるパケット通信料はユーザーのご負担となります。
+                  </div>
                 </p>
               </li>
-              <li>
-                <h2 className='text-sm sm:text-base mb-3'>
-                  Q. このアプリで撮影した写真を他のユーザーに見られることはありますか？
+              <li className='mb-10 pb-2 border-b border-gray-400 leading-6 md:leading-8'>
+                <h2 className='text-mainBlack  text-sm sm:text-base mb-3 flex flex-row'>
+                  <div className='mr-2'>Q.</div>
+                  <div>写真はどこに保存されていますか？</div>
                 </h2>
-                <p className='text-xs sm:text-sm mb-8'>A. 他のユーザーは写真を閲覧できません</p>
+                <p className='text-xs sm:text-sm flex flex-row leading-4 md:leading-6'>
+                  <div className='mr-2'>A.</div>
+                  <div>
+                    写真は、Amazon S3 に保存されています。
+                    <Link
+                      href='https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/Welcome.html'
+                      legacyBehavior
+                    >
+                      <a
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        data-testid='amazons3-link'
+                        className='hover:opacity-50 transition-all duration-100 underline'
+                      >
+                        Amazon S3
+                      </a>
+                    </Link>
+                    とは、Amazon 社が提供するクラウドストレージサービスです。
+                  </div>
+                </p>
               </li>
-              <li>
-                <h2 className='text-sm sm:text-base mb-3'>Q. 開発元はどこですか？</h2>
-                <p className='text-xs sm:text-sm mb-8'>A. 個人開発のWebアプリになります</p>
-              </li>
-              <li>
-                <h2 className='text-sm sm:text-base mb-3'>
-                  Q. みうらじゅん氏に許可を取っていますか？
+              <li className='mb-10 pb-2 border-b border-gray-400 leading-6 md:leading-8'>
+                <h2 className='text-mainBlack text-sm sm:text-base mb-3 flex flex-row'>
+                  <div className='mr-2'>Q.</div>
+                  <div className=''>写真を他のユーザーに見られることはありますか？</div>
                 </h2>
-                <p className='text-xs sm:text-sm mb-8'>
-                  A.
-                  アウトドア般若心経に著作権はないため許可は頂いておりません。氏に敬意を払いWebアプリとして運用しております
+                <p className='text-xs sm:text-sm flex flex-row leading-4 md:leading-6'>
+                  <div className='mr-2'>A.</div>
+                  <div>他のユーザーが写真を見ることはできません。</div>
                 </p>
               </li>
-              <li>
-                <h2 className='text-sm sm:text-base mb-3'>
-                  Q. ネイティブアプリ（iOS, Android）版はありますか？
+              <li className='mb-10 pb-2 border-b border-gray-400 leading-6 md:leading-8'>
+                <h2 className='text-mainBlack text-sm sm:text-base mb-3 flex flex-row'>
+                  <div className='mr-2'>Q.</div>
+                  <div className=''>削除した写真を復元できますか？</div>
                 </h2>
-                <p className='text-xs sm:text-sm mb-8'>A. ございません</p>
-              </li>
-              <li>
-                <h2 className='text-sm sm:text-base mb-3'>Q. iOS Chrome が使えない</h2>
-                <p className='text-xs sm:text-sm mb-8'>
-                  A. 写真の登録ができない不具合が確認されています。現状は、iOS
-                  Safariのご利用を推奨しております
+                <p className='text-xs sm:text-sm flex flex-row leading-4 md:leading-6'>
+                  <div className='mr-2'>A.</div>
+                  <div>写真の復元はできません。</div>
                 </p>
               </li>
-              <li>
-                <h2 className='text-sm sm:text-base mb-3'>Q. 退会したいです</h2>
-                <p className='text-xs sm:text-sm mb-8'>
-                  A. 「マイページ」 → 「退会する」 → 「アカウントを削除する」
-                  から退会ができます。退会後はユーザー情報と登録済みの写真が全て削除されます
+              <li className='mb-10 pb-2 border-b border-gray-400 leading-6 md:leading-8'>
+                <h2 className='text-mainBlack text-sm sm:text-base mb-3 flex flex-row'>
+                  <div className='mr-2'>Q.</div>
+                  <div className=''>ネイティブアプリ版（iOS, Android）はありますか？</div>
+                </h2>
+                <p className='text-sm sm:text-base flex'>
+                  <div className='mr-2'>A.</div>
+                  <div>ありません。</div>
                 </p>
               </li>
-              <li>
-                <h2 className='text-sm sm:text-base mb-3'>Q. お問い合わせ先はありますか？</h2>
-                <p className='text-xs sm:text-sm mb-1'>
-                  A. お問い合わせは下記の窓口までお願いいたします
+              <li className='mb-10 pb-2 border-b border-gray-400 leading-6 md:leading-8'>
+                <h2 className='text-mainBlack text-sm sm:text-base mb-3 flex flex-row'>
+                  <div className='mr-2'>Q.</div>
+                  <div>iOS の Chrome ブラウザで使えません。</div>
+                </h2>
+                <p className='text-xs sm:text-sm flex flex-row leading-4 md:leading-6'>
+                  <div className='mr-2'>A.</div>
+                  <div className=''>
+                    写真の登録ができない不具合が確認されています。現状は、iOS の Safari
+                    のご利用を推奨しております。
+                  </div>
                 </p>
-                <p className='ml-4 mb-6 md:mb-8'>
+              </li>
+              <li className='mb-10 pb-2 border-b border-gray-400 leading-6 md:leading-8'>
+                <h2 className='text-mainBlack text-sm sm:text-base mb-3 flex flex-row'>
+                  <div className='mr-2'>Q.</div>
+                  <div>アプリで簡単に『アウトドア般若心経』が出来てしまうと意味がないのでは？</div>
+                </h2>
+                <p className='text-xs sm:text-sm flex flex-row leading-4 md:leading-6'>
+                  <div className='mr-2'>A.</div>
+                  <div className=''>
+                    本アプリには特定の意味も目的もありません。『アウトドア般若心経』を楽しんでいただくためだけのアプリです。大乗仏教における「すべての人は救われる」という教えを元に、本アプリは「誰でも簡単に楽しめる」をテーマに運用されています。
+                  </div>
+                </p>
+              </li>
+              <li className='mb-10 pb-2 border-b border-gray-400 leading-6 md:leading-8'>
+                <h2 className='text-mainBlack text-sm sm:text-base mb-3 flex flex-row'>
+                  <div className='mr-2'>Q.</div>
+                  <div>みうらじゅん氏から許可を得ていますか？</div>
+                </h2>
+                <p className='text-xs sm:text-sm flex flex-row leading-4 md:leading-6'>
+                  <div className='mr-2'>A.</div>
+                  <div className=''>
+                    『アウトドア般若心経』には著作権が存在しないことを確認しており、そのため特別な許可は得ておりません。ただし、本アプリはみうらじゅん氏およびその作品に対して、最大限の敬意を払いつつ、開発・運用を行っております。
+                  </div>
+                </p>
+              </li>
+              <li className='mb-10 pb-2 border-b border-gray-400 leading-6 md:leading-8'>
+                <h2 className='text-mainBlack text-sm sm:text-base mb-3 flex flex-row'>
+                  <div className='mr-2'>Q.</div>
+                  <div>退会したいです。</div>
+                </h2>
+                <p className='text-xs sm:text-sm flex flex-row leading-4 md:leading-6'>
+                  <div className='mr-2'>A.</div>
+                  <div className=''>
+                    「マイページ」 → 「退会する」 →
+                    「アカウントを削除する」から退会ができます。退会後はユーザー情報と登録済みの写真が全て削除されます。
+                  </div>
+                </p>
+              </li>
+              <li className='mb-10 pb-2 border-b border-gray-400 leading-6 md:leading-8'>
+                <h2 className='text-mainBlack font-blacktext-sm sm:text-base mb-3 flex'>
+                  <div className='mr-2'>Q.</div>
+                  <div>開発元はどこですか？</div>
+                </h2>
+                <p className='text-xs sm:text-sm flex flex-row leading-4 md:leading-6'>
+                  <div className='mr-2'>A.</div>
+                  <div>開発から運用・保守まで全て個人で行っております。</div>
+                </p>
+              </li>
+              <li className='mb-12 pb-2 border-b border-gray-400 leading-6 md:leading-8'>
+                <h2 className='text-mainBlack text-sm sm:text-base mb-3 flex flex-row'>
+                  <div className='mr-2'>Q.</div>
+                  <div>お問い合わせ先はありますか？</div>
+                </h2>
+                <p className='text-xs sm:text-sm flex flex-row leading-4 md:leading-6'>
+                  <div className='mr-2'>A.</div>
+                  <div>下記の窓口までお願いいたします。</div>
+                </p>
+                <div className='ml-6'>
                   <Image
                     src='/images/email_address.png'
                     alt='Email Adress'
                     width={300}
                     height={24}
                   />
-                </p>
+                </div>
               </li>
             </ul>
             <div className='mb-12 text-center'>
@@ -99,7 +175,7 @@ const Faq = () => {
               </Link>
             </div>
           </section>
-        </article>
+        </article>{' '}
       </main>
       <Footer />
     </div>
