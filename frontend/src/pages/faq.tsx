@@ -49,7 +49,6 @@ const Faq = () => {
                       <a
                         target='_blank'
                         rel='noopener noreferrer'
-                        data-testid='amazons3-link'
                         className='hover:opacity-50 transition-all duration-100 underline'
                       >
                         Amazon S3
