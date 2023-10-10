@@ -61,11 +61,11 @@ const Faq = () => {
               <li className='mb-10 pb-2 border-b border-gray-400'>
                 <h2 className='text-mainBlack text-sm sm:text-base mb-3 flex flex-row'>
                   <div className='mr-2'>Q.</div>
-                  <div className=''>写真を他のユーザーに見られることはありますか？</div>
+                  <div className=''>写真は他のユーザーに公開されますか？</div>
                 </h2>
                 <p className='text-xs sm:text-sm flex flex-row leading-5 md:leading-6'>
                   <div className='mr-2'>A.</div>
-                  <div>他のユーザーが写真を見ることはできません。</div>
+                  <div>いいえ、他のユーザーには写真は公開されません。</div>
                 </p>
               </li>
               <li className='mb-10 pb-2 border-b border-gray-400'>
@@ -85,7 +85,7 @@ const Faq = () => {
                 </h2>
                 <p className='text-xs sm:text-sm flex flex-row leading-5 md:leading-6'>
                   <div className='mr-2'>A.</div>
-                  <div>ありません。</div>
+                  <div>いいえ、ありません。</div>
                 </p>
               </li>
               <li className='mb-10 pb-2 border-b border-gray-400'>
@@ -139,7 +139,7 @@ const Faq = () => {
                 </p>
               </li>
               <li className='mb-10 pb-2 border-b border-gray-400'>
-                <h2 className='text-mainBlack font-black text-sm sm:text-base mb-3 flex'>
+                <h2 className='text-mainBlack text-sm sm:text-base mb-3 flex flex-row'>
                   <div className='mr-2'>Q.</div>
                   <div>開発元はどこですか？</div>
                 </h2>
