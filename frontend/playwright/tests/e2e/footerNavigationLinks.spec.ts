@@ -42,12 +42,12 @@ test.describe('Footer Navigation Links', () => {
 
   test('should navigate to faq page when faq-link is clicked', async () => {
     await page.goto(baseURL)
-    await page.getByRole('link', { name: 'よくある質問' }).click()
+    await page.getByRole('link', { name: 'よくあるご質問' }).click()
     await page.waitForSelector('[data-testid="faq"]', {
       timeout: 60000,
     })
     const content = await page.textContent('h1')
-    expect(content).toContain('よくある質問')
+    expect(content).toContain('よくあるご質問')
   })
 
   test('should have correct url for twitter-link', async () => {

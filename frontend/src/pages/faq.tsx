@@ -9,16 +9,16 @@ const Faq = () => {
     <div className='flex flex-col min-h-screen'>
       <Head>
         <title>FAQ | アウトドア般若心経</title>
-        <meta name='description' content='アウトドア般若心経：よくある質問（FAQ）' />
-        <meta property='og:description' content='アウトドア般若心経：よくある質問（FAQ）' />
-        <meta name='twitter:description' content='アウトドア般若心経：よくある質問（FAQ）' />
+        <meta name='description' content='アウトドア般若心経：よくあるご質問（FAQ）' />
+        <meta property='og:description' content='アウトドア般若心経：よくあるご質問（FAQ）' />
+        <meta name='twitter:description' content='アウトドア般若心経：よくあるご質問（FAQ）' />
       </Head>
       <Header />
       <main className='bg-beige flex flex-grow w-full'>
         <article className='flex flex-col items-center font-kinuta text-gray-500 p-4 w-full'>
           <section className='sm:w-552 w-full mx-auto'>
             <h1 className='text-mainBlack text-lg sm:text-2xl text-center mt-4 mb-8 sm:mt-8 sm:mb-12'>
-              よくある質問
+              よくあるご質問
             </h1>
             <ul>
               <li className='mb-10 pb-2 border-b border-gray-400'>
@@ -109,7 +109,7 @@ const Faq = () => {
                 <p className='text-xs sm:text-sm flex flex-row leading-5 md:leading-6'>
                   <div className='mr-2'>A.</div>
                   <div className=''>
-                    本アプリは「誰でも簡単に写経（写真経）ができる」というテーマで運用しています。このテーマは、大乗仏教における「すべての人は救われる」という教えを基にしています。簡単にできるからこそ、多くの人々が『アウトドア般若心経』に触れる機会を持てると考えています。
+                    本アプリは「誰でも簡単に写経（写真経）ができる」というテーマで運用しています。このテーマは、大乗仏教における「すべての人は救われる」という教えを基にしています。簡単にできるからこそ、多くの人々が『アウトドア般若心経』に触れる機会を持てると考えております。
                   </div>
                 </p>
               </li>
