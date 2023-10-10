@@ -41,7 +41,7 @@ const Faq = () => {
                 <p className='text-xs sm:text-sm flex flex-row leading-5 md:leading-6'>
                   <div className='mr-2'>A.</div>
                   <div>
-                    写真は、Amazon S3 に保存されています。
+                    写真は Amazon 社が提供する
                     <Link
                       href='https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/Welcome.html'
                       legacyBehavior
@@ -51,10 +51,10 @@ const Faq = () => {
                         rel='noopener noreferrer'
                         className='hover:opacity-50 transition-all duration-100 underline'
                       >
-                        Amazon S3
+                        クラウドストレージサービス
                       </a>
                     </Link>
-                    とは、Amazon 社が提供するクラウドストレージサービスです。
+                    に保存されています。
                   </div>
                 </p>
               </li>
@@ -96,8 +96,8 @@ const Faq = () => {
                 <p className='text-xs sm:text-sm flex flex-row leading-5 md:leading-6'>
                   <div className='mr-2'>A.</div>
                   <div className=''>
-                    写真の登録ができない不具合が確認されています。現状は、iOS の Safari
-                    のご利用を推奨しております。
+                    iOS の Chrome は写真の登録ができない不具合が確認されています。現状は、iOS の
+                    Safari のご利用を推奨しております。
                   </div>
                 </p>
               </li>
@@ -139,7 +139,7 @@ const Faq = () => {
                 </p>
               </li>
               <li className='mb-10 pb-2 border-b border-gray-400'>
-                <h2 className='text-mainBlack font-blacktext-sm sm:text-base mb-3 flex'>
+                <h2 className='text-mainBlack font-black text-sm sm:text-base mb-3 flex'>
                   <div className='mr-2'>Q.</div>
                   <div>開発元はどこですか？</div>
                 </h2>
