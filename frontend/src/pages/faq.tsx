@@ -9,6 +9,9 @@ const Faq = () => {
     <div className='flex flex-col min-h-screen'>
       <Head>
         <title>FAQ | アウトドア般若心経</title>
+        <meta name='description' content='アウトドア般若心経：よくある質問（FAQ）' />
+        <meta property='og:description' content='アウトドア般若心経：よくある質問（FAQ）' />
+        <meta name='twitter:description' content='アウトドア般若心経：よくある質問（FAQ）' />
       </Head>
       <Header />
       <main className='bg-beige flex flex-grow w-full'>
@@ -102,12 +105,12 @@ const Faq = () => {
               <li className='mb-10 pb-2 border-b border-gray-400'>
                 <h2 className='text-mainBlack text-sm sm:text-base mb-3 flex flex-row'>
                   <div className='mr-2'>Q.</div>
-                  <div>アプリで簡単に『アウトドア般若心経』が出来てしまうと意味がないのでは？</div>
+                  <div>アプリで『アウトドア般若心経』が簡単にできてしまうと意味がないのでは？</div>
                 </h2>
                 <p className='text-xs sm:text-sm flex flex-row leading-5 md:leading-6'>
                   <div className='mr-2'>A.</div>
                   <div className=''>
-                    本アプリには特定の意味も目的もありません。『アウトドア般若心経』を楽しんでいただくためだけのアプリです。大乗仏教における「すべての人は救われる」という教えを元に、本アプリは「誰でも簡単に楽しめる」をテーマに運用されています。
+                    本アプリは「誰でも簡単に写経（写真経）ができる」というテーマで運用しています。このテーマは、大乗仏教における「すべての人は救われる」という教えを基にしています。簡単にできるからこそ、多くの人々が『アウトドア般若心経』に触れる機会を持てると考えています。
                   </div>
                 </p>
               </li>
