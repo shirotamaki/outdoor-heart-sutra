@@ -115,7 +115,8 @@ const Home = ({ sutras, photos }: SutraListProps) => {
                 </div>
                 <div className='w-full sm:w-640 sm:mt-6 sm:mb-10 mt-4 mb-8 text-mainBlack font-kinuta text-left text-sm md:text-base'>
                   <p className='leading-6 md:leading-8'>
-                    アウトドア般若心経とは、家を出て「般若心経」に出てくる278文字を、全国各地の看板や標識から探して一文字ずつ写真に収める行為のことを指します。
+                    アウトドア般若心経とは、「般若心経」に含まれる 278
+                    文字を、全国各地の看板や標識から探して一文字ずつ写真に収める行為のことを指します。当アプリは、その写真を管理するための写経(写真経)道具です。
                   </p>
                   <p className='my-2 leading-6 md:leading-8'>
                     必要なのはスマホとGoogleアカウントのみ。

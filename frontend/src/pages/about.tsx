@@ -37,16 +37,17 @@ const About = () => {
           <section className='font-kinuta text-mainBlack lg:max-w-776 sm:max-w-552 max-w-screen-sm mb-8'>
             <h1 className='text-lg md:text-2xl text-center m-4 md:m-8'>アウトドア般若心経とは</h1>
             <p className='text-sm md:text-base mb-4 leading-6 md:leading-8'>
-              「般若心経」278文字を、家を出て（これを「出家」と称す）、全国各地の看板や標識から探して写真に収める（これを「写経（写真経）」と称す）行為のことを指します。
+              「般若心経」に含まれる
+              278文字を、家を出て（これを「出家」と称す）、全国各地の看板や標識から探して写真に収める（これを「写経（写真経）」と称す）行為のことを指します。
             </p>
             <p className='text-sm md:text-base mb-4 leading-6 md:leading-8'>
               本家のマイルールとして、なるべく神社仏閣にあるものからは写経しないことになっていますが、すべてはあなた次第です。
             </p>
             <p className='text-sm md:text-base mb-4 leading-6 md:leading-8'>
-              アウトドア般若心経には、ゴールも目的も存在しません。
+              アウトドア般若心経には、ゴールも目的も存在しません。意味、結果を求めてはいけません。
             </p>
             <p className='text-sm md:text-base mb-4 leading-6 md:leading-8'>
-              意味、結果を求めてはいけません。アウトドア般若心経を通して般若心経の真髄を感じてください。
+              アウトドア般若心経を通して般若心経の真髄を感じてください。
             </p>
             <p className='italic text-sm md:text-base mb-4 leading-6 md:leading-8'>
               ※
