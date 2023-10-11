@@ -14,7 +14,7 @@ class MyDocument extends Document {
           {/* meta description */}
           <meta
             name='description'
-            content='アウトドア般若心経とは、全国各地の看板や標識から「般若心経」に含まれる文字を写真に収め管理することができるアプリです。'
+            content='アウトドア般若心経とは、全国各地の看板や標識から「般若心経」に含まれる文字を写真に収め管理することができる写経(写真経)アプリです。'
           />
           {/* favicon */}
           <link rel='icon' href='https://www.outdoor-heart-sutra.com/images/favicons/favicon.ico' />
