@@ -3,6 +3,7 @@ import { SessionProvider } from 'next-auth/react'
 import '../styles/globals.css'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { Analytics } from '@/components/Analytics'
 
 export default function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
@@ -22,6 +23,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
         pauseOnHover={false}
         theme='light'
       />
+      <Analytics />
     </>
   )
 }
