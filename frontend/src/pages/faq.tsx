@@ -104,6 +104,26 @@ const Faq = () => {
               <li className='mb-10 pb-2 border-b border-gray-400'>
                 <h2 className='text-mainBlack text-sm sm:text-base mb-3 flex flex-row'>
                   <div className='mr-2'>Q.</div>
+                  <div>iOS の Safari で写真が保存できません。</div>
+                </h2>
+                <p className='text-xs sm:text-sm flex flex-row leading-5 md:leading-6'>
+                  <div className='mr-2'>A.</div>
+                  <div>位置情報を ON に設定してください。</div>
+                </p>
+              </li>
+              <li className='mb-10 pb-2 border-b border-gray-400'>
+                <h2 className='text-mainBlack text-sm sm:text-base mb-3 flex flex-row'>
+                  <div className='mr-2'>Q.</div>
+                  <div>Android の Chrome で写真が保存できません。</div>
+                </h2>
+                <p className='text-xs sm:text-sm flex flex-row leading-5 md:leading-6'>
+                  <div className='mr-2'>A.</div>
+                  <div>位置情報を ON に設定してください。</div>
+                </p>
+              </li>
+              <li className='mb-10 pb-2 border-b border-gray-400'>
+                <h2 className='text-mainBlack text-sm sm:text-base mb-3 flex flex-row'>
+                  <div className='mr-2'>Q.</div>
                   <div>アプリで簡単に写経（写真経）ができてしまうと意味がないのでは？</div>
                 </h2>
                 <p className='text-xs sm:text-sm flex flex-row leading-5 md:leading-6'>
