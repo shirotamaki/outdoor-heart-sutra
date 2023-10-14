@@ -88,7 +88,7 @@ HEIC、JPEG、PNG 形式の写真を登録することができます。また�
 
 - [NextAuth.js](https://next-auth.js.org/) 4.22.1
 
-## リンター／フォーマッター
+### リンター／フォーマッター
 
 - [RuboCop](https://rubocop.org/) 1.55.1
 - [ESLint](https://eslint.org/) 8.36.0
