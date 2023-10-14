@@ -14,11 +14,11 @@
 
 ### サービス概要
 
-アウトドア般若心経は、街の看板や標識から集めた般若心経 278 文字の写真の管理が面倒な問題を解決することができる、アウトドア般若心経ユーザー向けの写経(写真経)アプリです。
+アウトドア般若心経は、街の看板や標識から集めた般若心経 278 文字の写真の管理が面倒な問題を解決することができる、アウトドア般若心経ユーザー向けの写経（写真経）アプリです。
 
 ユーザーは、般若心経に含まれる 278 文字を一文字ずつ写真に収め管理することができ、文字の収集状況を経文の並び順で視覚的に確認することができます。また撮影場所の位置情報、メモを記録する機能も備えています。
 
-Google アカウントがあれば無料でご利用いただけます。
+Google アカウントをお持ちの場合、無料でご利用いただけます。
 
 ## サービス URL
 
@@ -79,13 +79,20 @@ HEIC、JPEG、PNG 形式の写真を登録することができます。また�
 
 ### フロントエンド
 
+- [React](https://react.dev/) 18.2.0
 - [Next.js](https://nextjs.org/) 13.4.6
 - [TypeScript](https://www.typescriptlang.org/) 5.0.2
 - [Tailwind CSS](https://tailwindcss.com/) 3.3.2
 
-### データベース
+### 認証
 
-- [PostgreSQL](https://www.postgresql.org/)
+- [NextAuth.js](https://next-auth.js.org/) 4.22.1
+
+## リンター／フォーマッター
+
+- [RuboCop](https://rubocop.org/) 1.55.1
+- [ESLint](https://eslint.org/) 8.36.0
+- [Prettier](https://prettier.io/) 2.8.4
 
 ### テスト
 
@@ -96,6 +103,10 @@ HEIC、JPEG、PNG 形式の写真を登録することができます。また�
   - [React Testing Library](https://testing-library.com/)
   - [Playwright](https://playwright.dev/)
 
+### データベース
+
+- [PostgreSQL](https://www.postgresql.org/)
+
 ### インフラ
 
 - バックエンド
@@ -103,11 +114,14 @@ HEIC、JPEG、PNG 形式の写真を登録することができます。また�
 - フロントエンド
   - [Vercel](https://vercel.com/)
 
+### CI/CD
+
+- [GitHub Actions](https://github.co.jp/features/actions)
+
 ### 外部サービス
 
 - [Google Maps API](https://developers.google.com/maps?hl=ja)
 - [Google GeoCoding API](https://developers.google.com/maps?hl=ja)
-- [NextAuth.js](https://next-auth.js.org/) 4.22.1
 - [Amazon S3](https://aws.amazon.com/jp/s3/)
 
 ## 開発環境の構築手順
@@ -141,9 +155,10 @@ $ npm run dev
 |NEXT_PUBLIC_RAILS_API_URL|Rails API（バックエンド）の URL をフルパスで指定する|
 |NEXT_PUBLIC_GOOGLE_MAPS_API_KEY|Google Maps API キー|
 |NEXT_PUBLIC_GEOCODING_API_KEY|Geocoding API キー|
-|NEXT_SECRET|この値は JWT を暗号化しトークンをハッシュ化するために使用する|
+|NEXT_SECRET|JWT を暗号化しトークンをハッシュ化するために使用する秘密鍵を指定する|
 |NEXTAUTH_URL|Next.js アプリケーションのベース URL を指定する|
 |NEXTAUTH_URL_INTERNAL|Next.js アプリケーションのベース URL を指定する|
+|NEXT_PUBLIC_ANALYTICS_ID|Google Analytics 4 の測定 ID|
 |USER_EMAIL|テスト用のユーザーのメールアドレス|
 |USER_PASSWORD|テスト用のユーザーのパスワード|
 |BASE_URL|Next.js アプリケーションのベース URL を指定する|
