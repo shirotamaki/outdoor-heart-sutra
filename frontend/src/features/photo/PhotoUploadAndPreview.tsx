@@ -113,10 +113,12 @@ const PhotoUploadAndPreview = ({ sutraId, photoId, sutra }: PhotoUploadAndPrevie
       throw new Error('必要なデータが足りません')
     }
 
+    const userId = await fetchUserId(session.user.email)
+
     const formData = new FormData()
     formData.append('image', originalBlob)
     formData.append('croppedImage', croppedBlob, 'croppedImage.jpeg')
-    formData.append('currentUserId', String(await fetchUserId(session.user.email)))
+    formData.append('currentUserId', String(userId))
     formData.append('currentSutraId', String(sutraId))
 
     if (location) {
