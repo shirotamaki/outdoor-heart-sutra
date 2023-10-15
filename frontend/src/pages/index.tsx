@@ -119,21 +119,28 @@ const Home = ({ sutras, photos }: SutraListProps) => {
                     文字を、全国各地の看板や標識から探して一文字ずつ写真に収める行為のことを指します。
                   </p>
                   <p className='my-2 leading-6 md:leading-8'>
-                    当アプリは、収集した写真を管理するための写経(写真経)道具です。必要なのはスマホとGoogleアカウントのみ。アウトドア般若心経を通して般若心経の真髄を感じてください。
+                    当アプリは、収集した写真を管理するための写経(写真経)道具です。
+                  </p>
+                  <p className='my-2 leading-6 md:leading-8'>
+                    スマホと Google
+                    アカウントさえあればすぐに始められます。アウトドア般若心経を通して般若心経の真髄を感じてください。
                   </p>
                 </div>
-                <div className='w-full sm:w-640 sm:mb-10 mb-8 text-mainBlack font-kinuta text-left text-sm md:text-base'>
+                <div className='w-full sm:w-640 sm:mb-10 mb-8 text-mainBlack font-kinuta text-left text-sm md:text-base leading-6 md:leading-8'>
                   <h2 className='border-b border-gray-400 text-center text-lg mb-2 pb-2'>
                     お知らせ
                   </h2>
-                  <p className='border-b border-gray-300 pb-2 mb-2'>
+                  <p className='mb-2 text-xs md:text-sm underline'>
                     iPhone、iPad ユーザーの皆さまへ
                   </p>
                   <p className='border-b border-gray-300 pb-2 mb-2'>
-                    iOS版のChromeブラウザで写真の登録ができない不具合が確認されています。
+                    iOS版のChromeブラウザで写真の登録ができない不具合が確認されています。Safariのご利用を推奨いたします。
                   </p>
+                  <p className='mb-2 text-xs md:text-sm underline'>位置情報の取得について</p>
                   <p className='border-b border-gray-300 pb-2 mb-2'>
-                    Safariのご利用を推奨いたします。
+                    位置情報を OFF
+                    に設定してもご利用いただけるようになりました。位置情報を取得したくない場合は、デバイスの設定を
+                    OFF にしてご利用ください。
                   </p>
                 </div>
               </div>
