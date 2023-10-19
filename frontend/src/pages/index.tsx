@@ -115,29 +115,27 @@ const Home = ({ sutras, photos }: SutraListProps) => {
                 </div>
                 <div className='w-full sm:w-640 sm:mt-6 sm:mb-10 mt-4 mb-8 text-mainBlack font-kinuta text-left text-sm md:text-base'>
                   <p className='leading-6 md:leading-8'>
-                    アウトドア般若心経とは、「般若心経」に含まれる 278
-                    文字を、全国各地の看板や標識から探して一文字ずつ写真に収める行為のことを指します。
+                    「アウトドア般若心経」とは、般若心経の経典に含まれる 278
+                    文字を、全国各地の看板や標識から探し、一文字ずつ写真に収める新しい写経方法です。
                   </p>
                   <p className='my-2 leading-6 md:leading-8'>
-                    当アプリは、収集した写真を管理するための写経(写真経)道具です。
+                    当アプリは、収集した写真を管理するための写経(写真経)道具です。スマホと Google
+                    アカウントさえあればすぐに始められます。
                   </p>
                   <p className='my-2 leading-6 md:leading-8'>
-                    スマホと Google
-                    アカウントさえあればすぐに始められます。アウトドア般若心経を通して般若心経の真髄を感じてください。
+                    「アウトドア般若心経」を通して般若心経の真髄に触れてみませんか？
                   </p>
                 </div>
                 <div className='w-full sm:w-640 sm:mb-10 mb-8 text-mainBlack font-kinuta text-left text-sm md:text-base leading-6 md:leading-8'>
                   <h2 className='border-b border-gray-400 text-center text-lg mb-2 pb-2'>
                     お知らせ
                   </h2>
-                  <p className='mb-2 text-xs md:text-sm underline'>
-                    iPhone、iPad ユーザーの皆さまへ
-                  </p>
-                  <p className='border-b border-gray-300 pb-2 mb-2'>
+                  <p className='mb-1'>iPhone、iPad ユーザーの皆さまへ</p>
+                  <p className='text-gray-500 text-xs md:text-sm border-b border-gray-300 pb-3 mb-2'>
                     iOS版のChromeブラウザで写真の登録ができない不具合が確認されています。Safariのご利用を推奨いたします。
                   </p>
-                  <p className='mb-2 text-xs md:text-sm underline'>位置情報の取得について</p>
-                  <p className='border-b border-gray-300 pb-2 mb-2'>
+                  <p className='mb-1'>位置情報の取得について</p>
+                  <p className='text-gray-500 text-xs md:text-sm border-b border-gray-300 pb-3 mb-2'>
                     位置情報を OFF
                     に設定してもご利用いただけるようになりました。位置情報を取得したくない場合は、デバイスの設定を
                     OFF にしてご利用ください。
