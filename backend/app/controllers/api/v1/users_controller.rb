@@ -17,16 +17,16 @@ module API
       end
 
       def create
-        user = User.find_by(provider: params[:provider], uid: params[:uid])
-
-        if user.nil?
-          user = User.create(provider: params[:provider], uid: params[:uid], name: params[:name], email: params[:email])
-          unless user.valid?
-            render json: { error: 'ログインに失敗しました' }, status: :unprocessable_entity
-            return
-          end
+        user = User.find_or_create_by(provider: params[:provider], uid: params[:uid]) do |new_user|
+          new_user.name = params[:name]
+          new_user.email = params[:email]
         end
-        head :ok
+
+        if user.persisted?
+          render json: user, status: :ok
+        else
+          render json: { error: 'ユーザの作成に失敗しました' }, status: :unprocessable_entity
+        end
       rescue StandardError => e
         render json: { error: e.message }, status: :internal_server_error
       end
