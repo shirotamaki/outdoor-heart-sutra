@@ -10,7 +10,7 @@ module API
 
       def index
         photo = Photo.find_by(user_id: params[:user_id], sutra_id: params[:sutra_id])
-        
+
         if photo.nil?
           render json: { error: '写真が見つかりません' }, status: :not_found
         else
