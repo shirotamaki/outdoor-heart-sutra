@@ -17,7 +17,7 @@ module API
       end
 
       def create
-        user = User.find_or_create_by(provider: params[:provider], uid: params[:uid]) do |new_user|
+        user = User.find_or_create_by(user_params) do |new_user|
           new_user.name = params[:name]
           new_user.email = params[:email]
         end
@@ -49,6 +49,12 @@ module API
         end
       rescue StandardError => e
         render json: { error: e.message }, status: :internal_server_error
+      end
+
+      private
+
+      def user_params
+        params.require(:user).permit(:provider, :uid, :name, :email)
       end
     end
   end
