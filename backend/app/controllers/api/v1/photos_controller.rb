@@ -9,7 +9,7 @@ module API
       before_action :set_photo, only: %i[show update destroy]
 
       def index
-        photo = Photo.where(user_id: params[:user_id]).find_by(sutra_id: params[:sutra_id])
+        photo = Photo.find_by(user_id: params[:user_id], sutra_id: params[:sutra_id])
 
         if photo.nil?
           render json: { error: '写真が見つかりません' }, status: :not_found
