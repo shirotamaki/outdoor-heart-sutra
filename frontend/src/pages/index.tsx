@@ -92,8 +92,8 @@ const Home = ({ sutras, photos }: SutraListProps) => {
                   自分探しならぬ、自分なくしの旅へ
                 </p>
                 <p className='text-mainBlack font-kinuta text-base md:text-lg mb-10'>Since 2023</p>
-                <Login />
-                <div className='text-left mb-4'>
+                {/* <Login /> */}
+                {/* <div className='text-left mb-4'>
                   <p className='text-xs font-notoSans text-gray-500 my-2 leading-normal'>
                     ※上記ボタンをクリックすることで&nbsp;
                     <Link
@@ -112,8 +112,36 @@ const Home = ({ sutras, photos }: SutraListProps) => {
                     &nbsp;に同意したものとみなします
                   </p>
                   <p className='text-xs font-notoSans text-gray-500'>※ 無料でご利用いただけます</p>
+                </div> */}
+
+                <div className='w-full sm:w-640 sm:mb-4 mb-2 text-mainBlack font-kinuta text-left'>
+                  <h2 className='border-b border-gray-400 text-center text-lg md:text-xl mb-2 pb-2'>
+                    サービス終了のお知らせ
+                  </h2>
+                  <p className='text-sm md:text-base leading-6 md:leading-8 border-b border-gray-400 mb-2 pb-2'>
+                    いつもアウトドア般若心経をご利用いただき、誠にありがとうございます。
+                    <br />
+                    誠に勝手ながら2024年3月31日をもちましてサービスを終了させていただくこととなりました。これまで多くの皆さまにご利用いただきましたこと、心より御礼申し上げます。
+                    <br />
+                    2023年の10月より個人開発サービスとして提供してまいりましたが、近年の世界的なインフレに伴うサーバー費用の高騰の影響を受け、今後のサービス継続が困難と判断いたしました。
+                    <br />
+                    サービス再開に向けたアプリケーションの修復、また収益化によるサーバー維持を試みる予定ではございますが、再開時期は未定でございます。
+                    <br />
+                    日頃ご愛顧いただいておりますユーザー様には突然のお知らせとなりましたことを、深くお詫び申し上げます。
+                    <br />
+                    なお、サービス復旧の際は、当
+                    <Link href='https://twitter.com/od_heart_sutra' legacyBehavior>
+                      <a target='_blank' rel='noopener noreferrer'>
+                        <span className='hover:opacity-50 transition-all duration-100 underline'>
+                          Xアカウント
+                        </span>
+                      </a>
+                    </Link>
+                    よりお知らせいたしますので、フォロー頂けますと幸いです。何卒よろしくお願い申し上げます。
+                  </p>
                 </div>
-                <div className='w-full sm:w-640 sm:mt-6 sm:mb-10 mt-4 mb-8 text-mainBlack font-kinuta text-left text-sm md:text-base'>
+
+                <div className='w-full sm:w-640 sm:mt-6 sm:mb-10 mt-4 mb-8 text-gray-500 font-kinuta text-left text-sm md:text-base '>
                   <p className='leading-6 md:leading-8'>
                     「アウトドア般若心経」とは、般若心経の経典に含まれる 278
                     文字を、全国各地の看板や標識から探し、一文字ずつ写真に収める新しい写経方法です。
@@ -126,7 +154,8 @@ const Home = ({ sutras, photos }: SutraListProps) => {
                     「アウトドア般若心経」を通して般若心経の真髄に触れてみませんか？
                   </p>
                 </div>
-                <div className='w-full sm:w-640 sm:mb-10 mb-8 text-mainBlack font-kinuta text-left text-sm md:text-base leading-6 md:leading-8'>
+
+                {/* <div className='w-full sm:w-640 sm:mb-10 mb-8 text-mainBlack font-kinuta text-left text-sm md:text-base leading-6 md:leading-8'>
                   <h2 className='border-b border-gray-400 text-center text-lg mb-2 pb-2'>
                     お知らせ
                   </h2>
@@ -140,7 +169,7 @@ const Home = ({ sutras, photos }: SutraListProps) => {
                     に設定してもご利用いただけるようになりました。位置情報を取得したくない場合は、デバイスの設定を
                     OFF にしてご利用ください。
                   </p>
-                </div>
+                </div> */}
               </div>
               <div className='sm:hidden mb-8'>
                 <ComicsSmOrBelow />
