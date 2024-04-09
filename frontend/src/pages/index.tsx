@@ -92,6 +92,7 @@ const Home = ({ sutras, photos }: SutraListProps) => {
                   自分探しならぬ、自分なくしの旅へ
                 </p>
                 <p className='text-mainBlack font-kinuta text-base md:text-lg mb-10'>Since 2023</p>
+
                 {/* <Login /> */}
                 {/* <div className='text-left mb-4'>
                   <p className='text-xs font-notoSans text-gray-500 my-2 leading-normal'>
@@ -114,21 +115,27 @@ const Home = ({ sutras, photos }: SutraListProps) => {
                   <p className='text-xs font-notoSans text-gray-500'>※ 無料でご利用いただけます</p>
                 </div> */}
 
+                {/* サービス終了のお知らせ */}
                 <div className='w-full sm:w-640 sm:mb-4 mb-2 text-mainBlack font-kinuta text-left'>
-                  <h2 className='border-b border-gray-400 text-center text-lg md:text-xl mb-2 pb-2'>
+                  <h2 className='border-b border-gray-400 text-center text-xl md:text-2xl mb-2 pb-2'>
                     サービス終了のお知らせ
                   </h2>
-                  <p className='text-sm md:text-base leading-6 md:leading-8 border-b border-gray-400 mb-2 pb-2'>
-                    いつもアウトドア般若心経をご利用いただき、誠にありがとうございます。
-                    <br />
-                    誠に勝手ながら2024年3月31日をもちましてサービスを終了させていただくこととなりました。これまで多くの皆さまにご利用いただきましたこと、心より御礼申し上げます。
-                    <br />
+                  <p className='text-sm md:text-base leading-6 md:leading-8 mb-2 pb-2'>
+                    いつもアウトドア般若心経をご利用いただきありがとうございます。
+                  </p>
+                  <p className='text-sm md:text-base leading-6 md:leading-8 mb-2 pb-2'>
+                    誠に勝手ながら2024年3月31日をもちまして、サービスを終了させていただくこととなりました。これまで多くの皆さまにご利用いただきましたこと、心より御礼申し上げます。
+                  </p>
+                  <p className='text-sm md:text-base leading-6 md:leading-8 mb-2 pb-2'>
                     2023年の10月より個人開発サービスとして提供してまいりましたが、近年の世界的なインフレに伴うサーバー費用の高騰の影響を受け、今後のサービス継続が困難と判断いたしました。
-                    <br />
-                    サービス再開に向けたアプリケーションの修復、また収益化によるサーバー維持を試みる予定ではございますが、再開時期は未定でございます。
-                    <br />
+                  </p>
+                  <p className='text-sm md:text-base leading-6 md:leading-8 mb-2 pb-2'>
+                    サービス再開に向けたアプリケーションの改善、また収益化によるサーバー維持を試みる予定ではございますが、再開時期は未定でございます。
+                  </p>
+                  <p className='text-sm md:text-base leading-6 md:leading-8 mb-2 pb-2'>
                     日頃ご愛顧いただいておりますユーザー様には突然のお知らせとなりましたことを、深くお詫び申し上げます。
-                    <br />
+                  </p>
+                  <p className='text-sm md:text-base leading-6 md:leading-8 mb-2 pb-2'>
                     なお、サービス復旧の際は、当
                     <Link href='https://twitter.com/od_heart_sutra' legacyBehavior>
                       <a target='_blank' rel='noopener noreferrer'>
@@ -137,7 +144,10 @@ const Home = ({ sutras, photos }: SutraListProps) => {
                         </span>
                       </a>
                     </Link>
-                    よりお知らせいたしますので、フォロー頂けますと幸いです。何卒よろしくお願い申し上げます。
+                    よりお知らせいたしますので、フォロー頂けますと幸いです。
+                  </p>
+                  <p className='text-sm md:text-base leading-6 md:leading-8 border-b border-gray-400 pb-4'>
+                    何卒よろしくお願い申し上げます。
                   </p>
                 </div>
 
